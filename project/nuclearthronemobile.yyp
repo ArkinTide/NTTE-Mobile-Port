@@ -45740,6 +45740,18 @@
         "name": "scrNTTEFullMenuStatsFollowup67Tests",
         "path": "scripts/scrNTTEFullMenuStatsFollowup67Tests/scrNTTEFullMenuStatsFollowup67Tests.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrNTTEUpdate",
+        "path": "scripts/scrNTTEUpdate/scrNTTEUpdate.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrNTTEUpdateTests",
+        "path": "scripts/scrNTTEUpdateTests/scrNTTEUpdateTests.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

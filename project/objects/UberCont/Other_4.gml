@@ -8,17 +8,7 @@ else if os_type == os_android {
     SetVolumeControl(opt_volumecontrol)
 }
 
-call_after(5, function() {
-	if (instance_exists(MakeGame)) exit
-	
-	if ((!instance_exists(Player) || scrGameIsGenerationScreen())
-		&& ((current_time - update_request_since_last) > 120_000)
-	) {
-		if (!update_notified) {
-			scrGameQueryUpdateVersion()
-		}
-	}
-})
+// Updates are scheduled once at the idle main menu by UberCont.Step.
 
 scrOptionsUpdate()
 

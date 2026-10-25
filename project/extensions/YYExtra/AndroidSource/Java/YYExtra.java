@@ -48,6 +48,11 @@ import android.content.ContentResolver;
 
 
 public class YYExtra extends ExtensionBase {
+    private final NTTEUpdater ntteUpdater = new NTTEUpdater();
+    public double NTTEUpdateDownload(String url, String hash, double size) { return ntteUpdater.download(url, hash, size); }
+    public double NTTEUpdateCancel() { return ntteUpdater.cancel(); }
+    public double NTTEUpdateInstall() { return ntteUpdater.install(true); }
+
 	private static final int EVENT_OTHER_SOCIAL = 70;
 	private static final int FILE_SELECT_CODE = 42;
 	public static String unzipFirstEntry = "";
@@ -170,6 +175,7 @@ public class YYExtra extends ExtensionBase {
 	}
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == NTTEUpdater.PERMISSION_CODE) { ntteUpdater.install(false); return; }
 		if (requestCode == 2296) {
 			if (IsVersionR() > 0.0) {
 				int dsMapIndex = RunnerJNILib.jCreateDsMap(null, null, null);

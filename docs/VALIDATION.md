@@ -2,6 +2,17 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [返回首页](../README.md)
 
+## candidate74：更新功能
+
+- `UpdateCheckTests`、`MenuNativeTests`、`MenuReminderPersistenceNativeTests` 在 Windows VM 30/60 帧下通过。
+- Android 原生更新模块编译通过；20 项 Java 策略测试覆盖流式下载、长度与 SHA-256 校验、文件损坏、取消及 URL/重定向规则。
+- 更新模块 84 个汉字均在现有正文字体中。iOS VM 导出和保留运行库的函数注册兼容性检查通过。
+- 本轮没有 Android/iPhone 真机下载或覆盖安装实测，也未进行全新 Mac 原生构建；系统安装授权和侧载签名仍需设备端操作。
+
+candidate74 APK、IPA 和 SHA-256 校验文件见 [发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate74)。最终包中的更新逻辑与编译输出已逐函数核对；Android 安装权限、受限 FileProvider 路径、签名和 16 KB ZIP 对齐检查通过。
+
+## candidate73：之前的修复基线
+
 candidate73 的下列 10 项 Windows VM 回归均在 30/60 帧通过：
 
 - `CrystalWaveAccuracyNativeTests`
@@ -19,4 +30,4 @@ candidate73 的下列 10 项 Windows VM 回归均在 30/60 帧通过：
 
 Android 共用源码和 iOS VM 导出已核对。两种安装包已通过资源/结构和对应签名兼容性检查。本轮尚未进行手机实测、全新 Mac 原生构建或完整 MOD 全流程验收。
 
-最后交付的 candidate73 APK、IPA 及 SHA-256 校验文件通过 [GitHub Releases](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate73) 提供。上传前已核对它们与 candidate73 交付记录的哈希一致。Git 源码目录不包含个人日志和构建产物。
+历史 candidate73 APK、IPA 及 SHA-256 校验文件通过 [GitHub Releases](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate73) 提供。上传前已核对它们与 candidate73 交付记录的哈希一致。Git 源码目录不包含个人日志和构建产物。

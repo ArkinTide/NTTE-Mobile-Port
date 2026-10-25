@@ -226,5 +226,6 @@ function scrNTTEFullMenuDefine() {
     scrNTTEFullMenuPetPresentationBind();
     // END NTTE PET MENU PRESENTATION
     scrNTTEFullMenuRemindersBind()
+    scrNTTEUpdateMenuDefine()
     option_number=_old
 }

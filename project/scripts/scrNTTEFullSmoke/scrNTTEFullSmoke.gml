@@ -521,6 +521,7 @@ function scrNTTEFullSmokeStep() {
         if(scrNTTEFullSmokeCase("PetGuardianActiveTests")) scrNTTEFullPetGuardianActiveTests();
         if(scrNTTEFullSmokeCase("PetGuardianOtherActiveTests")) scrNTTEFullPetGuardianOtherActiveTests();
         if(scrNTTEFullSmokeCase("PetGuardianSpecificTests")) scrNTTEFullPetGuardianSpecificTests();
+        if(scrNTTEFullSmokeCase("UpdateCheckTests")) scrNTTEUpdateTests();
         if(scrNTTEFullSmokeCase("ActorFireTests")) scrNTTEFullActorFireTests();
         if(scrNTTEFullSmokeCase("CrystalWaveAccuracyNativeTests")) scrNTTEFullCrystalWaveAccuracyNativeTests();
         if(scrNTTEFullSmokeCase("LastEnemyTimeoutNativeTests")) scrNTTELastEnemyTimeoutNativeTests();

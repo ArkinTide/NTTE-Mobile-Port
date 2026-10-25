@@ -3,18 +3,24 @@
 [简体中文](README.md) | [English](README.en.md)
 
 NTTE 移植版的 GameMaker 源码，包含 Android、iOS 适配和简体中文。
-当前源码基线为 **candidate73（2026-10-25）**。
+当前源码基线为 **candidate74（2026-10-25）**。
 
 ## 下载安装包
 
-最后交付的 Android APK 和 iOS IPA 可在 [candidate73 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate73) 下载：
+最后交付的 Android APK 和 iOS IPA 可在 [candidate74 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate74) 下载：
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate73/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate73.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate73/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate73.ipa)：安装前需要用自己的签名身份重新签名。
-- [SHA-256 校验文件](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate73/SHA256SUMS.txt)
+- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate74/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate74.apk)
+- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate74/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate74.ipa)：安装前需要用自己的签名身份重新签名。
+- [SHA-256 校验文件](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate74/SHA256SUMS.txt)
 
 两平台使用独立标识 `com.arkintide.nuclearthronentte`。本轮验证范围见[验证记录](docs/VALIDATION.md)。
 安装包作为 Releases 附件提供；Git 源码目录不包含安装包、签名密钥或个人存档。
+
+## 游戏内更新
+
+从 candidate74 开始，启动后会自动检查本仓库的最新正式版本，也可在 **设置 → NT:TE → 版本更新** 中手动检查或关闭自动检查。
+Android 支持在游戏内下载、校验 APK 并打开系统安装确认；iOS 打开 IPA 下载链接，安装前仍需签名。
+旧版需要先手动安装一次包含更新功能的版本。详见[更新使用与发布说明](docs/UPDATING.md)。
 
 ## 项目结构
 

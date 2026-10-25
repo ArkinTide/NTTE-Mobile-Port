@@ -1,23 +1,16 @@
 {
-  "source_candidate": "candidate73",
+  "source_candidate": "candidate74",
   "date": "2026-10-25",
-  "source_manifest_sha256": "05f05b5e9ba2b09a947f0673e800273f014f4eac067722c1b8dee71688c2f986",
-  "windows_regression_receipt_sha256": "3e90f46529e83d4feee789d1645109ef7c5ff485e2ea7607e2d2e2134225491d",
+  "source_manifest_sha256": "18814ce5dfdfa48567b012c8bec355cbe29e16a4425be576820207cf0c2fcfdb",
+  "windows_regression_receipt_sha256": "8e4a3017deebe9b912a4dfe10fe857e1b4d820ef620b17affc0f820ba7230aa4",
   "android_overlay_paths": [
     "objects/MakeGame/Alarm_0.gml",
     "options/android/options_android.yy"
   ],
   "selected_windows_cases": [
-    "CrystalWaveAccuracyNativeTests",
-    "LastEnemyTimeoutNativeTests",
-    "ActorFireTests",
-    "ActorMountTests",
-    "CrystalCloneNativeTests",
-    "ActorBirthCaptureNativeTests",
-    "BossClassificationNativeTests",
-    "GroundEnemyNoKillNativeTests",
-    "WorldKillEnemiesTests",
-    "TrenchCompletionPreventNativeTests"
+    "UpdateCheckTests",
+    "MenuNativeTests",
+    "MenuReminderPersistenceNativeTests"
   ],
   "rates": [
     30,
@@ -26,12 +19,17 @@
   "mobile_device_tested_this_round": false,
   "installers": {
     "android": {
-      "sha256": "e493430ce52f7272eb90a57985f15e176485aa425563ff9b9c02d4cf682bfc6c",
-      "bytes": 250287180
+      "sha256": "b03694c18a314712dfb4bd0cbc6e944865090049d8de8b49b0987d8a3e0fec64",
+      "bytes": 250340901
     },
     "ios": {
-      "sha256": "3e99d43421e5bf39a408ea2269295857ddda5f5db4153eded916de6316af37eb",
-      "bytes": 174293294
+      "sha256": "f36af4dc6fe5d9211647bd075d31e23817d10757b072ae819e7d1d4e87c9a885",
+      "bytes": 174306348
     }
-  }
+  },
+  "android_native_policy_checks": 20,
+  "android_native_module_compiled": true,
+  "ios_retained_runner_compatibility_checked": true,
+  "native_xcode_compilation_performed": false,
+  "installation_flow": "Android: in-game APK download and system installation confirmation; iOS: IPA download link with re-signing required"
 }

@@ -1,3 +1,5 @@
+scrNTTEUpdateStep()
+
 var _index = global.index
 
 if native_cursor_inst != -1

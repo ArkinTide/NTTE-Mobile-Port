@@ -130,13 +130,7 @@ gamepad_set_axis_deadzone(0, 0.1)
 localcoop = 0
 gamepad_sel = 0
 
-update_request_since_last = -1
-update_request = scrGameQueryUpdateVersion()
-update_notified = false
-
-update_info = undefined
-update_message = -1
-update_url = "https://toncho.itch.io/nuclear-throne-mobile"
+scrNTTEUpdateInit()
 
 audio_falloff_set_model(audio_falloff_linear_distance_clamped)
 

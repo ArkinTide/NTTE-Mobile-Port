@@ -6,20 +6,7 @@ function tb_api(type) {
 }
 
 function scrGameQueryUpdateVersion() {
-	with UberCont {
-		if opt_updates {
-			update_request = scrHttpGet("https://raw.githubusercontent.com/toarch7/torcherdev/main/ntmobile.json")
-		}
-		else {
-			update_request = -1
-		}
-		
-		update_request_since_last = current_time
-		
-		return update_request
-	}
-	
-	return -1
+    return scrNTTEUpdateCheck(true)
 }
 
 function scrValidateWeeklyLoadout(_map) {

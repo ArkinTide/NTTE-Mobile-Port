@@ -3,19 +3,25 @@
 [简体中文](README.md) | [English](README.en.md)
 
 GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
-The current source baseline is **candidate73 (2026-10-25)**.
+The current source baseline is **candidate74 (2026-10-25)**.
 
 ## Downloads
 
-The latest delivered Android APK and iOS IPA are available on the [candidate73 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate73):
+The latest delivered Android APK and iOS IPA are available on the [candidate74 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate74):
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate73/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate73.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate73/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate73.ipa): sign or re-sign with your own signing identity before installing.
-- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate73/SHA256SUMS.txt)
+- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate74/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate74.apk)
+- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate74/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate74.ipa): sign or re-sign with your own signing identity before installing.
+- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate74/SHA256SUMS.txt)
 
 Both platforms use the separate application identifier `com.arkintide.nuclearthronentte`.
 See the [validation notes](docs/VALIDATION.en.md) for the scope of verification.
 Installers are distributed as release assets; the Git source tree contains no installers, signing keys, or personal saves.
+
+## In-game updates
+
+Starting with candidate74, the game automatically checks this repository's latest stable release after startup. Open **Settings → NT:TE → UPDATES** to check manually or disable automatic checks.
+Android downloads and verifies the APK in-game, then opens the system installation confirmation. iOS opens the IPA download link and still requires signing before installation.
+Older builds need one manual installation of an updater-enabled version. See [using and publishing updates](docs/UPDATING.en.md).
 
 ## Repository layout
 

@@ -40,6 +40,7 @@ enum OptionCategory {
 	CustomMode_Disclaimer,
 	
 	NTTE, NTTE_Options, NTTE_Stats, NTTE_Credits, NTTE_Mutants, NTTE_Pets, NTTE_Unlocks, NTTE_PetDetails,
+	NTTE_Updates,
 	NUM_MENU_OPTIONS
 }
 
