@@ -676,7 +676,10 @@ function scrMenuDrawLoadout(_pinst) {
 		_tooltip_x = 0,
 		_tooltip_y = 0,
 		
-		_primary_weapon = _pinst.cwep,
+		// The independent NTTE golden slot is resolved on entry to the run.
+		// Preview it here too, without replacing the native saved starter/ammo.
+		_primary_weapon = !scrGameIsEventRun() && !_is_custom_weapon
+            ? scrNTTEFullLoadoutWeaponCurrent(_race,_pinst.cwep):_pinst.cwep,
 		_secondary_weapon = _pinst.bwep
 	
 	if _race == Race.Steroids && !scr_weapon_is_valid(_secondary_weapon) {

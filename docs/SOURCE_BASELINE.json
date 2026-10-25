@@ -1,21 +1,27 @@
 {
-  "source_candidate": "candidate76",
+  "source_candidate": "candidate77",
   "date": "2026-10-25",
-  "source_manifest_sha256": "3409cd71a200c8508e04e19b0b1d5ec0b911a89d045a1f7a5817390c4106a7f9",
-  "windows_regression_receipt_sha256": "8218b1cb14432a7f208b48b25cfda79c0700afafdb22f859d413bb8e31b650dc",
+  "source_manifest_sha256": "30272a98c2560374f07976cd401d84cea84a2dbcf1a4bb7d0f8fa6406955bf1e",
+  "windows_regression_receipt_sha256": "7a39c79409d72790d4f6486a40b1c5f5b073a065af3c9270ce616fdd461e9336",
   "android_overlay_paths": [
     "objects/MakeGame/Alarm_0.gml",
     "options/android/options_android.yy"
   ],
   "selected_windows_cases": [
-    "PortalSelectionTransitionTests",
-    "LanguagePreferencePersistenceTests",
-    "LastEnemyHiddenTimeoutTests",
-    "LastEnemyTimeoutNativeTests",
-    "WorldCompletionNativeTests",
+    "UpdateStartupMenuTests",
     "UpdateCheckTests",
-    "MenuReminderPersistenceNativeTests",
-    "MenuNativeTests"
+    "SealKingMusicTests",
+    "PitSquidMusicPhaseTests",
+    "MusicBossRoutingTests",
+    "GoldenLoadoutDisplayTests",
+    "WeaponLoadoutNativeTests",
+    "LanguagePreferencePersistenceTests",
+    "PortalSelectionTransitionTests",
+    "RoadmapPlayerIconsTests",
+    "ParrotPerchShadowTests",
+    "DummyAmbushMusicTests",
+    "WorldEventsDummyWorldTests",
+    "BossClassificationNativeTests"
   ],
   "rates": [
     30,
@@ -24,12 +30,12 @@
   "mobile_device_tested_this_round": false,
   "installers": {
     "android": {
-      "sha256": "e2b57b1038c2075b6565af51302b990fda3113d361f897fe18a69bcaeeb41e49",
-      "bytes": 250368675
+      "sha256": "2ec96abbb4b808088913998cf3c1c137ea2d7600770d58465aa6fb076b3fac90",
+      "bytes": 250395171
     },
     "ios": {
-      "sha256": "ce78b7abe6b51b5f8a8f5694ed2ffcc257bf4969f9c5f356dcacb8f089949fa7",
-      "bytes": 174315636
+      "sha256": "7fa4bb6d46001841488b731be309c69cf327050a02c1be1e61b7038dfaa7958b",
+      "bytes": 174322167
     }
   },
   "android_native_policy_checks": 20,
@@ -37,8 +43,8 @@
   "ios_retained_runner_compatibility_checked": true,
   "native_xcode_compilation_performed": false,
   "installation_flow": "Android: in-game APK download and system installation confirmation; iOS: IPA download link with re-signing required",
-  "version": "1.0.1",
-  "version_policy": "Future bugfix releases increment by 0.0.1; next 1.0.2. Keep increasing candidate serials for updater compatibility.",
-  "android_version_code": 3000076,
-  "ios_bundle_version": "76"
+  "version": "1.0.2",
+  "version_policy": "Future bugfix releases increment by 0.0.1; next 1.0.3. Keep increasing candidate serials for updater compatibility.",
+  "android_version_code": 3000077,
+  "ios_bundle_version": "77"
 }

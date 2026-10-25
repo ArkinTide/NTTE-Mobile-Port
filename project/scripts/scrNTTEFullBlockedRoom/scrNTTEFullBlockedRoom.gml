@@ -32,7 +32,7 @@ function scrNTTEFullBlockedRoomSetup() {
     var _dummy=GameCont.subarea<3 && scrNTTEFullValue(GameCont,"ntte_bigbandit_spawn",0)<=0
     var _roll=(5+_dummy)-random(5+_dummy)
     type=_roll<=2 ? "Chest":(_roll<=3 ? "Scorpion":(_roll<=4 ? "Maggot":(_roll<=5 ? "Skull":"Dummy")))
-    dummy_spawn=1; dummy_music=false
+    dummy_spawn=1; dummy_music=false; dummy_target=noone; dummy_retry=0
 }
 function scrNTTEFullBlockedRoomEntrance(_room,_w,_h) {
     var _cx=_room.x,_cy=_room.y,_ow=_w*16,_oh=_h*16,_floor_dis=32
@@ -152,6 +152,7 @@ function scrNTTEFullBlockedRoomCreate() {
                 break
             case "Dummy":
                 var _target=instance_create(_cx,_cy,TutorialTarget); _target.max_hp=8; _target.hp=8; _target.team=team_enemy
+                dummy_target=_target
                 repeat(4) with (instance_create(_cx,_cy,TopDecalDesert)) if (place_meeting(x,y,TopPot)) instance_destroy()
                 var _walls=[],_all=scrNTTEFullInstances([Wall,TopSmall])
                 for(var _i=0;_i<array_length(_all);++_i) if (array_get_index(_before,_all[_i])<0 && _all[_i].sprite_index!=scrNTTERefSprite("Wall1BotRubble")) array_push(_walls,_all[_i])
@@ -233,8 +234,11 @@ function scrNTTEFullBlockedRoomStep() {
     if (lockstep_stop || type!="Dummy") return;
     if (instance_exists(WantBoss)) {
         if (dummy_spawn>0) {
-            if (!position_meeting(x,y,TutorialTarget)) {
-                dummy_spawn--; dummy_music=true; GameCont.proto=true
+            var _retry=scrNTTEFullValue(id,"dummy_retry",0)
+            if (_retry>0) { dummy_retry=max(0,_retry-timescale); return }
+            // Native TutorialTarget.Create moves up to12px away from its
+            // authored center. That movement is not a broken target.
+            if (!instance_exists(dummy_target)) {
                 var _walls=[],_players=[]
                 with (Wall) if ((!place_free(x-16,y) && !place_free(x+16,y)) || (!place_free(x,y+16) && !place_free(x,y-16))) {
                     if (array_length(scrNTTEFullRectInstances(bbox_left-1,bbox_top-1,bbox_right,bbox_bottom,TopSmall))>0) array_push(_walls,id)
@@ -273,12 +277,18 @@ function scrNTTEFullBlockedRoomStep() {
                     var _pos=_players[_i]
                     if (instance_exists(_pos[0])) { _pos[0].x=_pos[1]; _pos[0].y=_pos[2] }
                 }
+                var _spawned=false
                 with (BanditBoss) if (array_get_index(_before,id)<0) {
+                    _spawned=true
                     var _target=instance_nearest(x,y,Player)
                     if (instance_exists(_target)) scrNTTESewerLook(point_direction(x,y,_target.x,_target.y))
                     hitid=[sprTargetIdle,"BANDIT AMBUSH"]
                     GameCont.ntte_bigbandit_spawn=scrNTTEFullValue(GameCont,"ntte_bigbandit_spawn",0)+1
                 }
+                // No candidate wall means the native spawn may fail. Retry
+                // without consuming the event or arming a false win jingle.
+                if (_spawned) { dummy_spawn--; dummy_music=true; GameCont.proto=true }
+                else dummy_retry=30 // Avoid scanning every wall on each rendered frame.
             }
         }
         else if (dummy_music && GameCont.subarea!=3 && !instance_exists(BanditBoss)) {

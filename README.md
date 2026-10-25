@@ -3,18 +3,28 @@
 [简体中文](README.md) | [English](README.en.md)
 
 NTTE 移植版的 GameMaker 源码，包含 Android、iOS 适配和简体中文。
-当前源码基线为 **1.0.1（2026-10-25，内部构建 candidate76）**。
+当前源码基线为 **1.0.2（2026-10-25，内部构建 candidate77）**。
 
 ## 下载安装包
 
-最后交付的 Android APK 和 iOS IPA 可在 [1.0.1 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate76) 下载：
+最后交付的 Android APK 和 iOS IPA 可在 [1.0.2 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate77) 下载：
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate76/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate76.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate76/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate76.ipa)：安装前需要用自己的签名身份重新签名。
-- [SHA-256 校验文件](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate76/SHA256SUMS.txt)
+- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate77/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate77.apk)
+- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate77/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate77.ipa)：安装前需要用自己的签名身份重新签名。
+- [SHA-256 校验文件](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate77/SHA256SUMS.txt)
 
 两平台使用独立标识 `com.arkintide.nuclearthronentte`。本轮验证范围见[验证记录](docs/VALIDATION.md)。
 安装包作为 Releases 附件提供；Git 源码目录不包含安装包、签名密钥或个人存档。
+
+## 1.0.2 更新内容
+
+- 修复加载路线图遇到无效角色皮肤图标时的崩溃，回退显示该角色的默认图标。
+- 修复稻草人未被打碎或未成功召唤大匪时误播 Boss 胜利音乐；召唤失败会保留事件并重试。
+- 去掉鹦鹉宠物停在大海螺等对象上时盖在宿主身上的黑色阴影条，保留落地阴影。
+- 修复启动主界面已发现新版却不弹出更新提示的问题，并修复该界面上的 Android 下载完成安装交接。
+- 修复海豹王出场后仍播放关卡音乐的问题。
+- 按原 MOD 条件切换幽灵蛸的出场前与战斗音乐，重复出场回调不再重启正在播放的曲目或前奏。
+- 修复选人界面收起武器栏后仍显示普通武器的问题，正确预览已选择的 NTTE 黄金武器及黄金融合武器。
 
 ## 1.0.1 更新内容
 

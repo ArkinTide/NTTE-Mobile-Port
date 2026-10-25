@@ -2,6 +2,16 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [返回首页](../README.md)
 
+## 1.0.2（candidate77）
+
+14 项选定 Windows VM 测试在 30/60 帧通过：`UpdateStartupMenuTests`, `UpdateCheckTests`, `SealKingMusicTests`, `PitSquidMusicPhaseTests`, `MusicBossRoutingTests`, `GoldenLoadoutDisplayTests`, `WeaponLoadoutNativeTests`, `LanguagePreferencePersistenceTests`, `PortalSelectionTransitionTests`, `RoadmapPlayerIconsTests`, `ParrotPerchShadowTests`, `DummyAmbushMusicTests`, `WorldEventsDummyWorldTests`, `BossClassificationNativeTests`。
+
+更新提示、两项 Boss 音乐及黄金武器预览均在修复前复现失败。音乐测试启用真实音频，运行海豹王的 phase5 回调、幽灵蛸的清场 Step、首次浮出决策、完成浮出 Step 及 MusCont.Alarm2，检查实际播放句柄和重复请求不重启；黄金武器测试逐像素对照真实收起菜单的绘制，覆盖三个 NTTE 黄金模块和黄金融合武器。另复查语言持久化、变异选择及存储武器的原有回归。新增路线图真实绘制与默认图标像素对照、鹦鹉停靠大海螺的双皮肤像素对照、稻草人偏移及缺少生成墙的失败重试音频测试，并运行实际生成关卡中的完整稻草人召唤与死亡流程和 Boss 分类回归。用户已澄清没有大匪实际死亡，仅误播音乐；观察测试早期发现的 5 点扣血来自未隔离的宠物攻击，未作为 bug 复现。
+
+两平台最终编译函数、元数据和安装包检查通过。Android 保留签名身份并验证 16 KB ZIP 对齐；未改动的原生更新策略沿用同源码哈希下 20 项通过记录。iOS 使用新 VM 导出及已验证的保留运行库封装，需要重新签名。
+
+安装包见 [1.0.2 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate77)。未进行 Android/iPhone 真机验收、全新 Mac 原生编译或完整 MOD 全流程验收。
+
 ## 1.0.1（candidate76）
 
 8 项选定的 Windows VM 测试均在 30/60 帧通过：`PortalSelectionTransitionTests`, `LanguagePreferencePersistenceTests`, `LastEnemyHiddenTimeoutTests`, `LastEnemyTimeoutNativeTests`, `WorldCompletionNativeTests`, `UpdateCheckTests`, `MenuReminderPersistenceNativeTests`, `MenuNativeTests`。

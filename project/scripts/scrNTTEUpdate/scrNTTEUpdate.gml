@@ -1,7 +1,7 @@
 // Release numbering is independent of GAME_BUILD, which belongs to save formats.
-#macro NTTE_RELEASE_NUMBER 76
-#macro NTTE_RELEASE_TAG "candidate76"
-#macro NTTE_RELEASE_VERSION "1.0.1"
+#macro NTTE_RELEASE_NUMBER 77
+#macro NTTE_RELEASE_TAG "candidate77"
+#macro NTTE_RELEASE_VERSION "1.0.2"
 #macro NTTE_RELEASE_REPO "https://github.com/ArkinTide/NTTE-Mobile-Port"
 #macro NTTE_RELEASE_API "https://api.github.com/repos/ArkinTide/NTTE-Mobile-Port/releases/latest"
 
@@ -126,7 +126,8 @@ function scrNTTEUpdateHttpEvent(_event) {
     return true
 }
 function scrNTTEUpdateCanPrompt() {
-    return !os_is_paused() && instance_exists(Menu) && !instance_exists(Player) && !instance_exists(MakeGame)
+    return !os_is_paused() && (instance_exists(MainMenuButton) || instance_exists(Menu))
+        && !instance_exists(Logo) && !instance_exists(Player) && !instance_exists(MakeGame)
         && !instance_exists(MenuGen) && !instance_exists(MenuOptions) && !instance_exists(Cinematic)
 }
 function scrNTTEUpdateTick(_now=current_time) {
@@ -140,7 +141,7 @@ function scrNTTEUpdateStep() {
     if(scrNTTESmokeEnabled()) return
     var _s=scrNTTEUpdateState()
     if(os_type==os_android && _s.install_pending && !os_is_paused() && !instance_exists(Player)
-        && (instance_exists(Menu) || instance_exists(MenuOptions))) {
+        && (instance_exists(MainMenuButton) || instance_exists(Menu) || instance_exists(MenuOptions))) {
         if(NTTEUpdateInstall()>=0) _s.install_pending=false
     }
     // One automatic request per launch, delayed until the actual main menu is idle.

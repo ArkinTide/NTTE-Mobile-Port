@@ -16,18 +16,18 @@ The Android downloader uses private app cache storage and does not require all-f
 
 ## Official version policy
 
-The current stable version is **1.0.1** (internal build `candidate76`). Every subsequent bugfix release increases the visible version by **0.0.1**: `1.0.2`, `1.0.3`, and so on. Keep the in-game version, Android versionName, and iOS CFBundleShortVersionString in sync.
+The current stable version is **1.0.2** (internal build `candidate77`). Every subsequent bugfix release increases the visible version by **0.0.1**: `1.0.3`, `1.0.4`, and so on. Keep the in-game version, Android versionName, and iOS CFBundleShortVersionString in sync.
 
-To remain compatible with installed candidate74 updaters, keep increasing `candidateN` GitHub Release tags and installer suffixes. Set the Release title to the official version (`1.0.1` here); newer games display this title. An additional `v1.0.1` Git tag may point to the same commit. Do not create a separate Latest Release without installers.
+To remain compatible with installed candidate74 updaters, keep increasing `candidateN` GitHub Release tags and installer suffixes. Set the Release title to the official version (`1.0.2` here); newer games display this title. An additional `v1.0.2` Git tag may point to the same commit. Do not create a separate Latest Release without installers.
 
-This APK uses Android versionCode `3000076`; subsequent builds must increase it rather than use a lower automatically generated value. The iOS CFBundleVersion is `76` and must also increase. Keep the save-format `GAME_BUILD` unchanged.
+This APK uses Android versionCode `3000077`; subsequent builds must increase it rather than use a lower automatically generated value. The iOS CFBundleVersion is `77` and must also increase. Keep the save-format `GAME_BUILD` unchanged.
 
 ## Publishing a new version
 
-1. Increase `NTTE_RELEASE_VERSION` using the policy above and increment both `NTTE_RELEASE_NUMBER` and `NTTE_RELEASE_TAG` in `project/scripts/scrNTTEUpdate/scrNTTEUpdate.gml`, for example `1.0.2`, `77`, and `candidate77` next. Do not change the save-format `GAME_BUILD` just to publish an update.
+1. Increase `NTTE_RELEASE_VERSION` using the policy above and increment both `NTTE_RELEASE_NUMBER` and `NTTE_RELEASE_TAG` in `project/scripts/scrNTTEUpdate/scrNTTEUpdate.gml`, for example `1.0.3`, `78`, and `candidate78` next. Do not change the save-format `GAME_BUILD` just to publish an update.
 2. Build and verify both installers. Retain the Android package name and signing identity, and do not lower its version code.
 3. Create a matching stable GitHub Release and mark it Latest. The updater reads `https://api.github.com/repos/ArkinTide/NTTE-Mobile-Port/releases/latest`. Drafts and prereleases are not treated as stable updates.
-4. Upload installers before publishing. Use `NuclearThrone.TerritorialExpansion-Android-<description>-candidate76.apk` and `NuclearThrone.TerritorialExpansion-iOS-<description>-candidate76.ipa`. The Android asset's GitHub `digest` must contain its SHA-256; normal uploads supply this automatically.
+4. Upload installers before publishing. Use `NuclearThrone.TerritorialExpansion-Android-<description>-candidate77.apk` and `NuclearThrone.TerritorialExpansion-iOS-<description>-candidate77.ipa`. The Android asset's GitHub `digest` must contain its SHA-256; normal uploads supply this automatically.
 5. Describe the changes and iOS signing requirement in the release notes, and attach SHA-256 checksums.
 
 The updater compares candidate numbers numerically, rejects downgrades, and accepts installer URLs only from this repository. A missing platform asset does not cause another platform's installer to be offered. Automatic checks run once per launch. Manual checks have a cooldown, with longer backoff after rate-limit responses.

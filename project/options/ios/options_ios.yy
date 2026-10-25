@@ -2,7 +2,7 @@
   "$GMiOSOptions":"v1",
   "%Name":"iOS",
   "name":"iOS",
-  "option_ios_build_number":76,
+  "option_ios_build_number":77,
   "option_ios_bundle_name":"123456",
   "option_ios_defer_home_indicator":false,
   "option_ios_devices":2,
@@ -43,7 +43,7 @@
   "option_ios_splashscreen_background_colour":4294967295,
   "option_ios_team_id":"",
   "option_ios_texture_page":"1024x1024",
-  "option_ios_version":"1.0.1",
+  "option_ios_version":"1.0.2",
   "resourceType":"GMiOSOptions",
   "resourceVersion":"2.0",
 }

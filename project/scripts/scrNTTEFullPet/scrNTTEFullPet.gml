@@ -311,7 +311,10 @@ function scrNTTEFullPetEndStep() {
     if(is_callable(_custom_end)) _custom_end()
 }
 function scrNTTEFullPetDraw() {
-    if(spr_shadow!=-1) draw_sprite(spr_shadow,0,x+spr_shadow_x,y+spr_shadow_y)
+    // A perched Parrot uses its host's ground position but draws above it.
+    // A ground shadow here would paint a black stripe across the host's body.
+    if(spr_shadow!=-1 && !(pet=="Parrot" && instance_exists(perched)))
+        draw_sprite(spr_shadow,0,x+spr_shadow_x,y+spr_shadow_y)
     if(!scrNTTEFullPetOutlineDraw()) scrNTTEFullPetBodyDraw()
 }
 // Source telib.corpse_drop. Native movement values include timescale, whereas

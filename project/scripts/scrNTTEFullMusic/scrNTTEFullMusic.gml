@@ -34,23 +34,31 @@ function scrNTTEFullMusicBoss() {
     var _key=scrNTTEFullValue(GameCont,"ntte_full_boss_music_key",""),_main="",_intro="";
     // GameCont persists across areas. A previous custom boss must not replace
     // a native boss's track (for example PitSquid -> the Throne).
-    if((_key=="CatBat" && GameCont.area!=204) || (_key=="SealKing" && GameCont.area!=201)
+    if((_key=="CatBat" && GameCont.area!=204) || ((_key=="SealKing" || _key=="Palanking") && GameCont.area!=201)
         || (_key=="PitSquid" && GameCont.area!=205)
         || (_key=="Tesseract" && GameCont.area!=206 && !instance_exists(NTTEFullTesseract))) return false;
     switch(_key) {
         case "CatBat": _main="mus.BigShots"; _intro="mus.BigShotsIntro"; break;
-        case "SealKing": _main="mus.SealKing"; break;
+        // Palanking is the source object's/intro art's name; SealKing is the track.
+        case "Palanking": case "SealKing": _main="mus.SealKing"; break;
         case "Tesseract": _main="mus.Tesseract"; _intro="mus.TesseractIntro"; break;
         case "PitSquid":
             _main="mus.PitSquid"; _intro="mus.PitSquidIntro";
-            // The emergence controller sets this from the original can_intro,
-            // intro and rise_delay test before scheduling MusCont alarm2.
-            if(scrNTTEFullValue(GameCont,"ntte_full_pitsquid_intro_start",false)) {
+            // areas/trench.area.gml: inspect live bosses at the alarm, rather
+            // than a persistent flag that can outlive a boss or never be set.
+            var _pre=false;
+            with(NTTEFullPitSquid) if(!ntte_full_intro && ntte_full_can_intro && ntte_full_rise_delay<=0) _pre=true;
+            if(_pre) {
                 _main="mus.PitSquidIntroLoop"; _intro="mus.PitSquidIntroStart";
             }
             break;
     }
     if(_main=="") return false;
+    // Source sound_play_music keeps a playing identical cue. In particular,
+    // the emergence/visual-intro callback must not replay the battle intro
+    // already requested at the beginning of the 60-tick rise delay.
+    if(song==scrNTTEFullMusicResolve(_main) && music_sound>=0 && audio_is_playing(music_sound)
+        && scrNTTEFullValue(id,"ntte_full_music_area",-1)==GameCont.area) return true;
     if(audio_exists(amb)) audio_stop_sound(amb);
     scrNTTEFullMusicStart(_main,_intro);
     // Native boss-dead behavior remains responsible for the later cue.

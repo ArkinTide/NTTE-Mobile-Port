@@ -99,6 +99,16 @@ function scrDrawRoadmap(_drawx, _drawy, _pos) {
 			_sprite = sprMapIconRebelBHooded
 			_image = 0
 		}
+
+        // A session/restored skin can be absent for an additional race. Never
+        // pass its -1 lookup to the loading-screen renderer. Keep that race's
+        // authored default icon; native races use their own atlas frame.
+        if (!sprite_exists(_sprite)) {
+            _sprite=scrNTTEFullSkinMenuSprite(_pinst.get_race(),0,sprMapIcon)
+            _image=scr_race_get_skin_subimage(_pinst.get_race(),0)
+        }
+        if (!sprite_exists(_sprite)) { _sprite=sprMapIcon; _image=0 }
+		_image=clamp(floor(_image),0,sprite_get_number(_sprite)-1)
 		
 		draw_sprite(_sprite, _image, _map_x + _xoff, _map_y + _yoff)
         scrNTTEFullPetMapDraw(i,_map_x,_map_y)

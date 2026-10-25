@@ -2,6 +2,16 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [Home](../README.en.md)
 
+## 1.0.2 (candidate77)
+
+Fourteen selected Windows VM tests passed at both 30 and 60 FPS: `UpdateStartupMenuTests`, `UpdateCheckTests`, `SealKingMusicTests`, `PitSquidMusicPhaseTests`, `MusicBossRoutingTests`, `GoldenLoadoutDisplayTests`, `WeaponLoadoutNativeTests`, `LanguagePreferencePersistenceTests`, `PortalSelectionTransitionTests`, `RoadmapPlayerIconsTests`, `ParrotPerchShadowTests`, `DummyAmbushMusicTests`, `WorldEventsDummyWorldTests`, `BossClassificationNativeTests`.
+
+The update prompt, both boss music issues and golden loadout preview reproduced failures before repair. Music tests enable real audio and execute Palanking phase5, PitSquid clear-room Step, first-rise decision and emergence Step, and native MusCont.Alarm2. They assert playing voice handles and stable repeated requests. Golden loadout tests compare the real collapsed menu pixels against the correctly supplied native renderer for three NTTE golden modules and a golden fusion. Existing language persistence, mutation selection and stored-weapon regressions were also checked. Added native roadmap/default-icon pixel comparisons, both Parrot skins perched on a real shell, displaced-Dummy/missing-spawn-wall music tests, a naturally generated complete ambush/death sequence, and Boss classification checks. The user clarified that no Boss actually died; only victory music played. An early observer detected normal pet damage and was corrected to isolate it, not counted as a bug reproduction.
+
+Final compiled functions, metadata and installer checks passed on both platforms. Android retains its signing identity and passes 16 KB ZIP alignment. The unchanged native updater policy retains its 20-check passing record with the same source hash. iOS packages a new VM export with the verified retained runner and requires re-signing.
+
+Installers are on the [1.0.2 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate77). Physical Android/iPhone acceptance, a fresh native Mac compilation and full-MOD end-to-end acceptance were not performed.
+
 ## 1.0.1 (candidate76)
 
 Eight selected Windows VM tests passed at both 30 and 60 FPS: `PortalSelectionTransitionTests`, `LanguagePreferencePersistenceTests`, `LastEnemyHiddenTimeoutTests`, `LastEnemyTimeoutNativeTests`, `WorldCompletionNativeTests`, `UpdateCheckTests`, `MenuReminderPersistenceNativeTests`, `MenuNativeTests`.

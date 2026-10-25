@@ -58,6 +58,15 @@ function scrNTTEFullWorldEventsDummyWorldStep() {
             +" alarm0="+string(alarm[0])+" number="+string(number)+" enemies="+string(enemies)+" losthope="+string(losthope))
         assert(selected_event.ntte_event_generated && selected_event.dummy_spawn==1 && instance_exists(WantBoss),
             "Natural Dummy map lacks genuine selected room or native population WantBoss")
+        // The eligibility pet belongs to the generated scenario, but its
+        // ordinary five-damage sting is not an unexplained scripted Boss kill.
+        with(NTTEFullPet) {leader=noone;x=60000;y=60000;speed=0;walk=0;can_walk=false}
+        ticks=0;phase=11;return;
+    }
+    if(phase==11) {
+        assert(selected_event.dummy_spawn==1 && !instance_exists(BanditBoss),
+            "Live untouched Dummy caused an early ambush on level entry")
+        if(ticks*timescale<90) return;
         var _event=selected_event,_count=0
         with(TutorialTarget) if(position_meeting(_event.x,_event.y,id)) {
             _count++;hp=0
@@ -89,9 +98,16 @@ function scrNTTEFullWorldEventsDummyWorldStep() {
         var _bosses=scrNTTEFullInstances(BanditBoss)
         assert(array_length(_bosses)==1,"Natural loop0 Dummy did not create exactly one real BanditBoss")
         assert(_bosses[0].hitid[1]=="BANDIT AMBUSH","Natural spawned boss missed source ambush hit identity")
+        watched_boss=_bosses[0];watched_hp=watched_boss.hp;
+        ticks=0;phase=12;return;
+    }
+    if(phase==12) {
+        assert(instance_exists(watched_boss) && watched_boss.hp>0 && watched_hp>0,
+            "Actual native Dummy boss died without a player attack")
+        if(ticks*timescale<90) return;
         // Actual hp-driven native death must execute the inherited kill/drop
         // and boss music path, rather than destroying it without its events.
-        _bosses[0].hp=0;ticks=0;phase=3;return;
+        watched_boss.hp=0;ticks=0;phase=3;return;
     }
     if(instance_exists(BanditBoss) || ticks<4 || draw_frames-draw_start<8) return;
     assert(selected_event.dummy_spawn==0 && GameCont.ntte_bigbandit_spawn==1,
@@ -99,6 +115,6 @@ function scrNTTEFullWorldEventsDummyWorldStep() {
     scrNTTESmokeLog("WORLD DUMMY NATURAL seed="+string(chosen_seed)+" real GenCont/WantBoss/8HP target death/registered Step/actual boss/debt1/native boss death+Draw OK")
     var _state=state
     scrNTTEFullWorldEventsNaturalWorldRestore(_state)
-    scrNTTESmokeLog("FULL WORLD DUMMY NATURAL real scheduled target/boss/death chain complete @"+string(30/timescale))
+    scrNTTESmokeLog("FULL WORLD DUMMY NATURAL real scheduled untouched target wait90/boss survival90/death chain complete @"+string(30/timescale))
     instance_destroy(id,false)
 }

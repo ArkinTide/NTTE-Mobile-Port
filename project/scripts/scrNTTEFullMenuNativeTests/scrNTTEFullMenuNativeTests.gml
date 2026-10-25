@@ -3,7 +3,7 @@ function scrNTTEFullMusicBossRoutingTests() {
         _music=scrNTTEFullAreaGeneratorSnapshot(MusCont),_before=scrNTTEFullInstances(all)
     try {
         if(!instance_exists(_mus)) _mus=instance_create(0,0,MusCont)
-        var _keys=["CatBat","SealKing","PitSquid","Tesseract"]
+        var _keys=["CatBat","SealKing","Palanking","PitSquid","Tesseract"]
         for(var _i=0;_i<array_length(_keys);++_i) {
             GameCont.area=area_palace;GameCont.subarea=3
             GameCont.ntte_full_boss_music_key=_keys[_i]
@@ -14,7 +14,6 @@ function scrNTTEFullMusicBossRoutingTests() {
             }
         }
         GameCont.area=205;GameCont.ntte_full_boss_music_key="PitSquid"
-        GameCont.ntte_full_pitsquid_intro_start=false
         with(_mus) {
             assert(scrNTTEFullMusicBoss() && song==scrNTTERefSound("mus.PitSquid"),
                 "Valid Trench boss music was lost while rejecting stale keys")
@@ -25,7 +24,7 @@ function scrNTTEFullMusicBossRoutingTests() {
         scrNTTEFullMergedRuntimeTestCleanup(_before)
         scrNTTEFullAreaGeneratorRestore(_game);scrNTTEFullAreaGeneratorRestore(_music)
     }
-    scrNTTESmokeLog("MUSIC ROUTING: actual MusCont Alarm2 keeps Throne 7-3 native track after four stale MOD boss keys; valid PitSquid cue retained @"+string(30/timescale))
+    scrNTTESmokeLog("MUSIC ROUTING: actual MusCont Alarm2 keeps Throne 7-3 native track after five stale MOD boss keys; valid PitSquid cue retained @"+string(30/timescale))
 }
 function scrNTTEFullMenuNativeFileBytes(_path) {
     if(!file_exists(_path)) return undefined

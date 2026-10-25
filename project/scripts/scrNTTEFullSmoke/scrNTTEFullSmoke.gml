@@ -522,6 +522,13 @@ function scrNTTEFullSmokeStep() {
         if(scrNTTEFullSmokeCase("PetGuardianOtherActiveTests")) scrNTTEFullPetGuardianOtherActiveTests();
         if(scrNTTEFullSmokeCase("PetGuardianSpecificTests")) scrNTTEFullPetGuardianSpecificTests();
         if(scrNTTEFullSmokeCase("UpdateCheckTests")) scrNTTEUpdateTests();
+        if(scrNTTEFullSmokeCase("UpdateStartupMenuTests")) scrNTTEUpdateStartupMenuTests();
+        if(scrNTTEFullSmokeCase("SealKingMusicTests")) scrNTTESealKingMusicTests();
+        if(scrNTTEFullSmokeCase("PitSquidMusicPhaseTests")) scrNTTEPitSquidMusicPhaseTests();
+        if(scrNTTEFullSmokeCase("GoldenLoadoutDisplayTests")) scrNTTEGoldenLoadoutDisplayTests();
+        if(scrNTTEFullSmokeCase("RoadmapPlayerIconsTests")) scrNTTERoadmapPlayerIconsTests();
+        if(scrNTTEFullSmokeCase("ParrotPerchShadowTests")) scrNTTEParrotPerchShadowTests();
+        if(scrNTTEFullSmokeCase("DummyAmbushMusicTests")) scrNTTEDummyAmbushMusicTests();
         if(scrNTTEFullSmokeCase("CrystalWaterLightningTests")) scrNTTECrystalWaterLightningTests();
         if(scrNTTEFullSmokeCase("RavenLiftTargetTests")) scrNTTERavenLiftTargetTests();
         if(scrNTTEFullSmokeCase("BubbleMergeColdStartTests")) scrNTTEBubbleMergeColdStartTests();

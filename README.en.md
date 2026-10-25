@@ -3,19 +3,29 @@
 [简体中文](README.md) | [English](README.en.md)
 
 GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
-The current source baseline is **1.0.1 (2026-10-25, internal build candidate76)**.
+The current source baseline is **1.0.2 (2026-10-25, internal build candidate77)**.
 
 ## Downloads
 
-The latest delivered Android APK and iOS IPA are available on the [1.0.1 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate76):
+The latest delivered Android APK and iOS IPA are available on the [1.0.2 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate77):
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate76/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate76.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate76/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate76.ipa): sign or re-sign with your own signing identity before installing.
-- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate76/SHA256SUMS.txt)
+- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate77/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate77.apk)
+- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate77/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate77.ipa): sign or re-sign with your own signing identity before installing.
+- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate77/SHA256SUMS.txt)
 
 Both platforms use the separate application identifier `com.arkintide.nuclearthronentte`.
 See the [validation notes](docs/VALIDATION.en.md) for the scope of verification.
 Installers are distributed as release assets; the Git source tree contains no installers, signing keys, or personal saves.
+
+## Changes in 1.0.2
+
+- Prevented loading-roadmap crashes from unavailable character-skin icons by rendering that character's default icon.
+- Fixed premature Boss victory music from an intact or unsuccessfully triggered Dummy ambush; failed spawns retain the event for retry.
+- Removed the stray ground-shadow stripe drawn over a shell or other host while a Parrot pet is perched; grounded shadows remain.
+- Fixed available-update prompts being blocked on the startup title screen, including the Android download-to-install handoff there.
+- Fixed Seal King retaining the area track after its introduction.
+- Restored the original MOD conditions for Pit Squid pre-emergence and battle music; repeated introduction callbacks no longer restart a playing track or intro.
+- Fixed the collapsed character-selection loadout preview showing the ordinary starter instead of the selected NTTE golden weapon or golden fusion.
 
 ## Changes in 1.0.1
 
