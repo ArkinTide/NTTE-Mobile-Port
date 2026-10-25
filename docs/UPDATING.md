@@ -14,9 +14,17 @@
 尚未包含此功能的旧版，需要先手动安装 candidate74 或后续版本一次。
 Android 下载器使用应用私有缓存，不需要为更新授予所有文件访问权限。
 
+## 正式版本号策略
+
+当前正式版为 **1.0.0**（内部构建 `candidate75`）。每次后续修复发布增加 **0.0.1**：`1.0.1`、`1.0.2`……，并同步更新游戏内版本、Android versionName 和 iOS CFBundleShortVersionString。
+
+为兼容已安装的 candidate74 更新器，GitHub Release 标签及安装包后缀继续使用递增的 `candidateN`；Release 标题填写正式版本号（本版 `1.0.0`），新版游戏会显示该标题。可附加同提交的 `v1.0.0` Git 标签；不要另建缺少安装包的 Latest Release。
+
+本版 Android versionCode 为 `3000075`，后续必须递增，不能采用较低的自动生成值；iOS CFBundleVersion 为 `75`，后续也递增。`GAME_BUILD` 只用于存档格式，保持不变。
+
 ## 发布新版本
 
-1. 将 `project/scripts/scrNTTEUpdate/scrNTTEUpdate.gml` 中的 `NTTE_RELEASE_NUMBER` 和 `NTTE_RELEASE_TAG` 一起递增；例如 `75` 与 `candidate75`。不要为此改动用于存档格式的 `GAME_BUILD`。
+1. 将 `project/scripts/scrNTTEUpdate/scrNTTEUpdate.gml` 中的 `NTTE_RELEASE_VERSION` 按上述规则递增，并将 `NTTE_RELEASE_NUMBER` 和 `NTTE_RELEASE_TAG` 一起递增；例如下一版为 `1.0.1`、`76` 与 `candidate76`。不要为此改动用于存档格式的 `GAME_BUILD`。
 2. 编译并验证两平台的新安装包，Android 保持相同包名及签名身份，版本号不能降低。
 3. 创建对应标签的正式 GitHub Release，并将其标记为 Latest。更新器读取 `https://api.github.com/repos/ArkinTide/NTTE-Mobile-Port/releases/latest`；草稿和预发布版本不会作为正式更新。
 4. 上传安装包，再公开发布。文件名采用 `NuclearThrone.TerritorialExpansion-Android-<说明>-candidate75.apk` 和 `NuclearThrone.TerritorialExpansion-iOS-<说明>-candidate75.ipa`。GitHub 返回的 Android asset `digest` 必须包含 SHA-256（正常上传会自动提供）。

@@ -1,4 +1,4 @@
-function scrNTTEUpdateTestRelease(_number=75) {
+function scrNTTEUpdateTestRelease(_number=NTTE_RELEASE_NUMBER+1) {
     var _tag="candidate"+string(_number),_assets=[]
     var _platforms=[["Android","apk"],["iOS","ipa"]]
     for(var _i=0;_i<2;++_i) {
@@ -15,7 +15,7 @@ function scrNTTEUpdateTests() {
         _reminders=variable_global_exists("ntte_full_reminders")?global.ntte_full_reminders:undefined
     for(var _i=0;_i<array_length(_parked);++_i) instance_deactivate_object(_parked[_i])
     try {
-        assert(NTTE_RELEASE_NUMBER==74 && scrNTTEUpdateNumber(NTTE_RELEASE_TAG)==74,"Installed release number/tag mismatch")
+        assert(scrNTTEUpdateNumber(NTTE_RELEASE_TAG)==NTTE_RELEASE_NUMBER,"Installed release number/tag mismatch")
         var _invalid=[undefined,42,"","candidate","candidate-1","candidate075","candidate75x","candidate75/","v75","candidate7.5"]
         for(var _i=0;_i<array_length(_invalid);++_i) assert(scrNTTEUpdateNumber(_invalid[_i])==-1,"Invalid release tag accepted")
         assert(scrNTTEUpdateNumber("candidate100")>scrNTTEUpdateNumber("candidate99"),"Release comparison used lexical order")
@@ -25,7 +25,14 @@ function scrNTTEUpdateTests() {
             "Paired platform release metadata did not select installers")
         assert(scrNTTEUpdateDigestValid("sha256:"+string_repeat("0",64)) && !scrNTTEUpdateDigestValid("sha256:abc"),"APK hash metadata was not validated")
         assert(string_pos("Android-",_android.url)>0 && string_pos("iOS-",_ios.url)>0,"Wrong platform installer selected")
-        for(var _n=73;_n<=74;++_n) assert(scrNTTEUpdateParse(json_stringify(scrNTTEUpdateTestRelease(_n))).status=="current","Same/old release prompted a downgrade")
+        var _official=scrNTTEUpdateTestRelease()
+        _official.name="1.0.1"
+        assert(scrNTTEUpdateParse(json_stringify(_official),os_android).version=="1.0.1",
+            "Official semantic version was replaced by an internal serial")
+        _official.name="1.0.1\nother text"
+        assert(scrNTTEUpdateParse(json_stringify(_official),os_android).version==_official.tag_name,
+            "Malformed release title reached the update dialog")
+        for(var _n=NTTE_RELEASE_NUMBER-1;_n<=NTTE_RELEASE_NUMBER;++_n) assert(scrNTTEUpdateParse(json_stringify(scrNTTEUpdateTestRelease(_n))).status=="current","Same/old release prompted a downgrade")
         _release.prerelease=true
         assert(scrNTTEUpdateParse(json_stringify(_release)).status=="failed","Prerelease accepted as stable")
         _release.prerelease=false;_release.draft=true
@@ -53,7 +60,7 @@ function scrNTTEUpdateTests() {
         assert(scrNTTEUpdateHttpEvent(_event) && _s.request==74001 && _s.status=="checking","Partial HTTP callback completed early")
         _event[? "status"]=0
         assert(scrNTTEUpdateHttpEvent(_event) && _s.status=="available" && _s.request==-1 && _s.pending_prompt,"Completed update callback lost latest release")
-        _s.notified_tag="candidate75";_s.request=74002;_event[? "id"]=74002
+        _s.notified_tag=_release.tag_name;_s.request=74002;_event[? "id"]=74002
         scrNTTEUpdateHttpEvent(_event)
         assert(!_s.pending_prompt,"Same release notified twice in one launch")
         _s.request=74003;_s.started_at=100;_s.status="checking"
@@ -103,7 +110,7 @@ function scrNTTEUpdateTests() {
         _menu=instance_create(0,0,MenuOptions)
         var _rows=_menu.options[OptionCategory.NTTE_Updates]
         assert(array_length(_rows)>=6,"Actual native menu omitted updates page")
-        assert(method_execute(_rows[0].get_value,_rows[0])==NTTE_RELEASE_TAG,"Native installed-version row is empty")
+        assert(method_execute(_rows[0].get_value,_rows[0])==NTTE_RELEASE_VERSION,"Native installed-version row is empty")
         assert(method_execute(_rows[4].condition,_rows[4]),"Native download row hid a valid release")
         for(var _lang=0;_lang<2;++_lang) {
             global.language_current={}
@@ -111,7 +118,7 @@ function scrNTTEUpdateTests() {
             with(_menu) {event_user(10);scrOptionsMenuChangeCategory(OptionCategory.NTTE_Updates,false)}
             _rows=_menu.options[OptionCategory.NTTE_Updates]
             assert(string_pos(_lang==0?"Installed":"当前",_rows[0].name)>0,"Native update menu language incorrect")
-            assert(string_pos("candidate75",method_execute(_rows[3].get_value,_rows[3]))>0,"Native status row lost release tag")
+            assert(string_pos(_ios.tag,method_execute(_rows[3].get_value,_rows[3]))>0,"Native status row lost release tag")
         }
         scrNTTESmokeLog("PASS UPDATE CHECK native menus/JSON, platform selection/no downgrade, unrelated+partial+late HTTP, timeout/backoff, cancel/confirm dialogs, offline/preference/concurrency/cooldown and EN/ZH labels @"+string(30/timescale))
     } finally {

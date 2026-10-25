@@ -14,9 +14,17 @@ Offline connections, timeouts, and GitHub rate limits do not block startup. Auto
 Older builds without the updater need one manual installation of candidate74 or later.
 The Android downloader uses private app cache storage and does not require all-files access for updates.
 
+## Official version policy
+
+The current stable version is **1.0.0** (internal build `candidate75`). Every subsequent bugfix release increases the visible version by **0.0.1**: `1.0.1`, `1.0.2`, and so on. Keep the in-game version, Android versionName, and iOS CFBundleShortVersionString in sync.
+
+To remain compatible with installed candidate74 updaters, keep increasing `candidateN` GitHub Release tags and installer suffixes. Set the Release title to the official version (`1.0.0` here); newer games display this title. An additional `v1.0.0` Git tag may point to the same commit. Do not create a separate Latest Release without installers.
+
+This APK uses Android versionCode `3000075`; subsequent builds must increase it rather than use a lower automatically generated value. The iOS CFBundleVersion is `75` and must also increase. Keep the save-format `GAME_BUILD` unchanged.
+
 ## Publishing a new version
 
-1. Increment both `NTTE_RELEASE_NUMBER` and `NTTE_RELEASE_TAG` in `project/scripts/scrNTTEUpdate/scrNTTEUpdate.gml`, for example `75` and `candidate75`. Do not change the save-format `GAME_BUILD` just to publish an update.
+1. Increase `NTTE_RELEASE_VERSION` using the policy above and increment both `NTTE_RELEASE_NUMBER` and `NTTE_RELEASE_TAG` in `project/scripts/scrNTTEUpdate/scrNTTEUpdate.gml`, for example `1.0.1`, `76`, and `candidate76` next. Do not change the save-format `GAME_BUILD` just to publish an update.
 2. Build and verify both installers. Retain the Android package name and signing identity, and do not lower its version code.
 3. Create a matching stable GitHub Release and mark it Latest. The updater reads `https://api.github.com/repos/ArkinTide/NTTE-Mobile-Port/releases/latest`. Drafts and prereleases are not treated as stable updates.
 4. Upload installers before publishing. Use `NuclearThrone.TerritorialExpansion-Android-<description>-candidate75.apk` and `NuclearThrone.TerritorialExpansion-iOS-<description>-candidate75.ipa`. The Android asset's GitHub `digest` must contain its SHA-256; normal uploads supply this automatically.

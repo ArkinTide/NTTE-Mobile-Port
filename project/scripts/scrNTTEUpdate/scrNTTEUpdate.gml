@@ -1,6 +1,7 @@
 // Release numbering is independent of GAME_BUILD, which belongs to save formats.
-#macro NTTE_RELEASE_NUMBER 74
-#macro NTTE_RELEASE_TAG "candidate74"
+#macro NTTE_RELEASE_NUMBER 75
+#macro NTTE_RELEASE_TAG "candidate75"
+#macro NTTE_RELEASE_VERSION "1.0.0"
 #macro NTTE_RELEASE_REPO "https://github.com/ArkinTide/NTTE-Mobile-Port"
 #macro NTTE_RELEASE_API "https://api.github.com/repos/ArkinTide/NTTE-Mobile-Port/releases/latest"
 
@@ -27,6 +28,21 @@ function scrNTTEUpdateNumber(_tag) {
     }
     return real(_digits)
 }
+function scrNTTEUpdateVersionLabel(_release,_fallback) {
+    var _name=_release[$ "name"]
+    if(!is_string(_name) || string_length(_name)>24) return _fallback
+    var _parts=string_split(_name,".")
+    if(array_length(_parts)!=3) return _fallback
+    for(var _i=0;_i<3;++_i) {
+        var _part=_parts[_i],_n=string_length(_part)
+        if(_n<1 || _n>7 || (_n>1 && string_char_at(_part,1)=="0")) return _fallback
+        for(var _j=1;_j<=_n;++_j) {
+            var _c=ord(string_char_at(_part,_j))
+            if(_c<48 || _c>57) return _fallback
+        }
+    }
+    return _name
+}
 function scrNTTEUpdateParse(_body,_platform=os_type) {
     var _bad={status:"failed"}
     if(!is_string(_body) || string_byte_length(_body)>524288) return _bad
@@ -37,7 +53,7 @@ function scrNTTEUpdateParse(_body,_platform=os_type) {
     if(_number<0 || _release[$ "draft"]!=false || _release[$ "prerelease"]!=false) return _bad
     if(_number<=NTTE_RELEASE_NUMBER) return {status:"current",tag:_tag,number:_number}
     var _page=NTTE_RELEASE_REPO+"/releases/tag/"+_tag,
-        _result={status:"available",tag:_tag,number:_number,page:_page,url:_page,has_installer:false},
+        _result={status:"available",tag:_tag,version:scrNTTEUpdateVersionLabel(_release,_tag),number:_number,page:_page,url:_page,has_installer:false},
         _extension=_platform==os_android?".apk":(_platform==os_ios?".ipa":""),
         _prefix="NuclearThrone.TerritorialExpansion-"+(_platform==os_android?"Android-":"iOS-"),
         _assets=_release[$ "assets"]
@@ -136,8 +152,8 @@ function scrNTTEUpdateStep() {
 function scrNTTEUpdatePrompt() {
     var _s=scrNTTEUpdateState()
     if(!is_struct(_s.release) || _s.release.status!="available" || _s.dialog>=0) return -1
-    var _note=scrNTTEUpdateText("New NTTE version: ","发现 NTTE 新版本：")+_s.release.tag+"\n"
-        +scrNTTEUpdateText("Installed: ","当前版本：")+NTTE_RELEASE_TAG+"\n\n"
+    var _note=scrNTTEUpdateText("New NTTE version: ","发现 NTTE 新版本：")+_s.release.version+"\n"
+        +scrNTTEUpdateText("Installed: ","当前版本：")+NTTE_RELEASE_VERSION+"\n\n"
     if(os_type==os_ios) _note+=scrNTTEUpdateText("Download the IPA? It must be signed again before installation.","是否下载新版 IPA？安装前仍需重新签名。")
     else if(os_type==os_android) _note+=scrNTTEUpdateText("Download the APK in-game and open the system installer? Install over this app to keep your saves.","是否在游戏内下载新版 APK 并打开系统安装界面？请覆盖安装以保留存档。")
     else _note+=scrNTTEUpdateText("Open the release page?","是否打开版本发布页？")
@@ -194,7 +210,7 @@ function scrNTTEUpdateStatusText() {
     switch(_s.status) {
         case "checking":return scrNTTEUpdateText("Checking...","正在检查……")
         case "current":return scrNTTEUpdateText("Up to date","已是最新版本")
-        case "available":return scrNTTEUpdateText("New version: ","发现新版：")+_s.release.tag
+        case "available":return scrNTTEUpdateText("New version: ","发现新版：")+_s.release.version
         case "unavailable":return scrNTTEUpdateText("Installer not published yet","新版安装包尚未上传")
         case "offline":return scrNTTEUpdateText("Online features disabled","在线功能已关闭")
         case "limited":return scrNTTEUpdateText("Please try again later","请求过多，请稍后重试")
@@ -217,7 +233,7 @@ function scrNTTEUpdateMenuDefine() {
     scrOptionsMenuCategoryBegin(OptionCategory.NTTE_Updates)
     scrOptionsMenuCreateElements(
         {name:scrNTTEUpdateText("Installed version","当前版本"),available:false,
-            get_value:function(_opt){return NTTE_RELEASE_TAG}},
+            get_value:function(_opt){return NTTE_RELEASE_VERSION}},
         {name:scrNTTEUpdateText("Automatic update checks","自动检查更新"),
             get_value:function(_opt){return scrNTTEUpdateState().automatic?OPTION_ON:OPTION_OFF},
             click:function(_opt){scrNTTEUpdateSetAutomatic(!scrNTTEUpdateState().automatic);return true}},

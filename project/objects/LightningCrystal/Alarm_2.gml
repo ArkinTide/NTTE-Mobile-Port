@@ -3,7 +3,7 @@ if (ammo > 0) {
     alarm[2] = 5
     snd_play_hit_big(sndLightningPistol, 0.2)
     sprite_index = spr_fire
-    with(instance_create(x, y, EnemyLightning)) {
+    with(scrNTTEFullCrystalLightningCreate(x, y)) {
         image_angle = (other.gunangle + (random(30) - 15))
         team = other.team
         ammo = (6 + random(8))

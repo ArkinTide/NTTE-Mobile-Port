@@ -522,6 +522,10 @@ function scrNTTEFullSmokeStep() {
         if(scrNTTEFullSmokeCase("PetGuardianOtherActiveTests")) scrNTTEFullPetGuardianOtherActiveTests();
         if(scrNTTEFullSmokeCase("PetGuardianSpecificTests")) scrNTTEFullPetGuardianSpecificTests();
         if(scrNTTEFullSmokeCase("UpdateCheckTests")) scrNTTEUpdateTests();
+        if(scrNTTEFullSmokeCase("CrystalWaterLightningTests")) scrNTTECrystalWaterLightningTests();
+        if(scrNTTEFullSmokeCase("RavenLiftTargetTests")) scrNTTERavenLiftTargetTests();
+        if(scrNTTEFullSmokeCase("BubbleMergeColdStartTests")) scrNTTEBubbleMergeColdStartTests();
+        if(scrNTTEFullSmokeCase("LastEnemyHiddenTimeoutTests")) scrNTTELastEnemyHiddenTimeoutTests();
         if(scrNTTEFullSmokeCase("ActorFireTests")) scrNTTEFullActorFireTests();
         if(scrNTTEFullSmokeCase("CrystalWaveAccuracyNativeTests")) scrNTTEFullCrystalWaveAccuracyNativeTests();
         if(scrNTTEFullSmokeCase("LastEnemyTimeoutNativeTests")) scrNTTELastEnemyTimeoutNativeTests();

@@ -3,19 +3,27 @@
 [简体中文](README.md) | [English](README.en.md)
 
 GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
-The current source baseline is **candidate74 (2026-10-25)**.
+The current source baseline is **1.0.0 (2026-10-25, internal build candidate75)**.
 
 ## Downloads
 
-The latest delivered Android APK and iOS IPA are available on the [candidate74 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate74):
+The latest delivered Android APK and iOS IPA are available on the [1.0.0 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate75):
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate74/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate74.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate74/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate74.ipa): sign or re-sign with your own signing identity before installing.
-- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate74/SHA256SUMS.txt)
+- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate75/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate75.apk)
+- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate75/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate75.ipa): sign or re-sign with your own signing identity before installing.
+- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate75/SHA256SUMS.txt)
 
 Both platforms use the separate application identifier `com.arkintide.nuclearthronentte`.
 See the [validation notes](docs/VALIDATION.en.md) for the scope of verification.
 Installers are distributed as release assets; the Git source tree contains no installers, signing keys, or personal saves.
+
+## Changes in 1.0.0
+
+- Fixed first-use BubbleBomb fusion and Raven takeoff/landing crashes.
+- Fixed Desert/Jungle softlock paths involving flying or dormant enemies and empty-room portal retries.
+- Kept the same-sole-non-Boss rule: removal occurs only after more than 60 gameplay seconds. Pauses do not count; changing targets or additional enemies reset the timer. Wall placement is not a removal criterion.
+- Lightning Crystal ambient and attack arcs no longer discharge the entire water area in Oasis or Trench. Local arc damage and ordinary weapon conduction remain.
+- The official version is **1.0.0**. Each subsequent bugfix update increases it by **0.0.1**, starting with **1.0.1**.
 
 ## In-game updates
 

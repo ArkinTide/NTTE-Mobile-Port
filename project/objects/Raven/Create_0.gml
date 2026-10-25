@@ -22,6 +22,8 @@ wkick = 0
 ammo = 3
 z = 0
 nofly = 30
+targetx = x
+targety = y
 
 hitid = HitId.Raven
 emergencylanding = 0

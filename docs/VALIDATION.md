@@ -2,6 +2,16 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [返回首页](../README.md)
 
+## 1.0.0（candidate75）
+
+9 项选定的 Windows VM 测试均在 30/60 帧通过：`CrystalWaterLightningTests`、`RavenLiftTargetTests`、`BubbleMergeColdStartTests`、`LastEnemyHiddenTimeoutTests`、`LastEnemyTimeoutNativeTests`、`UpdateCheckTests`、`MergedLightningUnitTests`、`BubbleWeaponTests`、`MenuNativeTests`。
+
+沙漠/丛林测试覆盖实际飞行乌鸦、潜伏刺客、零血量残留、完整一分钟阈值、暂停、正常死亡/掉落/尸体回调，以及无友军、无尸体空场的原生传送门重试。Boss 和通用生成过渡不清除；没有基于墙体位置的清除机制。闪电测试覆盖绿洲/海沟水晶待机与攻击闪电的原生事件及子段，同时检查普通武器导电保留。
+
+Android 原生更新策略 20 项检查通过；最终 APK 签名、16 KB ZIP 对齐、更新安装入口、版本与包名均已核对。iOS VM 导出、保留运行库注册兼容性、Payload 及版本检查通过。本轮改动的编译代码与两平台最终安装包逐函数比对通过。
+
+安装包见 [1.0.0 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate75)。这些是针对性自动回归，尚无本轮 Android/iPhone 真机验收，也未进行全新 Mac 原生编译或完整 MOD 全流程验收。
+
 ## candidate74：更新功能
 
 - `UpdateCheckTests`、`MenuNativeTests`、`MenuReminderPersistenceNativeTests` 在 Windows VM 30/60 帧下通过。

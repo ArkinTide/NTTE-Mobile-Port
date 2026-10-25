@@ -2,6 +2,16 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [Home](../README.en.md)
 
+## 1.0.0 (candidate75)
+
+Nine selected Windows VM tests passed at both 30 and 60 FPS: `CrystalWaterLightningTests`, `RavenLiftTargetTests`, `BubbleMergeColdStartTests`, `LastEnemyHiddenTimeoutTests`, `LastEnemyTimeoutNativeTests`, `UpdateCheckTests`, `MergedLightningUnitTests`, `BubbleWeaponTests`, and `MenuNativeTests`.
+
+Desert/Jungle tests cover real flying Ravens, dormant assassins, zero-HP remnants, the full one-minute threshold, pauses, native death/drop/corpse callbacks, and native empty-room portal retries with no allies or corpse. Bosses and generic spawn transitions are protected. No wall-position removal rule is used. Crystal tests exercise actual ambient/attack events and child arcs in Oasis/Trench while retaining ordinary weapon conduction.
+
+All 20 Android native updater policy checks passed. Final APK signing, 16 KB ZIP alignment, updater entry points, version, and package identity were verified. The iOS VM export, retained-runner registrations, Payload, and version checks passed. Changed compiled functions were compared with the final game data in both installers.
+
+Installers are on the [1.0.0 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate75). These are targeted automated regressions. Physical Android/iPhone acceptance, a fresh native Mac compilation, and full-MOD end-to-end acceptance have not been performed this round.
+
 ## candidate74: updater
 
 - `UpdateCheckTests`, `MenuNativeTests`, and `MenuReminderPersistenceNativeTests` passed in Windows VM at 30 and 60 FPS.

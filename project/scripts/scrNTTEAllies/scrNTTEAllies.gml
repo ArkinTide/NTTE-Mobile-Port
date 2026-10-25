@@ -20,9 +20,13 @@ function scrNTTEAllyPortalStep() {
     ntte_ally_portal_timer-=timescale
     if (ntte_ally_portal_timer>0) return;
     ntte_ally_portal_timer=30
-    var _ally=false
-    with (enemy) if (team==team_player && hp>0) { _ally=true; break }
-    if (!_ally || scr_check_enemies()) return;
+    if(scr_check_enemies()) return;
+    // A last actor can die without leaving a corpse. Retry the original
+    // guarded corpse alarm in any empty combat room, including no-ally runs.
+    // Dormant assassins still need their ordinary wake/death transition.
+    var _hidden=false
+    with(MeleeFake) if(!variable_instance_exists(id,"team") || team!=team_player) {_hidden=true;break}
+    if(_hidden) return;
     // Reuse the native portal alarm and all of its area, boss and tutorial guards.
     // This also handles charm changes after the last corpse animation has ended.
     var _corpse=instance_find(Corpse,0)
@@ -43,6 +47,30 @@ function scrNTTELastEnemyTimeoutReset() {
     ntte_last_enemy_target=noone
     ntte_last_enemy_time=0
 }
+function scrNTTELastEnemyTimeoutDeathObject(_target) {
+    if(!instance_exists(_target)) return noone
+    if(instance_is(_target,enemy)) return _target.object_index
+    if(_target.object_index==RavenFly) return Raven
+    // Flight uses becomenemy; dormant assassins use prop. Counting only
+    // enemy leaves these real last monsters outside the timer.
+    if(instance_is(_target,MeleeFake)) {
+        var _resolve=scrNTTEFullValue(_target,"__get_spawn_enemy_object",undefined)
+        if(is_callable(_resolve)) return method_execute(_resolve,[])
+    }
+    return noone // Do not expire generic spawners or Boss transitions.
+}
+function scrNTTELastEnemyTimeoutKill(_target,_death_object) {
+    var _victim=_target
+    if(_target.object_index!=_death_object) {
+        // Use the real enemy constructor/destructor for a hidden/flying
+        // actor, just as its ordinary reveal does; emit one corpse/drop set.
+        _victim=instance_create(_target.x,_target.y,_death_object)
+        _victim.team=_target.team
+        if(variable_instance_exists(_target,"right")) _victim.right=_target.right
+        instance_destroy(_target,false)
+    }
+    with(_victim) {hp=0;instance_destroy()}
+}
 function scrNTTELastEnemyTimeoutStep() {
     // Pause preserves elapsed combat time; it never advances the countdown.
     if(lockstep_stop) return;
@@ -57,16 +85,26 @@ function scrNTTELastEnemyTimeoutStep() {
     var _count=0,_target=noone
     with(enemy) {
         // Match native completion's friendly/vehicle/missile exclusions.
-        if(hp<=0 || team==team_player || instance_is(id,Van) || instance_is(id,BigDogMissile)) continue;
+        if(team==team_player || instance_is(id,Van) || instance_is(id,BigDogMissile)) continue;
         _target=id
         if(++_count>1) break;
     }
-    if(_count==1) with(becomenemy) {
+    if(_count<=1) with(becomenemy) {
+        if(id==_target) continue; // Class changes can briefly overlap lists.
         if(variable_instance_exists(id,"team") && team==team_player) continue;
-        // Transforming/spawning hostiles also block native level completion.
-        _count=2;break;
+        _target=id
+        if(++_count>1) break;
+    }
+    if(_count<=1) with(MeleeFake) {
+        if(id==_target) continue;
+        if(variable_instance_exists(id,"team") && team==team_player) continue;
+        _target=id
+        if(++_count>1) break;
     }
     if(_count!=1 || scrEnemyIsBoss(_target)) {scrNTTELastEnemyTimeoutReset();return;}
+    var _death_object=scrNTTELastEnemyTimeoutDeathObject(_target)
+    if(!object_exists(_death_object) || !object_is_ancestor(_death_object,enemy)
+        || object_is_ancestor(_death_object,bossenemy)) {scrNTTELastEnemyTimeoutReset();return;}
     if(ntte_last_enemy_target!=_target) {
         ntte_last_enemy_target=_target
         ntte_last_enemy_time=0
@@ -74,9 +112,10 @@ function scrNTTELastEnemyTimeoutStep() {
     // Native gameplay uses 30 logical ticks/second at both 30 and 60 FPS.
     ntte_last_enemy_time+=timescale
     if(ntte_last_enemy_time>60*30) {
-        // Let the actor's normal Step/Destroy run its own death, drops and
-        // corpse/portal logic. No forced portal or no-event deletion is used.
-        _target.hp=0
+        // Some hidden/stunned actors override Step and never reach the
+        // inherited HP check. Dispatch their real Destroy now, once, so drops,
+        // kill credit and corpse/portal callbacks cannot remain pending.
+        scrNTTELastEnemyTimeoutKill(_target,_death_object)
         scrNTTELastEnemyTimeoutReset()
     }
 }
@@ -116,12 +155,11 @@ function scrNTTELastEnemyTimeoutNativeTests() {
         lockstep_stop=false
         var _kills=GameCont.kills,_corpses=instance_number(CorpseActive)
         with(GameCont) event_perform(ev_step,ev_step_normal)
-        assert(instance_exists(_enemy) && _enemy.hp==0 && !instance_exists(Portal)
+        assert(!instance_exists(_enemy) && !instance_exists(Portal)
             && GameCont.ntte_last_enemy_target==noone && GameCont.ntte_last_enemy_time==0,
-            "Timeout did not set native HP0 once, or bypassed native death with a forced portal")
-        with(_enemy) event_perform(ev_step,ev_step_normal)
-        assert(!instance_exists(_enemy) && GameCont.kills==_kills+1 && instance_number(CorpseActive)==_corpses+1,
-            "Timed-out actor failed actual native Step/Destroy kill credit and corpse generation")
+            "Timeout failed real destruction once, or bypassed death with a forced portal")
+        assert(GameCont.kills==_kills+1 && instance_number(CorpseActive)==_corpses+1,
+            "Timed-out actor failed actual Destroy kill credit and corpse generation")
         var _corpse=instance_find(CorpseActive,0)
         with(_corpse) event_perform(ev_alarm,0)
         assert(instance_exists(Portal) && _ally.hp>0,
@@ -164,7 +202,7 @@ function scrNTTELastEnemyTimeoutNativeTests() {
             repeat(_steps) with(GameCont) scrNTTELastEnemyTimeoutStep()
             assert(_e.hp==_hp,"Boss or living wall resident was killed within the full minute")
             with(GameCont) scrNTTELastEnemyTimeoutStep()
-            assert(_case<2 ? (_e.hp==_hp && GameCont.ntte_last_enemy_time==0):_e.hp==0,
+            assert(_case<2 ? (_e.hp==_hp && GameCont.ntte_last_enemy_time==0):!instance_exists(_e),
                 "Boss exclusion or strict floor-independent timeout failed after one minute")
             instance_destroy(_e,false)
         }
@@ -191,7 +229,7 @@ function scrNTTELastEnemyTimeoutNativeTests() {
         assert(GameCont.ntte_last_enemy_target==noone && GameCont.ntte_last_enemy_time==0 && _e.hp>0,
             "Actual RoomStart failed to clear previous level's last-hostile identity/time")
         scrNTTESmokeLog("LAST ENEMY TIMEOUT actual GameCont.Step -> full "+string(_steps)+" frames @"+string(_rate)
-            +" -> HP0 -> native enemy.Step/Destroy -> corpse.Alarm0 portal; allies, extra/replaced enemy, charm, native/explicit bosses, floorless resident, pause, spawn guard, dead player, completed level and RoomStart reset OK")
+            +" -> HP0 + real Destroy -> corpse.Alarm0 portal; allies, extra/replaced enemy, charm, native/explicit bosses, floorless resident, pause, spawn guard, dead player, completed level and RoomStart reset OK")
     }
     finally {
         lockstep_stop=_stop;current_frame=_frame;global.ntte_full_progress=_progress

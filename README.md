@@ -3,18 +3,26 @@
 [简体中文](README.md) | [English](README.en.md)
 
 NTTE 移植版的 GameMaker 源码，包含 Android、iOS 适配和简体中文。
-当前源码基线为 **candidate74（2026-10-25）**。
+当前源码基线为 **1.0.0（2026-10-25，内部构建 candidate75）**。
 
 ## 下载安装包
 
-最后交付的 Android APK 和 iOS IPA 可在 [candidate74 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate74) 下载：
+最后交付的 Android APK 和 iOS IPA 可在 [1.0.0 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate75) 下载：
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate74/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate74.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate74/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate74.ipa)：安装前需要用自己的签名身份重新签名。
-- [SHA-256 校验文件](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate74/SHA256SUMS.txt)
+- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate75/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate75.apk)
+- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate75/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate75.ipa)：安装前需要用自己的签名身份重新签名。
+- [SHA-256 校验文件](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate75/SHA256SUMS.txt)
 
 两平台使用独立标识 `com.arkintide.nuclearthronentte`。本轮验证范围见[验证记录](docs/VALIDATION.md)。
 安装包作为 Releases 附件提供；Git 源码目录不包含安装包、签名密钥或个人存档。
+
+## 1.0.0 更新内容
+
+- 修复气泡融合武器首次使用、乌鸦起飞/落地的报错。
+- 修复沙漠、丛林飞行/潜伏敌人及空场传送门相关卡关路径。
+- 保留“同一只非 Boss 连续作为最后一只敌人超过 60 秒才清除”的规则；暂停不计时，换目标或出现其他敌人重新计时，墙内位置不作为清除依据。
+- 闪电水晶在绿洲、海沟的待机与攻击闪电不再造成全水域伤害；局部闪电伤害及普通武器导电保留。
+- 版本号正式定为 **1.0.0**。此后每次修复更新递增 **0.0.1**，下一版为 **1.0.1**。
 
 ## 游戏内更新
 

@@ -1,16 +1,22 @@
 {
-  "source_candidate": "candidate74",
+  "source_candidate": "candidate75",
   "date": "2026-10-25",
-  "source_manifest_sha256": "18814ce5dfdfa48567b012c8bec355cbe29e16a4425be576820207cf0c2fcfdb",
-  "windows_regression_receipt_sha256": "8e4a3017deebe9b912a4dfe10fe857e1b4d820ef620b17affc0f820ba7230aa4",
+  "source_manifest_sha256": "feaeadbda6e42149967692458936442999f73167f89284d6ffbf827c6d6c80d5",
+  "windows_regression_receipt_sha256": "9ac1f86036f78b6ac41cb01ba242faf49db64689fd0a0892a1437397df3f0104",
   "android_overlay_paths": [
     "objects/MakeGame/Alarm_0.gml",
     "options/android/options_android.yy"
   ],
   "selected_windows_cases": [
+    "CrystalWaterLightningTests",
+    "RavenLiftTargetTests",
+    "BubbleMergeColdStartTests",
+    "LastEnemyHiddenTimeoutTests",
+    "LastEnemyTimeoutNativeTests",
     "UpdateCheckTests",
-    "MenuNativeTests",
-    "MenuReminderPersistenceNativeTests"
+    "MergedLightningUnitTests",
+    "BubbleWeaponTests",
+    "MenuNativeTests"
   ],
   "rates": [
     30,
@@ -19,17 +25,21 @@
   "mobile_device_tested_this_round": false,
   "installers": {
     "android": {
-      "sha256": "b03694c18a314712dfb4bd0cbc6e944865090049d8de8b49b0987d8a3e0fec64",
-      "bytes": 250340901
+      "sha256": "100528a44deec4613f4346b2e7c9954f5d650d47b262b4b5ae45043e14565cbf",
+      "bytes": 250357273
     },
     "ios": {
-      "sha256": "f36af4dc6fe5d9211647bd075d31e23817d10757b072ae819e7d1d4e87c9a885",
-      "bytes": 174306348
+      "sha256": "b79019a414a73f8a528308882bd18f8b407ce616f80599b52080d5595f8d2aa6",
+      "bytes": 174312289
     }
   },
   "android_native_policy_checks": 20,
   "android_native_module_compiled": true,
   "ios_retained_runner_compatibility_checked": true,
   "native_xcode_compilation_performed": false,
-  "installation_flow": "Android: in-game APK download and system installation confirmation; iOS: IPA download link with re-signing required"
+  "installation_flow": "Android: in-game APK download and system installation confirmation; iOS: IPA download link with re-signing required",
+  "version": "1.0.0",
+  "version_policy": "Future bugfix releases increment by 0.0.1; next 1.0.1. Keep increasing candidate serials for updater compatibility.",
+  "android_version_code": 3000075,
+  "ios_bundle_version": "75"
 }

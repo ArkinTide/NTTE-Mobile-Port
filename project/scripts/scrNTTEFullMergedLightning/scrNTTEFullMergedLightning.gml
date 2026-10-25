@@ -1,5 +1,18 @@
 // Original native NTT9940 Lightning Alarm0 b2cc30 / EnemyLightning c0eb00,
 // restored for temerge's real Lightning nodes. Native movement is synchronous.
+// Ambient/attack crystal arcs keep their normal local collision damage,
+// but must never discharge the entire water area. Scope the flag before
+// Create runs and carry it across every synchronous child segment.
+function scrNTTEFullCrystalLightningCreate(_x,_y,_recursive=false) {
+    var _saved=variable_global_exists("ntte_crystal_lightning_construct")?global.ntte_crystal_lightning_construct:false,
+        _node=noone
+    global.ntte_crystal_lightning_construct=true
+    try {
+        _node=_recursive?scrNTTEFullMergedLightningCreateNode(_x,_y,EnemyLightning):instance_create(_x,_y,EnemyLightning)
+    }
+    finally {global.ntte_crystal_lightning_construct=_saved}
+    return instance_exists(_node)?_node:noone
+}
 function scrNTTEFullMergedLightningCreateNode(_x,_y,_object) {
     var _before=variable_global_exists("ntte_full_merged_lightning_construct")?global.ntte_full_merged_lightning_construct:false,
         _node=noone
@@ -14,10 +27,11 @@ function scrNTTEFullMergedLightningPointSeen(_x,_y) {
     return _x>view_xview && _x<view_xview+view_width && _y>view_yview && _y<view_yview+view_height
 }
 function scrNTTEFullMergedLightningConstruct() {
+    ntte_crystal_lightning=variable_global_exists("ntte_crystal_lightning_construct") && global.ntte_crystal_lightning_construct==true
     typ=0;ammo=0;damage=(object_index==EnemyLightning)?2:7;knockback_speed=4*timescale
     var _level=(object_index==EnemyLightning)?0:scr_skill_get(mut_laser_brain)
     image_speed=0.4*((_level>=0)?1/(1+_level/3):(1-_level/3))*timescale
-    if(GameCont.area==101) {
+    if(GameCont.area==101 && !ntte_crystal_lightning) {
         var _targets=scrNTTEFullInstances(hitme)
         // Original with(hitme) includes neutral hittables too. CustomHitme
         // native equivalents have independent parents and must join this scan.
@@ -102,7 +116,8 @@ function scrNTTEFullMergedLightningAlarmSegment(_dispatch) {
     if(!_invisible_wall && !place_free(x,y)) { x=xprevious;y=yprevious;direction+=180 }
     if(ammo>0) {
         image_index+=0.4/ammo
-        var _parent=id,_child=scrNTTEFullMergedLightningCreateNode(x,y,_enemy?EnemyLightning:Lightning)
+        var _parent=id,_child=scrNTTEFullValue(id,"ntte_crystal_lightning",false)
+            ?scrNTTEFullCrystalLightningCreate(x,y,true):scrNTTEFullMergedLightningCreateNode(x,y,_enemy?EnemyLightning:Lightning)
         if(instance_exists(_child)) with(_child) {
             hitid=_parent.hitid;creator=_parent.creator;direction=_parent.direction;image_angle=direction
             ammo=_parent.ammo;team=_parent.team;image_index=_parent.image_index

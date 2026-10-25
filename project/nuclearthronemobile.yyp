@@ -45752,6 +45752,12 @@
         "name": "scrNTTEUpdateTests",
         "path": "scripts/scrNTTEUpdateTests/scrNTTEUpdateTests.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrNTTERelease75Tests",
+        "path": "scripts/scrNTTERelease75Tests/scrNTTERelease75Tests.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

@@ -16,9 +16,9 @@ function scrNTTEFullBubbleBombSetup() {
 }
 function scrNTTEFullBubbleBombMergeFire(_at,_setup_info) { _setup_info.is_big=big }
 function scrNTTEFullBubbleBombMergeSetup(_instances,_info) {
-    if (!variable_global_exists("ntte_full_projectile_merge_effect") || !is_callable(global.ntte_full_projectile_merge_effect)) throw "BubbleBomb requires original merged projectile effect provider"
-    var _provider=global.ntte_full_projectile_merge_effect
-    _provider(_instances,"explosion",[{is_bubble:true},_info.is_big ? 3:1])
+    // First use can enter here before any other fusion initializes the
+    // registry. The concrete implementation initializes its own real effects.
+    scrNTTEFullMergedProjectileAddEffect(_instances,"explosion",[{is_bubble:true},_info.is_big ? 3:1])
 }
 function scrNTTEFullBubbleBombReverseMotion() {
     // telib6348 motion_step(self,-1), reverse raw/native movement: restore

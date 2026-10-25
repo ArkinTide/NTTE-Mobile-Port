@@ -8,7 +8,7 @@ if (explode == 1) {
     }
 }
 if (((alarm[2] > 8) && (random(4) < (1) * timescale)) || (random(20) < (1) * timescale)) {
-    with(instance_create(x, y, EnemyLightning)) {
+    with(scrNTTEFullCrystalLightningCreate(x, y)) {
         image_angle = random_angle
         team = other.team
         ammo = (2 + random(4))

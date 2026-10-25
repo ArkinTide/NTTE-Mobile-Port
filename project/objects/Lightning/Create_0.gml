@@ -1,3 +1,5 @@
+ntte_crystal_lightning=variable_global_exists("ntte_crystal_lightning_construct") && global.ntte_crystal_lightning_construct==true
+
 // Original NTT scoped merged Lightning constructor
 if(variable_global_exists("ntte_full_merged_lightning_construct") && global.ntte_full_merged_lightning_construct) {
     event_perform_object(projectile,ev_create,0)
@@ -15,7 +17,7 @@ if object_index != EnemyLightning && scr_skill_get(mut_laser_brain) {
 	image_speed = (0.3) * timescale
 }
 
-if GameCont.underwater {
+if GameCont.underwater && !ntte_crystal_lightning {
 	var _left = view_xview,
 		_right = view_xview + view_width,
 		_top = view_yview,
