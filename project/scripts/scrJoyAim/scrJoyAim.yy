@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scrJoyAim",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scrJoyAim",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

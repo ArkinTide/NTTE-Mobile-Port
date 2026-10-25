@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"rng_float",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"rng_float",
+  "parent":{
+    "name":"RNG",
+    "path":"folders/Scripts/RNG.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

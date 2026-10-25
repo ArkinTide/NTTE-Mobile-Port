@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"load_custom_generic_area_colors",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"load_custom_generic_area_colors",
+  "parent":{
+    "name":"CustomResources",
+    "path":"folders/Scripts/CustomResources.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

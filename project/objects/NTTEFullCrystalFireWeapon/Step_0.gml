@@ -1,0 +1,1 @@
+scrNTTEFullCrystalFireWeaponStep();

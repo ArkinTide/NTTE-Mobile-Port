@@ -1,0 +1,1 @@
+scrNTTEFullWallFakeDrawCreate(true,false);

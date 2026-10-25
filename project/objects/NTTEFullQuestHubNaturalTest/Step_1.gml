@@ -1,0 +1,1 @@
+scrNTTEFullQuestHubNaturalGateBegin();

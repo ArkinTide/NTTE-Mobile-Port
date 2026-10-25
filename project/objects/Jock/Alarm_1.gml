@@ -1,0 +1,54 @@
+alarm[1] = 20 + random(10)
+
+if sprite_index != spr_hurt
+    sprite_index = spr_idle
+
+scrTarget()
+
+if instance_exists(target) {
+    if collision_line(x, y, target.x, target.y, Wall, 0, 0) < 0 {
+        if point_distance(target.x, target.y, x, y) > 96 {
+            gunangle = mcr_target_direction
+            if random(8 - ammo) < 1 and ammo > 0 {
+                ammo -= 1
+                snd_play_gun_big(sndJockFire)
+                image_index = 0
+                sprite_index = spr_fire
+                wkick = 4
+                with scr_projectile_create(x, y, JockRocket, gunangle, 2) {
+                    scr_projectile_spread(10)
+                }
+                alarm[1] = 8
+            }
+			else if random(3) < 2 {
+                direction = mcr_target_direction + random(80) - 40
+                speed = (0.4) * timescale
+                walk = 10 + random(10)
+                gunangle = mcr_target_direction
+            }
+
+        } else {
+            direction = mcr_target_direction + random(10) - 5
+            speed = (0.4) * timescale
+            walk = 40 + random(10)
+            gunangle = mcr_target_direction
+        }
+
+        if target.x < x right = -1
+        else if target.x > x right = 1
+    } else if random(4) < 1 {
+        motion_add(random_angle, (0.4) * timescale)
+        walk = 20 + random(10)
+        alarm[1] = walk + 10 + random(30)
+        gunangle = direction
+        if hspeed > 0 right = 1
+        else if hspeed < 0 right = -1
+    }
+} else if random(10) < 1 {
+    motion_add(random_angle, (0.4) * timescale)
+    walk = 20 + random(10)
+    alarm[1] = walk + 10 + random(30)
+    gunangle = direction
+    if hspeed > 0 right = 1
+    else if hspeed < 0 right = -1
+}

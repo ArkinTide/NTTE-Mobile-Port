@@ -1,0 +1,15 @@
+max_hp = 50
+size = 2
+
+spr_idle = sprAnchor
+spr_hurt = sprAnchorHurt
+spr_dead = sprAnchorDead
+
+
+event_inherited()
+
+
+snd_hurt = sndHitRock
+spr_shadow = shd48
+// NTTE Coast constructor wading variables
+scrNTTEFullCoastConstructWading();

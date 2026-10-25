@@ -1,0 +1,13 @@
+event_inherited()
+
+if instance_exists(creator) {
+    motion_add(creator.gunangle, (0.1) * timescale * timescale)
+} else motion_add(direction, (0.1) * timescale * timescale)
+
+if sprite_index == spr_hurt {
+    alarm[1] = 50
+}
+
+speed = (2 + scr_skill_get(5)) * timescale
+
+if random(4) < (1) * timescale instance_create(xprevious, yprevious, Smoke)

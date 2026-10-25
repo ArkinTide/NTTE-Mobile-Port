@@ -1,0 +1,1 @@
+scrNTTEFullCoastVisible(true)

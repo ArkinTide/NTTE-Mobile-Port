@@ -1,0 +1,1 @@
+scrNTTEFullBonusMimicContact(other.id);

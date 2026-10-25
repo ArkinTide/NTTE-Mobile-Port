@@ -1,0 +1,1 @@
+scrRaceUnlock(Race.Rogue)

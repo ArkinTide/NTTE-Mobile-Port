@@ -1,0 +1,37 @@
+# Build products, runtime caches and local development tools
+/build/
+/build-*/
+/dist/
+/deliverables/
+/.local/
+**/node_modules/
+**/__pycache__/
+**/.gradle/
+**/DerivedData/
+*.pyc
+*.log
+*.apk
+*.aab
+*.ipa
+*.xcarchive/
+*.xcuserdata/
+*.mobileprovision
+*.provisionprofile
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.pem
+*.key
+*.cer
+*.crt
+.env
+.env.*
+!.env.example
+local.properties
+key.properties
+keystore.properties
+signing.properties
+.DS_Store
+Thumbs.db
+# Original-game asset exclusions are retained in project/**/.gitignore.

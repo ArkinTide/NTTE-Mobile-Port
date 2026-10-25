@@ -1,0 +1,2 @@
+scrNTTEFullLairPropDeath()
+event_inherited()

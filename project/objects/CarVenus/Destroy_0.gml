@@ -1,0 +1,17 @@
+repeat (5) {
+    with (instance_create(x + random(6) - 3, y + random(6) - 3, Explosion)) {
+		hitid = other.hitid
+	}
+}
+
+corpse = false
+
+repeat (2 + irandom(3)) {
+    with instance_create(x, y, GroundFlame) {
+        move_contact_solid(random_angle, 4 + random(16))
+    }
+}
+
+event_inherited()
+
+snd_play(sndExplosionCar)

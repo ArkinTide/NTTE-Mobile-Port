@@ -1,0 +1,1 @@
+scrNTTEFullQuasarBeamDraw()

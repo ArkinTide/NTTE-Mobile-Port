@@ -1,0 +1,2 @@
+event_inherited()
+scrNTTEFullBanditTentStep()

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"sprite_strip_save",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sprite_strip_save",
+  "parent":{
+    "name":"CustomResources",
+    "path":"folders/Scripts/CustomResources.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

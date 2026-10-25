@@ -1,0 +1,37 @@
+{
+  "source_candidate": "candidate73",
+  "date": "2026-10-25",
+  "source_manifest_sha256": "05f05b5e9ba2b09a947f0673e800273f014f4eac067722c1b8dee71688c2f986",
+  "windows_regression_receipt_sha256": "3e90f46529e83d4feee789d1645109ef7c5ff485e2ea7607e2d2e2134225491d",
+  "android_overlay_paths": [
+    "objects/MakeGame/Alarm_0.gml",
+    "options/android/options_android.yy"
+  ],
+  "selected_windows_cases": [
+    "CrystalWaveAccuracyNativeTests",
+    "LastEnemyTimeoutNativeTests",
+    "ActorFireTests",
+    "ActorMountTests",
+    "CrystalCloneNativeTests",
+    "ActorBirthCaptureNativeTests",
+    "BossClassificationNativeTests",
+    "GroundEnemyNoKillNativeTests",
+    "WorldKillEnemiesTests",
+    "TrenchCompletionPreventNativeTests"
+  ],
+  "rates": [
+    30,
+    60
+  ],
+  "mobile_device_tested_this_round": false,
+  "installers": {
+    "android": {
+      "sha256": "e493430ce52f7272eb90a57985f15e176485aa425563ff9b9c02d4cf682bfc6c",
+      "bytes": 250287180
+    },
+    "ios": {
+      "sha256": "3e99d43421e5bf39a408ea2269295857ddda5f5db4153eded916de6316af37eb",
+      "bytes": 174293294
+    }
+  }
+}

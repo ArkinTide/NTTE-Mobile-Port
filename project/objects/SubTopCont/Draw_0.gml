@@ -1,0 +1,81 @@
+if lockstep_stop
+	exit
+
+if instance_exists(GenCont) exit
+
+if UberCont.opt_bloom {
+	scrDrawBloom()
+}
+
+with (WepSwap) draw_self()
+
+var _list = global.lis_walls_visible,
+	_count = ds_list_size(_list)
+	
+for (var i = _count - 1; i >= 0; --i) {
+    with _list[| i] {
+		{ if(sprite_exists(outspr)) draw_sprite_part_ext(outspr, outindex, l, r, w, h,
+			x - 4 + l, y - 12 + r, image_xscale, image_yscale, image_blend, image_alpha); }
+	}
+}
+	
+with TopSmall {
+    draw_sprite_ext(sprite_index, -1, x, y - 8, 1, 1, 0, image_blend, 1)
+}
+	
+with Wall {
+	{ if(sprite_exists(topspr)) draw_sprite_ext(topspr, instance_is(id,NTTEFullWallFake)?topindex:image_index, x, y - 8, 1, 1, 0, image_blend, 1); }
+}
+	
+scrNTTEFullTrapSpinTopDraw();
+with TopPot {
+    draw_sprite(sprite_index, image_index, x, y - 8)
+}
+
+if (bonecount) {
+	var _index = bonecount
+	repeat (bonecount) with (bones[--_index]) {
+	    draw_sprite_ext(sprite_index, image_index,
+			x, y, image_xscale, image_yscale, 0, image_blend, image_alpha)
+	}
+}
+
+with RavenFly {
+    draw_sprite_ext(sprite_index, -1, x, y + z, right, 1, 0, c_white, 1)
+}
+
+with LilHunterFly {
+    draw_sprite_ext(sprite_index, -1, x, y + z, right, 1, 0, c_white, 1)
+}
+
+with StreetLight
+draw_sprite_ext(sprite_index, -1, x, y, image_xscale, 1, 0, c_white, 1)
+
+with BigTV {
+    event_perform(ev_draw, 0) //draw_sprite_ext(sprite_index, -1, x, y, image_xscale, 1, 0, c_white, 1)
+}
+
+with Bubble
+draw_sprite(sprite_index, -1, x, y)
+
+with Player if (visible) {
+    if scr_skill_get(mut_strong_spirit) && !instance_exists(StrongSpiritRefill) && (spirit || spirit_index < 8) {
+        var _y = y - 2 + sin(spirit_anim)
+        draw_sprite(sprStrongSpirit, spirit_index, x, _y)
+
+        gpu_set_blendmode(bm_add)
+        draw_sprite(sprStrongSpirit, spirit_index, x, _y)
+        gpu_set_blendmode(bm_normal)
+    }
+
+    if (hammerhead && hammering) {
+        draw_sprite(sprHammerHeadNear, -1, x, y)
+    }
+}
+
+with Nothing2Appear
+draw_self()
+
+scrNTTEFullBigPipeTopDraw();
+with(NTTEFullRedWallShine) if(visible) scrNTTEFullRedWallShineDraw();
+with(NTTEFullTopShadow) scrNTTEFullTopShadowDraw();

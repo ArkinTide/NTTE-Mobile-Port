@@ -1,0 +1,27 @@
+if lockstep_stop
+	exit
+
+with other {
+    x = xprevious + hspeed * 0.1
+    y = yprevious + vspeed * 0.1
+
+    if place_meeting(x, y, Wall) {
+        x = xprevious
+        y = yprevious
+    }
+
+    if hp <= max_hp * 0.33 && scr_skill_get(mut_throne_butt) {
+        motion_add(point_direction(other.x, other.y, x, y), (5) * timescale)
+		
+        with instance_create(x, y, AnimParticle) {
+            sprite_index = sprTangleKill
+            image_speed = (0.4) * timescale
+        }
+		
+		hp = 0
+    }
+	
+	if (!hp) with (other.creator) if (instance_is(self, Player) && scr_player_is_local(index)) {
+		UberCont.ctot_uniq[Race.Plant] ++
+	}
+}

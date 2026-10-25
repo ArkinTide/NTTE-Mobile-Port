@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"resourcepack_temp_cleanup",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"resourcepack_temp_cleanup",
+  "parent":{
+    "name":"Resourcepacks",
+    "path":"folders/Scripts/Resourcepacks.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

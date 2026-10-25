@@ -1,0 +1,1 @@
+spr_idle = (is_red_car ? sprSnowBotRedCarIdle : sprSnowBotCarIdle)

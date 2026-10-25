@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"input_player_gamepad_get",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"input_player_gamepad_get",
+  "parent":{
+    "name":"Players",
+    "path":"folders/Extensions/Input/Players.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,2 @@
+scrNTTEFullCoastDecalDeath()
+event_inherited()

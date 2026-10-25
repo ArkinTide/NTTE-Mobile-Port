@@ -1,0 +1,2 @@
+scrNTTEFullGhostStatueDeath()
+event_inherited()

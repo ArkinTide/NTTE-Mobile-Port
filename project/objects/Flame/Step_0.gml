@@ -1,0 +1,1 @@
+if (current_frame_active) direction += orandom(3)

@@ -1,0 +1,27 @@
+// NTTE SOURCE LEAD RIBS BEFORE CHILD DEATH
+if(hp<=0) scrNTTEFullLeadRibsDeath(id);
+scrDrop(60, 0)
+event_inherited()
+
+with Player {
+	if is_me && race == Race.Rogue {
+	    UberCont.ctot_uniq[race] ++
+	}
+}
+
+if random(4) < 1 {
+    repeat 3 {
+        with instance_create(x, y, PopoNade) {
+            hitid = other.hitid
+            motion_add(other.direction, (4) * timescale)
+            motion_add(random_angle, (4) * timescale)
+            image_angle = direction
+            team = other.team
+        }
+    }
+}
+
+with WantVan
+canspawn = 1
+
+instance_create(x, y, WantRevivePopoFreak)

@@ -1,0 +1,22 @@
+
+hover = 0
+splat = 0
+
+gpadsel = 0
+
+available = 1
+
+appear = 2
+
+tooltip = false
+tooltip_pop = 0
+
+num = 0
+image_speed = 0
+depth = -1000
+
+start = current_frame + instance_number(object_index)
+
+visible = 0
+
+wait = 3

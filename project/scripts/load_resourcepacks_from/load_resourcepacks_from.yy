@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"load_resourcepacks_from",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"load_resourcepacks_from",
+  "parent":{
+    "name":"Resourcepacks",
+    "path":"folders/Scripts/Resourcepacks.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

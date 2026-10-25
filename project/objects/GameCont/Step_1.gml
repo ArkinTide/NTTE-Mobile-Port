@@ -1,0 +1,4 @@
+scrNTTEFullFrameSleepConsume();
+scrNTTEFullCustomAreaUpdateBeginStep();
+scrNTTEFullLastWishStep();
+scrNTTEFullSystemProductionSetup();

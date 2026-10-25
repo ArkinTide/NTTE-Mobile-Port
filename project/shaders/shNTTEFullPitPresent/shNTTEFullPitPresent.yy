@@ -1,0 +1,12 @@
+{
+  "$GMShader": "",
+  "%Name": "shNTTEFullPitPresent",
+  "name": "shNTTEFullPitPresent",
+  "parent": {
+    "name": "Content",
+    "path": "folders/Scripts/Content.yy"
+  },
+  "resourceType": "GMShader",
+  "resourceVersion": "2.0",
+  "type": 1
+}

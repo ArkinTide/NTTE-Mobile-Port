@@ -1,0 +1,1 @@
+scrNTTEFullVaultFlowerDeath();event_inherited();

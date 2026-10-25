@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"string_split_nodel",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"string_split_nodel",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

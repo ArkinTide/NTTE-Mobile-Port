@@ -1,0 +1,2 @@
+scrNTTEDesertPropDeath()
+event_inherited()

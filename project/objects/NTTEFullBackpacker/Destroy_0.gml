@@ -1,0 +1,2 @@
+scrNTTEFullBackpackerDeath()
+event_inherited()

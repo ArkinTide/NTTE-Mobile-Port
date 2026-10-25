@@ -1,0 +1,40 @@
+/// @function scrAchievementUnlock
+/// @param {Real|Enum.Achievement} achievement_id
+function scrAchievementUnlock(_achievement_id) {
+	assert(_achievement_id >= 0 && _achievement_id <= achievementmax)
+	
+	if (scrGameIsCustomMode()) exit
+	
+    if (scrAchievementIsUnlocked(_achievement_id)) exit
+	
+	if (UberCont.opt_achievs) {
+	    with instance_create(instance_number(AchievementSplash), 0, AchievementSplash) {
+	        str1 = loc("Achievements", _achievement_id, "name", chiev_name[_achievement_id])
+	        str2 = loc("Achievements", _achievement_id, "text", chiev_text[_achievement_id])
+	        ok = instance_number(AchievementSplash) <= 1
+	        achievement_id = _achievement_id
+	    }
+	}
+	
+	save_set_value("achievement", string(_achievement_id), 1)
+    scrNTTEFullAchievementRemember(_achievement_id)
+	// A mobile force-close may skip Room End and Game End entirely.
+	scrSave()
+}
+
+/// @function scrAchievementIsUnlocked
+/// @param {Real|Enum.Achievement} achievement_id
+function scrAchievementIsUnlocked(_achievement_id) {
+	assert(_achievement_id >= 0 && _achievement_id <= achievementmax)
+	return save_get_value("achievement", string(_achievement_id)) || scrNTTEFullAchievementLegacyGet(_achievement_id)
+}
+
+function scrAchievementsCountUnlocked() {
+	var _count = 0
+	
+	for(var i = 0; i <= achievementmax; i ++) {
+		if (scrAchievementIsUnlocked(i)) _count ++
+    }
+	
+	return _count
+}

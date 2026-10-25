@@ -1,0 +1,8 @@
+* text=auto
+*.gml linguist-language=GML
+*.yy linguist-language=GML
+*.png binary
+*.ogg binary
+*.wav binary
+*.ttf binary
+*.otf binary

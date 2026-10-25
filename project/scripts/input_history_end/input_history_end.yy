@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"input_history_end",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"input_history_end",
+  "parent":{
+    "name":"History",
+    "path":"folders/Extensions/Input/History.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

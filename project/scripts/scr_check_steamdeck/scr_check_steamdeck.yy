@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_check_steamdeck",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_check_steamdeck",
+  "parent":{
+    "name":"Controls",
+    "path":"folders/Scripts/System/Controls.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

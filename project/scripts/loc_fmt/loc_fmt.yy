@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"loc_fmt",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"loc_fmt",
+  "parent":{
+    "name":"Language",
+    "path":"folders/Scripts/Language.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

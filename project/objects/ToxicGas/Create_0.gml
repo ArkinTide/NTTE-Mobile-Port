@@ -1,0 +1,25 @@
+event_inherited()
+
+image_angle = random_angle
+motion_add(random_angle, (random(1.5) + 0.2) * timescale)
+
+if (scr_ultra_get(Race.Frog, UltraSkill.Intimacy)) speed ++
+
+friction = (0.01) * timescale * timescale
+image_speed = 0
+image_index = random(5)
+
+image_xscale = 0.6
+image_yscale = 0.6
+rot = (1 + random(3)) * choose(1, -1)
+growspeed = 0.003 + random(0.002)
+
+team = team_none
+hitid = HitId.Toxin
+
+// starts as intangible
+typ = 0
+alarm[0] = 10
+
+// NTTE Coast constructor wading variables
+scrNTTEFullCoastConstructWading();

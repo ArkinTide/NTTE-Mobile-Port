@@ -1,0 +1,2 @@
+scrNTTEFullCoastBossBecomeDeath()
+event_inherited()

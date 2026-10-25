@@ -1,0 +1,2 @@
+scrNTTEFullPalankingStatueDeath()
+event_inherited()

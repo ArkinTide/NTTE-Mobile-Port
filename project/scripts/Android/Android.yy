@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Android",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Android",
+  "parent":{
+    "name":"System",
+    "path":"folders/Scripts/System.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

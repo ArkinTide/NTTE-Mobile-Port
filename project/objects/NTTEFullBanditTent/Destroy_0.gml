@@ -1,0 +1,2 @@
+scrNTTEFullBanditTentDeath()
+event_inherited()

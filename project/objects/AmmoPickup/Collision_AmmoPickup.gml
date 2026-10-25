@@ -1,0 +1,1 @@
+motion_add_m(point_direction(other.x, other.y, x, y) + random(20) - 10, (0.4) * timescale, (2) * timescale)

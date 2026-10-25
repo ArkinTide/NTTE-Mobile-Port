@@ -1,0 +1,462 @@
+--- a/src/main/java/com/arkintide/nuclearthronentte/Gamepad.java
++++ b/src/main/java/com/arkintide/nuclearthronentte/Gamepad.java
+@@ -1,4 +1,4 @@
+-package ${YYAndroidPackageName};
++package com.arkintide.nuclearthronentte;
+ 
+ import android.bluetooth.BluetoothAdapter;
+ import android.bluetooth.BluetoothDevice;
+@@ -20,6 +20,11 @@
+ import java.util.ArrayList;
+ import java.util.Collections;
+ import java.util.Comparator;
++import java.util.ArrayDeque;
++import java.util.HashSet;
++import android.hardware.input.InputManager;
++import android.os.Handler;
++import android.os.Looper;
+ import android.content.pm.PackageManager;
+ import com.yoyogames.runner.RunnerJNILib;
+ import android.annotation.SuppressLint;
+@@ -141,13 +146,14 @@
+ 			if (gi != null) continue;
+ 
+             InputDevice joystickDevice = InputDevice.getDevice(id);
++            if (joystickDevice == null) continue;
+ 			int deviceSources = joystickDevice.getSources();
+ 			if (((deviceSources & InputDevice.SOURCE_CLASS_JOYSTICK) == InputDevice.SOURCE_CLASS_JOYSTICK) ||
+ 				((deviceSources & InputDevice.SOURCE_GAMEPAD) == InputDevice.SOURCE_GAMEPAD) ||
+ 				((deviceSources & InputDevice.SOURCE_DPAD) == InputDevice.SOURCE_DPAD)) {
+ 
+ 					gi = new GamepadInstance();
+-                    List<InputDevice.MotionRange> ranges = joystickDevice.getMotionRanges();
++                    List<InputDevice.MotionRange> ranges = new ArrayList<InputDevice.MotionRange>(joystickDevice.getMotionRanges());
+                     Collections.sort(ranges, new RangeComparator());
+ 					gi.idDevice = id;
+ 					gi.name = joystickDevice.getName();
+@@ -194,7 +200,7 @@
+ 				if (gi.idDevice == deviceIds[j]) break;
+ 			} // end for
+ 
+-			if (j == deviceIds.length) {
++			if (j == deviceIds.length || InputDevice.getDevice(gi.idDevice) == null) {
+ 				removedDevices.add( gi.idDevice );
+ 				Log.i("yoyo", "GAMEPAD :: removed device id:" +  gi.idDevice  + 
+ 										" name:" + gi.name + 
+@@ -231,7 +237,7 @@
+ 	@SuppressLint("MissingPermission")
+ 	@Override
+ 	public boolean HandleMotionEvent( MotionEvent _event ) {
+-		if ((_event.getSource() & InputDevice.SOURCE_JOYSTICK) != 0) {
++		if (Gamepad.IsControllerSource(_event.getSource())) {
+ 			int actionPointerIndex = _event.getActionIndex();
+ 			int action = _event.getActionMasked();
+ 			switch( action ) {
+@@ -240,12 +246,14 @@
+ 				if (gi != null) {
+ 					for( int i=0; i<gi.axes.size(); ++i) {
+ 						InputDevice.MotionRange range = gi.axes.get(i);
+-						float value = (2.0f * ((_event.getAxisValue( range.getAxis(), actionPointerIndex) - range.getMin()) / range.getRange())) - 1.0f;
++						if (range.getRange() <= 0.0f) continue;
++                        float value = (2.0f * ((_event.getAxisValue( range.getAxis(), actionPointerIndex) - range.getMin()) / range.getRange())) - 1.0f;
++                        value = Math.max(-1.0f, Math.min(1.0f, value));
+ 						// send this to the native code
+ 						RunnerJNILib.onGPNativeAxis( gi.idDevice, i, value );
+ 					} // end for
+ 
+-					for( int i=0; i<gi.hats.size(); i+=2) {
++					for( int i=0; i+1<gi.hats.size(); i+=2) {
+ 						InputDevice.MotionRange hat1 = gi.hats.get(i);
+ 						InputDevice.MotionRange hat2 = gi.hats.get(i+1);
+ 						int hatX = Math.round( _event.getAxisValue( hat1.getAxis(), actionPointerIndex) );
+@@ -282,6 +290,24 @@
+ 		} // end if
+ 		return ret;
+ 	} // end HandleKeyEvent
++
++    // GL-thread only. Native removal is applied by the following Process tick.
++    public boolean RemoveDevice(int id) {
++        for (int i = 0; i < m_Gamepads.size(); ++i) {
++            if (m_Gamepads.get(i).idDevice == id) {
++                RunnerJNILib.onGPDeviceRemoved(id);
++                m_Gamepads.remove(i);
++                return true;
++            }
++        }
++        return false;
++    }
++
++    public ArrayList<Integer> DeviceIds() {
++        ArrayList<Integer> ids = new ArrayList<Integer>();
++        for (GamepadInstance pad : m_Gamepads) ids.add(pad.idDevice);
++        return ids;
++    }
+ 
+ } // end GamepadHandler_API12
+ 
+@@ -417,71 +443,181 @@
+ // --------------------------------------------------------------------------------------------
+ // --------------------------------------------------------------------------------------------
+ public class Gamepad
+-{	
+-	protected static GamepadHandler ms_GamepadHandler;
+-
+-	public static void Initialise() {
+-		if (Build.VERSION.SDK_INT >= 19) {
+-			ms_GamepadHandler = new GamepadHandler_API19();
+-		} // end if
+-		else {
+-			ms_GamepadHandler = new GamepadHandler_API16();
+-		} // end if
+-
+-	} // end Initialise
+-
+-	
+-	/**
+-	 * Performed during the Application's onStart/onResume
+-	 */
+-	public static void EnumerateDevices()
+-	{	
+-		if (ms_GamepadHandler == null) {
+-			Initialise();
+-		} // end if
+-		ms_GamepadHandler.PollInputDevices();
+-	}
+-
+-	/**
+-	 * Respond to dispatchKeyEvent() from RunnerActivity
+-	 */
+-	static public void handleKeyEvent(KeyEvent ev)
+-	{		
+-		//Log.i("yoyo", "KEYEVENT: " + ev.getKeyCode() + " " + ev.keyCodeToString(ev.getKeyCode()) + " " + Integer.toHexString(ev.getFlags()) + " " + System.currentTimeMillis());
+-		int deviceId = ev.getDeviceId();
+-		InputDevice device = InputDevice.getDevice(deviceId);
+-		if ((device != null) && (deviceId >= 0)) {
+-			int deviceSources = device.getSources();
+-			if (((deviceSources & InputDevice.SOURCE_CLASS_JOYSTICK) == InputDevice.SOURCE_CLASS_JOYSTICK) ||
+-				((deviceSources & InputDevice.SOURCE_GAMEPAD) == InputDevice.SOURCE_GAMEPAD) ||
+-				((deviceSources & InputDevice.SOURCE_DPAD) == InputDevice.SOURCE_DPAD)) {
+-				if(ms_GamepadHandler != null) {
+-					ms_GamepadHandler.HandleKeyEvent(deviceId, ev);
+-				} // end if
+-			} // end if
+-		} // end if
+-
+-	}
+-		
+-	//------------------------------------------------------------------------------------------------	
+-	//------------------------------------------------------------------------------------------------	
+-	
+-	/**
+-	 * Respond to dispatchGenericMotionEvent() from RunnerActivity
+-	 */
+-	static public void handleMotionEvent(MotionEvent ev)
+-	{		
+-		//Log.i("yoyo", "MOTIONEVENT: " + ev.toString() );
+-		switch( ev.getSource() ) {
+-		case InputDevice.SOURCE_JOYSTICK:
+-		case InputDevice.SOURCE_GAMEPAD:
+-		case InputDevice.SOURCE_DPAD:
+-			if (ms_GamepadHandler != null) {
+-				ms_GamepadHandler.HandleMotionEvent(ev);
+-			} // end if
+-			break;
+-		} // end switch
+-
+-	}
+-
+-}+{
++    protected static GamepadHandler ms_GamepadHandler;
++    private static final int MAX_PENDING = 256;
++    private static final ArrayDeque<PendingInput> pending = new ArrayDeque<PendingInput>();
++    private static final HashSet<Integer> refreshIds = new HashSet<Integer>();
++    private static final HashMap<Integer, Long> readyAfter = new HashMap<Integer, Long>();
++    private static boolean scanRequested = true;
++    private static boolean resetAll = false;
++    private static boolean paused = false;
++    private static long frame = 0;
++    private static InputManager inputManager;
++
++    private static class PendingInput {
++        int deviceId;
++        KeyEvent key;
++        MotionEvent motion;
++        PendingInput(KeyEvent event) {
++            deviceId = event.getDeviceId();
++            key = new KeyEvent(event);
++        }
++        PendingInput(MotionEvent event) {
++            deviceId = event.getDeviceId();
++            motion = MotionEvent.obtain(event);
++        }
++        void recycle() { if (motion != null) motion.recycle(); }
++    }
++
++    private static final InputManager.InputDeviceListener deviceListener = new InputManager.InputDeviceListener() {
++        public void onInputDeviceAdded(int id) { RequestScan(); }
++        public void onInputDeviceRemoved(int id) { DeviceChanged(id); }
++        public void onInputDeviceChanged(int id) { DeviceChanged(id); }
++    };
++
++    public static boolean IsControllerSource(int source) {
++        return ((source & InputDevice.SOURCE_JOYSTICK) == InputDevice.SOURCE_JOYSTICK)
++            || ((source & InputDevice.SOURCE_GAMEPAD) == InputDevice.SOURCE_GAMEPAD)
++            || ((source & InputDevice.SOURCE_DPAD) == InputDevice.SOURCE_DPAD);
++    }
++
++    public static synchronized void Initialise() {
++        // Activity callbacks never enumerate or mutate native gamepad lists.
++        if (ms_GamepadHandler == null) {
++            ms_GamepadHandler = Build.VERSION.SDK_INT >= 19 ? new GamepadHandler_API19() : new GamepadHandler_API16();
++        }
++        scanRequested = true;
++    }
++
++    public static synchronized void Start(Context context) {
++        Initialise();
++        if (inputManager == null) {
++            inputManager = (InputManager)context.getSystemService(Context.INPUT_SERVICE);
++            if (inputManager != null) inputManager.registerInputDeviceListener(deviceListener, new Handler(Looper.getMainLooper()));
++        }
++        scanRequested = true;
++    }
++
++    public static synchronized void Resume(Context context) {
++        Start(context);
++        paused = false;
++        scanRequested = true;
++    }
++
++    public static synchronized void Pause() {
++        paused = true;
++        ClearPending();
++        resetAll = true; // Neutralize keys/axes even when their release happens in background.
++        scanRequested = true;
++    }
++
++    public static synchronized void Stop() {
++        Pause();
++        if (inputManager != null) inputManager.unregisterInputDeviceListener(deviceListener);
++        inputManager = null;
++    }
++
++    public static synchronized void OnRunnerRestart() {
++        ClearPending();
++        ms_GamepadHandler = null;
++        refreshIds.clear();
++        readyAfter.clear();
++        resetAll = false;
++        scanRequested = true;
++    }
++
++    private static void ClearPending() {
++        while (!pending.isEmpty()) pending.removeFirst().recycle();
++    }
++
++    private static synchronized void DeviceChanged(int id) {
++        refreshIds.add(id); // Keep remove+add invalidation even if the final ID list is unchanged.
++        scanRequested = true;
++        Iterator<PendingInput> it = pending.iterator();
++        while (it.hasNext()) {
++            PendingInput input = it.next();
++            if (input.deviceId == id) { input.recycle(); it.remove(); }
++        }
++    }
++
++    private static synchronized void RequestScan() {
++        // Added may be delivered after the first input. Preserve that first press.
++        scanRequested = true;
++    }
++
++    private static void Enqueue(PendingInput input) {
++        if (pending.size() >= MAX_PENDING) {
++            ClearPending();
++            resetAll = true;
++            scanRequested = true;
++        }
++        pending.addLast(input);
++    }
++
++    public static synchronized boolean handleKeyEvent(KeyEvent event) {
++        InputDevice device = InputDevice.getDevice(event.getDeviceId());
++        int code = event.getKeyCode();
++        boolean key = KeyEvent.isGamepadButton(code) || (code >= KeyEvent.KEYCODE_DPAD_UP && code <= KeyEvent.KEYCODE_DPAD_CENTER) || code == KeyEvent.KEYCODE_BACK;
++        if (device == null || event.getDeviceId() < 0 || !IsControllerSource(device.getSources()) || !key) return false;
++        if (!paused && (event.getAction() == KeyEvent.ACTION_DOWN || event.getAction() == KeyEvent.ACTION_UP)) {
++            if (event.getAction() != KeyEvent.ACTION_DOWN || event.getRepeatCount() == 0) Enqueue(new PendingInput(event));
++        }
++        return true;
++    }
++
++    public static synchronized boolean handleMotionEvent(MotionEvent event) {
++        if (!IsControllerSource(event.getSource()) || event.getDeviceId() < 0 || event.getActionMasked() != MotionEvent.ACTION_MOVE) return false;
++        if (!paused) {
++            PendingInput last = pending.peekLast();
++            if (last != null && last.motion != null && last.deviceId == event.getDeviceId()) pending.removeLast().recycle();
++            Enqueue(new PendingInput(event));
++        }
++        return true;
++    }
++
++    /** Called by native code on its runner thread; never from the UI listener. */
++    public static synchronized void EnumerateDevices() {
++        if (ms_GamepadHandler == null) Initialise();
++        ms_GamepadHandler.PollInputDevices();
++    }
++
++    /** Run immediately before each native Process, after native Startup. */
++    public static synchronized void ProcessInput() {
++        if (paused) return;
++        ++frame;
++        if (ms_GamepadHandler == null) Initialise();
++        GamepadHandler_API12 handler = (GamepadHandler_API12)ms_GamepadHandler;
++        if (resetAll) refreshIds.addAll(handler.DeviceIds());
++        resetAll = false;
++        for (Integer id : refreshIds) {
++            if (handler.RemoveDevice(id)) readyAfter.put(id, frame + 1);
++        }
++        refreshIds.clear();
++        if (scanRequested) { handler.PollInputDevices(); scanRequested = false; }
++
++        if (pending.isEmpty()) return;
++        HashSet<String> transitions = new HashSet<String>();
++        while (!pending.isEmpty()) {
++            PendingInput input = pending.peekFirst();
++            Long ready = readyAfter.get(input.deviceId);
++            if (ready != null && frame < ready) break;
++            readyAfter.remove(input.deviceId);
++            if (handler.GetGamepad(input.deviceId) == null) handler.PollInputDevices();
++            if (handler.GetGamepad(input.deviceId) == null) {
++                pending.removeFirst().recycle();
++                continue;
++            }
++            if (input.key != null) {
++                String button = input.deviceId + ":" + input.key.getKeyCode();
++                // JNI stores only current state. Preserve a Process between down/up.
++                if (transitions.contains(button)) break;
++                transitions.add(button);
++                handler.HandleKeyEvent(input.deviceId, input.key);
++            } else {
++                handler.HandleMotionEvent(input.motion);
++            }
++            pending.removeFirst().recycle();
++        }
++    }
++}
+--- a/src/main/java/com/arkintide/nuclearthronentte/RunnerActivity.java
++++ b/src/main/java/com/arkintide/nuclearthronentte/RunnerActivity.java
+@@ -1,4 +1,4 @@
+-package ${YYAndroidPackageName};
++package com.arkintide.nuclearthronentte;
+ 
+ import androidx.fragment.app.FragmentActivity;
+ import android.app.AlertDialog;
+@@ -83,7 +83,7 @@
+ 	public static AtomicBoolean DisplayUpdatePending = new AtomicBoolean(false);
+ 	public static Display.Mode CurrentDisplayMode = null;
+ 
+-	public static final String BASE64_PUBLIC_KEY = "${YYAndroidGoogleLicensingPublicKey}";
++	public static final String BASE64_PUBLIC_KEY = "";
+     public static final byte[] SALT = new byte[] { -5, 12, -68, 7, -12, 67, 3, 4, 4, 19, 6, 7, 16, 11, 9, 51, 71, 34, 19, 16 };
+ 
+ 	public static int UIVisibilityFlags = 0x1706;
+@@ -797,6 +797,7 @@
+ 	    setupExtensions();
+       
+ 		Gamepad.Initialise();
++        Gamepad.Start(this);
+ 		//Gamepad.EnumerateDevices();
+ 		
+ 		RestrictOrientation(false,false,false,false,true);
+@@ -981,6 +982,7 @@
+     protected void onDestroy() {
+     
+     	Log.i("yoyo", "onDestroy");
++        Gamepad.Stop();
+         super.onDestroy();
+         
+ 	    
+@@ -1087,7 +1089,8 @@
+     protected void onPause() {		
+ 
+ 		Log.i("yoyo", "onPause");
+-		super.onPause();
++		Gamepad.Pause();
++        super.onPause();
+ 
+ 		if(!mbAppSuspended)
+ 		{
+@@ -1163,7 +1166,8 @@
+ 		// the app is fully visible and should be rendering, so game updating/rendering does not occur here
+ 		Log.i("yoyo", "onResume");
+     	
+-    	super.onResume();		
++    	super.onResume();
++        Gamepad.Resume(this);		
+ 
+ 
+ 		if(mbAppSuspended)
+@@ -1585,7 +1589,7 @@
+ 			}
+ 		}
+ 
+-		Gamepad.handleKeyEvent(event);
++		if (Gamepad.handleKeyEvent(event)) return true;
+ 		//noinspection RestrictedApi		
+ 		return super.dispatchKeyEvent(event);
+ 	}
+@@ -1608,7 +1612,9 @@
+ 		}
+ 	
+ 		//Log.i( "yoyo", "MotionEvent - " + event.toString() );
+-		if ((event.getSource() == InputDevice.SOURCE_JOYSTICK) || (event.getSource() == InputDevice.SOURCE_GAMEPAD)) 
++		if (((event.getSource() & InputDevice.SOURCE_JOYSTICK) == InputDevice.SOURCE_JOYSTICK)
++            || ((event.getSource() & InputDevice.SOURCE_GAMEPAD) == InputDevice.SOURCE_GAMEPAD)
++            || ((event.getSource() & InputDevice.SOURCE_DPAD) == InputDevice.SOURCE_DPAD)) 
+ 		{
+ 			Gamepad.handleMotionEvent(event);
+ 
+@@ -1730,7 +1736,7 @@
+     		{
+     			
+ 				try{
+-					String FullClassName = "${YYAndroidPackageName}."+ExtClass;
++					String FullClassName = "com.arkintide.nuclearthronentte."+ExtClass;
+ 					Log.i("yoyo","Attempting to initialise extension class " + FullClassName);
+ 					mExtension[i] = (Object)(Class.forName(FullClassName).getConstructor().newInstance());
+ 					
+--- a/src/main/java/com/arkintide/nuclearthronentte/DemoRenderer.java
++++ b/src/main/java/com/arkintide/nuclearthronentte/DemoRenderer.java
+@@ -1,4 +1,4 @@
+-package ${YYAndroidPackageName};
++package com.arkintide.nuclearthronentte;
+ 
+ import javax.microedition.khronos.egl.EGLConfig;
+ import javax.microedition.khronos.opengles.GL10;
+@@ -209,7 +209,7 @@
+ 		ApplicationInfo appInfo = null;
+ 		PackageManager packMgmr = m_context.getPackageManager();
+ 		try {
+-			appInfo = packMgmr.getApplicationInfo("${YYAndroidPackageName}", 0);
++			appInfo = packMgmr.getApplicationInfo("com.arkintide.nuclearthronentte", 0);
+ 		} 
+ 		catch (NameNotFoundException e) {
+ 			e.printStackTrace();
+@@ -513,7 +513,8 @@
+ 							m_refreshRate = refreshRate;
+ 						}
+ 
+-    					int ret = RunnerJNILib.Process(m_width, m_height, RunnerActivity.AccelX, RunnerActivity.AccelY, RunnerActivity.AccelZ, keypadStatus, RunnerActivity.Orientation, m_refreshRate );
++    					Gamepad.ProcessInput();
++                    int ret = RunnerJNILib.Process(m_width, m_height, RunnerActivity.AccelX, RunnerActivity.AccelY, RunnerActivity.AccelZ, keypadStatus, RunnerActivity.Orientation, m_refreshRate );
+     					if(ret == 0)
+     					{            	
+     						Log.i("yoyo","RunnerJNILib.Process returned 0");
+@@ -524,6 +525,7 @@
+             				Log.i("yoyo","RunnerJNILib.Process has returned that it is due to restart");
+             				m_state = eState.Startup;
+             				RunnerActivity.CurrentActivity.HasRestarted = true;
++                    Gamepad.OnRunnerRestart();
+             			}
+ 						//Log.i("yoyo", "GameDownload.lock exists...");
+ 					} while( RunnerJNILib.canFlip() == false && m_state == eState.Process);					

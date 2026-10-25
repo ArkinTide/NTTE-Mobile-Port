@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"input_cursor_follow_camera",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"input_cursor_follow_camera",
+  "parent":{
+    "name":"Cursor",
+    "path":"folders/Extensions/Input/(System)/Deprecated/Cursor.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

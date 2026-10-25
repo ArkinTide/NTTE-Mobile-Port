@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"handle_console_command",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"handle_console_command",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

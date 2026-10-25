@@ -1,0 +1,5 @@
+*.dll
+lang/*
+!lang/.gitkeep
+# Port-specific credits text is source, not a game asset dump.
+!lang/credits.txt

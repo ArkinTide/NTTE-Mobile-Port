@@ -1,0 +1,19 @@
+repeat 32 {
+    with instance_create(x + orandom(32), y + orandom(32), SmallExplosion) hitid = other.hitid
+    with instance_create(x + orandom(48), y + orandom(48), Explosion) hitid = other.hitid
+}
+
+repeat (20) instance_create(x + orandom(80), y + orandom(80), GroundFlame)
+
+snd_play_hit_big(sndExplosionXL, 0.1)
+instance_destroy()
+
+for(var i = 0; i < 6; ++i) {
+    with instance_create(x, y, ScrapBossCorpse) {
+        size = other.size - 1
+        motion_add(random_angle, (10 + random(6)) * timescale)
+        sprite_index = sprScrapBossDead
+        image_xscale = choose(1, -1)
+        image_index = i
+    }
+}

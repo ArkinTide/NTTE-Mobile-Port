@@ -1,0 +1,117 @@
+﻿Localization Project Management
+Local Heroes Worldwide B.V.
+Jelle Kihaishii-de Vaal
+
+Brazilian Portuguese
+Locsmiths
+Johnny Marques
+Fábio Ludwig
+Thierry Banhete
+
+Simplified Chinese
+Yeehe
+Marcos Wang
+Vincent Zhang
+Marcos Wang
+Xiaoxiao Qu
+
+Traditional Chinese
+Cowbay Entertainment
+Sean Chen
+Eugenia Chen
+Jerry Lee
+
+French
+Loc3 Ltd
+Eric Emanuel
+Céline Echilley
+Eric Emanuel
+
+German
+4-Real Intermedia GmbH
+Laura Reutzel
+Jan Schäfer
+Robert Brodatzki
+
+Italian
+All The Way
+Dario Beretta
+Alain Dellepiane
+Lorenzo Bertolucci
+Matteo Scarabelli
+
+Japanese
+Active Gaming Media Inc.
+Clément Sonntag
+Takagi Takumi
+Rei Yoshino
+
+Korean
+Musai Studio
+Eunja Nam
+Jaehyok Chung
+Inho Choe
+
+Polish
+QLOC
+Marcin Bojko 
+Łukasz Gładkowski
+Marcin Bojko 
+
+Russian
+Levsha
+Veronica Panna
+Nikita Vavilov
+Konstantin Kopin
+
+Spanish
+GameLoc Localisation Services S.L.
+Isabel de la Mota
+Pedro Cortázar
+Fernando Pérez
+Darvin de la Cruz
+
+Turkish
+Locpick Game Localization & Audio
+Beyza Utku
+Barışcan Yılmaz
+Dilara Nur Önelge
+
+Ukrainian
+Levsha
+Olena Tverdokhlib
+Pavel Efremov
+Veronika Shvaitser
+
+ 
+LQA
+Ciro Continisio
+Ci8ird
+Dominik Johann
+Jing Tan
+Jordi de Paco
+Kitty Calis
+Luc Allenet de Ribemont
+Marina González
+Robert Zetsche
+Sos Sosowski
+Terri Vellmann
+Tunç Türel
+YellowAfterlife
+Yongmin Park
+
+CJK small font
+"Silver"
+Poppy Works
+Wolfgang Wozniak
+Itou Hiro (PixelMPlus)
+leedheo (DOSGothic)
+Buchidot
+
+CJK big font
+"Noto Sans CJK"
+
+Special Thanks
+kuzumi
+Golden vegetable
+Dinosaur leader

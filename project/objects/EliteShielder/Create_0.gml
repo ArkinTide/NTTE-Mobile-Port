@@ -1,0 +1,38 @@
+raddrop = 0
+max_hp = 100
+meleedamage = 0
+size = 1
+
+
+spr_idle = sprEliteShielderIdle
+spr_walk = sprEliteShielderWalk
+spr_hurt = sprEliteShielderHurt
+spr_dead = sprEliteShielderDead
+
+event_inherited()
+
+snd_hurt = sndEliteShielderHurt
+snd_dead = sndEliteShielderDead
+snd_play_hit(sndEliteShielderEnter, 0.2)
+
+if GameCont.underwater {
+    snd_hurt = sndOasisHurt
+    snd_dead = sndOasisDeath
+}
+
+team = team_popo
+
+//behavior
+walk = 30
+gunangle = random_angle
+alarm[1] = 30 + random(15)
+wkick = 0
+roll = 1
+angle = 0
+ammo = 10
+
+freeze = 20
+
+hitid = HitId.EliteShielder
+// NTTE Coast constructor wading variables
+scrNTTEFullCoastConstructWading();

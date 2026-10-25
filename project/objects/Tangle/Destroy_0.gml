@@ -1,0 +1,1 @@
+repeat (4) instance_create(x + orandom(6), y + orandom(6), Dust)

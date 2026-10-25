@@ -1,0 +1,4 @@
+scrNTTEFullBonusMimicConfigure(true); event_inherited(); scrNTTEFullBonusMimicAfterCreate();
+
+// NTTE Coast constructor wading variables
+scrNTTEFullCoastConstructWading();

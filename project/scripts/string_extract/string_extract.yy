@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"string_extract",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"string_extract",
+  "parent":{
+    "name":"draw_text_custom",
+    "path":"folders/Scripts/draw_text_custom.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

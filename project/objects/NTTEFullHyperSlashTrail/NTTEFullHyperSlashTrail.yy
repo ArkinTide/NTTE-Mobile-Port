@@ -1,0 +1,165 @@
+{
+  "$GMObject": "",
+  "%Name": "NTTEFullHyperSlashTrail",
+  "eventList": [
+    {
+      "$GMEvent": "v1",
+      "%Name": "",
+      "collisionObjectId": null,
+      "eventNum": 0,
+      "eventType": 0,
+      "isDnD": false,
+      "name": "",
+      "resourceType": "GMEvent",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMEvent": "v1",
+      "%Name": "",
+      "collisionObjectId": null,
+      "eventNum": 1,
+      "eventType": 3,
+      "isDnD": false,
+      "name": "",
+      "resourceType": "GMEvent",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMEvent": "v1",
+      "%Name": "",
+      "collisionObjectId": null,
+      "eventNum": 0,
+      "eventType": 3,
+      "isDnD": false,
+      "name": "",
+      "resourceType": "GMEvent",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMEvent": "v1",
+      "%Name": "",
+      "collisionObjectId": null,
+      "eventNum": 2,
+      "eventType": 3,
+      "isDnD": false,
+      "name": "",
+      "resourceType": "GMEvent",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMEvent": "v1",
+      "%Name": "",
+      "collisionObjectId": null,
+      "eventNum": 0,
+      "eventType": 8,
+      "isDnD": false,
+      "name": "",
+      "resourceType": "GMEvent",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMEvent": "v1",
+      "%Name": "",
+      "collisionObjectId": null,
+      "eventNum": 7,
+      "eventType": 7,
+      "isDnD": false,
+      "name": "",
+      "resourceType": "GMEvent",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMEvent": "v1",
+      "%Name": "",
+      "collisionObjectId": {
+        "name": "hitme",
+        "path": "objects/hitme/hitme.yy"
+      },
+      "eventNum": 0,
+      "eventType": 4,
+      "isDnD": false,
+      "name": "",
+      "resourceType": "GMEvent",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMEvent": "v1",
+      "%Name": "",
+      "collisionObjectId": {
+        "name": "Wall",
+        "path": "objects/Wall/Wall.yy"
+      },
+      "eventNum": 0,
+      "eventType": 4,
+      "isDnD": false,
+      "name": "",
+      "resourceType": "GMEvent",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMEvent": "v1",
+      "%Name": "",
+      "collisionObjectId": {
+        "name": "projectile",
+        "path": "objects/projectile/projectile.yy"
+      },
+      "eventNum": 0,
+      "eventType": 4,
+      "isDnD": false,
+      "name": "",
+      "resourceType": "GMEvent",
+      "resourceVersion": "2.0"
+    },
+    {
+      "$GMEvent": "v1",
+      "%Name": "",
+      "collisionObjectId": {
+        "name": "Grenade",
+        "path": "objects/Grenade/Grenade.yy"
+      },
+      "eventNum": 0,
+      "eventType": 4,
+      "isDnD": false,
+      "name": "",
+      "resourceType": "GMEvent",
+      "resourceVersion": "2.0"
+    }
+  ],
+  "managed": true,
+  "name": "NTTEFullHyperSlashTrail",
+  "overriddenProperties": [],
+  "parent": {
+    "name": "Projectiles",
+    "path": "folders/Objects/Projectiles.yy"
+  },
+  "parentObjectId": {
+    "name": "Slash",
+    "path": "objects/Slash/Slash.yy"
+  },
+  "persistent": false,
+  "physicsAngularDamping": 0.1,
+  "physicsDensity": 0.5,
+  "physicsFriction": 0.2,
+  "physicsGroup": 0,
+  "physicsKinematic": false,
+  "physicsLinearDamping": 0.1,
+  "physicsObject": false,
+  "physicsRestitution": 0.1,
+  "physicsSensor": false,
+  "physicsShape": 0,
+  "physicsShapePoints": [],
+  "physicsStartAwake": true,
+  "properties": [],
+  "resourceType": "GMObject",
+  "resourceVersion": "2.0",
+  "solid": false,
+  "spriteId": {
+    "name": "sprSlash",
+    "path": "sprites/sprSlash/sprSlash.yy"
+  },
+  "spriteMaskId": {
+    "name": "mskSlash",
+    "path": "sprites/mskSlash/mskSlash.yy"
+  },
+  "visible": true
+}
