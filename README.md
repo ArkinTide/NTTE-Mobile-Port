@@ -1,7 +1,20 @@
 # Nuclear Throne :Territorial Expansion — Mobile Port
 
+[简体中文](README.md) | [English](README.en.md)
+
 NTTE 移植版的 GameMaker 源码，包含 Android、iOS 适配和简体中文。
 当前源码基线为 **candidate73（2026-10-25）**。
+
+## 下载安装包
+
+最后交付的 Android APK 和 iOS IPA 可在 [candidate73 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate73) 下载：
+
+- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate73/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate73.apk)
+- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate73/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate73.ipa)：安装前需要用自己的签名身份重新签名。
+- [SHA-256 校验文件](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate73/SHA256SUMS.txt)
+
+两平台使用独立标识 `com.arkintide.nuclearthronentte`。本轮验证范围见[验证记录](docs/VALIDATION.md)。
+安装包作为 Releases 附件提供；Git 源码目录不包含安装包、签名密钥或个人存档。
 
 ## 项目结构
 
@@ -17,8 +30,8 @@ NTTE 移植版的 GameMaker 源码，包含 Android、iOS 适配和简体中文�
 保留上游 GPL-3.0 许可及第三方声明，参见 `LICENSE`、`THIRD_PARTY_NOTICES.md`。
 这是非官方移植，与 Vlambeer 无隶属关系。
 
-原游戏的受排除素材没有放进仓库。构建前需要从自己的 Nuclear Throne 副本提取素材。
-本仓库也不包含 GameMaker 商业运行库、签名证书、个人存档、SDK 和构建缓存。
+原游戏的受排除素材没有放进 Git 源码目录。构建前需要从自己的 Nuclear Throne 副本提取素材。
+源码目录也不包含 GameMaker 商业运行库、签名证书、个人存档、SDK 和构建缓存。
 
 ## 开始构建
 
@@ -36,6 +49,7 @@ iOS port by ArkinTide
 
 特殊感谢：kuzumi、Golden vegetable、Dinosaur leader。
 另感谢原 NTTE MOD 作者、贡献者以及百科全书作者 ToD。
+原 NTTE 工程：[Yokinman/NTTE](https://github.com/Yokinman/NTTE)。
 
 上游工程：<https://github.com/kcd-shichen/NuclearThrone-Recreated-Epsilon>  
 原 NTM 工程：<https://github.com/toarch7/nt-recreated-public>

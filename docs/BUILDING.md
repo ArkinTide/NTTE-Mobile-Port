@@ -1,5 +1,7 @@
 # 构建说明
 
+[简体中文](BUILDING.md) | [English](BUILDING.en.md) | [返回首页](../README.md)
+
 ## 环境与素材
 
 当前交付使用 GameMaker LTS runtime `2026.0.0.23`，VM 目标。
