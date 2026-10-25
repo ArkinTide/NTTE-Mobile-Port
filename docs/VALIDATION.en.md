@@ -2,6 +2,18 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [Home](../README.en.md)
 
+## 1.0.1 (candidate76)
+
+Eight selected Windows VM tests passed at both 30 and 60 FPS: `PortalSelectionTransitionTests`, `LanguagePreferencePersistenceTests`, `LastEnemyHiddenTimeoutTests`, `LastEnemyTimeoutNativeTests`, `WorldCompletionNativeTests`, `UpdateCheckTests`, `MenuReminderPersistenceNativeTests`, `MenuNativeTests`.
+
+Both new regressions reproduced failures before the fixes. Portal tests exercise the real mutation controller, two native selections and generation, queued corpse callbacks, paused/ended/generation phases, and legitimate empty-combat portals. Language tests click the actual menu row and check immediate disk writes, independent save reloads and locale reinitialization in normal and practice save branches; unrelated progress remains intact.
+
+The full menu image regression first exceeded a 120-second deadline. The identical build passed both rates when run alone with a 360-second deadline; the initial timeout evidence is retained.
+
+Changed compiled functions were checked in both final installers. Android signing, 16 KB ZIP alignment, version and updater entry checks passed. The Java updater policy source is unchanged; its 20-check passing record is reused with the same source hash. iOS VM export, retained-runner compatibility, Payload and version checks passed.
+
+Installers are on the [1.0.1 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate76). Physical Android/iPhone acceptance, a fresh native Mac compilation and full-MOD end-to-end acceptance were not performed this round.
+
 ## 1.0.0 (candidate75)
 
 Nine selected Windows VM tests passed at both 30 and 60 FPS: `CrystalWaterLightningTests`, `RavenLiftTargetTests`, `BubbleMergeColdStartTests`, `LastEnemyHiddenTimeoutTests`, `LastEnemyTimeoutNativeTests`, `UpdateCheckTests`, `MergedLightningUnitTests`, `BubbleWeaponTests`, and `MenuNativeTests`.

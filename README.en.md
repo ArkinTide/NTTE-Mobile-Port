@@ -3,19 +3,25 @@
 [简体中文](README.md) | [English](README.en.md)
 
 GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
-The current source baseline is **1.0.0 (2026-10-25, internal build candidate75)**.
+The current source baseline is **1.0.1 (2026-10-25, internal build candidate76)**.
 
 ## Downloads
 
-The latest delivered Android APK and iOS IPA are available on the [1.0.0 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate75):
+The latest delivered Android APK and iOS IPA are available on the [1.0.1 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate76):
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate75/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate75.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate75/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate75.ipa): sign or re-sign with your own signing identity before installing.
-- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate75/SHA256SUMS.txt)
+- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate76/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate76.apk)
+- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate76/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate76.ipa): sign or re-sign with your own signing identity before installing.
+- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate76/SHA256SUMS.txt)
 
 Both platforms use the separate application identifier `com.arkintide.nuclearthronentte`.
 See the [validation notes](docs/VALIDATION.en.md) for the scope of verification.
 Installers are distributed as release assets; the Git source tree contains no installers, signing keys, or personal saves.
+
+## Changes in 1.0.1
+
+- Fixed repeated mutation selection and skipped stages by restricting portal recovery and queued corpse callbacks to valid combat phases.
+- Fixed the selected language reverting to English on restart. Language changes save immediately, persist through practice/console saves, and reactivate after locale tables reload.
+- Preserved the same-sole-non-Boss timeout of more than 60 gameplay seconds and legitimate empty-combat portal recovery.
 
 ## Changes in 1.0.0
 

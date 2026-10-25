@@ -2,6 +2,18 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [返回首页](../README.md)
 
+## 1.0.1（candidate76）
+
+8 项选定的 Windows VM 测试均在 30/60 帧通过：`PortalSelectionTransitionTests`, `LanguagePreferencePersistenceTests`, `LastEnemyHiddenTimeoutTests`, `LastEnemyTimeoutNativeTests`, `WorldCompletionNativeTests`, `UpdateCheckTests`, `MenuReminderPersistenceNativeTests`, `MenuNativeTests`。
+
+新增回归在修复前均复现失败。传送门测试运行真实变异选择控制器、连续两次原生选择及下一关生成，并检查已排队的尸体回调、暂停/结束/生成阶段和正常空场传送门。语言测试点击真实语言菜单，在普通和练习模式保存分支检查即时磁盘写入、独立存档重新读取及语言表重建；无关进度值保持不变。
+
+完整菜单图像回归首次超过 120 秒时限；同一构建单独复查，在 360 秒时限内完成两档并通过。首次超时记录保留。
+
+两平台最终安装包逐函数核对通过。Android APK 签名、16 KB ZIP 对齐、版本与更新安装入口检查通过；更新策略 Java 源码未变，沿用同一源码哈希下的 20 项通过记录。iOS VM 导出、保留运行库兼容性及 Payload/版本检查通过。
+
+安装包见 [1.0.1 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate76)。本轮未进行 Android/iPhone 真机验收、全新 Mac 原生编译或完整 MOD 全流程验收。
+
 ## 1.0.0（candidate75）
 
 9 项选定的 Windows VM 测试均在 30/60 帧通过：`CrystalWaterLightningTests`、`RavenLiftTargetTests`、`BubbleMergeColdStartTests`、`LastEnemyHiddenTimeoutTests`、`LastEnemyTimeoutNativeTests`、`UpdateCheckTests`、`MergedLightningUnitTests`、`BubbleWeaponTests`、`MenuNativeTests`。

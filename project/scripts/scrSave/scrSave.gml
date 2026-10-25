@@ -62,7 +62,7 @@ function scrSave() {
 			
 			var options = [
 				"cheats_console", "cheats_griller", "cheats_practice", "options_gamepad", "options_keyboard",
-				"etc_nickname", "visual_resolution", "visual_fullscreen",
+				"etc_nickname", "etc_language", "visual_resolution", "visual_fullscreen",
 				// 白名单漏了 ORIGINAL CONSOLE →
 				// 这个开关**从来没被写进存档**（其它 cheat 项都在名单里，所以只有它不持久）。
 				"cheats_orig_console",

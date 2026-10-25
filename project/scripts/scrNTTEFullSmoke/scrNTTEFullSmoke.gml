@@ -526,6 +526,8 @@ function scrNTTEFullSmokeStep() {
         if(scrNTTEFullSmokeCase("RavenLiftTargetTests")) scrNTTERavenLiftTargetTests();
         if(scrNTTEFullSmokeCase("BubbleMergeColdStartTests")) scrNTTEBubbleMergeColdStartTests();
         if(scrNTTEFullSmokeCase("LastEnemyHiddenTimeoutTests")) scrNTTELastEnemyHiddenTimeoutTests();
+        if(scrNTTEFullSmokeCase("PortalSelectionTransitionTests")) scrNTTEPortalSelectionTransitionTests();
+        if(scrNTTEFullSmokeCase("LanguagePreferencePersistenceTests")) scrNTTELanguagePreferencePersistenceTests();
         if(scrNTTEFullSmokeCase("ActorFireTests")) scrNTTEFullActorFireTests();
         if(scrNTTEFullSmokeCase("CrystalWaveAccuracyNativeTests")) scrNTTEFullCrystalWaveAccuracyNativeTests();
         if(scrNTTEFullSmokeCase("LastEnemyTimeoutNativeTests")) scrNTTELastEnemyTimeoutNativeTests();

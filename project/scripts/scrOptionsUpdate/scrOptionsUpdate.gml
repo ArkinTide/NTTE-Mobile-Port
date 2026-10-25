@@ -112,7 +112,7 @@ function scrOptionsUpdate() {
 		if opt_stickregions
 			opt_hiddensticks = true
 		
-        if (_language_last != opt_language) {
+        if (_language_last != opt_language || global.language_current[$ "Init:Id"] != opt_language) {
 			var _last_font = draw_get_font()
 			
 			scrLanguageSet(opt_language)

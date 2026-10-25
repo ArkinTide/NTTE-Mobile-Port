@@ -14,8 +14,17 @@ function scrNTTENearestAimEnemy(_x,_y,_team) {
     return _nearest
 }
 
+// Shared by recovery scheduling and the native corpse alarm: empty UI
+// rooms are not cleared combat levels. RoomStart resets is_level_ended before
+// LevCont opens, so both the phase objects and the completion flag are needed.
+function scrNTTEPortalRecoveryAllowed() {
+    return room==romGame && instance_exists(GameCont) && !lockstep_stop
+        && !GameCont.is_level_ended && !instance_exists(GenCont) && !instance_exists(LevCont)
+        && !instance_exists(Menu) && !instance_exists(SitDown) && !instance_exists(Credits)
+        && !instance_exists(Cinematic) && !instance_exists(GameOver)
+}
 function scrNTTEAllyPortalStep() {
-    if (!global.is_server || !instance_exists(Player) || instance_exists(GenCont) || instance_exists(Portal)) return;
+    if (!global.is_server || !scrNTTEPortalRecoveryAllowed() || !instance_exists(Player) || instance_exists(Portal)) return;
     if (!variable_instance_exists(id,"ntte_ally_portal_timer")) ntte_ally_portal_timer=0
     ntte_ally_portal_timer-=timescale
     if (ntte_ally_portal_timer>0) return;
@@ -76,7 +85,7 @@ function scrNTTELastEnemyTimeoutStep() {
     if(lockstep_stop) return;
     if(!variable_instance_exists(id,"ntte_last_enemy_target")) scrNTTELastEnemyTimeoutReset()
     if(!global.is_server || room!=romGame || is_level_ended
-        || instance_exists(GenCont) || instance_exists(Portal) || instance_exists(Menu)
+        || instance_exists(GenCont) || instance_exists(LevCont) || instance_exists(Portal) || instance_exists(Menu)
         || instance_exists(SitDown) || instance_exists(Credits) || instance_exists(Cinematic)
         || instance_exists(GameOver)) {scrNTTELastEnemyTimeoutReset();return;}
     var _living_player=false

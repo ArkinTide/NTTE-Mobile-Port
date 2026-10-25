@@ -1,21 +1,20 @@
 {
-  "source_candidate": "candidate75",
+  "source_candidate": "candidate76",
   "date": "2026-10-25",
-  "source_manifest_sha256": "feaeadbda6e42149967692458936442999f73167f89284d6ffbf827c6d6c80d5",
-  "windows_regression_receipt_sha256": "9ac1f86036f78b6ac41cb01ba242faf49db64689fd0a0892a1437397df3f0104",
+  "source_manifest_sha256": "3409cd71a200c8508e04e19b0b1d5ec0b911a89d045a1f7a5817390c4106a7f9",
+  "windows_regression_receipt_sha256": "8218b1cb14432a7f208b48b25cfda79c0700afafdb22f859d413bb8e31b650dc",
   "android_overlay_paths": [
     "objects/MakeGame/Alarm_0.gml",
     "options/android/options_android.yy"
   ],
   "selected_windows_cases": [
-    "CrystalWaterLightningTests",
-    "RavenLiftTargetTests",
-    "BubbleMergeColdStartTests",
+    "PortalSelectionTransitionTests",
+    "LanguagePreferencePersistenceTests",
     "LastEnemyHiddenTimeoutTests",
     "LastEnemyTimeoutNativeTests",
+    "WorldCompletionNativeTests",
     "UpdateCheckTests",
-    "MergedLightningUnitTests",
-    "BubbleWeaponTests",
+    "MenuReminderPersistenceNativeTests",
     "MenuNativeTests"
   ],
   "rates": [
@@ -25,12 +24,12 @@
   "mobile_device_tested_this_round": false,
   "installers": {
     "android": {
-      "sha256": "100528a44deec4613f4346b2e7c9954f5d650d47b262b4b5ae45043e14565cbf",
-      "bytes": 250357273
+      "sha256": "e2b57b1038c2075b6565af51302b990fda3113d361f897fe18a69bcaeeb41e49",
+      "bytes": 250368675
     },
     "ios": {
-      "sha256": "b79019a414a73f8a528308882bd18f8b407ce616f80599b52080d5595f8d2aa6",
-      "bytes": 174312289
+      "sha256": "ce78b7abe6b51b5f8a8f5694ed2ffcc257bf4969f9c5f356dcacb8f089949fa7",
+      "bytes": 174315636
     }
   },
   "android_native_policy_checks": 20,
@@ -38,8 +37,8 @@
   "ios_retained_runner_compatibility_checked": true,
   "native_xcode_compilation_performed": false,
   "installation_flow": "Android: in-game APK download and system installation confirmation; iOS: IPA download link with re-signing required",
-  "version": "1.0.0",
-  "version_policy": "Future bugfix releases increment by 0.0.1; next 1.0.1. Keep increasing candidate serials for updater compatibility.",
-  "android_version_code": 3000075,
-  "ios_bundle_version": "75"
+  "version": "1.0.1",
+  "version_policy": "Future bugfix releases increment by 0.0.1; next 1.0.2. Keep increasing candidate serials for updater compatibility.",
+  "android_version_code": 3000076,
+  "ios_bundle_version": "76"
 }

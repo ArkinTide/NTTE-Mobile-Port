@@ -625,6 +625,8 @@ array_foreach(languages, function(_language_key) {
 			snd_play(sndClick)
 			save_set_value("etc", "language", _opt.language)
 			scrOptionsUpdate()
+			// Commit immediately, including practice/console restricted-save mode.
+			scrSave()
 		}
 	}
 	

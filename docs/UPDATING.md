@@ -16,18 +16,18 @@ Android 下载器使用应用私有缓存，不需要为更新授予所有文件
 
 ## 正式版本号策略
 
-当前正式版为 **1.0.0**（内部构建 `candidate75`）。每次后续修复发布增加 **0.0.1**：`1.0.1`、`1.0.2`……，并同步更新游戏内版本、Android versionName 和 iOS CFBundleShortVersionString。
+当前正式版为 **1.0.1**（内部构建 `candidate76`）。每次后续修复发布增加 **0.0.1**：`1.0.2`、`1.0.3`……，并同步更新游戏内版本、Android versionName 和 iOS CFBundleShortVersionString。
 
-为兼容已安装的 candidate74 更新器，GitHub Release 标签及安装包后缀继续使用递增的 `candidateN`；Release 标题填写正式版本号（本版 `1.0.0`），新版游戏会显示该标题。可附加同提交的 `v1.0.0` Git 标签；不要另建缺少安装包的 Latest Release。
+为兼容已安装的 candidate74 更新器，GitHub Release 标签及安装包后缀继续使用递增的 `candidateN`；Release 标题填写正式版本号（本版 `1.0.1`），新版游戏会显示该标题。可附加同提交的 `v1.0.1` Git 标签；不要另建缺少安装包的 Latest Release。
 
-本版 Android versionCode 为 `3000075`，后续必须递增，不能采用较低的自动生成值；iOS CFBundleVersion 为 `75`，后续也递增。`GAME_BUILD` 只用于存档格式，保持不变。
+本版 Android versionCode 为 `3000076`，后续必须递增，不能采用较低的自动生成值；iOS CFBundleVersion 为 `76`，后续也递增。`GAME_BUILD` 只用于存档格式，保持不变。
 
 ## 发布新版本
 
-1. 将 `project/scripts/scrNTTEUpdate/scrNTTEUpdate.gml` 中的 `NTTE_RELEASE_VERSION` 按上述规则递增，并将 `NTTE_RELEASE_NUMBER` 和 `NTTE_RELEASE_TAG` 一起递增；例如下一版为 `1.0.1`、`76` 与 `candidate76`。不要为此改动用于存档格式的 `GAME_BUILD`。
+1. 将 `project/scripts/scrNTTEUpdate/scrNTTEUpdate.gml` 中的 `NTTE_RELEASE_VERSION` 按上述规则递增，并将 `NTTE_RELEASE_NUMBER` 和 `NTTE_RELEASE_TAG` 一起递增；例如下一版为 `1.0.2`、`77` 与 `candidate77`。不要为此改动用于存档格式的 `GAME_BUILD`。
 2. 编译并验证两平台的新安装包，Android 保持相同包名及签名身份，版本号不能降低。
 3. 创建对应标签的正式 GitHub Release，并将其标记为 Latest。更新器读取 `https://api.github.com/repos/ArkinTide/NTTE-Mobile-Port/releases/latest`；草稿和预发布版本不会作为正式更新。
-4. 上传安装包，再公开发布。文件名采用 `NuclearThrone.TerritorialExpansion-Android-<说明>-candidate75.apk` 和 `NuclearThrone.TerritorialExpansion-iOS-<说明>-candidate75.ipa`。GitHub 返回的 Android asset `digest` 必须包含 SHA-256（正常上传会自动提供）。
+4. 上传安装包，再公开发布。文件名采用 `NuclearThrone.TerritorialExpansion-Android-<说明>-candidate76.apk` 和 `NuclearThrone.TerritorialExpansion-iOS-<说明>-candidate76.ipa`。GitHub 返回的 Android asset `digest` 必须包含 SHA-256（正常上传会自动提供）。
 5. 在发布说明中写明改动及 iOS 签名要求，附上 SHA-256 校验文件。
 
 更新器按数字比较 candidate 版本，拒绝降级及其他仓库的下载地址。缺少某平台安装包时，该平台不会提示下载其他平台的文件。每次启动自动检查一次，手动检查有冷却时间；收到限流响应后延长重试间隔。

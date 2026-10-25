@@ -45758,6 +45758,12 @@
         "name": "scrNTTERelease75Tests",
         "path": "scripts/scrNTTERelease75Tests/scrNTTERelease75Tests.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrNTTERelease76Tests",
+        "path": "scripts/scrNTTERelease76Tests/scrNTTERelease76Tests.yy"
+      }
     }
   ],
   "resourceType": "GMProject",
