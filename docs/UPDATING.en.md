@@ -2,24 +2,20 @@
 
 [简体中文](UPDATING.md) | [English](UPDATING.en.md) | [Home](../README.en.md)
 
-## Players
+## Downloads and installation
 
-The idle main menu checks once about 5 seconds after startup. Use **Settings → NT:TE → Updates** for manual checks or preferences. Offline operation, timeouts and rate limits do not block startup. Prompts are deferred during gameplay.
+Installers are distributed through the [MEGA folder](https://mega.nz/folder/PfIDSaSZ#ZcRokP34or9J0JofsIgrEA). GitHub Releases provide release notes and asset-free text source, with no installer attachments.
 
-Upgrading from 1.0.2 or earlier to 1.0.3 requires one manual download and in-place installation because the older updater only recognizes historical candidate tags. Version 1.0.3 recognizes future official version tags. Do not uninstall first if you want to retain saves.
+The updater in 1.2.0 and older depends on GitHub assets and may report an unpublished installer. Download 1.2.1 manually from the folder above. Starting with 1.2.1, version checks still use stable GitHub tags, while the download action opens the fixed MEGA folder instead of promising an in-game APK download.
 
-- Android downloads the APK in-game to private cache, verifies size, SHA-256, package and signer, then opens the system installer. Allow installation from this app when requested and confirm the in-place update.
-- iOS opens the IPA download link. Sign or re-sign it with your own identity before installation.
+Install Android updates over the existing app to retain saves. iOS requires signing or re-signing the IPA. A folder URL has no single-file size, digest, or direct APK endpoint, so it is never passed to the native APK downloader.
 
-## Versions and publishing
+## Checking for updates
 
-The current version is **1.2.0**. Add-on-series bugfixes increment to 1.2.1, 1.2.2. Version 1.0.4 and subsequent 1.0.x releases retain original NTTE content. Public tags and filenames use official version numbers only.
+The idle main menu checks once about 5 seconds after startup. Manual checks are available at **Settings → NT:TE → Updates**. Offline requests, timeouts, and rate limits do not block startup, and gameplay is not interrupted. Version components are compared numerically; drafts, prereleases, and downgrades are rejected. Only the fixed download page is recognized from release notes.
 
-1. Update NTTE_RELEASE_VERSION, NTTE_RELEASE_TAG, GAME_VERSION and platform display versions together. Increment NTTE_RELEASE_NUMBER as an internal build serial: next version 1.2.1, serial 86. Do not change the save-format GAME_BUILD for a release.
-2. Build, test and audit both installers. Retain the Android package and signing identity. Current Android versionCode is 3000085 and iOS CFBundleVersion is 85; both must increase.
-3. Create a same-tag draft Release and upload `NuclearThrone.TerritorialExpansion-Android-1.2.0.apk`, `NuclearThrone.TerritorialExpansion-iOS-1.2.0.ipa` and SHA256SUMS.txt. Verify remote digests before publishing as Latest. Substitute the new version in future filenames.
-4. Update both READMEs, validation records and release notes, including iOS signing requirements.
+## Publishing policy
 
-The updater reads this repository's releases/latest API, requires a stable published release and compares three numeric components. It rejects downgrades, foreign repository assets, tag/filename mismatches and invalid digests. Historical candidate tags cannot offer upgrades. A missing platform installer never selects another platform's file.
+Current version: **1.2.0**. Next: 1.2.1, internal build 88. Subsequent fixes increment 0.0.1. Version 1.0.4 and subsequent 1.0.x retain original NTTE content. Keep the save-format `GAME_BUILD` unchanged.
 
-Android native downloads live in `project/extensions/YYExtra/AndroidSource/`. Include the Java implementation, res/xml/ntte_update_paths.xml, REQUEST_INSTALL_PACKAGES and FileProvider declaration. Its authority is `<package>.ntteupdates`. Installation requires system confirmation.
+Synchronize game, updater, and platform versions and complete validation. Before publishing, run `python tools/audit_source_only.py --index` and `--history`. Never upload artwork, audio, fonts, runtimes, installers, signing data, or personal saves to Git. Publish the official version tag and bilingual notes with the same MEGA link and third-party credits.

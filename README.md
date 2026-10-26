@@ -13,14 +13,12 @@ NTTE 移植版的 GameMaker 源码，包含 Android、iOS 适配和简体中文�
 
 ## 下载安装包
 
-最后交付的 Android APK 和 iOS IPA 可在 [1.2.0 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.2.0) 下载：
+安装包统一从 [MEGA 下载文件夹](https://mega.nz/folder/PfIDSaSZ#ZcRokP34or9J0JofsIgrEA) 获取。GitHub Releases 仅发布版本说明和不含素材的文本源码，不再附带 APK、IPA 或游戏资产。
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.2.0/NuclearThrone.TerritorialExpansion-Android-1.2.0.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.2.0/NuclearThrone.TerritorialExpansion-iOS-1.2.0.ipa)：安装前需要用自己的签名身份重新签名。
-- [SHA-256 校验文件](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.2.0/SHA256SUMS.txt)
+Android 请覆盖安装以保留存档；iOS IPA 需先使用自己的签名身份重新签名。当前版本和验证范围见 [发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/latest)及[验证记录](docs/VALIDATION.md)。
 
-两平台使用独立标识 `com.arkintide.nuclearthronentte`。本轮验证范围见[验证记录](docs/VALIDATION.md)。
-安装包作为 Releases 附件提供；Git 源码目录不包含安装包、签名密钥或个人存档。
+1.2.0 及更早版本需手动从上述链接获取更新；1.2.1 起游戏内“下载更新”会打开该文件夹。
+
 
 > 从 1.1.0 更新开始，将会加入一些别的 MOD 的内容。想要玩到原版 NTTE，请下载 1.0.4 以及后续 1.0.x 版本。
 

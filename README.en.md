@@ -13,15 +13,12 @@ On 2026-10-26, public branch and tag histories were rewritten to remove these fi
 
 ## Downloads
 
-The latest delivered Android APK and iOS IPA are available on the [1.2.0 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.2.0):
+Download installers from the [MEGA download folder](https://mega.nz/folder/PfIDSaSZ#ZcRokP34or9J0JofsIgrEA). GitHub Releases provide release notes and asset-free text source only; no APK, IPA, or game assets are attached.
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.2.0/NuclearThrone.TerritorialExpansion-Android-1.2.0.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.2.0/NuclearThrone.TerritorialExpansion-iOS-1.2.0.ipa): sign or re-sign with your own signing identity before installing.
-- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.2.0/SHA256SUMS.txt)
+Install Android updates in place to retain saves. Sign or re-sign the iOS IPA with your own identity before installation. See the [latest release](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/latest) and [validation notes](docs/VALIDATION.en.md).
 
-Both platforms use the separate application identifier `com.arkintide.nuclearthronentte`.
-See the [validation notes](docs/VALIDATION.en.md) for the scope of verification.
-Installers are distributed as release assets; the Git source tree contains no installers, signing keys, or personal saves.
+Version 1.2.0 and older need one manual update from the folder above. From 1.2.1, the in-game download action opens that folder.
+
 
 > Starting with 1.1.0, content from other MODs is being added. To play the original NTTE content, download 1.0.4 or a subsequent 1.0.x release.
 
@@ -109,7 +106,7 @@ The source is based on NuclearThroneMobile:Epsilon and adapts the NTTE MOD as a 
 The upstream GPL-3.0 license and third-party notices are preserved; see [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 This is an unofficial port with no affiliation to Vlambeer.
 
-Excluded original-game assets are not included in the Git source tree. Before building, extract the required assets from your own copy of Nuclear Throne.
+All game assets, including MOD and port-specific artwork/audio/fonts, are excluded from Git. Obtain them separately from authorized sources before building.
 The source tree also excludes the commercial GameMaker runtime, signing certificates, personal saves, SDKs, and build caches.
 
 ## Building

@@ -17,3 +17,7 @@ All public branch and tag histories were filtered on 2026-10-26. Commit hashes c
 全部可达历史审核 / Audit reachable history: `python tools/audit_source_only.py --history`
 
 本地发布使用 `.githooks/pre-push` 自动审核。其他克隆可运行 `git config core.hooksPath .githooks` 启用；需要可用的 Python 3。Our publication checkout enables `.githooks/pre-push`; other clones can opt in with `git config core.hooksPath .githooks` and Python 3 on PATH.
+
+## Installer hosting / 安装包托管
+
+GitHub Releases无安装包附件。每次发布说明均附上[MEGA下载文件夹](https://mega.nz/folder/PfIDSaSZ#ZcRokP34or9J0JofsIgrEA)。Release notes link to the owner-selected MEGA folder; no installers or game assets are hosted as release attachments.
