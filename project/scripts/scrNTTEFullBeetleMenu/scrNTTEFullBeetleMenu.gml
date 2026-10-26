@@ -264,7 +264,7 @@ function scrNTTEFullBeetleMenuDraw() {
         if(_quote.cost!=0) scrNTTEFullDrawText(_mx,_y1-2,"-"+string(_quote.cost)+(_quote.can_merge ? " @rMAX HP@w!":" @dMAX HP."))
         var _name_font=draw_get_font()
         if(scrNTTEFullIsSimplifiedChinese()) draw_set_font(global.language_font_default)
-        scrNTTEFullDrawText(_mx,_y1-(2+10*(_quote.cost!=0)),_merge.name)
+        scrNTTEFullDrawText(_mx,_y1-(2+10*(_quote.cost!=0)),scrNTTEFullWeaponNameDisplay(_merge.name))
         draw_set_font(_name_font)
         draw_set_valign(fa_middle)
         if(_merge.cost!=0) {

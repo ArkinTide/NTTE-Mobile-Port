@@ -19,7 +19,7 @@ public final class NTTEUpdatePolicy {
             URI uri = new URI(value);
             return "https".equals(uri.getScheme()) && "github.com".equals(uri.getHost())
                 && uri.getUserInfo() == null && uri.getPort() == -1 && uri.getQuery() == null && uri.getFragment() == null
-                && uri.getRawPath().matches("/ArkinTide/NTTE-Mobile-Port/releases/download/candidate([1-9][0-9]*)/NuclearThrone[.]TerritorialExpansion-Android-[A-Za-z0-9._-]+-candidate\\1[.]apk");
+                && uri.getRawPath().matches("/ArkinTide/NTTE-Mobile-Port/releases/download/((?:0|[1-9][0-9]{0,6})[.](?:0|[1-9][0-9]{0,6})[.](?:0|[1-9][0-9]{0,6}))/NuclearThrone[.]TerritorialExpansion-Android-\\1[.]apk");
         } catch (Exception error) { return false; }
     }
 

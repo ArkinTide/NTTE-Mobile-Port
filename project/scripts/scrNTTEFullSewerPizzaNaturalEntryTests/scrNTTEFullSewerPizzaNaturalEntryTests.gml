@@ -213,8 +213,12 @@ function scrNTTEFullSewerPizzaEntryProfile() {
         if(_distance<8 || _distance>32) continue
         _near_walls++
         var _dir=point_direction(hole.x,hole.y,_wx,_wy)
-        for(var _offset=72;_offset>=40;_offset-=16) {
-            var _px=hole.x-lengthdir_x(_offset,_dir),_py=hole.y-lengthdir_y(_offset,_dir),_free=false
+        // A natural lane can be diagonal in a narrow room. Search additional
+        // launch angles without changing the map, actors or sampled firing.
+        var _angles=[0,30,-30,60,-60,90,-90,120,-120,150,-150,180]
+        for(var _angle=0;_angle<array_length(_angles) && !_ok;++_angle)
+        for(var _offset=72;_offset>=24;_offset-=16) {
+            var _px=hole.x-lengthdir_x(_offset,_dir+_angles[_angle]),_py=hole.y-lengthdir_y(_offset,_dir+_angles[_angle]),_free=false
             with(player) _free=!place_meeting(_px,_py,Wall) && position_meeting(_px,_py,Floor)
             if(!_free) continue
             _free_launches++

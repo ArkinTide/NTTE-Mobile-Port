@@ -242,7 +242,7 @@ function scrNTTEFullDrawMergedPickupTitle(_weapon,_x,_y,_name) {
     // other in-game UI; a small Latin title font produces missing-glyph boxes.
     draw_set_font(global.language_font_default);
     draw_set_halign(fa_center);draw_set_valign(fa_top);
-    var _title=scrNTTEFullDisplay(_name),_width=max(1,render_parse_text(_subtitle).width),
+    var _title=scrNTTEFullWeaponNameDisplay(_name),_width=max(1,render_parse_text(_subtitle).width),
         _available=max(1,view_width-16),
         _scale=min(scrNTTEFullIsSimplifiedChinese()?0.75:1,_available/_width),
         _title_width=max(1,render_parse_text(_title).width),_title_scale=min(1,_available/_title_width),

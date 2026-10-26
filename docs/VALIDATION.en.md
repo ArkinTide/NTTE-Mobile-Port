@@ -2,6 +2,17 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [Home](../README.en.md)
 
+## 1.0.3
+
+19 selected Windows VM cases passed at 30/60 FPS: `CatWarning78Tests`, `GatorStatueNativeTests`, `SecretWeapon78Tests`, `PizzaSpawn78Tests`, `PizzaShadow78Tests`, `MergedChinese78Tests`, `PizzaPropHurt78Tests`, `QuestDrop78Tests`, `RoadmapLoop78Tests`, `RoadmapNativeTests`, `RoadmapPlayerIconsTests`, `ChestDropNativeTests`, `InitialChestsNativeTests`, `BeetleMenuTests`, `Followup69PresentationNativeTests`, `OptionalShadowNativeTests`, `UpdateCheckTests`, `UpdateStartupMenuTests`, `SewerPizzaNaturalEntryTests`.
+
+Coverage includes actual telegraph/shadow/fusion-name pixels and glyph ranges, blessing callbacks, native chest and pickup collision ordering, preview rollback, 16 actual Pizza generations, furniture hurt animations, secret-component exclusion, and loop 1/2 roadmap rendering. The real Sewer→Pizza route uses native firing, explosion, Portal collision, room restart and destination Draw events. Its former straight-line launch planner rejected the same seed at 60 FPS with both old and repaired sources. Only the test's natural launch-angle search was expanded; terrain and transition assertions were preserved, as were the original failure records.
+
+Official semantic versions and title-screen prompts were checked in the VM. The changed native Android downloader policy passed 31 fresh Java host checks for version/URL rules, streaming hash, truncation, corruption and cancellation. Shared Android source is synchronized. Final installers passed compiled-function preservation, metadata, signing and structure audits. Android retains its signer and 16 KB ZIP alignment. iOS uses a freshly compiled VM export and verified retained runner; re-signing is required.
+
+Installers: [1.0.3 release](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.0.3). No physical Android/iPhone acceptance, fresh native Mac compilation or full-MOD end-to-end acceptance was performed.
+
+
 ## 1.0.2 (candidate77)
 
 Fourteen selected Windows VM tests passed at both 30 and 60 FPS: `UpdateStartupMenuTests`, `UpdateCheckTests`, `SealKingMusicTests`, `PitSquidMusicPhaseTests`, `MusicBossRoutingTests`, `GoldenLoadoutDisplayTests`, `WeaponLoadoutNativeTests`, `LanguagePreferencePersistenceTests`, `PortalSelectionTransitionTests`, `RoadmapPlayerIconsTests`, `ParrotPerchShadowTests`, `DummyAmbushMusicTests`, `WorldEventsDummyWorldTests`, `BossClassificationNativeTests`.

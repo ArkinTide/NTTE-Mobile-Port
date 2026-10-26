@@ -25,6 +25,10 @@ function scrNTTEFullWeaponRegisteredArea(_weapon) {
     // Native golden IDs are fields of the corresponding source LWO, whose
     // gold property explicitly suppresses natural drops.
     var _raw=scrNTTEFullWeaponRaw(_weapon)
+    // These numeric IDs are aliases for four specifically authored quest
+    // LWOs, not four registered random-drop modules. Mapping their metadata
+    // to crabbone must never admit them to absolute weapon_decide pools.
+    if(_raw>=wep_ntte_ancient_artifact && _raw<=wep_ntte_missing_artifact) return -1
     if(_raw==wep_ntte_golden_teleport_gun || _raw==wep_ntte_golden_trident || _raw==wep_ntte_golden_tunneller) return -1
     return scrNTTEFullWeaponDropArea(_record.raw,id)
 }

@@ -1,6 +1,10 @@
 if lockstep_stop
 	exit
 
+// A box can create loot during this same collision pass. Finalize its source
+// guarantee before reading the physical weapon, even before its first Step.
+with(other) scrNTTEFullSecretWeaponPickup()
+
 scrNTTEFullWeaponNativeNormalizeInventory()
 with(other) scrNTTEFullWeaponNativeNormalizePickup()
 if !(can_pick && other.visible) exit

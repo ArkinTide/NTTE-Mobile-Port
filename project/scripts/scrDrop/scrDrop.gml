@@ -82,7 +82,7 @@ function scrDrop(_pickup_chance, _weapon_chance) {
 			}
 			else {
 				var _wep = scrDecideWep(0)
-				scrWeaponPickupCreate(x + orandom(2), y + orandom(2), _wep, true)
+				with(scrWeaponPickupCreate(x + orandom(2), y + orandom(2), _wep, true)) roll=true
 			}
 			
 			_anything_dropped = true

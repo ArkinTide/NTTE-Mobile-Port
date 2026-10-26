@@ -57,7 +57,7 @@ function scrNTTEFullPizzaSpiralSmoke() {
     GameCont.area=_area
     scrNTTESmokeLog("FULL PIZZA SPIRAL: original1-based NTTtype4 mapped to actual Venuz stars,30logicaltick warmup, original frame5 cover OK @"+string(30/timescale))
 }
-function scrNTTEFullPizzaNormalLifecycleSmoke() {
+function scrNTTEFullPizzaNormalLifecycleSmoke(_inspect=false) {
     var _harness=id
     instance_deactivate_object(_harness)
     var _game=scrNTTEFullAreaGeneratorSnapshot(GameCont),_players=scrNTTEFullAreaGeneratorSnapshot(Player),
@@ -75,6 +75,10 @@ function scrNTTEFullPizzaNormalLifecycleSmoke() {
     GameCont.crown=Crown.None; GameCont.noradch=0; GameCont.ntte_full_pending_destination=undefined
     GameCont.maxsubarea=1; GameCont.finalsubarea=true; GameCont.ntte_visits_pizza=0
     global.ntte_full_sync_generation=false
+    if(_inspect) {
+        global.seed=global.ntte_pizza78_seed;
+        with(GameCont) scrRngStatesReset();
+    }
     var _gen=instance_create(0,0,GenCont)
     assert(instance_exists(_gen) && !_gen.ntte_full_sync_generation && _gen.goal==50 && !instance_exists(FloorMaker)
         && instance_number(Floor)==50 && _gen.turtle_den.cols==8 && _gen.turtle_den.rows==0,
@@ -97,6 +101,7 @@ function scrNTTEFullPizzaNormalLifecycleSmoke() {
     var _drain=instance_find(NTTEFullSewerDrain,0)
     assert(_drain.type=="area" && _drain.area==scrNTTEFullAreaId("lair") && _drain.ntte_full_hallway_size==320
         && _drain.spr_idle==scrNTTERefSprite("PizzaDrainIdle"),"Pizza drain lost real Lair destination/artwork/source320px hallway")
+    if(_inspect) scrNTTEFullPizzaSpawn78Inspect();
     with(GameCont) event_perform(ev_other,ev_room_end)
     assert(GameCont.area==area_scrapyards && GameCont.subarea==1 && GameCont.ntte_visits_pizza==1 && !GameCont.ntte_full_active_pizza,
         "Actual Pizza RoomEnd failed sourceScrapyards1/visit/transit or native stage increment ran twice")

@@ -22,7 +22,9 @@ repeat _count {
 		_x = bbox_center_x + orandom(2),
 		_y = bbox_center_y + orandom(2)
 	
-	scrWeaponPickupCreate(_x, _y, _wep, true)
+	with(scrWeaponPickupCreate(_x, _y, _wep, true)) {
+		roll=true
+	}
 }
 
 snd_play_hit(sndBigWeaponChest)

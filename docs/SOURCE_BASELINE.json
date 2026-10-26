@@ -1,27 +1,32 @@
 {
-  "source_candidate": "candidate77",
-  "date": "2026-10-25",
-  "source_manifest_sha256": "30272a98c2560374f07976cd401d84cea84a2dbcf1a4bb7d0f8fa6406955bf1e",
-  "windows_regression_receipt_sha256": "7a39c79409d72790d4f6486a40b1c5f5b073a065af3c9270ce616fdd461e9336",
+  "source_candidate": "candidate78",
+  "date": "2026-10-26",
+  "source_manifest_sha256": "51c5c3b8220c47b6318cedb48eb727ef2e63c45c6eb908d8cdcfa56ff9e25871",
+  "windows_regression_receipt_sha256": "49bdb86474c0dd115fc7a03288ead841a9670e874f9fb9943baf631bc8380d8e",
   "android_overlay_paths": [
     "objects/MakeGame/Alarm_0.gml",
     "options/android/options_android.yy"
   ],
   "selected_windows_cases": [
-    "UpdateStartupMenuTests",
-    "UpdateCheckTests",
-    "SealKingMusicTests",
-    "PitSquidMusicPhaseTests",
-    "MusicBossRoutingTests",
-    "GoldenLoadoutDisplayTests",
-    "WeaponLoadoutNativeTests",
-    "LanguagePreferencePersistenceTests",
-    "PortalSelectionTransitionTests",
+    "CatWarning78Tests",
+    "GatorStatueNativeTests",
+    "SecretWeapon78Tests",
+    "PizzaSpawn78Tests",
+    "PizzaShadow78Tests",
+    "MergedChinese78Tests",
+    "PizzaPropHurt78Tests",
+    "QuestDrop78Tests",
+    "RoadmapLoop78Tests",
+    "RoadmapNativeTests",
     "RoadmapPlayerIconsTests",
-    "ParrotPerchShadowTests",
-    "DummyAmbushMusicTests",
-    "WorldEventsDummyWorldTests",
-    "BossClassificationNativeTests"
+    "ChestDropNativeTests",
+    "InitialChestsNativeTests",
+    "BeetleMenuTests",
+    "Followup69PresentationNativeTests",
+    "OptionalShadowNativeTests",
+    "UpdateCheckTests",
+    "UpdateStartupMenuTests",
+    "SewerPizzaNaturalEntryTests"
   ],
   "rates": [
     30,
@@ -30,12 +35,12 @@
   "mobile_device_tested_this_round": false,
   "installers": {
     "android": {
-      "sha256": "2ec96abbb4b808088913998cf3c1c137ea2d7600770d58465aa6fb076b3fac90",
-      "bytes": 250395171
+      "sha256": "81bde7657d9369cff16e6f19e0dc2956e14b3662c997883732c7579b0c560151",
+      "bytes": 250444082
     },
     "ios": {
-      "sha256": "7fa4bb6d46001841488b731be309c69cf327050a02c1be1e61b7038dfaa7958b",
-      "bytes": 174322167
+      "sha256": "59a16255ff24041e922e3130ee267a28d37cf3bdeeb47b8bda9ccad9a6bbaa21",
+      "bytes": 174336875
     }
   },
   "android_native_policy_checks": 20,
@@ -43,8 +48,8 @@
   "ios_retained_runner_compatibility_checked": true,
   "native_xcode_compilation_performed": false,
   "installation_flow": "Android: in-game APK download and system installation confirmation; iOS: IPA download link with re-signing required",
-  "version": "1.0.2",
-  "version_policy": "Future bugfix releases increment by 0.0.1; next 1.0.3. Keep increasing candidate serials for updater compatibility.",
-  "android_version_code": 3000077,
-  "ios_bundle_version": "77"
+  "version": "1.0.3",
+  "version_policy": "Patch increments by0.0.1; official version-only tags and installer filenames. Next1.0.4. One manual upgrade from1.0.2.",
+  "android_version_code": 3000078,
+  "ios_bundle_version": "78"
 }

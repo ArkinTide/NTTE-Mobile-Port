@@ -36,6 +36,10 @@ function scrNTTEFullRoadmapStep(_waypoint,_last,_warps) {
             _data.showdot=_sub==1
             break;
     }
+    // Looping returns from the end to the beginning; it is not a traversed
+    // segment across the whole map. Drawing that return in the new loop's
+    // color painted every unfinished stage yellow on the very first stage.
+    if(_last.area!=-1 && _last.loops!=_loops) _data.showline=false
     return _data
 }
 function scrNTTEFullRoadmapData(_waypoints=undefined) {

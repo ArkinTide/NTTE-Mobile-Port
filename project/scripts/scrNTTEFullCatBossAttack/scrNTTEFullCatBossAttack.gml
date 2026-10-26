@@ -1,5 +1,8 @@
 // Original CatBossAttack warning fan -> instant damage + persistent toxic rails.
 function scrNTTEFullCatBossAttackCreate() {
+    // NTT CustomObject warning is above ground. The port's decor parent
+    // supplies depth9, behind Pizza styleB/explosion floors at depth8.
+    depth=6
     image_yscale=1.5; hitid=[scrNTTERefSprite("CatIdle"),"BIG CAT"]
     ntte_full_type=false; team=team_enemy; force=12; damage=8
     target=noone; creator=noone; ntte_full_lines=[]

@@ -2,6 +2,17 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [返回首页](../README.md)
 
+## 1.0.3
+
+19项选定Windows VM回归在30/60帧通过：`CatWarning78Tests`, `GatorStatueNativeTests`, `SecretWeapon78Tests`, `PizzaSpawn78Tests`, `PizzaShadow78Tests`, `MergedChinese78Tests`, `PizzaPropHurt78Tests`, `QuestDrop78Tests`, `RoadmapLoop78Tests`, `RoadmapNativeTests`, `RoadmapPlayerIconsTests`, `ChestDropNativeTests`, `InitialChestsNativeTests`, `BeetleMenuTests`, `Followup69PresentationNativeTests`, `OptionalShadowNativeTests`, `UpdateCheckTests`, `UpdateStartupMenuTests`, `SewerPizzaNaturalEntryTests`。
+
+测试覆盖真实预警线/阴影/融合名称绘制像素、字形范围、雕像赐福回调、原生箱子与拾取碰撞顺序、箱子预览回滚、16个真实披萨关卡生成、家具受击动画、秘密组件掉落排除和循环1/2路线图。实际Sewer→Pizza流程通过原生开火、爆炸、传送门碰撞、房间重启及目标关卡绘制。原测试只沿一条直线寻找发射位置，在修复前后均会于60帧拒绝同一种子；本次仅扩大测试的自然发射角度搜索，未改变游戏地形或放宽进入目标的断言，原失败记录保留。
+
+正式版本比较及启动提示经实际VM流程检查；原生Android下载策略重新通过31项Java检查，涵盖版本/地址校验及流式哈希、截断、损坏、取消。Android共享源码已同步。最终安装包通过编译函数保留、版本、签名和结构审核；Android签名身份保留并验证16KB ZIP对齐。iOS使用新编译VM数据和已验证保留运行库，需重新签名。
+
+安装包：[1.0.3发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.0.3)。未进行Android/iPhone真机验收、全新Mac原生编译或完整MOD全流程验收。
+
+
 ## 1.0.2（candidate77）
 
 14 项选定 Windows VM 测试在 30/60 帧通过：`UpdateStartupMenuTests`, `UpdateCheckTests`, `SealKingMusicTests`, `PitSquidMusicPhaseTests`, `MusicBossRoutingTests`, `GoldenLoadoutDisplayTests`, `WeaponLoadoutNativeTests`, `LanguagePreferencePersistenceTests`, `PortalSelectionTransitionTests`, `RoadmapPlayerIconsTests`, `ParrotPerchShadowTests`, `DummyAmbushMusicTests`, `WorldEventsDummyWorldTests`, `BossClassificationNativeTests`。

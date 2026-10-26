@@ -510,6 +510,10 @@ function scrNTTEFullLocalizeInstall() {
     _cn[$ "NTTE:Pet:Info:Weapon.petlib.mod:1:Name"]="武器箱怪"
     _cn[$ "NTTE:Pet:Info:Scorpion.petlib.mod:0:Name"]="银蝎子宝宝"
     _cn[$ "NTTE:Pet:Info:CoolGuy.petlib.mod:0:Name"]="酷蛙"
+    // Player-approved terminology; also used as components of merged names.
+    _cn[$ "Weapons:69:Name"]="砰砰枪"
+    _cn[$ "Weapons:71:Name"]="砰砰步枪"
+    global.ntte_zh_dictionary[$ "BLESSED!"]="祝福成功！"
     // Reuse existing Chinese names for ordinary components of merged weapons.
     if(variable_global_exists("wep_name") && is_array(wep_name)) {
         for(var _id=1;_id<array_length(wep_name);++_id) {
@@ -538,7 +542,64 @@ function scrNTTEFullWeaponNameDisplay(_text) {
     if(_upper!="BAT" && !is_undefined(_direct)) return scrNTTEFullDisplay(_text);
     var _words=string_split(_text," ")
     for(var _i=0;_i<array_length(_words);++_i) if(string_upper(_words[_i])=="BAT") _words[_i]="棒球棍"
-    return scrNTTEFullDisplay(string_join_ext(" ",_words))
+    return scrNTTEFullWeaponNameFragments(scrNTTEFullDisplay(string_join_ext(" ",_words)))
+}
+function scrNTTEFullWeaponNameFragments(_text) {
+    // Merge grammar inserts words into whole names (GUARDED POP ARTIFACT),
+    // so phrase-only translation cannot cover the resulting combinations.
+    // Complete only visible weapon-name fragments; preserve every control tag
+    // and canonical English model, and leave other languages untouched.
+    static _fragments=undefined;
+    if(is_undefined(_fragments)) {
+        _fragments={};
+        var _rows=[["ANCIENT","古代"],["ARTIFACT","组件"],["ASSAULT","突击"],["ATTACK","攻击"],
+            ["AUTO","自动"],["BAT","棒球棍"],["BAZOOKA","火箭筒"],["BLACK","黑色"],["BLOOD","血"],
+            ["BOUNCER","弹射"],["BOW","弓"],["BUBBLE","气泡"],["BUBBLER","气泡发射器"],
+            ["CANNON","加农炮"],["CHICKEN","鸡"],["CLAM","蛤"],["CLUSTER","集束"],["COIL","线圈"],
+            ["CROSSBOW","十字弩"],["CUTTER","切割机"],["DEVASTATOR","毁灭者"],["DISC","圆盘"],
+            ["DOG","狗"],["DOUBLE","双管"],["DRAGON","龙"],["ELECTRIC","电击"],["ENERGY","能量"],
+            ["ERASER","抹除者"],["FLAK","高射"],["FLAME","火焰"],["FLAMETHROWER","喷火器"],
+            ["FLARE","照明弹"],["FRONT","前端"],["FROG","青蛙"],["GATLING","加特林"],
+            ["GOLDEN","黄金"],["GRENADE","榴弹"],["GUARDED","守卫"],["GUITAR","吉他"],
+            ["GUN","枪"],["HAMMER","锤"],["HARPOON","鱼叉"],["HEAVY","重型"],["HYPER","高阶"],
+            ["INCINERATOR","焚烧炉"],["ION","离子"],["JACKHAMMER","风镐"],["LASER","激光"],
+            ["LAUNCHER","发射器"],["MACHINEGUN","机枪"],["MINIGUN","速射机枪"],["MISSILE","导弹"],
+            ["MISSING","遗失"],["NET","网状"],["NUKE","核弹"],["PARTS","部件"],["PARTY","派对"],
+            ["PISTOL","手枪"],["PLASMA","等离子"],["POP","砰砰"],["QUADRUPLE","四管"],
+            ["REVOLVER","左轮"],["RIFLE","步枪"],["ROGUE","叛警"],["RUSTY","生锈"],
+            ["SAWED-OFF","短管"],["SCREWDRIVER","螺丝刀"],["SEEKER","追踪"],["SENTRY","哨戒"],
+            ["SHIELD","盾"],["SHOTBOW","霰弹十字弩"],["SHOTGUN","霰弹枪"],["SHOVEL","铲子"],
+            ["SLEDGEHAMMER","大锤"],["SLUGBOW","独头弹十字弩"],["SLUGGER","独头弹霰弹枪"],
+            ["SMART","智能"],["SMG","冲锋枪"],["SPIN","旋转"],["SPLINTER","碎片"],
+            ["STICKY","粘性"],["STOCK","枪托"],["STOLEN","被窃"],["SUPER","超级"],["SWORD","剑"],
+            ["TELEPORT","传送"],["TESLA","特斯拉"],["TOXIC","毒液"],["TRIPLE","三管"],
+            ["ULTRA","终极"],["WAVE","波浪"],["WRENCH","扳手"]];
+        for(var _i=0;_i<array_length(_rows);++_i) _fragments[$ _rows[_i][0]]=_rows[_i][1];
+    }
+    var _result="",_pos=1,_length=string_length(_text);
+    while(_pos<=_length) {
+        var _char=string_char_at(_text,_pos),_start=_pos;
+        if(_char=="@") {
+            _pos++;
+            if(string_pos(string_char_at(_text,_pos),"123456789")>0 && string_char_at(_text,_pos+1)=="(") _pos++;
+            if(string_char_at(_text,_pos)=="(") {
+                var _depth=1;_pos++;
+                while(_pos<=_length && _depth>0) {
+                    var _next=string_char_at(_text,_pos++);
+                    if(_next=="(") _depth++;else if(_next==")") _depth--;
+                }
+            } else _pos=min(_length+1,_pos+1);
+            _result+=string_copy(_text,_start,_pos-_start);
+        }
+        else if(scrNTTEFullTextWordChar(_char)) {
+            while(_pos<=_length && (scrNTTEFullTextWordChar(string_char_at(_text,_pos))
+                || string_char_at(_text,_pos)=="-")) _pos++;
+            var _word=string_copy(_text,_start,_pos-_start);
+            _result+=scrNTTEFullValue(_fragments,string_upper(_word),_word);
+        }
+        else {_result+=_char;_pos++;}
+    }
+    return _result;
 }
 function scrNTTEFullTextWordChar(_char) {
     return _char!="" && string_pos(string_upper(_char),"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_'")>0

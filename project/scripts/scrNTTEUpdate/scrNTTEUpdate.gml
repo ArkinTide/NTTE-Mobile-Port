@@ -1,7 +1,7 @@
 // Release numbering is independent of GAME_BUILD, which belongs to save formats.
-#macro NTTE_RELEASE_NUMBER 77
-#macro NTTE_RELEASE_TAG "candidate77"
-#macro NTTE_RELEASE_VERSION "1.0.2"
+#macro NTTE_RELEASE_NUMBER 78
+#macro NTTE_RELEASE_TAG "1.0.3"
+#macro NTTE_RELEASE_VERSION "1.0.3"
 #macro NTTE_RELEASE_REPO "https://github.com/ArkinTide/NTTE-Mobile-Port"
 #macro NTTE_RELEASE_API "https://api.github.com/repos/ArkinTide/NTTE-Mobile-Port/releases/latest"
 
@@ -28,20 +28,32 @@ function scrNTTEUpdateNumber(_tag) {
     }
     return real(_digits)
 }
-function scrNTTEUpdateVersionLabel(_release,_fallback) {
-    var _name=_release[$ "name"]
-    if(!is_string(_name) || string_length(_name)>24) return _fallback
+// Compare components directly: no lexical ordering or packed-number overflow.
+function scrNTTEUpdateVersionParts(_name) {
+    if(!is_string(_name) || string_length(_name)>23) return undefined
     var _parts=string_split(_name,".")
-    if(array_length(_parts)!=3) return _fallback
+    if(array_length(_parts)!=3) return undefined
     for(var _i=0;_i<3;++_i) {
         var _part=_parts[_i],_n=string_length(_part)
-        if(_n<1 || _n>7 || (_n>1 && string_char_at(_part,1)=="0")) return _fallback
+        if(_n<1 || _n>7 || (_n>1 && string_char_at(_part,1)=="0")) return undefined
         for(var _j=1;_j<=_n;++_j) {
             var _c=ord(string_char_at(_part,_j))
-            if(_c<48 || _c>57) return _fallback
+            if(_c<48 || _c>57) return undefined
         }
+        _parts[_i]=real(_part)
     }
-    return _name
+    return _parts
+}
+function scrNTTEUpdateVersionCompare(_left,_right) {
+    for(var _i=0;_i<3;++_i) {
+        if(_left[_i]>_right[_i]) return 1
+        if(_left[_i]<_right[_i]) return -1
+    }
+    return 0
+}
+function scrNTTEUpdateVersionLabel(_release,_fallback) {
+    var _name=_release[$ "name"]
+    return is_array(scrNTTEUpdateVersionParts(_name))?_name:_fallback
 }
 function scrNTTEUpdateParse(_body,_platform=os_type) {
     var _bad={status:"failed"}
@@ -49,11 +61,18 @@ function scrNTTEUpdateParse(_body,_platform=os_type) {
     var _release
     try {_release=json_parse(_body)} catch(_error) {return _bad}
     if(!is_struct(_release)) return _bad
-    var _tag=_release[$ "tag_name"],_number=scrNTTEUpdateNumber(_tag)
-    if(_number<0 || _release[$ "draft"]!=false || _release[$ "prerelease"]!=false) return _bad
-    if(_number<=NTTE_RELEASE_NUMBER) return {status:"current",tag:_tag,number:_number}
+    var _tag=_release[$ "tag_name"],_version=scrNTTEUpdateVersionParts(_tag)
+    if(_release[$ "draft"]!=false || _release[$ "prerelease"]!=false) return _bad
+    if(!is_array(_version)) {
+        // Historical candidate tags can never offer an upgrade or downgrade.
+        var _legacy=scrNTTEUpdateNumber(_tag)
+        if(_legacy>=0 && _legacy<=NTTE_RELEASE_NUMBER) return {status:"current",tag:_tag,number:_legacy}
+        return _bad
+    }
+    if(scrNTTEUpdateVersionCompare(_version,scrNTTEUpdateVersionParts(NTTE_RELEASE_VERSION))<=0)
+        return {status:"current",tag:_tag}
     var _page=NTTE_RELEASE_REPO+"/releases/tag/"+_tag,
-        _result={status:"available",tag:_tag,version:scrNTTEUpdateVersionLabel(_release,_tag),number:_number,page:_page,url:_page,has_installer:false},
+        _result={status:"available",tag:_tag,version:_tag,page:_page,url:_page,has_installer:false},
         _extension=_platform==os_android?".apk":(_platform==os_ios?".ipa":""),
         _prefix="NuclearThrone.TerritorialExpansion-"+(_platform==os_android?"Android-":"iOS-"),
         _assets=_release[$ "assets"]
@@ -65,9 +84,7 @@ function scrNTTEUpdateParse(_body,_platform=os_type) {
         if(!is_struct(_asset)) continue
         var _name=_asset[$ "name"],_url=_asset[$ "browser_download_url"],_size=_asset[$ "size"]
         if(!is_string(_name) || !is_string(_url) || !is_numeric(_size) || _size<=0) continue
-        var _suffix="-"+_tag+_extension
-        if(string_copy(_name,1,string_length(_prefix))!=_prefix
-            || string_copy(_name,string_length(_name)-string_length(_suffix)+1,string_length(_suffix))!=_suffix) continue
+        if(_name!=_prefix+_tag+_extension) continue
         // Only open an exact asset path in this repository; never execute downloaded code.
         var _plain=true
         for(var _j=1;_j<=string_length(_name);++_j) {

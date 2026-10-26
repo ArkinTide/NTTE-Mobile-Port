@@ -2,34 +2,24 @@
 
 [简体中文](UPDATING.md) | [English](UPDATING.en.md) | [Home](../README.en.md)
 
-## For players
+## Players
 
-Starting with candidate74, the game checks this repository's latest stable GitHub Release once after reaching the main menu.
-Open **Settings → NT:TE → UPDATES** to disable automatic checks, check manually, or download an update.
-Offline connections, timeouts, and GitHub rate limits do not block startup. Automatic update dialogs do not interrupt a run.
+The idle main menu checks once about 5 seconds after startup. Use **Settings → NT:TE → Updates** for manual checks or preferences. Offline operation, timeouts and rate limits do not block startup. Prompts are deferred during gameplay.
 
-- **Android**: after confirmation, the game downloads the APK internally, displays progress, and supports cancellation and retry. It verifies file size, SHA-256, package name, and signing identity before opening Android's system installer. You may first need to allow this app to install unknown apps. Confirm installation over the existing app to retain its data; do not uninstall the old version first.
-- **iOS**: confirmation opens the matching IPA download link. Sideloaded updates still need signing or re-signing with your own signing identity before installation.
+Upgrading from 1.0.2 or earlier to 1.0.3 requires one manual download and in-place installation because the older updater only recognizes historical candidate tags. Version 1.0.3 recognizes future official version tags. Do not uninstall first if you want to retain saves.
 
-Older builds without the updater need one manual installation of candidate74 or later.
-The Android downloader uses private app cache storage and does not require all-files access for updates.
+- Android downloads the APK in-game to private cache, verifies size, SHA-256, package and signer, then opens the system installer. Allow installation from this app when requested and confirm the in-place update.
+- iOS opens the IPA download link. Sign or re-sign it with your own identity before installation.
 
-## Official version policy
+## Versions and publishing
 
-The current stable version is **1.0.2** (internal build `candidate77`). Every subsequent bugfix release increases the visible version by **0.0.1**: `1.0.3`, `1.0.4`, and so on. Keep the in-game version, Android versionName, and iOS CFBundleShortVersionString in sync.
+The current version is **1.0.3**. Bugfix releases increment the patch: 1.0.4, 1.0.5. Both GitHub tag and Release title use the official version, such as `1.0.3`. No new candidate tags or aliases are published. Historical releases remain.
 
-To remain compatible with installed candidate74 updaters, keep increasing `candidateN` GitHub Release tags and installer suffixes. Set the Release title to the official version (`1.0.2` here); newer games display this title. An additional `v1.0.2` Git tag may point to the same commit. Do not create a separate Latest Release without installers.
+1. Update NTTE_RELEASE_VERSION, NTTE_RELEASE_TAG, GAME_VERSION and platform display versions together. Increment NTTE_RELEASE_NUMBER as an internal build serial: next version 1.0.4, serial 79. Do not change the save-format GAME_BUILD for a release.
+2. Build, test and audit both installers. Retain the Android package and signing identity. Current Android versionCode is 3000078 and iOS CFBundleVersion is 78; both must increase.
+3. Create a same-tag draft Release and upload `NuclearThrone.TerritorialExpansion-Android-1.0.3.apk`, `NuclearThrone.TerritorialExpansion-iOS-1.0.3.ipa` and SHA256SUMS.txt. Verify remote digests before publishing as Latest. Substitute the new version in future filenames.
+4. Update both READMEs, validation records and release notes, including iOS signing requirements.
 
-This APK uses Android versionCode `3000077`; subsequent builds must increase it rather than use a lower automatically generated value. The iOS CFBundleVersion is `77` and must also increase. Keep the save-format `GAME_BUILD` unchanged.
+The updater reads this repository's releases/latest API, requires a stable published release and compares three numeric components. It rejects downgrades, foreign repository assets, tag/filename mismatches and invalid digests. Historical candidate tags cannot offer upgrades. A missing platform installer never selects another platform's file.
 
-## Publishing a new version
-
-1. Increase `NTTE_RELEASE_VERSION` using the policy above and increment both `NTTE_RELEASE_NUMBER` and `NTTE_RELEASE_TAG` in `project/scripts/scrNTTEUpdate/scrNTTEUpdate.gml`, for example `1.0.3`, `78`, and `candidate78` next. Do not change the save-format `GAME_BUILD` just to publish an update.
-2. Build and verify both installers. Retain the Android package name and signing identity, and do not lower its version code.
-3. Create a matching stable GitHub Release and mark it Latest. The updater reads `https://api.github.com/repos/ArkinTide/NTTE-Mobile-Port/releases/latest`. Drafts and prereleases are not treated as stable updates.
-4. Upload installers before publishing. Use `NuclearThrone.TerritorialExpansion-Android-<description>-candidate77.apk` and `NuclearThrone.TerritorialExpansion-iOS-<description>-candidate77.ipa`. The Android asset's GitHub `digest` must contain its SHA-256; normal uploads supply this automatically.
-5. Describe the changes and iOS signing requirement in the release notes, and attach SHA-256 checksums.
-
-The updater compares candidate numbers numerically, rejects downgrades, and accepts installer URLs only from this repository. A missing platform asset does not cause another platform's installer to be offered. Automatic checks run once per launch. Manual checks have a cooldown, with longer backoff after rate-limit responses.
-
-The Android native implementation is under `project/extensions/YYExtra/AndroidSource/`. Rebuilds must include the new Java files, `res/xml/ntte_update_paths.xml`, the `REQUEST_INSTALL_PACKAGES` permission, and the extension's FileProvider declaration. If changing the application identifier, also change the provider authority to `<package>.ntteupdates`. Installation requires system confirmation; the updater does not perform silent installs or replace executable code dynamically.
+Android native downloads live in `project/extensions/YYExtra/AndroidSource/`. Include the Java implementation, res/xml/ntte_update_paths.xml, REQUEST_INSTALL_PACKAGES and FileProvider declaration. Its authority is `<package>.ntteupdates`. Installation requires system confirmation.

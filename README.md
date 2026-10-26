@@ -3,18 +3,32 @@
 [简体中文](README.md) | [English](README.en.md)
 
 NTTE 移植版的 GameMaker 源码，包含 Android、iOS 适配和简体中文。
-当前源码基线为 **1.0.2（2026-10-25，内部构建 candidate77）**。
+当前源码基线为 **1.0.3（2026-10-26）**。
 
 ## 下载安装包
 
-最后交付的 Android APK 和 iOS IPA 可在 [1.0.2 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate77) 下载：
+最后交付的 Android APK 和 iOS IPA 可在 [1.0.3 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.0.3) 下载：
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate77/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate77.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate77/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate77.ipa)：安装前需要用自己的签名身份重新签名。
-- [SHA-256 校验文件](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate77/SHA256SUMS.txt)
+- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.3/NuclearThrone.TerritorialExpansion-Android-1.0.3.apk)
+- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.3/NuclearThrone.TerritorialExpansion-iOS-1.0.3.ipa)：安装前需要用自己的签名身份重新签名。
+- [SHA-256 校验文件](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.3/SHA256SUMS.txt)
 
 两平台使用独立标识 `com.arkintide.nuclearthronentte`。本轮验证范围见[验证记录](docs/VALIDATION.md)。
 安装包作为 Releases 附件提供；Git 源码目录不包含安装包、签名密钥或个人存档。
+
+## 1.0.3 更新内容
+
+- 修复披萨下水道大猫的长条毒气预警线被地板遮盖。
+- 修复鳄鱼雕像赐福文字未初始化引起的 PopupText 报错。
+- 按原 MOD 补齐进入隐藏区域的武器保障：2-1 武器掉落可提供爆炸武器，3-1 保留首箱后的螺丝刀保障。
+- 修复披萨下水道守候小怪生成在墙外及外侧虚空阴影；保留正常墙上敌人，不增加墙内击杀机制。
+- 补齐动态、嵌套融合武器的中文名称；使用“砰砰枪”和“砰砰步枪”。
+- 修复披萨下水道家具受击后持续变白。
+- 修复秘密组件进入普通随机融合掉落和沙漠插墙武器池，保留隐藏地点和合法解密合成。
+- 修复新循环开头路线图被跨循环连线整体染黄。
+- 更新器改用正式版本标签和文件名，按主版本、次版本、修订号比较版本。
+
+从 1.0.2 或更早版本升级到 1.0.3，需要手动下载并覆盖安装一次：旧更新器只识别历史 candidate 标签。1.0.3 起恢复按正式版本号检查后续更新。不要先卸载，以免丢失存档。
 
 ## 1.0.2 更新内容
 
@@ -42,9 +56,9 @@ NTTE 移植版的 GameMaker 源码，包含 Android、iOS 适配和简体中文�
 
 ## 游戏内更新
 
-从 candidate74 开始，启动后会自动检查本仓库的最新正式版本，也可在 **设置 → NT:TE → 版本更新** 中手动检查或关闭自动检查。
+启动后会自动检查本仓库的最新正式版本，也可在 **设置 → NT:TE → 版本更新** 中手动检查或关闭自动检查。
 Android 支持在游戏内下载、校验 APK 并打开系统安装确认；iOS 打开 IPA 下载链接，安装前仍需签名。
-旧版需要先手动安装一次包含更新功能的版本。详见[更新使用与发布说明](docs/UPDATING.md)。
+从 1.0.2 或更早版本升级到 1.0.3，需要手动下载并覆盖安装一次：旧更新器只识别历史 candidate 标签。1.0.3 起恢复按正式版本号检查后续更新。不要先卸载，以免丢失存档。详见[更新使用与发布说明](docs/UPDATING.md)。
 
 ## 项目结构
 

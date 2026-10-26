@@ -22,7 +22,9 @@ function scrNTTEFullLairPropConfigure(_kind) {
     }
     hp=max_hp; spr_idle=scrNTTERefSprite(_base+"Idle"); spr_hurt=scrNTTERefSprite(_base+"Hurt")
     spr_dead=scrNTTERefSprite(_base+"Dead"); sprite_index=spr_idle; mask_index=-1
-    image_index=0; image_speed=0; spr_shadow=(_kind=="Table" ? shd32:shd24)
+    // Native prop.BeginStep returns to idle after the hurt animation advances.
+    // Freezing this at0 left the first, solid-white hurt frame on screen.
+    image_index=0; image_speed=0.4*timescale; spr_shadow=(_kind=="Table" ? shd32:shd24)
 }
 
 function scrNTTEFullLairPropCreate(_x,_y,_kind) {

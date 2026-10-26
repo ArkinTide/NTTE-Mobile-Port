@@ -22,6 +22,7 @@ if scr_ultra_get(Race.Steroids, UltraSkill.Ambidextrous) {
 repeat (_count) {
 	with (scrWeaponPickupCreate(x + orandom(2), y + orandom(2), _wep, true)) {
 		curse = other.curse
+		roll = true
 	}
 }
 

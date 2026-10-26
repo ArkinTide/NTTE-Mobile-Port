@@ -25,6 +25,7 @@ repeat _count {
 		
 	with scrWeaponPickupCreate(_x, _y, _wep, true) {
 		curse = other.curse
+		roll = true
 	}
 }
 

@@ -22,6 +22,11 @@ function scrShadows() {
 		
 	for (var i = _count - 1; i >= 0; --i) {
 		with _list[| i] {
+			// Pizza's exposed background is visible through darkness. Perimeter
+			// walls must not cast rectangular floor shadows onto that void.
+			if(GameCont.area==scrNTTEFullAreaId("pizza")
+			    && !position_meeting(x+8,y+18,Floor)
+			    && !position_meeting(x+8,y+18,FloorExplo)) continue;
 			if !position_meeting(x, y + 16, TopSmall) {
 				{ if(sprite_exists(outspr)) draw_sprite_ext(outspr, outindex, x - _xview, y + 2 + 16 - _yview, 1, -1, 0, c_black, 1); }
 			}

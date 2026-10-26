@@ -3,19 +3,33 @@
 [简体中文](README.md) | [English](README.en.md)
 
 GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
-The current source baseline is **1.0.2 (2026-10-25, internal build candidate77)**.
+The current source baseline is **1.0.3 (2026-10-26)**.
 
 ## Downloads
 
-The latest delivered Android APK and iOS IPA are available on the [1.0.2 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/candidate77):
+The latest delivered Android APK and iOS IPA are available on the [1.0.3 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.0.3):
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate77/NuclearThrone.TerritorialExpansion-Android-crashfix-candidate77.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate77/NuclearThrone.TerritorialExpansion-iOS-crashfix-candidate77.ipa): sign or re-sign with your own signing identity before installing.
-- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/candidate77/SHA256SUMS.txt)
+- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.3/NuclearThrone.TerritorialExpansion-Android-1.0.3.apk)
+- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.3/NuclearThrone.TerritorialExpansion-iOS-1.0.3.ipa): sign or re-sign with your own signing identity before installing.
+- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.3/SHA256SUMS.txt)
 
 Both platforms use the separate application identifier `com.arkintide.nuclearthronentte`.
 See the [validation notes](docs/VALIDATION.en.md) for the scope of verification.
 Installers are distributed as release assets; the Git source tree contains no installers, signing keys, or personal saves.
+
+## Changes in 1.0.3
+
+- Restored the Pizza Sewer Cat boss gas telegraph above the floor overlay.
+- Fixed an uninitialized PopupText message in Gator Statue blessings.
+- Restored the original secret-entry weapon guarantees: explosive drops in 2-1 and the screwdriver guarantee after the first chest in 3-1.
+- Corrected initial Pizza watcher spawns outside the floor and exterior-void shadows. Intended wall enemies remain; no terrain-based kill mechanism was added.
+- Completed Chinese dynamic and nested fusion names, including the corrected Pop Gun and Pop Rifle terminology.
+- Fixed Pizza furniture remaining solid white after being hit.
+- Excluded secret components from ordinary random fusion rewards and desert wall weapon pools while retaining authored locations and valid quest fusions.
+- Fixed a cross-loop roadmap connector coloring the entire next loop yellow.
+- Migrated update checks and installer URLs to official version tags and filenames, with component-wise semantic version comparison.
+
+Upgrading from 1.0.2 or earlier to 1.0.3 requires one manual download and in-place installation because the older updater only recognizes historical candidate tags. Version 1.0.3 recognizes future official version tags. Do not uninstall first if you want to retain saves.
 
 ## Changes in 1.0.2
 
@@ -43,9 +57,9 @@ Installers are distributed as release assets; the Git source tree contains no in
 
 ## In-game updates
 
-Starting with candidate74, the game automatically checks this repository's latest stable release after startup. Open **Settings → NT:TE → UPDATES** to check manually or disable automatic checks.
+The game automatically checks this repository's latest stable release after startup. Open **Settings → NT:TE → UPDATES** to check manually or disable automatic checks.
 Android downloads and verifies the APK in-game, then opens the system installation confirmation. iOS opens the IPA download link and still requires signing before installation.
-Older builds need one manual installation of an updater-enabled version. See [using and publishing updates](docs/UPDATING.en.md).
+Upgrading from 1.0.2 or earlier to 1.0.3 requires one manual download and in-place installation because the older updater only recognizes historical candidate tags. Version 1.0.3 recognizes future official version tags. Do not uninstall first if you want to retain saves. See [using and publishing updates](docs/UPDATING.en.md).
 
 ## Repository layout
 

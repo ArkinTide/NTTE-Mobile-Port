@@ -39,6 +39,12 @@ function scrNTTEFullGatorStatueNativeTests() {
             && _orb.type=="portal" && _orb.creator==_statue && !_prompt.visible
             && _statue.sprite_index==_statue.spr_hurt,
             "Source actual GatorStatue blessing did not create genuine creator-bound portal mutation orb/hide prompt/hurt art")
+        var _popup=noone;
+        with(PopupText) if(array_get_index(_before,id)<0 && scrNTTEFullValue(id,"ntte_full_target",-1)==_p.index) _popup=id;
+        assert(instance_exists(_popup) && _popup.mytext=="BLESSED!" && _popup.ntte_translate,
+            "Gator blessing still writes NTT text/target instead of native popup fields");
+        with(_popup) event_perform(ev_alarm,2);
+        scrNTTEFullPopup78Draw(_popup);
         // Shared actual input resets a previously picked prompt, so the
         // blessing does not repeat on subsequent ordinary game steps.
         with(_p) scrNTTEFullPromptPlayerStep()

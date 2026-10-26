@@ -63,6 +63,22 @@ function scrNTTEFullPizzaPopExtras() {
     }
 }
 function scrNTTEFullPizzaPopulateNative() { scrPopulate(); scrNTTEFullPizzaPopExtras() }
+function scrNTTEFullPizzaWatcherPlace() {
+    // Food is placed over a whole Floor bbox, including its wall-adjacent
+    // edge. A watcher born there can overlap the perimeter and be pushed out
+    // when it becomes hostile. Correct only these initial Pizza NPC positions.
+    if(!place_meeting(x,y,Wall) && position_meeting(x,y,Floor)) return;
+    var _wantx=x,_wanty=y,_best=infinity,_bestx=x,_besty=y,_found=false;
+    with(Floor) {
+        var _cx=clamp(_wantx,bbox_left+10,bbox_right-10),
+            _cy=clamp(_wanty,bbox_top+10,bbox_bottom-10);
+        with(other) if(!place_meeting(_cx,_cy,Wall) && position_meeting(_cx,_cy,Floor)) {
+            var _distance=point_distance(_wantx,_wanty,_cx,_cy);
+            if(_distance<_best) {_best=_distance;_bestx=_cx;_besty=_cy;_found=true;}
+        }
+    }
+    if(_found) {x=_bestx;y=_besty;xprevious=x;yprevious=y;xstart=x;ystart=y;}
+}
 function scrNTTEFullPizzaStart() {
     GameCont.ntte_full_active_pizza=true
     var _wall=instance_find(Wall,0)
@@ -101,6 +117,7 @@ function scrNTTEFullPizzaStart() {
             snd_dead=sndTurtleDead3; right=1
         }
     }
+    with(NTTEFullTurtleCool) scrNTTEFullPizzaWatcherPlace();
     var _chests=scrNTTEFullInstances([chestprop,RadChest])
     for(var _i=0;_i<array_length(_chests);++_i) scrNTTEFullLairLight(_chests[_i].x,_chests[_i].y-28)
     with(PizzaBox) { instance_create(x,y,NTTEFullPizzaStack); instance_destroy(id,false) }

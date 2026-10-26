@@ -1,5 +1,60 @@
 // Original WeaponChest collisions d7cfc0/d7e8b0 and wepdrops field061e.
 // Per-level source counter remains independent of Epsilon RNGStates/dropseed.
+// ntte.game_start190..232 and ntte_setup_WepPickup2806..2856: one guarantee
+// per run, also satisfied by an earlier natural drop from the same raw pool.
+function scrNTTEFullSecretWeaponInit() {
+    var _explosives=[],_screwdrivers=[],_weapons=[],_modules=scrNTTEFullWeaponDropTable();
+    for(var _w=0;_w<128;++_w) array_push(_weapons,{weapon:_w,raw:_w});
+    for(var _i=0;_i<array_length(_modules);++_i) array_push(_weapons,_modules[_i]);
+    for(var _i=0;_i<array_length(_weapons);++_i) {
+        var _entry=_weapons[_i],_w=_entry.weapon;
+        if(_w<=0 || _w>maxwep) continue;
+        // Canonical English registry text, independent of selected UI language.
+        var _name=string_upper(wep_name[_w]);
+        if(wep_type[_w]==Ammo.Explosives) {
+            var _include=array_contains([wep_hyper_launcher,wep_toxic_launcher,wep_sticky_launcher,
+                wep_cluster_launcher,"claymore","blaster","puncher","buster","pulser","airstrike","herald"],_entry.raw),
+                _tokens=["GRENADE","BAZOOKA","NUKE","BUBBLE","ABRIS","ROCKLET"];
+            for(var _j=0;_j<array_length(_tokens);++_j) if(string_pos(_tokens[_j],_name)>0) _include=true;
+            if(_include) array_push(_explosives,_w);
+        }
+        if(string_pos("SCREWDRIVER",_name)>0) array_push(_screwdrivers,_w);
+    }
+    GameCont.ntte_weapon_spawn=[{wep:_explosives,area:area_sewers,subarea:1,open:0},
+        {wep:_screwdrivers,area:area_scrapyards,subarea:1,open:1}];
+}
+function scrNTTEFullSecretWeaponPickup() {
+    if(scrNTTEFullValue(id,"ntte_secret_processed",false) || !instance_exists(GameCont)) return false;
+    // New native runs initialize in GameCont.Create. Legacy continued runs have
+    // no history of earlier drops; do not recreate already-consumed guarantees.
+    ntte_secret_processed=true;
+    var _rules=scrNTTEFullValue(GameCont,"ntte_weapon_spawn",[]),_changed=false;
+    if(array_length(_rules)==0) return false;
+    var _raw=scrNTTEFullWeaponRaw(wep),_record=scrNTTEFullWeaponDropNativeRecord(_raw);
+    if(!is_undefined(_record)) _raw=_record.weapon;
+    for(var _i=0;_i<array_length(_rules);++_i) {
+        var _rule=_rules[_i],_spawn=array_get_index(_rule.wep,_raw)>=0;
+        if(!_spawn && GameCont.area==_rule.area && GameCont.subarea==_rule.subarea
+            && scrNTTEFullValue(id,"roll",false)) {
+            var _chest=position_meeting(xstart,ystart,ChestOpen);
+            if(_rule.open!=0 && _chest) _rule.open--;
+            else {
+                var _excluded=[];
+                for(var _w=0;_w<=maxwep;++_w) if(array_get_index(_rule.wep,_w)<0) array_push(_excluded,_w);
+                wep=scrNTTEFullWeaponDecide(0,GameCont.hard+_chest+2*curse,scr_weapon_is_golden(wep)>0,_excluded,id);
+                _spawn=true;_changed=true;
+            }
+        }
+        if(_spawn) {array_delete(_rules,_i,1);break;}
+    }
+    GameCont.ntte_weapon_spawn=_rules;
+    if(_changed) {
+        // Preserve pickup ammo/curse/physical position; only the selected weapon
+        // and its presentation metadata change, as in the original setup hook.
+        name=scr_weapon_get_name(wep);type=scr_weapon_get_type(wep);sprite_index=scr_weapon_get_sprite(wep);
+    }
+    return _changed;
+}
 function scrNTTEFullChestDropReset() { GameCont.ntte_source_wepdrops=0; }
 function scrNTTEFullChestDropBegin() {
     var _state=scrNTTEFullSourceSeedState(),_count=scrNTTEFullValue(GameCont,"ntte_source_wepdrops",0)
@@ -59,7 +114,8 @@ function scrNTTEFullBiggestWeaponChestLevelStart() {
         _count=scrNTTEFullValue(GameCont,"ntte_source_wepdrops",0),_last_count=_count,
         _nochest=GameCont.nochest,_rng=[],_selected=noone,
         _oldpreview=variable_global_exists("ntte_chest_preview")?global.ntte_chest_preview:false,
-        _generators=scrNTTEFullInstances(GenCont)
+        _generators=scrNTTEFullInstances(GenCont),
+        _secret=json_stringify(scrNTTEFullValue(GameCont,"ntte_weapon_spawn",[]))
     array_copy(_rng,0,global.rng_state,0,array_length(global.rng_state))
     GameCont.ntte_can_spawn_ultra_quasar_rifle=true
     // Native generation providers run from GenCont.Destroy; original NTTE's
@@ -78,6 +134,11 @@ function scrNTTEFullBiggestWeaponChestLevelStart() {
                 with(_chest) _copy=scrNTTEFullMergedNativeCopy(false)
                 with(_copy) event_perform(ev_collision,PortalShock)
                 var _after=scrNTTEFullInstances(all)
+                // Source setup observes the already-open chest. Run just that
+                // pending pickup setup after the real collision/Destroy, as
+                // the first live Step would; do not advance loot physics.
+                for(var _j=0;_j<array_length(_after);++_j) if(array_get_index(_before,_after[_j])<0)
+                    if(instance_is(_after[_j],WepPickup)) with(_after[_j]) scrNTTEFullSecretWeaponPickup()
                 for(var _j=0;_j<array_length(_after);++_j) if(array_get_index(_before,_after[_j])<0)
                     if(instance_is(_after[_j],WepPickup) && scrNTTEFullWeaponRaw(_after[_j].wep)==wep_ntte_ultra_quasar_rifle) _has=true
             }
@@ -85,6 +146,7 @@ function scrNTTEFullBiggestWeaponChestLevelStart() {
                 var _after=scrNTTEFullInstances(all)
                 for(var _j=array_length(_after)-1;_j>=0;--_j) if(array_get_index(_before,_after[_j])<0 && instance_exists(_after[_j])) instance_destroy(_after[_j],false)
                 global.ntte_chest_preview=_oldpreview
+                GameCont.ntte_weapon_spawn=json_parse(_secret)
             }
             if(_has) {
                 _last_count++
@@ -108,6 +170,7 @@ function scrNTTEFullBiggestWeaponChestLevelStart() {
         GameCont.ntte_source_wepdrops=_last_count
         GameCont.ntte_can_spawn_ultra_quasar_rifle=false
         global.ntte_chest_preview=_oldpreview
+        GameCont.ntte_weapon_spawn=json_parse(_secret)
         for(var _g=0;_g<array_length(_generators);++_g) instance_activate_object(_generators[_g])
     }
     return _selected

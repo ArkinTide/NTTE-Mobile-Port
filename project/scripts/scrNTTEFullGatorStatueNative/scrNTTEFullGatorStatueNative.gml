@@ -35,7 +35,7 @@ function scrNTTEFullGatorStatueStep() {
     with(_player) snd_play(snd_valt)
     sprite_index=spr_hurt;image_index=0
     var _text=instance_create(x+prompt.xoff,y+prompt.yoff-16,PopupText)
-    _text.text="BLESSED!";_text.target=_index
+    _text.mytext="BLESSED!";_text.ntte_full_target=_index;_text.ntte_translate=true
 }
 function scrNTTEFullGatorStatueDeath() {
     var _wepNum=2

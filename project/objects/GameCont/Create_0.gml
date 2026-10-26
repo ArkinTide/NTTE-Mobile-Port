@@ -116,3 +116,4 @@ scrNTTEFullPalaceShrineSkillsInit();
 scrNTTEFullAreaNativeInit();
 
 scrNTTEFullSourceSeedState();
+scrNTTEFullSecretWeaponInit();

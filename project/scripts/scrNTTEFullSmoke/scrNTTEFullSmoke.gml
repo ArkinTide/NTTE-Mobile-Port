@@ -522,6 +522,14 @@ function scrNTTEFullSmokeStep() {
         if(scrNTTEFullSmokeCase("PetGuardianOtherActiveTests")) scrNTTEFullPetGuardianOtherActiveTests();
         if(scrNTTEFullSmokeCase("PetGuardianSpecificTests")) scrNTTEFullPetGuardianSpecificTests();
         if(scrNTTEFullSmokeCase("UpdateCheckTests")) scrNTTEUpdateTests();
+        if(scrNTTEFullSmokeCase("PizzaPropHurt78Tests")) scrNTTEFullPizzaPropHurt78Tests();
+        if(scrNTTEFullSmokeCase("QuestDrop78Tests")) scrNTTEFullQuestDrop78Tests();
+        if(scrNTTEFullSmokeCase("RoadmapLoop78Tests")) scrNTTEFullRoadmapLoop78Tests();
+        if(scrNTTEFullSmokeCase("MergedChinese78Tests")) scrNTTEFullMergedChinese78Tests();
+        if(scrNTTEFullSmokeCase("SecretWeapon78Tests")) scrNTTEFullSecretWeapon78Tests();
+        if(scrNTTEFullSmokeCase("PizzaSpawn78Tests")) scrNTTEFullPizzaSpawn78Tests();
+        if(scrNTTEFullSmokeCase("PizzaShadow78Tests")) scrNTTEFullPizzaShadow78Tests();
+        if(scrNTTEFullSmokeCase("CatWarning78Tests")) scrNTTEFullCatWarning78Tests();
         if(scrNTTEFullSmokeCase("UpdateStartupMenuTests")) scrNTTEUpdateStartupMenuTests();
         if(scrNTTEFullSmokeCase("SealKingMusicTests")) scrNTTESealKingMusicTests();
         if(scrNTTEFullSmokeCase("PitSquidMusicPhaseTests")) scrNTTEPitSquidMusicPhaseTests();

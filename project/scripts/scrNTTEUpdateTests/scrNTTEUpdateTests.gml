@@ -1,8 +1,12 @@
-function scrNTTEUpdateTestRelease(_number=NTTE_RELEASE_NUMBER+1) {
-    var _tag="candidate"+string(_number),_assets=[]
+function scrNTTEUpdateTestRelease(_tag=undefined) {
+    if(is_undefined(_tag)) {
+        var _v=scrNTTEUpdateVersionParts(NTTE_RELEASE_VERSION)
+        _tag=string(_v[0])+"."+string(_v[1])+"."+string(_v[2]+1)
+    }
+    var _assets=[]
     var _platforms=[["Android","apk"],["iOS","ipa"]]
     for(var _i=0;_i<2;++_i) {
-        var _name="NuclearThrone.TerritorialExpansion-"+_platforms[_i][0]+"-crashfix-"+_tag+"."+_platforms[_i][1]
+        var _name="NuclearThrone.TerritorialExpansion-"+_platforms[_i][0]+"-"+_tag+"."+_platforms[_i][1]
         array_push(_assets,{name:_name,browser_download_url:NTTE_RELEASE_REPO+"/releases/download/"+_tag+"/"+_name,size:100,state:"uploaded",digest:"sha256:"+string_repeat("0",64)})
     }
     return {tag_name:_tag,draft:false,prerelease:false,assets:_assets}
@@ -15,10 +19,14 @@ function scrNTTEUpdateTests() {
         _reminders=variable_global_exists("ntte_full_reminders")?global.ntte_full_reminders:undefined
     for(var _i=0;_i<array_length(_parked);++_i) instance_deactivate_object(_parked[_i])
     try {
-        assert(scrNTTEUpdateNumber(NTTE_RELEASE_TAG)==NTTE_RELEASE_NUMBER,"Installed release number/tag mismatch")
-        var _invalid=[undefined,42,"","candidate","candidate-1","candidate075","candidate75x","candidate75/","v75","candidate7.5"]
-        for(var _i=0;_i<array_length(_invalid);++_i) assert(scrNTTEUpdateNumber(_invalid[_i])==-1,"Invalid release tag accepted")
-        assert(scrNTTEUpdateNumber("candidate100")>scrNTTEUpdateNumber("candidate99"),"Release comparison used lexical order")
+        assert(NTTE_RELEASE_TAG==NTTE_RELEASE_VERSION,"Installed release tag/version mismatch")
+        var _invalid=[undefined,42,"","1","1.0","1.0.3.0","01.0.3","1.00.3","1.0.03","1.0.-3","v1.0.3","1.0.3/","1.0.3-beta","10000000.0.0"]
+        for(var _i=0;_i<array_length(_invalid);++_i) assert(is_undefined(scrNTTEUpdateVersionParts(_invalid[_i])),"Invalid semantic tag accepted")
+        var _pairs=[["1.0.10","1.0.9"],["1.1.0","1.0.9999999"],["2.0.0","1.9999999.9999999"],["9999999.0.0","9999998.9999999.9999999"]]
+        for(var _i=0;_i<array_length(_pairs);++_i) {
+            var _a=scrNTTEUpdateVersionParts(_pairs[_i][0]),_b=scrNTTEUpdateVersionParts(_pairs[_i][1])
+            assert(scrNTTEUpdateVersionCompare(_a,_b)==1 && scrNTTEUpdateVersionCompare(_b,_a)==-1,"Semantic ordering failed")
+        }
         var _release=scrNTTEUpdateTestRelease(),_body=json_stringify(_release),
             _android=scrNTTEUpdateParse(_body,os_android),_ios=scrNTTEUpdateParse(_body,os_ios)
         assert(_android.status=="available" && _ios.status=="available" && _android.has_installer && _ios.has_installer,
@@ -26,13 +34,18 @@ function scrNTTEUpdateTests() {
         assert(scrNTTEUpdateDigestValid("sha256:"+string_repeat("0",64)) && !scrNTTEUpdateDigestValid("sha256:abc"),"APK hash metadata was not validated")
         assert(string_pos("Android-",_android.url)>0 && string_pos("iOS-",_ios.url)>0,"Wrong platform installer selected")
         var _official=scrNTTEUpdateTestRelease()
-        _official.name="1.0.1"
-        assert(scrNTTEUpdateParse(json_stringify(_official),os_android).version=="1.0.1",
-            "Official semantic version was replaced by an internal serial")
-        _official.name="1.0.1\nother text"
+        _official.name="999.0.0"
         assert(scrNTTEUpdateParse(json_stringify(_official),os_android).version==_official.tag_name,
-            "Malformed release title reached the update dialog")
-        for(var _n=NTTE_RELEASE_NUMBER-1;_n<=NTTE_RELEASE_NUMBER;++_n) assert(scrNTTEUpdateParse(json_stringify(scrNTTEUpdateTestRelease(_n))).status=="current","Same/old release prompted a downgrade")
+            "Display title overrode authoritative version tag")
+        var _oldtags=["0.9.9","1.0.0","1.0.2",NTTE_RELEASE_TAG,"candidate77","candidate78"]
+        for(var _i=0;_i<array_length(_oldtags);++_i)
+            assert(scrNTTEUpdateParse(json_stringify(scrNTTEUpdateTestRelease(_oldtags[_i]))).status=="current","Same/old release prompted downgrade")
+        for(var _i=0;_i<array_length(_invalid);++_i) {
+            var _badrelease=scrNTTEUpdateTestRelease()
+            _badrelease.tag_name=_invalid[_i]
+            assert(scrNTTEUpdateParse(json_stringify(_badrelease)).status=="failed","Malformed release tag reached update flow")
+        }
+        assert(scrNTTEUpdateParse(json_stringify(scrNTTEUpdateTestRelease("candidate79"))).status=="failed","Future internal tag offered as public upgrade")
         _release.prerelease=true
         assert(scrNTTEUpdateParse(json_stringify(_release)).status=="failed","Prerelease accepted as stable")
         _release.prerelease=false;_release.draft=true
@@ -120,7 +133,7 @@ function scrNTTEUpdateTests() {
             assert(string_pos(_lang==0?"Installed":"当前",_rows[0].name)>0,"Native update menu language incorrect")
             assert(string_pos(_ios.tag,method_execute(_rows[3].get_value,_rows[3]))>0,"Native status row lost release tag")
         }
-        scrNTTESmokeLog("PASS UPDATE CHECK native menus/JSON, platform selection/no downgrade, unrelated+partial+late HTTP, timeout/backoff, cancel/confirm dialogs, offline/preference/concurrency/cooldown and EN/ZH labels @"+string(30/timescale))
+        scrNTTESmokeLog("PASS UPDATE CHECK native menus/JSON, official semantic tags/multi-digit ordering/legacy no downgrade, platform selection/no downgrade, unrelated+partial+late HTTP, timeout/backoff, cancel/confirm dialogs, offline/preference/concurrency/cooldown and EN/ZH labels @"+string(30/timescale))
     } finally {
         scrNTTEFullMergedRuntimeTestCleanup(_before)
         for(var _i=0;_i<array_length(_parked);++_i) instance_activate_object(_parked[_i])

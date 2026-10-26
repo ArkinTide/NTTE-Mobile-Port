@@ -45770,6 +45770,12 @@
         "name": "scrNTTERelease77Tests",
         "path": "scripts/scrNTTERelease77Tests/scrNTTERelease77Tests.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrNTTEFollowup78Tests",
+        "path": "scripts/scrNTTEFollowup78Tests/scrNTTEFollowup78Tests.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

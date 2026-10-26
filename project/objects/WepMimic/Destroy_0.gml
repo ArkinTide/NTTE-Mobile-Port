@@ -3,7 +3,7 @@ if(hp<=0) scrNTTEFullLeadRibsDeath(id);
 scrDrop(200, 0)
 scrDrop(200, 0)
 
-scrWeaponPickupCreate(x, y, scrDecideWep(1), true)
+with(scrWeaponPickupCreate(x, y, scrDecideWep(1), true)) roll=true
 
 event_inherited()
 

@@ -1,6 +1,8 @@
 name = "SCREWDRIVER"
 sprite_index = sprScrewDriver
 wep = wep_screwdriver
+roll = false
+ntte_secret_processed = false
 type = Ammo.None
 ammo = false
 creator = noone

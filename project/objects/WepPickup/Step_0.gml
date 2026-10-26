@@ -2,6 +2,7 @@ if lockstep_stop
 	exit
 
 scrNTTEFullWeaponNativeNormalizePickup()
+scrNTTEFullSecretWeaponPickup()
 scrNTTEGroundPickupStep()
 
 if image_index < 1 {
