@@ -61,6 +61,14 @@ function scrNTTEFullSmokeStep() {
         global.ntte_full_test_count=0;
         scrNTTESmokeLog("FULL INTERNAL BEGIN @"+string(30/timescale))
         if(scrNTTEFullSmokeAsyncCase("UndergrowthNaturalTests")) {scrUGNaturalTests();return;}
+        if(scrNTTEFullSmokeCase("Release121PlantHealingTests")) scrRelease121PlantHealingTests();
+        if(scrNTTEFullSmokeCase("Release121GoldStorageTests")) scrRelease121GoldStorageTests();
+        if(scrNTTEFullSmokeCase("Release121BatchRenderTests")) scrRelease121BatchRenderTests();
+        if(scrNTTEFullSmokeCase("Release121TerrainTests")) scrRelease121TerrainTests();
+        if(scrNTTEFullSmokeCase("Release121MegaGrenadeTests")) scrRelease121MegaGrenadeTests();
+        if(scrNTTEFullSmokeCase("Release121CatHoleTests")) scrRelease121CatHoleTests();
+        if(scrNTTEFullSmokeCase("Release121PizzaRatTests")) scrRelease121PizzaRatTests();
+        if(scrNTTEFullSmokeCase("Release121PerformanceTests")) scrRelease121PerformanceTests();
         if(scrNTTEFullSmokeCase("DetailsPlusTests")) scrDetailsPlusTests();
         if(scrNTTEFullSmokeCase("UndergrowthEntityTests")) scrUndergrowthEntityTests();
         if(scrNTTEFullSmokeCase("UndergrowthWeaponTests")) scrUndergrowthWeaponTests();

@@ -14,6 +14,7 @@ function scrDPRestore() {
     sprite_index=_old.sprite;image_index=_old.index;image_xscale=_old.scale;depth=_old.depth;
     if(variable_struct_exists(_old,"shadow")) spr_shadow=_old.shadow;
     dp_original=undefined;
+    if(variable_instance_exists(id,"dp_scorch_top")) {dp_scorch_top=sprScorchTop;dp_flip=1;}
 }
 function scrDPStatic(_x,_y,_sprite,_index,_depth,_scale=1) {
     var _d=instance_create(_x,_y,DPStaticDecor);
@@ -95,9 +96,8 @@ function scrDPScorchSync() {
     dp_scorch_top=_sprites[0][dp_variant];
 }
 function scrDPScorchTopDraw() {
-    if(scrDPEnabled() && is_struct(scrNTTEFullValue(id,"dp_original",undefined)))
-        draw_sprite_ext(dp_scorch_top,image_index,x,y,dp_flip,1,0,c_white,1);
-    else draw_sprite(sprScorchTop,image_index,x,y);
+    // Create/toggle already chose this pair; no option/struct lookup per frame.
+    draw_sprite_ext(dp_scorch_top,image_index,x,y,dp_flip,1,0,c_white,1);
 }
 function scrDPApply(_generation=false) {
     if(!instance_exists(GameCont) || instance_exists(Menu) || instance_exists(MenuGen)
@@ -105,6 +105,7 @@ function scrDPApply(_generation=false) {
     var _on=scrDPEnabled(),_seed=random_get_seed();
     try {
         if(!_on) {
+            with(DPDecorBatch) instance_destroy(id,false);
             with(DPStaticDecor) instance_destroy(id,false);
             with(DPStatueDecor) instance_destroy(id,false);
             with(Detail) {
@@ -163,6 +164,7 @@ function scrDPApply(_generation=false) {
         if(_area==area_oasis || _area==202) with(Floor) if(styleb && sprite_index==sprFloor101B && scrDPRemember()) {
             sprite_index=sprDPFloorOasisBOut;image_index=choose(0,1);
         }
+        scrDPBatchCapture();
         with(Scorch) scrDPScorchSync();
         return true;
     } finally {random_set_seed(_seed);}

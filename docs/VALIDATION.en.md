@@ -2,6 +2,14 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [Home](../README.en.md)
 
+## 1.2.1
+
+15 selected Windows VM cases passed at actual30/60 FPS. Checks cover real Pitcher Plant healing/explosions and effect lifecycles, real disk reload of three NTTE golden weapons, exact Details+ batch/fallback pixel equivalence to native sprite drawing, and native Nuke/blast geometry and RNG comparisons against the independent original constructor. Pizza coverage includes late/invisible walls, neutral Rat conversion and16 real generations. CatHole checks cover outside/late-wall covers and the real Pizza-to-Lair drain expansion, with19 covers observed at each rate.
+
+The final build also covers fixed MEGA page parsing, prompts, and confirmation/cancellation. Earlier internal build87 has a separate37-case30/60 record; it is not counted as final-build results.
+
+The Android updater passed 31 Java checks. Package audits cover versions, signing, structure and retained compiled functions; internal build89. Desktop timings show reduced CPU work, not measured mobile FPS. No physical-phone, full-campaign or fresh native Mac acceptance was performed. iOS combines newVM data with the retained runner and requires re-signing.
+
 ## 1.2.0
 
 26 selected Windows VM cases passed at 30/60 FPS. Details+ checks cover the native video toggle, normal/debug-mode disk-save and reload, restoration on disable, bounded/idempotent decoration, floor/scorch pairing, six statue/death/corpse lifecycles, geometry counts, gameplay RNG preservation and on/off offscreen rendering captures. All 76 frames of the 40 sprites were checked against source pixels, frame dimensions and origins.

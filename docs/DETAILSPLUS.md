@@ -9,3 +9,7 @@ Includes detail clusters, floor-specific scorch pairs, statue/dead-statue decals
 The reference MOD's commented-out explosion scorches and mud-shadow pass stay inactive. Its optional `cove` adjustment has no matching registered area in this port. 源 MOD 注释关闭的内容保持关闭；本移植未注册 `cove` 区域，因此没有对应调整。
 
 Native implementation / 实现：`scrDetailsPlus`、`DPStaticDecor`、`DPStatueDecor`。Static decorations have no Step event. Floor/decor processing runs once per generation, first resume or explicit toggle; scorch matching runs on creation. Gameplay geometry and RNG are preserved. 静态装饰无逐帧事件；不改变战斗几何或随机序列。
+
+## 1.2.1
+
+Immutable additions are captured by `DPDecorBatch` and drawn from `DetailsPlusStatic`, with exact original-sprite/frame fallback if the platform splits the atlas. Buffers are released on disable/area cleanup. Artwork is obtained separately and is not present in Git. 静态新增装饰使用批次，平台图集拆页时回退逐精灵绘制；素材不随源码提供。

@@ -8,6 +8,7 @@ function scrNTTEFullTurtleCoolCreate() {
     max_hp=15; hp=max_hp; ntte_full_maxspeed=2.5; size=4; team=team_none
     right=choose(-1,1); ntte_full_patience=random_range(30,40)
     ntte_full_notice_delay=random_range(1,8); ntte_full_notice_max=80
+    ntte_full_pizza_watcher=(GameCont.area==scrNTTEFullAreaId("pizza"));
     ntte_full_notice=ntte_full_notice_max; ntte_full_become=Turtle; immmovable=false
     var _gate=instance_create(0,0,NTTEFullPortalPrevent)
     _gate.creator=id

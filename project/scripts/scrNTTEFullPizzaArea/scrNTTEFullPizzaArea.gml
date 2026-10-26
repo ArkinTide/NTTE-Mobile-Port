@@ -67,12 +67,12 @@ function scrNTTEFullPizzaWatcherPlace() {
     // Food is placed over a whole Floor bbox, including its wall-adjacent
     // edge. A watcher born there can overlap the perimeter and be pushed out
     // when it becomes hostile. Correct only these initial Pizza NPC positions.
-    if(!place_meeting(x,y,Wall) && position_meeting(x,y,Floor)) return;
+    if(!place_meeting(x,y,Wall) && !place_meeting(x,y,InvisiWall) && position_meeting(x,y,Floor)) return;
     var _wantx=x,_wanty=y,_best=infinity,_bestx=x,_besty=y,_found=false;
     with(Floor) {
         var _cx=clamp(_wantx,bbox_left+10,bbox_right-10),
             _cy=clamp(_wanty,bbox_top+10,bbox_bottom-10);
-        with(other) if(!place_meeting(_cx,_cy,Wall) && position_meeting(_cx,_cy,Floor)) {
+        with(other) if(!place_meeting(_cx,_cy,Wall) && !place_meeting(_cx,_cy,InvisiWall) && position_meeting(_cx,_cy,Floor)) {
             var _distance=point_distance(_wantx,_wanty,_cx,_cy);
             if(_distance<_best) {_best=_distance;_bestx=_cx;_besty=_cy;_found=true;}
         }
@@ -157,4 +157,18 @@ function scrNTTEFullPizzaSpiralSetup() {
         sprite_index=scrNTTERefSprite("Manhole"); image_index=5; turnspeed*=2/3
         repeat(round(irandom_range(8,12)/timescale)) event_perform(ev_step,ev_step_normal)
     }
+}
+
+// This is restricted to Pizza's ground-based TV spectators and their Rat
+// conversion. Authored wall enemies and unrelated enemies never enter it.
+function scrNTTEFullPizzaWatcherEndStep() {
+    if(lockstep_stop || GameCont.area!=scrNTTEFullAreaId("pizza")) return;
+    if(!place_meeting(x,y,Wall) && !place_meeting(x,y,InvisiWall)
+        && position_meeting(x,y,Floor)) return;
+    var _oldx=x,_oldy=y;
+    if(!place_meeting(xprevious,yprevious,Wall) && !place_meeting(xprevious,yprevious,InvisiWall)
+        && position_meeting(xprevious,yprevious,Floor)) {
+        x=xprevious;y=yprevious;
+    } else scrNTTEFullPizzaWatcherPlace();
+    if(x!=_oldx || y!=_oldy) {speed=0;xprevious=x;yprevious=y;}
 }

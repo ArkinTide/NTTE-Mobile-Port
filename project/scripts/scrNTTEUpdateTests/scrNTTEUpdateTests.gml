@@ -61,6 +61,27 @@ function scrNTTEUpdateTests() {
         }
         _release.assets=[]
         assert(scrNTTEUpdateParse(json_stringify(_release),os_ios).status=="unavailable","Missing installer accepted")
+        // Real published source-only release: no APK/IPA assets. Both mobile
+        // platforms must offer the exact fixed external page, never native APK IO.
+        _release=scrNTTEUpdateTestRelease();_release.assets=[];
+        _release.body="Downloads: "+NTTE_RELEASE_DOWNLOAD_PAGE;
+        var _external_android=scrNTTEUpdateParse(json_stringify(_release),os_android),
+            _external_ios=scrNTTEUpdateParse(json_stringify(_release),os_ios);
+        for(var _i=0;_i<2;++_i) {
+            var _external=_i==0?_external_android:_external_ios,_platform=_i==0?os_android:os_ios;
+            assert(_external.status=="available" && !_external.has_installer
+                && _external.external_download && _external.url==NTTE_RELEASE_DOWNLOAD_PAGE,
+                "Asset-free release lost its fixed MEGA page");
+            assert(!scrNTTEUpdateUsesNativeInstaller(_external,_platform),"External folder reached native installer path");
+            assert(string_pos(scrNTTEUpdateText("MEGA","下载页"),scrNTTEUpdatePromptNote(_external,_platform))>0,"External prompt still promises in-game APK download");
+        }
+        assert(scrNTTEUpdateUsesNativeInstaller(_android,os_android),"Legacy signed APK path changed");
+        _release.body="https://mega.nz/folder/another#untrusted";
+        assert(scrNTTEUpdateParse(json_stringify(_release),os_android).status=="unavailable","Arbitrary cloud page accepted");
+        _release.body=NTTE_RELEASE_DOWNLOAD_PAGE;_release.draft=true;
+        assert(scrNTTEUpdateParse(json_stringify(_release),os_android).status=="failed","External page bypassed draft validation");
+        _release.draft=false;_release.tag_name=NTTE_RELEASE_TAG;
+        assert(scrNTTEUpdateParse(json_stringify(_release),os_ios).status=="current","External page bypassed version ordering");
         var _bad_json=["", "<html>error</html>","[]","{}","null","123"]
         for(var _i=0;_i<array_length(_bad_json);++_i) assert(scrNTTEUpdateParse(_bad_json[_i]).status=="failed","Malformed API response accepted")
 
@@ -73,7 +94,7 @@ function scrNTTEUpdateTests() {
         assert(scrNTTEUpdateHttpEvent(_event) && _s.request==74001 && _s.status=="checking","Partial HTTP callback completed early")
         _event[? "status"]=0
         assert(scrNTTEUpdateHttpEvent(_event) && _s.status=="available" && _s.request==-1 && _s.pending_prompt,"Completed update callback lost latest release")
-        _s.notified_tag=_release.tag_name;_s.request=74002;_event[? "id"]=74002
+        _s.notified_tag=_android.tag;_s.request=74002;_event[? "id"]=74002
         scrNTTEUpdateHttpEvent(_event)
         assert(!_s.pending_prompt,"Same release notified twice in one launch")
         _s.request=74003;_s.started_at=100;_s.status="checking"
@@ -99,6 +120,11 @@ function scrNTTEUpdateTests() {
         assert(scrNTTEUpdateDialogTarget(_event)==_android.url && _s.dialog==-1,"Confirmed dialog lost platform download")
         _s.dialog=74100;_s.dialog_url="https://example.com/other.apk"
         assert(scrNTTEUpdateDialogTarget(_event)=="","Changed dialog URL accepted")
+        _s.release=_external_android;_s.dialog=74100;_s.dialog_url=_external_android.url;
+        _event[? "id"]=74100;_event[? "status"]=false;
+        assert(scrNTTEUpdateDialogTarget(_event)=="","Declining MEGA page opened a browser");
+        _s.dialog=74100;_s.dialog_url=_external_android.url;_event[? "status"]=true;
+        assert(scrNTTEUpdateDialogTarget(_event)==NTTE_RELEASE_DOWNLOAD_PAGE,"Confirmed external page lost exact URL");
         assert(!scrNTTEUpdateCanPrompt(),"Updater attempted to interrupt an active run")
         UberCont.opt_online=false;_s.request=-1
         assert(scrNTTEUpdateCheck(true)==-1 && _s.status=="offline","Disabled online mode made a request")

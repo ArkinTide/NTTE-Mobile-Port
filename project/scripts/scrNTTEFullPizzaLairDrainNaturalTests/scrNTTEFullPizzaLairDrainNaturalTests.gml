@@ -379,6 +379,11 @@ function scrNTTEFullPizzaLairDrainStepBody() {
             && !variable_instance_exists(GameCont,"ntte_lairmut") && GameCont.skillpoints==source_points
             && !scrNTTEFullUnlockGet("pack:lair") && scrNTTEFullUnlockGet("crown:crime"),
             "Lair+8Draw lost original TV/unreleased manhole/border or prematurely granted boss reward")
+        var _covers=instance_number(NTTECatHole);
+        assert(_covers>0,"Natural Lair generation supplied no CatHole witnesses");
+        with(NTTECatHole) assert(scrNTTECatGroundClear(x,y),
+            "Actual in-room Lair generated an outside/blocked CatHole "+string([x,y]));
+        scrNTTESmokeLog("PASS Release121 natural Pizza-to-Lair drain CatHole ground/wall validation covers="+string(_covers)+" @"+string(rates[pass_index]));
         var _progress_path=game_directory+"ntte-full-progress.json"
         assert(file_exists(_progress_path),"Native Crime unlock did not persist private progress")
         var _file=file_text_open_read(_progress_path),_text=""

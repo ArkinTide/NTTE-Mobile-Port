@@ -46970,6 +46970,60 @@
         "name": "DPStatueDecor",
         "path": "objects/DPStatueDecor/DPStatueDecor.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrRelease121PerformanceTests",
+        "path": "scripts/scrRelease121PerformanceTests/scrRelease121PerformanceTests.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "UGPlantHeal",
+        "path": "objects/UGPlantHeal/UGPlantHeal.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrRelease121RepairTests",
+        "path": "scripts/scrRelease121RepairTests/scrRelease121RepairTests.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrDetailsPlusBatch",
+        "path": "scripts/scrDetailsPlusBatch/scrDetailsPlusBatch.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "DPDecorBatch",
+        "path": "objects/DPDecorBatch/DPDecorBatch.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrTerrainBlast121",
+        "path": "scripts/scrTerrainBlast121/scrTerrainBlast121.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "TerrainBlastOracle121",
+        "path": "objects/TerrainBlastOracle121/TerrainBlastOracle121.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrNTTECatGround",
+        "path": "scripts/scrNTTECatGround/scrNTTECatGround.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrRelease121CatHoleTests",
+        "path": "scripts/scrRelease121CatHoleTests/scrRelease121CatHoleTests.yy"
+      }
     }
   ],
   "resourceType": "GMProject",
@@ -47088,6 +47142,23 @@
       "loadType": "default",
       "mipsToGenerate": 0,
       "name": "unused",
+      "resourceType": "GMTextureGroup",
+      "resourceVersion": "2.0",
+      "targets": -1
+    },
+    {
+      "$GMTextureGroup": "",
+      "%Name": "DetailsPlusStatic",
+      "autocrop": true,
+      "border": 2,
+      "compressFormat": "png",
+      "customOptions": "",
+      "directory": "",
+      "groupParent": null,
+      "isScaled": false,
+      "loadType": "default",
+      "mipsToGenerate": 0,
+      "name": "DetailsPlusStatic",
       "resourceType": "GMTextureGroup",
       "resourceVersion": "2.0",
       "targets": -1

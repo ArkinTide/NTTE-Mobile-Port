@@ -16,6 +16,6 @@ The idle main menu checks once about 5 seconds after startup. Manual checks are 
 
 ## Publishing policy
 
-Current version: **1.2.0**. Next: 1.2.1, internal build 88. Subsequent fixes increment 0.0.1. Version 1.0.4 and subsequent 1.0.x retain original NTTE content. Keep the save-format `GAME_BUILD` unchanged.
+Current version: **1.2.1**, internal build89 (Android versionCode3000089; iOS build89). Next fix:1.2.2, internal build90. Subsequent fixes increment 0.0.1. Version 1.0.4 and subsequent 1.0.x retain original NTTE content. Keep the save-format `GAME_BUILD` unchanged.
 
 Synchronize game, updater, and platform versions and complete validation. Before publishing, run `python tools/audit_source_only.py --index` and `--history`. Never upload artwork, audio, fonts, runtimes, installers, signing data, or personal saves to Git. Publish the official version tag and bilingual notes with the same MEGA link and third-party credits.

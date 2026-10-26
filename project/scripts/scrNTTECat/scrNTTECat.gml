@@ -37,6 +37,7 @@ function scrNTTECatStand() {
 function scrNTTECatReserveHole(_hidden) {
     var _best=noone,_distance=infinity
     with (NTTECatHole) if (image_index==0 && !instance_exists(target)) {
+        if(!scrNTTECatHoleEnsure()) continue;
         var _d=point_distance(x,y,other.x,other.y)
         if (_hidden) {
             if (instance_exists(other.target)) _d=point_distance(x,y,other.target.x,other.target.y)
@@ -131,8 +132,11 @@ function scrNTTECatHide() {
 }
 
 function scrNTTECatEmerge(_x,_y) {
-    x=_x; y=_y; xprevious=x; yprevious=y
-    ntte_cat_active=true; visible=true; mask_index=mskRat
+    var _oldmask=mask_index;
+    mask_index=mskRat;
+    if(!scrNTTECatGroundPlace(_x,_y)) {mask_index=_oldmask;return false;}
+    xprevious=x;yprevious=y;
+    ntte_cat_active=true; visible=true
     ntte_cat_timer=15+random(30); ntte_cat_hidden_age=0
     scrTarget()
     scrNTTESewerLook(instance_exists(target) ? point_direction(x,y,target.x,target.y)+orandom(50):random(360))
@@ -140,6 +144,7 @@ function scrNTTECatEmerge(_x,_y) {
     scrNTTEDesertBudge(id)
     snd_play(sndFireballerHurt,1.4)
     repeat(4) instance_create(x+orandom(4),y+orandom(4),Dust)
+    return true;
 }
 
 function scrNTTECatStep() {
@@ -195,7 +200,18 @@ function scrNTTECatDraw() {
 }
 
 function scrNTTECatHoleStep() {
-    if (lockstep_stop || image_index<=0) return;
+    if(lockstep_stop) return;
+    // Initial validation waits for the actual walls. Reservation and opening
+    // recheck too, since a same-room secret area can add walls later.
+    if(!ntte_cat_ground_checked && !instance_exists(GenCont)) {
+        scrNTTECatHoleEnsure();ntte_cat_ground_checked=true;
+    }
+    if(image_index<=0) return;
+    if(!scrNTTECatHoleEnsure()) {
+        target=noone;image_index=0;image_speed=0;ntte_cat_closing=false;
+        if(instance_exists(hole)) instance_destroy(hole,false);
+        hole=noone;return;
+    }
     if (image_speed==0) image_speed=0.4*timescale
     if (image_index<2+image_speed && place_meeting(x,y,Player)) {
         image_index=6
@@ -209,8 +225,9 @@ function scrNTTECatHoleStep() {
         }
         if (instance_exists(target)) {
             if (!target.ntte_cat_active) {
-                with (target) scrNTTECatEmerge(other.x,other.y)
-                target=noone
+                var _emerged=false;
+                with(target) _emerged=scrNTTECatEmerge(other.x,other.y);
+                if(_emerged) target=noone
             }
             else with (target) {
                 if (point_distance(x,y,other.x,other.y-4)>5) {

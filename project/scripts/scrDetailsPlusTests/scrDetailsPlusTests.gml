@@ -6,7 +6,7 @@ function scrDPTestRender(_path) {
         surface_set_target(_surface);_target=true;camera_apply(_camera);
         matrix_set(matrix_world,matrix_build_identity());shader_reset();gpu_set_blendmode(bm_normal);
         draw_set_alpha(1);draw_clear(make_color_rgb(80,40,24));
-        with(Floor) draw_self();with(DPStaticDecor) draw_self();with(Detail) draw_self();
+        with(Floor) draw_self();with(DPStaticDecor) draw_self();with(DPDecorBatch) event_perform(ev_draw,0);with(Detail) draw_self();
         with(Wall) draw_self();with(Scorch) draw_self();
         with(DPStatueDecor) event_perform(ev_draw,0);
         surface_save(_surface,working_directory+_path);
@@ -73,10 +73,10 @@ function scrDetailsPlusTests() {
             "Desert mud transition/wall artwork missing");
         assert(instance_number(enemy)==_enemies && instance_number(Wall)==_walls && instance_number(Floor)==_floors,
             "Visual MOD changed combat or level geometry");
-        var _decor=instance_number(DPStaticDecor),_details=instance_number(Detail);
+        var _decor=scrDPBatchRowCount(),_details=instance_number(Detail);
         assert(_decor>=1 && _details<=14*_original_details,"Unbounded detail clusters");
         repeat(20) scrDPApply();
-        assert(instance_number(DPStaticDecor)==_decor && instance_number(Detail)==_details,
+        assert(scrDPBatchRowCount()==_decor && instance_number(Detail)==_details,
             "Repeated generation/resume application multiplied details");
         var _scorch=instance_create(40016,40016,Scorch);
         assert(_scorch.sprite_index==sprDPDesertBScorch && _scorch.dp_scorch_top==sprDPDesertBScorchTop,
@@ -85,7 +85,7 @@ function scrDetailsPlusTests() {
         UberCont.opt_detailsplus=false;scrDPOptionsChanged();
         assert(_floor.sprite_index==_floor_sprite && _floor.image_index==_floor_index && _floor.depth==_floor_depth
             && _wall.sprite_index==_wall_sprite && _scorch.sprite_index==sprScorch
-            && instance_number(DPStaticDecor)==0 && instance_number(DPStatueDecor)==0,
+            && instance_number(DPStaticDecor)==0 && instance_number(DPDecorBatch)==0 && instance_number(DPStatueDecor)==0,
             "Disabling Details+ failed to restore the original world");
         scrDPTestRender("ntte-detailsplus-off-"+string(30/timescale)+".png");
         var _cases=[sprFloor1,sprFloor5,sprFloor5Explo,sprFloor5B,sprFloor0,sprFloor101,
@@ -141,7 +141,7 @@ function scrDetailsPlusTests() {
         _map[? "visual_detailsplus"]=true;scrOptionsUpdate();
         assert(UberCont.opt_detailsplus,"Restoring Details+ option failed");
         instance_destroy(_menu,false);
-        assert(GAME_VERSION=="1.2.0" && NTTE_RELEASE_VERSION=="1.2.0","Menu/updater release versions differ");
+        assert(GAME_VERSION==NTTE_RELEASE_VERSION,"Menu/updater release versions differ");
         scrDPTestPreferenceDisk();
         scrNTTESmokeLog("PASS Details+ source floor/scorch pairs, six statue/death lifecycles, bounded/idempotent decoration, native video toggle/normal+debug disk save+reload, geometry and RNG preservation @"+string(30/timescale));
     } finally {

@@ -3,7 +3,7 @@
 [简体中文](README.md) | [English](README.en.md)
 
 GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
-The current source baseline is **1.2.0 (2026-10-26)**.
+The current source baseline is **1.2.1 (2026-10-26)**.
 
 ## Source-only distribution
 
@@ -21,6 +21,16 @@ Version 1.2.0 and older need one manual update from the folder above. From 1.2.1
 
 
 > Starting with 1.1.0, content from other MODs is being added. To play the original NTTE content, download 1.0.4 or a subsequent 1.0.x release.
+
+## Changes in 1.2.1
+
+- Fixed the undefined `FrogHeal` crash from Undergrowth Pitcher Plant healing and corrected Mega Grenade's native melee reflection dependency.
+- Fixed repeated NTTE golden-weapon save notices after level-state reconstruction. Only durable loadout changes trigger a new save/notice.
+- Batch immutable Details+ additions using a dedicated atlas and vertex buffers, preserving decoration counts, frames, artwork and ordering. Disabling the option or clearing terrain releases batches.
+- Restrict blast wall refreshes to the blast neighborhood while preserving original damage, effects, geometry and gameplay RNG.
+- Recover Pizza TV spectators and their Rat conversions from late walls or impacts without damaging them.
+- Validate CatHole floor footprints and wall collisions, then recheck Cat emergence. Outside covers, late walls and missing home floors use valid ground; no wall-based enemy-kill mechanism is added.
+- Continue checking versions through GitHub and open the fixed MEGA folder for downloads, supporting releases without installer attachments.
 
 ## Changes in 1.2.0
 
@@ -89,7 +99,7 @@ Upgrading from 1.0.2 or earlier to 1.0.3 requires one manual download and in-pla
 ## In-game updates
 
 The game automatically checks this repository's latest stable release after startup. Open **Settings → NT:TE → UPDATES** to check manually or disable automatic checks.
-Android downloads and verifies the APK in-game, then opens the system installation confirmation. iOS opens the IPA download link and still requires signing before installation.
+From 1.2.1, DOWNLOAD UPDATE opens the fixed MEGA folder on Android and iOS. Install the Android APK in place; the iOS IPA still requires signing.
 Upgrading from 1.0.2 or earlier to 1.0.3 requires one manual download and in-place installation because the older updater only recognizes historical candidate tags. Version 1.0.3 recognizes future official version tags. Do not uninstall first if you want to retain saves. See [using and publishing updates](docs/UPDATING.en.md).
 
 ## Repository layout

@@ -1,8 +1,9 @@
 // Release numbering is independent of GAME_BUILD, which belongs to save formats.
-#macro NTTE_RELEASE_NUMBER 85
-#macro NTTE_RELEASE_TAG "1.2.0"
-#macro NTTE_RELEASE_VERSION "1.2.0"
+#macro NTTE_RELEASE_NUMBER 89
+#macro NTTE_RELEASE_TAG "1.2.1"
+#macro NTTE_RELEASE_VERSION "1.2.1"
 #macro NTTE_RELEASE_REPO "https://github.com/ArkinTide/NTTE-Mobile-Port"
+#macro NTTE_RELEASE_DOWNLOAD_PAGE "https://mega.nz/folder/PfIDSaSZ#ZcRokP34or9J0JofsIgrEA"
 #macro NTTE_RELEASE_API "https://api.github.com/repos/ArkinTide/NTTE-Mobile-Port/releases/latest"
 
 function scrNTTEUpdateInit() {
@@ -76,6 +77,13 @@ function scrNTTEUpdateParse(_body,_platform=os_type) {
         _extension=_platform==os_android?".apk":(_platform==os_ios?".ipa":""),
         _prefix="NuclearThrone.TerritorialExpansion-"+(_platform==os_android?"Android-":"iOS-"),
         _assets=_release[$ "assets"]
+    // A fixed owner-selected page is not an installer URL. Never pass it to
+    // the APK downloader or trust arbitrary external URLs from release text.
+    var _notes=_release[$ "body"];
+    if(is_string(_notes) && string_pos(NTTE_RELEASE_DOWNLOAD_PAGE,_notes)>0) {
+        _result.url=NTTE_RELEASE_DOWNLOAD_PAGE;_result.external_download=true;
+        return _result;
+    }
     if(_extension=="") return _result
     _result.status="unavailable"
     if(!is_array(_assets) || array_length(_assets)>100) return _result
@@ -167,14 +175,27 @@ function scrNTTEUpdateStep() {
     }
     if(_s.pending_prompt && _s.dialog<0 && scrNTTEUpdateCanPrompt()) scrNTTEUpdatePrompt()
 }
+function scrNTTEUpdatePromptNote(_release,_platform=os_type) {
+    var _note=scrNTTEUpdateText("New NTTE version: ","发现 NTTE 新版本：")+_release.version+"\n"
+        +scrNTTEUpdateText("Installed: ","当前版本：")+NTTE_RELEASE_VERSION+"\n\n"
+    if(scrNTTEFullValue(_release,"external_download",false)) {
+        _note+=_platform==os_ios
+            ?scrNTTEUpdateText("Open the MEGA download page? The IPA must be signed again before installation.","是否打开下载页？新版 IPA 安装前需要重新签名。")
+            :scrNTTEUpdateText("Open the MEGA download page? Install over this app to keep your saves.","是否打开下载页？请覆盖安装以保留存档。");
+    }
+    else if(_platform==os_ios) _note+=scrNTTEUpdateText("Download the IPA? It must be signed again before installation.","是否下载新版 IPA？安装前仍需重新签名。")
+    else if(_platform==os_android) _note+=scrNTTEUpdateText("Download the APK in-game and open the system installer? Install over this app to keep your saves.","是否在游戏内下载新版 APK 并打开系统安装界面？请覆盖安装以保留存档。")
+    else _note+=scrNTTEUpdateText("Open the release page?","是否打开版本发布页？")
+    return _note;
+}
+function scrNTTEUpdateUsesNativeInstaller(_release,_platform=os_type) {
+    return _platform==os_android && scrNTTEFullValue(_release,"has_installer",false)
+        && !scrNTTEFullValue(_release,"external_download",false);
+}
 function scrNTTEUpdatePrompt() {
     var _s=scrNTTEUpdateState()
     if(!is_struct(_s.release) || _s.release.status!="available" || _s.dialog>=0) return -1
-    var _note=scrNTTEUpdateText("New NTTE version: ","发现 NTTE 新版本：")+_s.release.version+"\n"
-        +scrNTTEUpdateText("Installed: ","当前版本：")+NTTE_RELEASE_VERSION+"\n\n"
-    if(os_type==os_ios) _note+=scrNTTEUpdateText("Download the IPA? It must be signed again before installation.","是否下载新版 IPA？安装前仍需重新签名。")
-    else if(os_type==os_android) _note+=scrNTTEUpdateText("Download the APK in-game and open the system installer? Install over this app to keep your saves.","是否在游戏内下载新版 APK 并打开系统安装界面？请覆盖安装以保留存档。")
-    else _note+=scrNTTEUpdateText("Open the release page?","是否打开版本发布页？")
+    var _note=scrNTTEUpdatePromptNote(_s.release);
     _s.pending_prompt=false;_s.notified_tag=_s.release.tag;_s.dialog_url=_s.release.url
     _s.dialog=show_question_async(_note)
     return _s.dialog
@@ -191,7 +212,7 @@ function scrNTTEUpdateDialogTarget(_event) {
 function scrNTTEUpdateDialogEvent(_event) {
     var _url=scrNTTEUpdateDialogTarget(_event)
     if(_url=="") return
-    if(os_type==os_android) scrNTTEUpdateBeginDownload()
+    if(scrNTTEUpdateUsesNativeInstaller(scrNTTEUpdateState().release)) scrNTTEUpdateBeginDownload()
     else url_open(_url)
 }
 function scrNTTEUpdateBeginDownload() {

@@ -39,6 +39,18 @@ function scrNTTEFullLoadoutWeaponStored(_race) {
     }
     return _cached.weapon
 }
+// Ownership compares the durable composition, not a numeric handle or
+// mutable physical wrapper. Room continuation rebuilds those wrappers.
+function scrNTTEFullLoadoutWeaponSignature(_weapon) {
+    var _out=[],_part=scrNTTEFullWeaponModel(_weapon);
+    while(true) {
+        array_push(_out,[scrNTTEFullWeaponRaw(_part),scrNTTEFullWeaponSkinKey(_part),
+            scrNTTEFullValue(_part,"type_index",-1),scrNTTEFullWeaponHasMerge(_part)]);
+        if(scrNTTEFullWeaponHasMerge(_part)==false) break;
+        _part=scrNTTEFullWeaponMergedPart(_part);
+    }
+    return json_stringify(_out);
+}
 function scrNTTEFullLoadoutWeaponStore(_race,_weapon) {
     // A custom selection grants temporary use, never a permanent starting
     // weapon. This shared boundary also covers native stored-weapon setters.
@@ -51,9 +63,10 @@ function scrNTTEFullLoadoutWeaponStore(_race,_weapon) {
     // because charges or native transient handles changed during play.
     var _cached=variable_global_exists("ntte_full_loadout_weapon_cache")
         ? scrNTTEFullValue(global.ntte_full_loadout_weapon_cache,string(_race),undefined):undefined
-    if(is_struct(_cached) && _cached.data==_old
-        && scrNTTEFullValue(_cached,"live_model",undefined)==scrNTTEFullWeaponModel(_weapon)) return false
-    if(is_struct(_old) && json_stringify(_old)==json_stringify(_data)) return false
+    // A live physical object may acquire a different fusion; compare its durable signature too.
+    if(is_struct(_old) && scrNTTEFullLoadoutWeaponSignature(scrNTTEFullLoadoutWeaponUnpack(_old))
+        ==scrNTTEFullLoadoutWeaponSignature(_weapon)) return false
+    var _data=scrNTTEFullLoadoutWeaponPack(_weapon)
     scrNTTEFullUnlockSet(_key+":main",_data)
     scrNTTEFullLoadoutSet(_key,"main")
     scrNTTEFullLoadoutWeaponStored(_race)

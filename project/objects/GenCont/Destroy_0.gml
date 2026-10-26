@@ -278,6 +278,7 @@ scrNTTEFullBabySludgeLevelStart();
 scrNTTEFullWorldFinalizeLevelStart();
 }
 // END NTTE CANONICAL LEVEL START
+with(NTTECatHole) ntte_cat_ground_checked=scrNTTECatHoleEnsure();
 // BEGIN NTTE TRENCH SECOND HOP TEST GenCont.Destroy.after
 if(os_type==os_windows && scrNTTEFullSmokeEnabled() && instance_exists(NTTEFullTrenchSecondHopConnectedTest)) try { scrNTTEFullTrenchSecondHopProbe("GenCont.Destroy.after"); }
 catch(_ntte_trench_second_hop_error) { scrNTTEFullTrenchSecondHopAbort(_ntte_trench_second_hop_error); }

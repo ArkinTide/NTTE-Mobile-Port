@@ -2702,7 +2702,7 @@ if(nextfire <= current_frame){
 						for(var _ug_each1=scrNTTEFullInstances(other.id),_ug_each1i=0;_ug_each1i<array_length(_ug_each1);++_ug_each1i) with(_ug_each1[_ug_each1i]){
 							
 							          
-							for(var _ug_each2=scrNTTEFullInstances(instance_create(x, bbox_top, FrogHeal)),_ug_each2i=0;_ug_each2i<array_length(_ug_each2);++_ug_each2i) with(_ug_each2[_ug_each2i]){
+							for(var _ug_each2=scrNTTEFullInstances(instance_create(x, bbox_top, UGPlantHeal)),_ug_each2i=0;_ug_each2i<array_length(_ug_each2);++_ug_each2i) with(_ug_each2[_ug_each2i]){
 								sprite_index = _ultra ? sprUGHealFireUltra : sprUGHealFire;
 								depth		 = other.depth - 1;
 								creator		 = other.id;
@@ -3602,7 +3602,7 @@ if(scrUGAlarm(0)) return;
 	
 	            
 	if(place_meeting(x, y, projectile)){
-		var _inst = scrUGMatchingLE(scrUGMatchingLE(scrUGMatchingGE(scrUGMatchingGE(scrUGMatchingNE([BloodSlash, UGSlash, EnergyHammerSlash, EnergySlash, GuitarSlash, LightningSlash, Slash], "id", id), "bbox_right", bbox_left), "bbox_bottom", bbox_top), "bbox_left", bbox_right), "bbox_top", bbox_bottom);
+		var _inst = scrUGMatchingLE(scrUGMatchingLE(scrUGMatchingGE(scrUGMatchingGE(scrUGMatchingNE([BloodSlash, UGSlash, EnergyHammerSlash, EnergySlash, Slash, LightningSlash, Slash], "id", id), "bbox_right", bbox_left), "bbox_bottom", bbox_top), "bbox_left", bbox_right), "bbox_top", bbox_bottom);
 		
 		if(array_length(_inst)) for(var _ug_each0=scrNTTEFullInstances(_inst),_ug_each0i=0;_ug_each0i<array_length(_ug_each0);++_ug_each0i) with(_ug_each0[_ug_each0i]){
 			if(place_meeting(x, y, other.id)){

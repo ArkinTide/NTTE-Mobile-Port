@@ -43,21 +43,7 @@ instance_create(x + 32, y - 32, Top)
 instance_create(x - 32, y - 32, Top)
 instance_create(x + 32, y + 32, Top)
 
-with (Wall) {
-    if (point_distance(x, y, other.x, other.y) <= 32) {
-        if (position_meeting(x, y, FloorExplo)) {
-            instance_destroy()
-			continue
-        }
-		
-        visible = place_meeting(x, y + 16, Floor)
-		
-        if (place_free(x - 16, y)) l = 0 else l = 4
-        if (place_free(x + 16, y)) w = 24 - l else w = 20 - l
-        if (place_free(x, y - 16)) r = 0 else r = 4
-        if (place_free(x, y + 16)) h = 24 - r else h = 20 - r
-    }
-}
+scrTerrainBlastRefreshWalls();
 scrNTTEFullAreaFloorSetup(_area,true);
 
 // NTTE Coast source terrain origin/filter
