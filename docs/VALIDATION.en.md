@@ -2,6 +2,17 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [Home](../README.en.md)
 
+## 1.0.4
+
+9 selected Windows VM cases passed at 30/60 FPS: `PizzaShadow104Tests`, `PizzaShadow104NaturalTests`, `PizzaShadow78Tests`, `OptionalShadowNativeTests`, `IOSShadowPresentTests`, `TopShadowNativeDrawTests`, `SewerPizzaNaturalEntryTests`, `UpdateCheckTests`, `UpdateStartupMenuTests`.
+
+New pixel regressions cover six intact/broken-floor, corner and empty-floor configurations. Unclipped original shadows provide a negative control; every pixel preserves valid interior coverage while excluding exterior wall-shadow pixels. Actor shadows are compared exactly. Three naturally generated Pizza seeds cover complete shadow surfaces at both rates and exercise native wall-side/top draw calls for exception safety. Existing iOS-compatible shadow presentation, optional/top shadows, actual Sewer-to-Pizza entry and updater prompts also pass.
+
+The shared repair is synchronized to Android. The native downloader passed 31 Java checks; both installers passed compiled-function preservation, version, structure and signing audits. Android versionCode is 3000081 and iOS CFBundleVersion is 81, with game version 1.0.4.
+
+No physical-phone acceptance or fresh native Mac compilation was performed. iOS uses freshly compiled VM data with the retained runner and requires re-signing. [Downloads](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.0.4).
+
+
 ## 1.0.3
 
 19 selected Windows VM cases passed at 30/60 FPS: `CatWarning78Tests`, `GatorStatueNativeTests`, `SecretWeapon78Tests`, `PizzaSpawn78Tests`, `PizzaShadow78Tests`, `MergedChinese78Tests`, `PizzaPropHurt78Tests`, `QuestDrop78Tests`, `RoadmapLoop78Tests`, `RoadmapNativeTests`, `RoadmapPlayerIconsTests`, `ChestDropNativeTests`, `InitialChestsNativeTests`, `BeetleMenuTests`, `Followup69PresentationNativeTests`, `OptionalShadowNativeTests`, `UpdateCheckTests`, `UpdateStartupMenuTests`, `SewerPizzaNaturalEntryTests`.

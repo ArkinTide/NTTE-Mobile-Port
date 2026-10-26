@@ -391,3 +391,148 @@ function scrNTTEFullRoadmapLoop78Tests() {
     }
     scrNTTESmokeLog("PASS new-loop reset geometry, crown-room history and actual red/yellow roadmap pixels @"+string(30/timescale));
 }
+
+// A pixel oracle for the actual ground-shadow pass, including a negative
+// control using unchanged ordinary shadows and the same Pizza artwork.
+function scrNTTEFullPizzaShadow104Pixels(_surface) {
+    return json_parse(scrNTTEParrotPerchPixels77(_surface));
+}
+function scrNTTEFullPizzaShadow104Compare(_actual,_reference,_vx,_vy,_width,_height) {
+    var _inside=0,_outside=0;
+    for(var _yy=0;_yy<_height;++_yy) for(var _xx=0;_xx<_width;++_xx) {
+        var _i=_yy*_width+_xx,_a=(_actual[_i]>>24)&255,_b=(_reference[_i]>>24)&255;
+        if(_b==0 && _a==0) continue;
+        var _floor=position_meeting(_vx+_xx+0.5,_vy+_yy+0.5,Floor)
+            || position_meeting(_vx+_xx+0.5,_vy+_yy+0.5,FloorExplo);
+        if(_floor) {
+            assert(_a==_b,"Pizza clipping changed valid floor-shadow coverage: "+string([_xx,_yy,_a,_b]));
+            if(_a>0) _inside++;
+        } else {
+            assert(_a==0,"Pizza wall shadow still paints exterior background: "+string([_xx,_yy,_a]));
+            if(_b>0) _outside++;
+        }
+    }
+    return {inside:_inside,negative_control_spill:_outside};
+}
+function scrNTTEFullPizzaShadow104Tests() {
+    var _before=scrNTTEFullInstances(all),_game=scrNTTEFullAreaGeneratorSnapshot(GameCont),
+        _back=scrNTTEFullAreaGeneratorSnapshot(BackCont),_draw=scrNTTEFullCoastDrawState(),
+        _view=[view_xview,view_yview,view_width,view_height],_seed=random_get_seed(),
+        _walls=global.lis_walls_visible,_list=ds_list_create(),_shadow=surface_create(128,128),
+        _camera=camera_create_view(0,0,128,128,0,noone,-1,-1,-1,-1),
+        _parked=scrNTTEFullInstances([GenCont,Floor,FloorExplo,Wall,TopSmall,hitme,chestprop,CampChar,
+            CarThrow,CrownObject,CrownPickup,BigWeaponChest,SnowBotCar,BigDogExplo,CrystalShield,
+            LilHunterFly,Yeti,SodaCan,RavenFly,NTTEFullGhost,NTTEFullBeetleChestOpen,NTTEFullCoastBoss]);
+    for(var _i=0;_i<array_length(_parked);++_i) instance_deactivate_object(_parked[_i]);
+    gpu_push_state();
+    try {
+        view_xview=220000;view_yview=220000;view_width=128;view_height=128;
+        global.lis_walls_visible=_list;BackCont.shad=_shadow;GameCont.area=scrNTTEFullAreaId("pizza");
+        var _wall=instance_create(220032,220032,Wall),_spills=0,_retained=0;
+        for(var _case=0;_case<6;++_case) {
+            instance_destroy(Floor,false);instance_destroy(FloorExplo,false);
+            if(_case==0) instance_create(_wall.x+8,_wall.y+16,Floor);
+            if(_case==1) instance_create(_wall.x-24,_wall.y+16,Floor);
+            if(_case==2) instance_create(_wall.x,_wall.y+24,Floor);
+            if(_case==3) instance_create(_wall.x+12,_wall.y+18,FloorExplo);
+            if(_case==4) {instance_create(_wall.x+8,_wall.y+16,Floor);instance_create(_wall.x-24,_wall.y-16,Floor);}
+            _wall.outindex=_case mod sprite_get_number(_wall.outspr);
+            ds_list_clear(_list);ds_list_add(_list,_wall);
+            camera_apply(_camera);matrix_set(matrix_world,matrix_build_identity());shader_reset();
+            gpu_set_fog(false,c_black,0,1);gpu_set_ztestenable(false);gpu_set_zwriteenable(false);
+            gpu_set_alphatestenable(false);gpu_set_colorwriteenable(true,true,true,true);gpu_set_texfilter(false);
+            gpu_set_blendmode(bm_normal);draw_set_alpha(1);draw_set_color(c_white);
+            // Non-Pizza area keeps the original path while the actual wall's
+            // Pizza sprite and subimage remain unchanged.
+            GameCont.area=area_sewers;with(BackCont) scrShadows();
+            var _reference=scrNTTEFullPizzaShadow104Pixels(_shadow);
+            GameCont.area=scrNTTEFullAreaId("pizza");with(BackCont) scrShadows();
+            var _actual=scrNTTEFullPizzaShadow104Pixels(_shadow),
+                _result=scrNTTEFullPizzaShadow104Compare(_actual,_reference,view_xview,view_yview,128,128);
+            _spills+=_result.negative_control_spill;_retained+=_result.inside;
+            scrNTTESmokeLog("PIZZA SHADOW104 "+json_stringify({variant:_case,result:_result}));
+            surface_save(_shadow,working_directory+"ntte-pizza-shadow104-"+string(_case)+"-"+string(30/timescale)+".png");
+        }
+        assert(_spills>0 && _retained>0,"Shadow edge fixture failed to exercise both real void spill and retained ground shadows");
+        // Entity shadows use their original pass after the wall clipping.
+        ds_list_clear(_list);var _enemy=instance_create(220096,220096,Bandit);
+        _enemy.spr_shadow=shd24;_enemy.visible=true;
+        GameCont.area=area_sewers;with(BackCont) scrShadows();
+        var _actor_reference=scrNTTEFullPizzaShadow104Pixels(_shadow);
+        GameCont.area=scrNTTEFullAreaId("pizza");with(BackCont) scrShadows();
+        var _actor_actual=scrNTTEFullPizzaShadow104Pixels(_shadow),_actor_coverage=0;
+        for(var _i=0;_i<array_length(_actor_actual);++_i) {
+            assert(_actor_actual[_i]==_actor_reference[_i],"Pizza clipping changed an ordinary actor shadow pixel");
+            if(((_actor_actual[_i]>>24)&255)>0) _actor_coverage++;
+        }
+        assert(_actor_coverage>0,"Actor shadow fixture is empty: "+string([_enemy.x,_enemy.y,_enemy.spr_shadow,_enemy.visible]));
+    } finally {
+        scrNTTEFullMergedRuntimeTestCleanup(_before);
+        for(var _i=0;_i<16 && real(surface_get_target())!=real(_draw.target);++_i) surface_reset_target();
+        surface_free(_shadow);camera_destroy(_camera);ds_list_destroy(_list);global.lis_walls_visible=_walls;
+        scrNTTEFullAreaGeneratorRestore(_game);scrNTTEFullAreaGeneratorRestore(_back);
+        view_xview=_view[0];view_yview=_view[1];view_width=_view[2];view_height=_view[3];random_set_seed(_seed);
+        for(var _i=0;_i<array_length(_parked);++_i) instance_activate_object(_parked[_i]);
+        gpu_pop_state();matrix_set(matrix_world,_draw.world);matrix_set(matrix_view,_draw.view);matrix_set(matrix_projection,_draw.projection);
+        draw_set_color(_draw.color);draw_set_alpha(_draw.alpha);if(_draw.shader>=0) shader_set(_draw.shader);else shader_reset();
+    }
+    scrNTTESmokeLog("PASS PIZZA SHADOW104 actual pixels six intact/broken/corner/void cases, unchanged ordinary shadow negative control, actor shadows retained @"+string(30/timescale));
+}
+function scrNTTEFullPizzaShadow104NaturalInspect() {
+    var _game=scrNTTEFullAreaGeneratorSnapshot(GameCont),_back=scrNTTEFullAreaGeneratorSnapshot(BackCont),
+        _draw=scrNTTEFullCoastDrawState(),_view=[view_xview,view_yview,view_width,view_height],
+        _walls=global.lis_walls_visible,_list=ds_list_create(),_shadow=surface_create(384,320),
+        _scene=surface_create(384,320),_camera=camera_create_view(0,0,384,320,0,noone,-1,-1,-1,-1),
+        _parked=scrNTTEFullInstances([hitme,chestprop,CampChar,CarThrow,CrownObject,CrownPickup,BigWeaponChest,
+            SnowBotCar,BigDogExplo,CrystalShield,LilHunterFly,Yeti,SodaCan,RavenFly,NTTEFullGhost,NTTEFullBeetleChestOpen,NTTEFullCoastBoss]),
+        _stop=lockstep_stop,_bloom=UberCont.opt_bloom,_active=false,_own_sub=false,_sub=noone;
+    for(var _i=0;_i<array_length(_parked);++_i) instance_deactivate_object(_parked[_i]);
+    gpu_push_state();
+    try {
+        view_xview=9896;view_yview=9864;view_width=384;view_height=320;
+        global.lis_walls_visible=_list;with(Wall) ds_list_add(_list,id);BackCont.shad=_shadow;
+        camera_apply(_camera);matrix_set(matrix_world,matrix_build_identity());shader_reset();
+        gpu_set_fog(false,c_black,0,1);gpu_set_ztestenable(false);gpu_set_zwriteenable(false);
+        gpu_set_alphatestenable(false);gpu_set_colorwriteenable(true,true,true,true);gpu_set_texfilter(false);
+        gpu_set_blendmode(bm_normal);draw_set_alpha(1);draw_set_color(c_white);
+        GameCont.area=area_sewers;with(BackCont) scrShadows();
+        var _reference=scrNTTEFullPizzaShadow104Pixels(_shadow);
+        GameCont.area=scrNTTEFullAreaId("pizza");with(BackCont) scrShadows();
+        var _actual=scrNTTEFullPizzaShadow104Pixels(_shadow),
+            _result=scrNTTEFullPizzaShadow104Compare(_actual,_reference,view_xview,view_yview,384,320);
+        assert(_result.negative_control_spill>0 && _result.inside>0,"Natural Pizza failed to cover exterior and interior shadow pixels");
+        scrNTTESmokeLog("PIZZA SHADOW104 NATURAL "+json_stringify({seed:global.ntte_pizza78_seed,rate:30/timescale,result:_result,walls:ds_list_size(_list)}));
+        surface_save(_shadow,working_directory+"ntte-pizza-shadow104-natural-"+string(global.ntte_pizza78_seed)+"-"+string(30/timescale)+".png");
+        // Render the genuine native ground + side/top-wall passes for visual
+        // review of the generated perimeter, not only a one-wall fixture.
+        surface_set_target(_scene);_active=true;camera_set_view_pos(_camera,view_xview,view_yview);camera_apply(_camera);
+        draw_clear_alpha(scrAreaGetBackroundColor(GameCont.area),1);
+        with(Floor) draw_self();lockstep_stop=false;UberCont.opt_bloom=false;
+        with(BackCont) event_perform(ev_draw,0);with(Wall) if(visible) draw_self();
+        if(!instance_exists(SubTopCont)) {_sub=instance_create(0,0,SubTopCont);_own_sub=true;}
+        assert(instance_exists(SubTopCont),"Natural Pizza composition omitted the native wall-top pass");
+        with(SubTopCont) event_perform(ev_draw,0);
+        surface_reset_target();_active=false;
+        surface_save(_scene,working_directory+"ntte-pizza-shadow104-scene-"+string(global.ntte_pizza78_seed)+"-"+string(30/timescale)+".png");
+    } finally {
+        if(_active) surface_reset_target();if(_own_sub) instance_destroy(_sub,false);
+        surface_free(_shadow);surface_free(_scene);camera_destroy(_camera);ds_list_destroy(_list);
+        global.lis_walls_visible=_walls;scrNTTEFullAreaGeneratorRestore(_game);scrNTTEFullAreaGeneratorRestore(_back);
+        view_xview=_view[0];view_yview=_view[1];view_width=_view[2];view_height=_view[3];
+        lockstep_stop=_stop;UberCont.opt_bloom=_bloom;
+        for(var _i=0;_i<array_length(_parked);++_i) instance_activate_object(_parked[_i]);
+        gpu_pop_state();matrix_set(matrix_world,_draw.world);matrix_set(matrix_view,_draw.view);matrix_set(matrix_projection,_draw.projection);
+        draw_set_color(_draw.color);draw_set_alpha(_draw.alpha);if(_draw.shader>=0) shader_set(_draw.shader);else shader_reset();
+    }
+}
+function scrNTTEFullPizzaShadow104NaturalTests() {
+    var _seed=random_get_seed(),_oldseed=global.seed,_rng=[];
+    array_copy(_rng,0,global.rng_state,0,array_length(global.rng_state));global.ntte_pizza78_invalid=0;
+    try {
+        for(var _i=0;_i<3;++_i) {
+            global.ntte_pizza78_seed=101013+97*_i;random_set_seed(global.ntte_pizza78_seed);
+            scrNTTEFullPizzaNormalLifecycleSmoke(true,true);
+        }
+    } finally {random_set_seed(_seed);global.seed=_oldseed;global.rng_state=_rng;}
+    scrNTTESmokeLog("PASS PIZZA SHADOW104 NATURAL three real generated levels, pixel-clipped perimeter and native wall composition @"+string(30/timescale));
+}

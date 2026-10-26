@@ -13,11 +13,11 @@ Upgrading from 1.0.2 or earlier to 1.0.3 requires one manual download and in-pla
 
 ## Versions and publishing
 
-The current version is **1.0.3**. Bugfix releases increment the patch: 1.0.4, 1.0.5. Both GitHub tag and Release title use the official version, such as `1.0.3`. No new candidate tags or aliases are published. Historical releases remain.
+The current version is **1.0.3**. Bugfix releases increment the patch: 1.0.4, 1.0.5. Both GitHub tag and Release title use the official version, such as `1.0.4`. No new candidate tags or aliases are published. Historical releases remain.
 
 1. Update NTTE_RELEASE_VERSION, NTTE_RELEASE_TAG, GAME_VERSION and platform display versions together. Increment NTTE_RELEASE_NUMBER as an internal build serial: next version 1.0.4, serial 79. Do not change the save-format GAME_BUILD for a release.
-2. Build, test and audit both installers. Retain the Android package and signing identity. Current Android versionCode is 3000078 and iOS CFBundleVersion is 78; both must increase.
-3. Create a same-tag draft Release and upload `NuclearThrone.TerritorialExpansion-Android-1.0.3.apk`, `NuclearThrone.TerritorialExpansion-iOS-1.0.3.ipa` and SHA256SUMS.txt. Verify remote digests before publishing as Latest. Substitute the new version in future filenames.
+2. Build, test and audit both installers. Retain the Android package and signing identity. Current Android versionCode is 3000081 and iOS CFBundleVersion is 78; both must increase.
+3. Create a same-tag draft Release and upload `NuclearThrone.TerritorialExpansion-Android-1.0.4.apk`, `NuclearThrone.TerritorialExpansion-iOS-1.0.4.ipa` and SHA256SUMS.txt. Verify remote digests before publishing as Latest. Substitute the new version in future filenames.
 4. Update both READMEs, validation records and release notes, including iOS signing requirements.
 
 The updater reads this repository's releases/latest API, requires a stable published release and compares three numeric components. It rejects downgrades, foreign repository assets, tag/filename mismatches and invalid digests. Historical candidate tags cannot offer upgrades. A missing platform installer never selects another platform's file.

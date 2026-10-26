@@ -57,7 +57,7 @@ function scrNTTEFullPizzaSpiralSmoke() {
     GameCont.area=_area
     scrNTTESmokeLog("FULL PIZZA SPIRAL: original1-based NTTtype4 mapped to actual Venuz stars,30logicaltick warmup, original frame5 cover OK @"+string(30/timescale))
 }
-function scrNTTEFullPizzaNormalLifecycleSmoke(_inspect=false) {
+function scrNTTEFullPizzaNormalLifecycleSmoke(_inspect=false,_shadow104=false) {
     var _harness=id
     instance_deactivate_object(_harness)
     var _game=scrNTTEFullAreaGeneratorSnapshot(GameCont),_players=scrNTTEFullAreaGeneratorSnapshot(Player),
@@ -102,6 +102,7 @@ function scrNTTEFullPizzaNormalLifecycleSmoke(_inspect=false) {
     assert(_drain.type=="area" && _drain.area==scrNTTEFullAreaId("lair") && _drain.ntte_full_hallway_size==320
         && _drain.spr_idle==scrNTTERefSprite("PizzaDrainIdle"),"Pizza drain lost real Lair destination/artwork/source320px hallway")
     if(_inspect) scrNTTEFullPizzaSpawn78Inspect();
+    if(_shadow104) scrNTTEFullPizzaShadow104NaturalInspect();
     with(GameCont) event_perform(ev_other,ev_room_end)
     assert(GameCont.area==area_scrapyards && GameCont.subarea==1 && GameCont.ntte_visits_pizza==1 && !GameCont.ntte_full_active_pizza,
         "Actual Pizza RoomEnd failed sourceScrapyards1/visit/transit or native stage increment ran twice")

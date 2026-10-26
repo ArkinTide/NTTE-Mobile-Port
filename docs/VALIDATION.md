@@ -2,6 +2,17 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [返回首页](../README.md)
 
+## 1.0.4
+
+9 项选定 Windows VM 测试在 30/60 帧通过：`PizzaShadow104Tests`, `PizzaShadow104NaturalTests`, `PizzaShadow78Tests`, `OptionalShadowNativeTests`, `IOSShadowPresentTests`, `TopShadowNativeDrawTests`, `SewerPizzaNaturalEntryTests`, `UpdateCheckTests`, `UpdateStartupMenuTests`。
+
+新增像素回归覆盖六种完整地板、炸开地面、墙角和无地板情况。使用未裁剪的原始阴影作为负对照，逐像素确认墙外无阴影、地板上的阴影保留，并比较角色阴影完全一致。三个真实披萨关卡种子在两档帧率下检查完整阴影表面，并调用原生墙侧面、墙顶绘制链路检查无报错。另验证 iOS 阴影兼容路径、正常可选阴影、墙顶阴影，以及真实下水道进入披萨关卡和更新提示。
+
+共享修复已同步 Android。Android 原生下载策略通过 31 项 Java 检查；两平台包经编译函数保留、版本、结构和签名审核。Android versionCode 3000081，iOS CFBundleVersion 81；游戏版本为 1.0.4。
+
+未进行手机真机验收或新的 Mac 原生编译。iOS 使用新编译的 VM 数据和保留运行库，安装前需要重新签名。[下载](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.0.4)。
+
+
 ## 1.0.3
 
 19项选定Windows VM回归在30/60帧通过：`CatWarning78Tests`, `GatorStatueNativeTests`, `SecretWeapon78Tests`, `PizzaSpawn78Tests`, `PizzaShadow78Tests`, `MergedChinese78Tests`, `PizzaPropHurt78Tests`, `QuestDrop78Tests`, `RoadmapLoop78Tests`, `RoadmapNativeTests`, `RoadmapPlayerIconsTests`, `ChestDropNativeTests`, `InitialChestsNativeTests`, `BeetleMenuTests`, `Followup69PresentationNativeTests`, `OptionalShadowNativeTests`, `UpdateCheckTests`, `UpdateStartupMenuTests`, `SewerPizzaNaturalEntryTests`。

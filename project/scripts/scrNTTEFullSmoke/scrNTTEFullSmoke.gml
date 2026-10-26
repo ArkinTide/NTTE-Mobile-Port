@@ -529,6 +529,8 @@ function scrNTTEFullSmokeStep() {
         if(scrNTTEFullSmokeCase("SecretWeapon78Tests")) scrNTTEFullSecretWeapon78Tests();
         if(scrNTTEFullSmokeCase("PizzaSpawn78Tests")) scrNTTEFullPizzaSpawn78Tests();
         if(scrNTTEFullSmokeCase("PizzaShadow78Tests")) scrNTTEFullPizzaShadow78Tests();
+        if(scrNTTEFullSmokeCase("PizzaShadow104Tests")) scrNTTEFullPizzaShadow104Tests();
+        if(scrNTTEFullSmokeCase("PizzaShadow104NaturalTests")) scrNTTEFullPizzaShadow104NaturalTests();
         if(scrNTTEFullSmokeCase("CatWarning78Tests")) scrNTTEFullCatWarning78Tests();
         if(scrNTTEFullSmokeCase("UpdateStartupMenuTests")) scrNTTEUpdateStartupMenuTests();
         if(scrNTTEFullSmokeCase("SealKingMusicTests")) scrNTTESealKingMusicTests();

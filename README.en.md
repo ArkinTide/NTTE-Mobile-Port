@@ -3,19 +3,25 @@
 [简体中文](README.md) | [English](README.en.md)
 
 GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
-The current source baseline is **1.0.3 (2026-10-26)**.
+The current source baseline is **1.0.4 (2026-10-26)**.
 
 ## Downloads
 
-The latest delivered Android APK and iOS IPA are available on the [1.0.3 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.0.3):
+The latest delivered Android APK and iOS IPA are available on the [1.0.4 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.0.4):
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.3/NuclearThrone.TerritorialExpansion-Android-1.0.3.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.3/NuclearThrone.TerritorialExpansion-iOS-1.0.3.ipa): sign or re-sign with your own signing identity before installing.
-- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.3/SHA256SUMS.txt)
+- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.4/NuclearThrone.TerritorialExpansion-Android-1.0.4.apk)
+- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.4/NuclearThrone.TerritorialExpansion-iOS-1.0.4.ipa): sign or re-sign with your own signing identity before installing.
+- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.4/SHA256SUMS.txt)
 
 Both platforms use the separate application identifier `com.arkintide.nuclearthronentte`.
 See the [validation notes](docs/VALIDATION.en.md) for the scope of verification.
 Installers are distributed as release assets; the Git source tree contains no installers, signing keys, or personal saves.
+
+## Changes in 1.0.4
+
+- Fixed remaining exterior wall-shadow artifacts at Pizza Sewer corners, floor edges and destroyed-floor boundaries.
+- Wall shadows are clipped to actual floor footprints. Interior and actor/item shadows remain; wall collisions, enemy behavior and portal rules are unchanged.
+- Synchronized the repair to Android and iOS and updated the version to 1.0.4.
 
 ## Changes in 1.0.3
 

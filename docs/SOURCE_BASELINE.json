@@ -1,32 +1,22 @@
 {
-  "source_candidate": "candidate78",
+  "source_candidate": "candidate81",
   "date": "2026-10-26",
-  "source_manifest_sha256": "51c5c3b8220c47b6318cedb48eb727ef2e63c45c6eb908d8cdcfa56ff9e25871",
-  "windows_regression_receipt_sha256": "49bdb86474c0dd115fc7a03288ead841a9670e874f9fb9943baf631bc8380d8e",
+  "source_manifest_sha256": "6da3294fefb89f5516b3bf03173fd41c3e40c2f1cf7e899700301f0483b7e48c",
+  "windows_regression_receipt_sha256": "59445f7a3caf9a520180b47442111e5fe0bfb6dbecd9e20a1070f9c5db575c27",
   "android_overlay_paths": [
     "objects/MakeGame/Alarm_0.gml",
     "options/android/options_android.yy"
   ],
   "selected_windows_cases": [
-    "CatWarning78Tests",
-    "GatorStatueNativeTests",
-    "SecretWeapon78Tests",
-    "PizzaSpawn78Tests",
+    "PizzaShadow104Tests",
+    "PizzaShadow104NaturalTests",
     "PizzaShadow78Tests",
-    "MergedChinese78Tests",
-    "PizzaPropHurt78Tests",
-    "QuestDrop78Tests",
-    "RoadmapLoop78Tests",
-    "RoadmapNativeTests",
-    "RoadmapPlayerIconsTests",
-    "ChestDropNativeTests",
-    "InitialChestsNativeTests",
-    "BeetleMenuTests",
-    "Followup69PresentationNativeTests",
     "OptionalShadowNativeTests",
+    "IOSShadowPresentTests",
+    "TopShadowNativeDrawTests",
+    "SewerPizzaNaturalEntryTests",
     "UpdateCheckTests",
-    "UpdateStartupMenuTests",
-    "SewerPizzaNaturalEntryTests"
+    "UpdateStartupMenuTests"
   ],
   "rates": [
     30,
@@ -35,12 +25,12 @@
   "mobile_device_tested_this_round": false,
   "installers": {
     "android": {
-      "sha256": "81bde7657d9369cff16e6f19e0dc2956e14b3662c997883732c7579b0c560151",
-      "bytes": 250444082
+      "sha256": "1ce66dc960f66042349a9b0ee565d76efb53002305aad02b226017225ccaf2bc",
+      "bytes": 250444157
     },
     "ios": {
-      "sha256": "59a16255ff24041e922e3130ee267a28d37cf3bdeeb47b8bda9ccad9a6bbaa21",
-      "bytes": 174336875
+      "sha256": "8e8d9528c754cab783f46abae67f90763df402d8ddefc6066e3bf5b1d0dbf543",
+      "bytes": 174344225
     }
   },
   "android_native_policy_checks": 20,
@@ -48,8 +38,8 @@
   "ios_retained_runner_compatibility_checked": true,
   "native_xcode_compilation_performed": false,
   "installation_flow": "Android: in-game APK download and system installation confirmation; iOS: IPA download link with re-signing required",
-  "version": "1.0.3",
-  "version_policy": "Patch increments by0.0.1; official version-only tags and installer filenames. Next1.0.4. One manual upgrade from1.0.2.",
-  "android_version_code": 3000078,
-  "ios_bundle_version": "78"
+  "version": "1.0.4",
+  "version_policy": "Patch increments by 0.0.1; version-only public tags and installer filenames. Next 1.0.5.",
+  "android_version_code": 3000081,
+  "ios_bundle_version": "81"
 }

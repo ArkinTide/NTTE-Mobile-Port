@@ -45,7 +45,7 @@ function scrNTTEUpdateTests() {
             _badrelease.tag_name=_invalid[_i]
             assert(scrNTTEUpdateParse(json_stringify(_badrelease)).status=="failed","Malformed release tag reached update flow")
         }
-        assert(scrNTTEUpdateParse(json_stringify(scrNTTEUpdateTestRelease("candidate79"))).status=="failed","Future internal tag offered as public upgrade")
+        assert(scrNTTEUpdateParse(json_stringify(scrNTTEUpdateTestRelease("candidate"+string(NTTE_RELEASE_NUMBER+1)))).status=="failed","Future internal tag offered as public upgrade")
         _release.prerelease=true
         assert(scrNTTEUpdateParse(json_stringify(_release)).status=="failed","Prerelease accepted as stable")
         _release.prerelease=false;_release.draft=true

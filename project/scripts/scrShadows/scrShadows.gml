@@ -1,3 +1,23 @@
+// Clip the reflected wall artwork to real floor footprints. A single point
+// below a wall cannot describe the exposed corners of a Pizza room.
+// Reuse one collision list for the pass; no additional surfaces or readbacks.
+function scrNTTEFullPizzaWallShadowDraw(_vx,_vy,_floors) {
+	if(!sprite_exists(outspr)) return;
+	var _sw=sprite_get_width(outspr),_sh=sprite_get_height(outspr),
+		_left=x-sprite_get_xoffset(outspr),
+		_bottom=y+18+sprite_get_yoffset(outspr),_top=_bottom-_sh;
+	ds_list_clear(_floors);
+	collision_rectangle_list(_left,_top,_left+_sw-0.001,_bottom-0.001,Floor,false,true,_floors,false);
+	collision_rectangle_list(_left,_top,_left+_sw-0.001,_bottom-0.001,FloorExplo,false,true,_floors,false);
+	for(var _j=0;_j<ds_list_size(_floors);++_j) {
+		var _floor=_floors[| _j],_x1=max(_left,_floor.bbox_left),_y1=max(_top,_floor.bbox_top),
+			_x2=min(_left+_sw,_floor.bbox_right),_y2=min(_bottom,_floor.bbox_bottom);
+		if(_x2>_x1 && _y2>_y1)
+			draw_sprite_part_ext(outspr,outindex,_x1-_left,_bottom-_y2,_x2-_x1,_y2-_y1,
+				_x1-_vx,_y2-_vy,1,-1,c_black,1);
+	}
+}
+
 function scrShadows() {
 	//shadow works
 
@@ -18,20 +38,20 @@ function scrShadows() {
 	#region Walls
 	
 	var _list = global.lis_walls_visible,
-		_count = ds_list_size(_list)
+		_count = ds_list_size(_list),
+		_pizza = GameCont.area==scrNTTEFullAreaId("pizza"),
+		_floors = _pizza ? ds_list_create() : -1;
 		
-	for (var i = _count - 1; i >= 0; --i) {
-		with _list[| i] {
-			// Pizza's exposed background is visible through darkness. Perimeter
-			// walls must not cast rectangular floor shadows onto that void.
-			if(GameCont.area==scrNTTEFullAreaId("pizza")
-			    && !position_meeting(x+8,y+18,Floor)
-			    && !position_meeting(x+8,y+18,FloorExplo)) continue;
-			if !position_meeting(x, y + 16, TopSmall) {
-				{ if(sprite_exists(outspr)) draw_sprite_ext(outspr, outindex, x - _xview, y + 2 + 16 - _yview, 1, -1, 0, c_black, 1); }
+	try {
+		for (var i = _count - 1; i >= 0; --i) {
+			with _list[| i] {
+				if !position_meeting(x, y + 16, TopSmall) {
+					if(_pizza) scrNTTEFullPizzaWallShadowDraw(_xview,_yview,_floors);
+					else if(sprite_exists(outspr)) draw_sprite_ext(outspr, outindex, x - _xview, y + 2 + 16 - _yview, 1, -1, 0, c_black, 1);
+				}
 			}
 		}
-	}
+	} finally {if(_pizza) ds_list_destroy(_floors);}
 	
 	#endregion
 	

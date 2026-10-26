@@ -3,18 +3,24 @@
 [简体中文](README.md) | [English](README.en.md)
 
 NTTE 移植版的 GameMaker 源码，包含 Android、iOS 适配和简体中文。
-当前源码基线为 **1.0.3（2026-10-26）**。
+当前源码基线为 **1.0.4（2026-10-26）**。
 
 ## 下载安装包
 
-最后交付的 Android APK 和 iOS IPA 可在 [1.0.3 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.0.3) 下载：
+最后交付的 Android APK 和 iOS IPA 可在 [1.0.4 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.0.4) 下载：
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.3/NuclearThrone.TerritorialExpansion-Android-1.0.3.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.3/NuclearThrone.TerritorialExpansion-iOS-1.0.3.ipa)：安装前需要用自己的签名身份重新签名。
-- [SHA-256 校验文件](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.3/SHA256SUMS.txt)
+- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.4/NuclearThrone.TerritorialExpansion-Android-1.0.4.apk)
+- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.4/NuclearThrone.TerritorialExpansion-iOS-1.0.4.ipa)：安装前需要用自己的签名身份重新签名。
+- [SHA-256 校验文件](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.4/SHA256SUMS.txt)
 
 两平台使用独立标识 `com.arkintide.nuclearthronentte`。本轮验证范围见[验证记录](docs/VALIDATION.md)。
 安装包作为 Releases 附件提供；Git 源码目录不包含安装包、签名密钥或个人存档。
+
+## 1.0.4 更新内容
+
+- 进一步修复披萨下水道墙角、地板边缘和炸开地面附近的墙外黑影。
+- 墙体阴影只绘制在真实地板范围内，保留地板上的阴影和角色、怪物、道具阴影；不修改墙体碰撞、敌人或传送门规则。
+- Android 和 iOS 同步此修复，版本更新为 1.0.4。
 
 ## 1.0.3 更新内容
 
