@@ -2,6 +2,12 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [Home](../README.en.md)
 
+## 1.2.2
+
+32 selected Windows VM cases passed at 30/60 FPS on the final frozen 1.2.2 / internal 90 build. Coverage includes Vine chest metadata, the cleared Scrap3-3 entrance, Millipede departure, Jungle Assassins, corpse countdown ownership, a real Undergrowth route, and Crystal Spider wall generation, native wall blast release, pickup, JSON continuation and two real portal room transitions. Additional checks cover updates, language persistence, Details+, golden loadout saves, healing/explosions and Pizza spawning.
+
+The Android updater passed 31 Java checks. APK/IPA audits verify versions, app identities, retained compiled functions and structure; Android retains its signing identity and passes 16 KB alignment checks. GAME_BUILD 3004 is unchanged. No physical-phone, full-campaign or fresh native Mac acceptance was performed. iOS uses new VM data with the retained runner and requires re-signing.
+
 ## 1.2.1
 
 15 selected Windows VM cases passed at actual30/60 FPS. Checks cover real Pitcher Plant healing/explosions and effect lifecycles, real disk reload of three NTTE golden weapons, exact Details+ batch/fallback pixel equivalence to native sprite drawing, and native Nuke/blast geometry and RNG comparisons against the independent original constructor. Pizza coverage includes late/invisible walls, neutral Rat conversion and16 real generations. CatHole checks cover outside/late-wall covers and the real Pizza-to-Lair drain expansion, with19 covers observed at each rate.

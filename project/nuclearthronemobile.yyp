@@ -47024,6 +47024,12 @@
         "name": "scrRelease121CatHoleTests",
         "path": "scripts/scrRelease121CatHoleTests/scrRelease121CatHoleTests.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrRelease122Tests",
+        "path": "scripts/scrRelease122Tests/scrRelease122Tests.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

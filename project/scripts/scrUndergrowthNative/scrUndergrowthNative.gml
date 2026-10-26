@@ -270,7 +270,12 @@ function scrUGChestStep() {
     // Filter once; source's retry loop never terminates when all are held.
     repeat(5) {
         var _w=array_length(_pool)>0?_pool[irandom(array_length(_pool)-1)]:wep_screwdriver;
-        with(instance_create(x,y,WepPickup)) {wep=_w;ammo=true;roll=true;}
+        with(instance_create(x,y,WepPickup)) {
+            // This runner does not refresh raw-number pickups after Create.
+            // Set metadata without consuming extra RNG between the five rolls.
+            wep=_w;name=scr_weapon_get_name(_w);type=scr_weapon_get_type(_w);
+            sprite_index=scr_weapon_get_sprite(_w);ammo=true;roll=true;
+        }
     }
     GameCont.nochest=0;instance_destroy();
 }

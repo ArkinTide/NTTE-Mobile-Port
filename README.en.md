@@ -3,7 +3,7 @@
 [简体中文](README.md) | [English](README.en.md)
 
 GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
-The current source baseline is **1.2.1 (2026-10-26)**.
+The current source baseline is **1.2.2 (2026-10-27)**.
 
 ## Source-only distribution
 
@@ -21,6 +21,15 @@ Version 1.2.0 and older need one manual update from the folder above. From 1.2.1
 
 
 > Starting with 1.1.0, content from other MODs is being added. To play the original NTTE content, download 1.0.4 or a subsequent 1.0.x release.
+
+## Changes in 1.2.2
+
+- Fixed Undergrowth Vine chest drops displaying screwdriver artwork by refreshing weapon sprites, names and ammo types.
+- Require all hostile units to be cleared before using the Scrapyards 3-3 Vine entrance. Allies do not block it; opening its chest first still closes the entrance.
+- Fixed allies blocking Millipede departure and dormant Jungle Assassins from waking up, preventing related level-clear stalls.
+- Fixed corpse animation completions repeatedly resetting an existing portal countdown after enemies were cleared.
+- Verified Crystal Spider release from its broken nest wall, visibility, pickup, continuation restoration and retention across levels; original spawn behavior is preserved.
+- Retained the timeout for the same sole non-Boss enemy surviving over 60 seconds. No wall-position enemy-kill rule is added.
 
 ## Changes in 1.2.1
 

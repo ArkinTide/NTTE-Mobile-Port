@@ -61,6 +61,12 @@ function scrNTTEFullSmokeStep() {
         global.ntte_full_test_count=0;
         scrNTTESmokeLog("FULL INTERNAL BEGIN @"+string(30/timescale))
         if(scrNTTEFullSmokeAsyncCase("UndergrowthNaturalTests")) {scrUGNaturalTests();return;}
+        if(scrNTTEFullSmokeCase("Release122ChestTests")) scrRelease122ChestTests();
+        if(scrNTTEFullSmokeCase("Release122VineTests")) scrRelease122VineTests();
+        if(scrNTTEFullSmokeCase("Release122MillipedeTests")) scrRelease122MillipedeTests();
+        if(scrNTTEFullSmokeCase("Release122JungleTests")) scrRelease122JungleTests();
+        if(scrNTTEFullSmokeCase("Release122CorpseTests")) scrRelease122CorpseTests();
+        if(scrNTTEFullSmokeCase("Release122SpiderAppearanceTests")) scrRelease122SpiderAppearanceTests();
         if(scrNTTEFullSmokeCase("Release121PlantHealingTests")) scrRelease121PlantHealingTests();
         if(scrNTTEFullSmokeCase("Release121GoldStorageTests")) scrRelease121GoldStorageTests();
         if(scrNTTEFullSmokeCase("Release121BatchRenderTests")) scrRelease121BatchRenderTests();

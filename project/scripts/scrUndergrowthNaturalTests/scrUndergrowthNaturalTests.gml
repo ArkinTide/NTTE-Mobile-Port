@@ -21,7 +21,7 @@ function scrUGNaturalTests() {
         scratch_root=working_directory+"undergrowth-natural-"+string(get_timer())+"/";directory_create(scratch_root);
         rates=[30,60];completed_rates=[];pass_index=0;phase=0;elapsed=0;draw_frames=0;world_ready_draw=-1;
         room_ends=0;room_starts=0;player=noone;flower=noone;portal=noone;
-        ingress_contact=false;return_contact=false;shot=0;collision_target=noone;collision_projectile=noone;
+        ingress_contact=false;return_contact=false;shot=0;retreat_seen=false;retreat_ally=noone;collision_target=noone;collision_projectile=noone;
         global.ntte_smoke_active=false;smoke_drivers=scrNTTEFullInstances(NTTESmokeTest);
         with(NTTESmokeTest) instance_deactivate_object(id);
         scrNTTEFullCoastVaultClear();
@@ -102,7 +102,22 @@ function scrUGNaturalBody() {
         assert(array_length(_flowers)==1,"Scrapyards3-3 natural generator omitted Vine entry");
         flower=_flowers[0];player.x=flower.x;player.y=flower.y;player.xprevious=player.x;player.yprevious=player.y;
         assert(instance_exists(flower.prompt),"Vine native prompt omitted");
-        assert(scrNTTEFullPromptWinner(player)==flower.prompt,"Natural Vine cannot be selected by native pickup input");
+        assert(scrUGCombatRemains(),"Scrap3-3 fixture omitted actual hostile population");
+        assert(scrNTTEFullPromptWinner(player)!=flower.prompt,"Natural Vine unlocked before level clear");
+        flower.prompt.pick=player.index;with(flower) scrUGFlowerStep();
+        assert(instance_exists(flower) && flower.prompt.pick==-1 && !instance_exists(Portal),"Natural stale Vine input bypassed clear lock");
+        scrUGNaturalAwait(11);return;
+    }
+    if(phase==11) {
+        // Controlled defeat of Scrap enemies; their actual Step/Destroy owns
+        // corpses, drops and the standard exit portal.
+        with(enemy) if(team!=team_player) hp=0;
+        with(becomenemy) if(object_index==RavenFly) scrNTTELastEnemyTimeoutKill(id,Raven);
+        if(scrUGCombatRemains()) return;
+        // The native exit can already be open; this entry selects its own
+        // source destination before any portal has been contacted.
+        player.x=flower.x;player.y=flower.y;
+        assert(scrNTTEFullPromptWinner(player)==flower.prompt,"Natural cleared Vine cannot be selected by native pickup input");
         // Explicit one-frame interaction. Let the real Flower.Step and native
         // Portal attraction/contact/room_restart perform the transition.
         KeyCont.press_pick[player.index]=true;
@@ -145,12 +160,22 @@ function scrUGNaturalBody() {
             shot++;
         }
         if(elapsed<300) return;
-        with(enemy) if(!instance_is(id,Player)) hp=0;
+        // Release122 natural retreat: preserve the living linked Millipede
+        // and an ally so the old all-enemy count cannot mask this regression.
+        assert(array_length(scrUGMatching(UGEnemy,"name","MillipedeSegment"))>0,"Combat soak left no Millipede to verify actual retreat");
+        retreat_seen=false;retreat_ally=instance_create(player.x,player.y,Bandit);retreat_ally.team=team_player;
+        // Controlled survival prerequisite: this fixture needs a living ally
+        // during retreat, even when a lingering combat explosion hits it.
+        retreat_ally.hp=100000;retreat_ally.max_hp=100000;retreat_ally.nexthurt=current_frame+100000;
+        with(enemy) if(team!=team_player && !(instance_is(id,UGEnemy) && name=="MillipedeSegment")) hp=0;
         scrUGNaturalAwait(6);return;
     }
     if(phase==6) {
-        with(enemy) if(!instance_is(id,Player)) hp=0;
+        with(enemy) if(team!=team_player && !(instance_is(id,UGEnemy) && name=="MillipedeSegment")) hp=0;
+        with(UGEnemy) if(name=="MillipedeSegment" && !active && hp>0) other.retreat_seen=true;
         if(!instance_exists(Portal)) return;
+        assert(retreat_seen && array_length(scrUGMatching(UGEnemy,"name","MillipedeSegment"))==0
+            && instance_exists(retreat_ally) && retreat_ally.hp>0,"Natural exit bypassed living Millipede retreat with ally "+string([retreat_seen,array_length(scrUGMatching(UGEnemy,"name","MillipedeSegment")),instance_exists(retreat_ally),scrNTTEFullValue(retreat_ally,"hp",-1)]));
         portal=instance_find(Portal,0);scrUGNaturalNearPortal(portal);
         scrUGNaturalAwait(7);return;
     }

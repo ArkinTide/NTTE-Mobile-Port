@@ -1,9 +1,10 @@
 function scrNTTEFullPetMetadataNativeTests() {
     assert(scrNTTESmokeEnabled(),"Pet metadata fixture requires explicit desktop smoke harness")
     var _before=scrNTTEFullInstances(all),_progress=global.ntte_full_progress,
-        _hidden=scrNTTEFullInstances(NTTEFullPet),_surface=-1,_baseline=-1,_seed=random_get_seed()
+        _old_language=global.language_current,_hidden=scrNTTEFullInstances(NTTEFullPet),_surface=-1,_baseline=-1,_seed=random_get_seed()
     for(var _i=0;_i<array_length(_hidden);++_i) instance_deactivate_object(_hidden[_i])
     global.ntte_full_progress={schema:1,unlocks:{},loadouts:{},stats:{}}
+    global.language_current=global.language_store[$ "English"];
     try {
         assert(scrNTTEFullPetThroneButtDescription("native description")=="native description",
             "Ordinary Throne Butt text changed without a Salamander pet")
@@ -52,7 +53,7 @@ function scrNTTEFullPetMetadataNativeTests() {
         for(var _i=array_length(_all)-1;_i>=0;--_i)
             if(array_get_index(_before,_all[_i])<0 && instance_exists(_all[_i])) instance_destroy(_all[_i],false)
         for(var _i=0;_i<array_length(_hidden);++_i) instance_activate_object(_hidden[_i])
-        global.ntte_full_progress=_progress;random_set_seed(_seed)
+        global.ntte_full_progress=_progress;global.language_current=_old_language;random_set_seed(_seed)
     }
     scrNTTESmokeLog("FULL PET METADATA NATIVE: source Salamander Throne Butt active title/exact colored description/no repeated title/actual native SkillIcon Draw/ordinary mutation unchanged OK @"+string(30/timescale))
 }

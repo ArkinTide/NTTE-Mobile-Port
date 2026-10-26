@@ -74,10 +74,33 @@ function scrUGAfterGeneration() {
         }
     }
 }
+// Completion must ignore allies but retain dormant and transforming hostiles.
+// Millipedes leave naturally when only their own species and allies remain.
+function scrUGCombatRemains(_ignore_millipedes=false) {
+    with(enemy) {
+        if(team==team_player || instance_is(id,Van) || instance_is(id,BigDogMissile)) continue;
+        if(_ignore_millipedes && instance_is(id,UGEnemy) && name=="MillipedeSegment") continue;
+        return true;
+    }
+    with(becomenemy) if(!variable_instance_exists(id,"team") || team!=team_player) return true;
+    with(MeleeFake) if(!variable_instance_exists(id,"team") || team!=team_player) return true;
+    return false;
+}
+function scrUGFlowerUsable() {
+    return scrNTTEPortalRecoveryAllowed() && GameCont.area==area_scrapyards
+        && GameCont.subarea==3 && !scrUGCombatRemains();
+}
+function scrUGFlowerPromptMeet(_player) {return scrUGFlowerUsable();}
 function scrUGFlowerStep() {
     x=xstart;y=ystart;speed=0;
     if(sprite_index==spr_hurt && image_index+image_speed>=image_number) sprite_index=spr_idle;
-    if(instance_exists(prompt) && prompt.pick>=0) {
+    var _usable=scrUGFlowerUsable();
+    if(instance_exists(prompt)) {
+        // Older continuations can restore the prompt without this callback.
+        if(!is_callable(prompt.on_meet)) prompt.on_meet=method(prompt,scrUGFlowerPromptMeet);
+        if(!_usable) prompt.pick=-1;
+    }
+    if(_usable && instance_exists(prompt) && prompt.pick>=0) {
         with(GameCont) {scrNTTEFullAreaSet(207,1,loops);killenemies=true;}
         for(var _d=0;_d<360;_d+=120) with(instance_create(x+lengthdir_x(5,_d),y+lengthdir_y(5,_d),BloodStreak)) {
             sprite_index=sprUGFuelStreak;direction=_d+orandom(10);image_angle=direction;speed=5*timescale;

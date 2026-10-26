@@ -583,6 +583,7 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGHitme)),_ug_eac
 		hp = 500;
 		size = 1;
 		prompt = scrNTTEFullPromptCreate(id,"VINE");
+		prompt.on_meet = method(prompt,scrUGFlowerPromptMeet);
 		text = "VINE";
 		pick = -1;
 		xoff = 0;
@@ -1987,7 +1988,7 @@ if(x == (xprevious + hspeed)) x -= hspeed;
 			}
 			
 			          
-			if(instance_number(enemy) <= instance_number(Van)){
+			if(!scr_check_enemies()){
 				snd_play(sndLastEnemy);
 			}
 		}
@@ -2019,8 +2020,8 @@ alarm1 = 30 + random(60);
 		               
 		if(active){
 			
-			var _inst = scrUGMatching(object_index, "name", name);
-			if(instance_exists(Portal) || ((instance_number(enemy) - instance_number(Van)) <= array_length(_inst))){
+			// Friendly actors must not keep the whole chain in combat.
+			if(instance_exists(Portal) || !scrUGCombatRemains(true)){
 				
 				                    
 				var _inst = id;
