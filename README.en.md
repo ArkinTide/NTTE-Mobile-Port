@@ -3,21 +3,31 @@
 [简体中文](README.md) | [English](README.en.md)
 
 GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
-The current source baseline is **1.1.0 (2026-10-26)**.
+The current source baseline is **1.2.0 (2026-10-26)**.
 
 ## Downloads
 
-The latest delivered Android APK and iOS IPA are available on the [1.1.0 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.1.0):
+The latest delivered Android APK and iOS IPA are available on the [1.2.0 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.2.0):
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.1.0/NuclearThrone.TerritorialExpansion-Android-1.1.0.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.1.0/NuclearThrone.TerritorialExpansion-iOS-1.1.0.ipa): sign or re-sign with your own signing identity before installing.
-- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.1.0/SHA256SUMS.txt)
+- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.2.0/NuclearThrone.TerritorialExpansion-Android-1.2.0.apk)
+- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.2.0/NuclearThrone.TerritorialExpansion-iOS-1.2.0.ipa): sign or re-sign with your own signing identity before installing.
+- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.2.0/SHA256SUMS.txt)
 
 Both platforms use the separate application identifier `com.arkintide.nuclearthronentte`.
 See the [validation notes](docs/VALIDATION.en.md) for the scope of verification.
 Installers are distributed as release assets; the Git source tree contains no installers, signing keys, or personal saves.
 
-> Starting with this update, content from other MODs will be added. To play the original NTTE content, download 1.0.4 or a subsequent 1.0.x release.
+> Starting with 1.1.0, content from other MODs is being added. To play the original NTTE content, download 1.0.4 or a subsequent 1.0.x release.
+
+## Changes in 1.2.0
+
+- Integrated Details+ 1.1: detail clusters, floor-specific explosion scorch marks, crown-statue and broken-statue decorations, desert mud and oasis floor transitions.
+- Added **Settings → Video → DETAILS+**, enabled by default with a saved preference. Disabling removes added decorations and restores original artwork; it can be re-enabled at any time.
+- Retained 40 original sprite resources (76 frames) and adapted NTTE Coast, Trench and Oasis area identifiers.
+- Apply decorations on generation or option changes and match scorch artwork on creation, avoiding per-frame scorch scans. Repeated toggles do not accumulate decorations or consume gameplay RNG.
+- Updated Android/iOS to 1.2.0, retaining Undergrowth and earlier repairs, and synchronized the in-game and updater version labels.
+
+Details+: [https://wigglercola.itch.io/detailsplus](https://wigglercola.itch.io/detailsplus)
 
 ## Changes in 1.1.0
 
@@ -118,3 +128,5 @@ Thanks also to the original NTTE MOD authors and contributors, and to ToD for th
 - Original NTM project: [toarch7/nt-recreated-public](https://github.com/toarch7/nt-recreated-public)
 
 Undergrowth — matt / attfooy: [https://attfooy.itch.io/undergrowth](https://attfooy.itch.io/undergrowth)
+
+Details+ — wigglercola: [https://wigglercola.itch.io/detailsplus](https://wigglercola.itch.io/detailsplus)

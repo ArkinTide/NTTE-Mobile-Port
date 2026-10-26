@@ -94,6 +94,8 @@ scrOptionsMenuCreateElements(
 L = LF("VideoOptions")
 scrOptionsMenuCategoryBegin(OptionCategory.Video)
 
+scrOptionsMenuCreateElement({type:"switch",name:scrNTTEUpdateText("DETAILS+","DETAILS+ 细节增强"),key:"visual_detailsplus",value:save_get_option("visual","detailsplus",true)});
+
 scrOptionsMenuCreateElements(
 	/// @loc:token [VideoOptions] WideScreen "WIDESCREEN"
 	{ type: "switch", name: L("WideScreen", "WIDESCREEN"), key: "visual_resolution", mobile_only: true },

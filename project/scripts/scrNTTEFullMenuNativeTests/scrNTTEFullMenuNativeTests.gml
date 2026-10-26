@@ -183,7 +183,7 @@ function scrNTTEFullMenuNativeTests() {
             && scrNTTEFullMenuPetValue("Cuz","playtime")=="0:01:01",
             "Actual native pet detail page lost saved species-specific statistics")
         assert(array_length(_menu.options[OptionCategory.NTTE_Unlocks])==8
-            && array_length(_menu.options[OptionCategory.NTTE_Credits])==12
+            && array_length(_menu.options[OptionCategory.NTTE_Credits])==13
             && string_pos("https://attfooy.itch.io/undergrowth",_menu.options[OptionCategory.NTTE_Credits][11].name)>0
             && string_pos("https://github.com/Yokinman/NTTE",_menu.options[OptionCategory.NTTE_Credits][10].name)>0,
             "Original six pack unlocks/time/bones or MOD contributors omitted")

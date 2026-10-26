@@ -2,6 +2,15 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [Home](../README.en.md)
 
+## 1.2.0
+
+26 selected Windows VM cases passed at 30/60 FPS. Details+ checks cover the native video toggle, normal/debug-mode disk-save and reload, restoration on disable, bounded/idempotent decoration, floor/scorch pairing, six statue/death/corpse lifecycles, geometry counts, gameplay RNG preservation and on/off offscreen rendering captures. All 76 frames of the 40 sprites were checked against source pixels, frame dimensions and origins.
+
+Regressions also cover actual area terrain, natural crown-statue entry, Undergrowth content and routing, Pizza shadow pixels, menus, fusion weapons, updates and the last-enemy rule. The Android updater passed 31 Java checks. Both packages passed frozen-source binding, version/signature/structure and Details+/Undergrowth compiled-code retention audits. Android versionCode is 3000085; iOS CFBundleVersion is 85.
+
+No physical-phone acceptance, fresh native Mac build or full-campaign acceptance was performed. iOS uses new VM data with the retained runner and requires re-signing. [Downloads](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.2.0).
+
+
 ## 1.1.0
 
 21 selected Windows VM cases passed at 30/60 FPS. Coverage includes new entities/weapons/terrain, bidirectional fusion, native collision and terminal callbacks, 1.0.x continuation-handle migration, a scheduled Scrap3-3 entrance→Undergrowth→Jungle route, a 10-second combat soak, chest-first entrance closure and Last Wish refund. Retained regressions cover Pizza shadow pixels, localized menus, drop pools, updates and related continuation paths.

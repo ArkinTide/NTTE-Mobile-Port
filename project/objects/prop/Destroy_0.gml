@@ -10,6 +10,7 @@ if (corpse && sprite_exists(spr_dead)) {
 		image_yscale = other.image_yscale
 		sprite_index = other.spr_dead
 		size = other.size
+        scrDPStatueCorpseLink(other.id,id);
 	}
 }
 

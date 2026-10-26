@@ -46706,6 +46706,270 @@
         "name": "UGNaturalTest",
         "path": "objects/UGNaturalTest/UGNaturalTest.yy"
       }
+    },
+    {
+      "id": {
+        "name": "sprDPDesertProtoStatueDecal",
+        "path": "sprites/sprDPDesertProtoStatueDecal/sprDPDesertProtoStatueDecal.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPDesertProtoStatueDecalDead",
+        "path": "sprites/sprDPDesertProtoStatueDecalDead/sprDPDesertProtoStatueDecalDead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPScrapyardProtoStatueDecal",
+        "path": "sprites/sprDPScrapyardProtoStatueDecal/sprDPScrapyardProtoStatueDecal.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPScrapyardProtoStatueDecalDead",
+        "path": "sprites/sprDPScrapyardProtoStatueDecalDead/sprDPScrapyardProtoStatueDecalDead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPCityProtoStatueDecal",
+        "path": "sprites/sprDPCityProtoStatueDecal/sprDPCityProtoStatueDecal.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPCityProtoStatueDecalDead",
+        "path": "sprites/sprDPCityProtoStatueDecalDead/sprDPCityProtoStatueDecalDead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPPalaceProtoStatueDecal",
+        "path": "sprites/sprDPPalaceProtoStatueDecal/sprDPPalaceProtoStatueDecal.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPPalaceProtoStatueDecalDead",
+        "path": "sprites/sprDPPalaceProtoStatueDecalDead/sprDPPalaceProtoStatueDecalDead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPCoastProtoStatueDecal",
+        "path": "sprites/sprDPCoastProtoStatueDecal/sprDPCoastProtoStatueDecal.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPCoastProtoStatueDecalDead",
+        "path": "sprites/sprDPCoastProtoStatueDecalDead/sprDPCoastProtoStatueDecalDead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPTrenchProtoStatueDecal",
+        "path": "sprites/sprDPTrenchProtoStatueDecal/sprDPTrenchProtoStatueDecal.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPTrenchProtoStatueDecalDead",
+        "path": "sprites/sprDPTrenchProtoStatueDecalDead/sprDPTrenchProtoStatueDecalDead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPDesertScorch",
+        "path": "sprites/sprDPDesertScorch/sprDPDesertScorch.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPDesertScorchTop",
+        "path": "sprites/sprDPDesertScorchTop/sprDPDesertScorchTop.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPDesertBScorch",
+        "path": "sprites/sprDPDesertBScorch/sprDPDesertBScorch.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPDesertBScorchTop",
+        "path": "sprites/sprDPDesertBScorchTop/sprDPDesertBScorchTop.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPCityScorch",
+        "path": "sprites/sprDPCityScorch/sprDPCityScorch.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPCityScorch2",
+        "path": "sprites/sprDPCityScorch2/sprDPCityScorch2.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPCityScorchTop",
+        "path": "sprites/sprDPCityScorchTop/sprDPCityScorchTop.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPCityScorchTop2",
+        "path": "sprites/sprDPCityScorchTop2/sprDPCityScorchTop2.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPCityExploScorch",
+        "path": "sprites/sprDPCityExploScorch/sprDPCityExploScorch.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPCityExploScorch2",
+        "path": "sprites/sprDPCityExploScorch2/sprDPCityExploScorch2.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPCityBScorch",
+        "path": "sprites/sprDPCityBScorch/sprDPCityBScorch.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPCityBScorch2",
+        "path": "sprites/sprDPCityBScorch2/sprDPCityBScorch2.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPCityBScorchTop",
+        "path": "sprites/sprDPCityBScorchTop/sprDPCityBScorchTop.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPCityBScorchTop2",
+        "path": "sprites/sprDPCityBScorchTop2/sprDPCityBScorchTop2.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPCampfireScorch",
+        "path": "sprites/sprDPCampfireScorch/sprDPCampfireScorch.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPCampfireScorchTop",
+        "path": "sprites/sprDPCampfireScorchTop/sprDPCampfireScorchTop.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPOasisScorch",
+        "path": "sprites/sprDPOasisScorch/sprDPOasisScorch.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPOasisScorchTop",
+        "path": "sprites/sprDPOasisScorchTop/sprDPOasisScorchTop.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPTrenchScorch",
+        "path": "sprites/sprDPTrenchScorch/sprDPTrenchScorch.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPTrenchScorchTop",
+        "path": "sprites/sprDPTrenchScorchTop/sprDPTrenchScorchTop.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPSnowFloorDesertB",
+        "path": "sprites/sprDPSnowFloorDesertB/sprDPSnowFloorDesertB.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPshdSnowFloorDesertB",
+        "path": "sprites/sprDPshdSnowFloorDesertB/sprDPshdSnowFloorDesertB.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPFloorDesertBOut",
+        "path": "sprites/sprDPFloorDesertBOut/sprDPFloorDesertBOut.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPFloorOasisBOut",
+        "path": "sprites/sprDPFloorOasisBOut/sprDPFloorOasisBOut.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPWallDesertBotB",
+        "path": "sprites/sprDPWallDesertBotB/sprDPWallDesertBotB.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPDetailDesertB",
+        "path": "sprites/sprDPDetailDesertB/sprDPDetailDesertB.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPDetailDesertMudB",
+        "path": "sprites/sprDPDetailDesertMudB/sprDPDetailDesertMudB.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprDPDetailDesertMudBig",
+        "path": "sprites/sprDPDetailDesertMudBig/sprDPDetailDesertMudBig.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrDetailsPlus",
+        "path": "scripts/scrDetailsPlus/scrDetailsPlus.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrDetailsPlusTests",
+        "path": "scripts/scrDetailsPlusTests/scrDetailsPlusTests.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "DPStaticDecor",
+        "path": "objects/DPStaticDecor/DPStaticDecor.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "DPStatueDecor",
+        "path": "objects/DPStatueDecor/DPStatueDecor.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

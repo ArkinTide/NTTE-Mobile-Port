@@ -1,8 +1,8 @@
 {
-  "source_candidate": "candidate83",
+  "source_candidate": "candidate85",
   "date": "2026-10-26",
-  "source_manifest_sha256": "410a31c6c61718a36b88b58b7f239b4ea13d62123f72435e8cc737175c6c60a6",
-  "windows_regression_receipt_sha256": "aff575f107899fc3f223da449236889649ae4cf3e17cd9da3e46ec0d53fd72e4",
+  "source_manifest_sha256": "0e81e1bfdf78d85f82a4f15773612cb4eb66fc4f73a39645f94424baafc9a02f",
+  "windows_regression_receipt_sha256": "4a7c8eb012645e8575ad0bda38abcd90ef91810bb154b5ad1de590871473bb35",
   "android_overlay_paths": [
     "options/android/options_android.yy"
   ],
@@ -27,7 +27,12 @@
     "UpdateStartupMenuTests",
     "LanguagePreferencePersistenceTests",
     "LastEnemyTimeoutNativeTests",
-    "SewerPizzaNaturalEntryTests"
+    "SewerPizzaNaturalEntryTests",
+    "DetailsPlusTests",
+    "ProtoStatueNaturalEntryTests",
+    "AreaTerrainSmoke",
+    "AchievementRepeatNativeTests",
+    "ConsoleOptionNativeTests"
   ],
   "rates": [
     30,
@@ -36,12 +41,12 @@
   "mobile_device_tested_this_round": false,
   "installers": {
     "android": {
-      "sha256": "2ee36c164d178c41d9678de0e20cc448010232e41051142cdfa8feabaacc3ebb",
-      "bytes": 252271505
+      "sha256": "3280b93530e664201aa4deb4dd0b698d28aa853ab2f7fccb0d60773b61a7c212",
+      "bytes": 252341180
     },
     "ios": {
-      "sha256": "c0678d0f81b2de6492aaa5ad501b58298f303e86ef3b63fcde09f3cbd8cc4b18",
-      "bytes": 176145113
+      "sha256": "7b51707f5efb2c5f986281ebe9f7a5e7219f1d000a839e9a68335942e63a4c7d",
+      "bytes": 176206744
     }
   },
   "android_native_policy_checks": 31,
@@ -49,9 +54,17 @@
   "ios_retained_runner_compatibility_checked": true,
   "native_xcode_compilation_performed": false,
   "installation_flow": "Android: in-game APK download and system installation confirmation; iOS: IPA download link with re-signing required",
-  "version": "1.1.0",
-  "version_policy": "1.1.x includes add-on MODs;1.0.4 and subsequent1.0.x retain original NTTE. Patch increments0.0.1; version-only public tags.",
-  "android_version_code": 3000083,
-  "ios_bundle_version": "83",
-  "undergrowth_source": "https://attfooy.itch.io/undergrowth"
+  "version": "1.2.0",
+  "version_policy": "1.1.0 and later include add-on MODs;1.0.4 and subsequent1.0.x retain original NTTE. Patch increments0.0.1; version-only public tags.",
+  "android_version_code": 3000085,
+  "ios_bundle_version": "85",
+  "undergrowth_source": "https://attfooy.itch.io/undergrowth",
+  "detailsplus_source": "https://wigglercola.itch.io/detailsplus",
+  "detailsplus_option": "visual_detailsplus",
+  "detailsplus_default_enabled": true,
+  "detailsplus_sprite_audit": {
+    "sprites": 40,
+    "frames": 76,
+    "exact_rgba_and_origins": true
+  }
 }

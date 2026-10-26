@@ -69,6 +69,7 @@ function scrSave() {
 				"cheats_framerate_ingame",
 				"options_framerate",
 				"visual_particles",
+                "visual_detailsplus",
 			]
 			
 			for(var _race_id = 0; _race_id < array_length(cpref_list); _race_id ++)

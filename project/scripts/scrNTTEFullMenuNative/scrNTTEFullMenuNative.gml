@@ -213,7 +213,8 @@ function scrNTTEFullMenuDefine() {
         ["Special Thanks","kuzumi#Golden vegetable#Dinosaur leader#blaac / jordy / Emffles / minichibis#Twitter: blaac_ / akimokawa#EmfflesTWO / minichibisart"],
         ["iOS port","ArkinTide"],
         ["Original NTTE project","https://github.com/Yokinman/NTTE"],
-        ["Undergrowth","matt / attfooy#https://attfooy.itch.io/undergrowth"]]
+        ["Undergrowth","matt / attfooy#https://attfooy.itch.io/undergrowth"],
+        ["Details+","wigglercola#https://wigglercola.itch.io/detailsplus"]]
     for(var _i=0;_i<array_length(_credits);++_i) {
         var _text=_credits[_i][0]+"#"+_credits[_i][1]
         // Measure the final text, including all added names, before native

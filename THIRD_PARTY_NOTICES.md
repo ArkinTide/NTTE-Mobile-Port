@@ -18,3 +18,5 @@
 No new blanket license is asserted for original-game or third-party art, audio, fonts or trademarks.
 
 - Undergrowth v1.0.3 add-on: matt / attfooy and its contributors; original project: [https://attfooy.itch.io/undergrowth](https://attfooy.itch.io/undergrowth). Original authors retain their artwork, audio and other third-party rights.
+
+- Details+ 1.1 add-on: wigglercola; original project: [https://wigglercola.itch.io/detailsplus](https://wigglercola.itch.io/detailsplus). Original authors retain their artwork and other third-party rights.

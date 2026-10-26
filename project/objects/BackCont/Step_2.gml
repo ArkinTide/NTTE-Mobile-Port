@@ -6,4 +6,5 @@ if current_frame % 5 == 0 && surface_exists(shad) &&
 	surface_resize(shad, view_width, view_height)
 }
 
+scrDPLevelTick();
 scrShadows()

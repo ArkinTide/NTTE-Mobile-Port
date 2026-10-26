@@ -43,6 +43,8 @@ function scrOptionsUpdate() {
         opt_sideart = save_get_option("options", "sideart", true)
         opt_color = save_get_option("options", "color", false)
 		
+        opt_detailsplus = save_get_option("visual", "detailsplus", true)
+        scrDPOptionsChanged();
         opt_simplify = save_get_option("visual", "simplify", false)
         opt_prtcls = save_get_option("visual", "particles", true)
         opt_bloom = save_get_option("visual", "bloom", true)

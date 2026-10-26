@@ -19,7 +19,7 @@ if (!instance_exists(Player) or instance_exists(GenCont)) && room == romGame {
 		draw_set_valign(fa_bottom)
 		
 	    draw_set_color(#606060)
-        draw_text_nt(view_width - offx, view_height - 6, os_type==os_ios ? GAME_VERSION+" r49":GAME_VERSION)
+        draw_text_nt(view_width - offx, view_height - 6, GAME_VERSION)
 	    
 		draw_set_halign(fa_left)
 		draw_set_valign(fa_top)

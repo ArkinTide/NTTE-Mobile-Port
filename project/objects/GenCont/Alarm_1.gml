@@ -103,5 +103,6 @@ with (Wall) {
 // （放在这里而不是「每帧轮询」：这是关卡定稿的唯一确定时点，不会卡住、也不会被出生点覆盖。）
 scr_console_debugclear_restore()
 scrUGAfterGeneration();
+scrDPApply(true);
 
 instance_destroy()

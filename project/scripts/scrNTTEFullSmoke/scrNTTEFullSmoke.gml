@@ -61,6 +61,7 @@ function scrNTTEFullSmokeStep() {
         global.ntte_full_test_count=0;
         scrNTTESmokeLog("FULL INTERNAL BEGIN @"+string(30/timescale))
         if(scrNTTEFullSmokeAsyncCase("UndergrowthNaturalTests")) {scrUGNaturalTests();return;}
+        if(scrNTTEFullSmokeCase("DetailsPlusTests")) scrDetailsPlusTests();
         if(scrNTTEFullSmokeCase("UndergrowthEntityTests")) scrUndergrowthEntityTests();
         if(scrNTTEFullSmokeCase("UndergrowthWeaponTests")) scrUndergrowthWeaponTests();
         if(scrNTTEFullSmokeCase("UndergrowthAreaTests")) scrUndergrowthAreaTests();

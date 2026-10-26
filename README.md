@@ -3,20 +3,30 @@
 [简体中文](README.md) | [English](README.en.md)
 
 NTTE 移植版的 GameMaker 源码，包含 Android、iOS 适配和简体中文。
-当前源码基线为 **1.1.0（2026-10-26）**。
+当前源码基线为 **1.2.0（2026-10-26）**。
 
 ## 下载安装包
 
-最后交付的 Android APK 和 iOS IPA 可在 [1.1.0 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.1.0) 下载：
+最后交付的 Android APK 和 iOS IPA 可在 [1.2.0 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.2.0) 下载：
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.1.0/NuclearThrone.TerritorialExpansion-Android-1.1.0.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.1.0/NuclearThrone.TerritorialExpansion-iOS-1.1.0.ipa)：安装前需要用自己的签名身份重新签名。
-- [SHA-256 校验文件](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.1.0/SHA256SUMS.txt)
+- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.2.0/NuclearThrone.TerritorialExpansion-Android-1.2.0.apk)
+- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.2.0/NuclearThrone.TerritorialExpansion-iOS-1.2.0.ipa)：安装前需要用自己的签名身份重新签名。
+- [SHA-256 校验文件](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.2.0/SHA256SUMS.txt)
 
 两平台使用独立标识 `com.arkintide.nuclearthronentte`。本轮验证范围见[验证记录](docs/VALIDATION.md)。
 安装包作为 Releases 附件提供；Git 源码目录不包含安装包、签名密钥或个人存档。
 
-> 从本次更新开始，将会加入一些别的 MOD 的内容。想要玩到原版 NTTE，请下载 1.0.4 以及后续 1.0.x 版本。
+> 从 1.1.0 更新开始，将会加入一些别的 MOD 的内容。想要玩到原版 NTTE，请下载 1.0.4 以及后续 1.0.x 版本。
+
+## 1.2.0 更新内容
+
+- 整合 Details+ 1.1：增加地面装饰聚簇、分地板爆炸焦痕、王冠雕像及碎裂装饰、沙漠泥地与绿洲地板过渡。
+- 新增 **设置 → 视频 → DETAILS+ 细节增强** 开关，默认开启并保存选择；关闭会移除新增装饰并恢复原贴图，随时可以重新开启。
+- 保留原 MOD 的 40 张精灵资源（76 帧）；适配 NTTE 海滩、海沟和绿洲区域编号。
+- 装饰在关卡生成或开关变化时应用，焦痕在创建时匹配，避免每帧扫描所有焦痕；反复开关不累积装饰，并保留战斗随机序列。
+- Android/iOS 同步为 1.2.0；保留 Undergrowth 及先前修复，统一游戏内版本与更新器显示。
+
+Details+: [https://wigglercola.itch.io/detailsplus](https://wigglercola.itch.io/detailsplus)
 
 ## 1.1.0 更新内容
 
@@ -117,3 +127,5 @@ iOS port by ArkinTide
 原 NTM 工程：<https://github.com/toarch7/nt-recreated-public>
 
 Undergrowth — matt / attfooy: [https://attfooy.itch.io/undergrowth](https://attfooy.itch.io/undergrowth)
+
+Details+ — wigglercola: [https://wigglercola.itch.io/detailsplus](https://wigglercola.itch.io/detailsplus)

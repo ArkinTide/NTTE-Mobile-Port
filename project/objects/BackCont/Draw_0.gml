@@ -3,7 +3,7 @@ if lockstep_stop
 
 //draw
 with Scorch {
-    draw_sprite(sprScorchTop, image_index, x, y)
+    scrDPScorchTopDraw();
 }
 
 if surface_exists(shad) {
