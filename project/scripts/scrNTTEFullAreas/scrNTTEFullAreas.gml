@@ -4,6 +4,7 @@
 function scrNTTEFullAreaInfo(_key) {
     if(is_real(_key)) _key=scrNTTEFullAreaKey(_key);
     switch(_key) {
+        case "undergrowth": return {key:"undergrowth",area_id:207,subareas:1,goal:120,next_area:area_jungle,next_subarea:1,background:make_color_rgb(102,78,24),shadow:make_color_rgb(28,0,14),ambient:amb4,music:musUGUndergrowth,music_b:musUGUndergrowth,boss_music:"",boss_intro:""};
         case "coast": return {key:"coast",area_id:201,subareas:3,goal:100,next_area:202,next_subarea:1,
             background:make_color_rgb(42,145,205),shadow:c_black,ambient:amb0b,
             music:"mus.Coast",music_b:"mus.CoastB",boss_music:"mus.SealKing",boss_intro:""};
@@ -38,6 +39,7 @@ function scrNTTEFullAreaKey(_area) {
         case 204: return "lair";
         case 205: return "trench";
         case 206: return "red";
+        case 207: return "undergrowth";
     }
     return "";
 }
@@ -48,6 +50,7 @@ function scrNTTEFullAreaMapLabel(_area,_subarea) {
     switch(_key) {
         case "coast":return "@1("+string(scrNTTERefSprite("RouteIcon"))+":0)1-"+string(_subarea<=0?"?":_subarea);
         case "oasis":return "@1("+string(scrNTTERefSprite("RouteIcon"))+":0)2-"+string(_subarea);
+        case "undergrowth":return "???";
         case "pizza":return "2-@2(sprSlice:0)";
         case "lair":return "2-?";
         case "trench":return "@1("+string(scrNTTERefSprite("RouteIcon"))+":0)3-"+string(_subarea);
@@ -82,6 +85,7 @@ function scrNTTEFullAreaMetadataTests() {
 
 // area_sprite and area_setup_floor from the six original area modules.
 function scrNTTEFullAreaFloorSprite(_area,_style=false,_explo=false) {
+    if(_area==207) return _explo?sprUGFloorUndergrowthExplo:(_style?sprUGFloorUndergrowthB:sprUGFloorUndergrowth);
     switch(scrNTTEFullAreaKey(_area)) {
         case "coast": return _explo?sprFloor1Explo:scrNTTERefSprite(_style?"FloorCoastB":"FloorCoast");
         case "oasis": return _explo?sprFloor101Explo:(_style?sprFloor101B:sprFloor101);
@@ -100,6 +104,7 @@ function scrNTTEFullAreaFloorSetup(_area,_explo=false) {
     sprite_index=_sprite;
     if(_explo) return;
     switch(scrNTTEFullAreaKey(_area)) {
+        case "undergrowth":material=styleb?1:4;if(styleb) depth=8;break;
         case "coast": material=1; break;
         case "oasis": material=styleb?4:1; if(styleb) depth=8; break;
         case "pizza": material=styleb?6:2; if(styleb) depth=8; break;
@@ -109,6 +114,7 @@ function scrNTTEFullAreaFloorSetup(_area,_explo=false) {
     }
 }
 function scrNTTEFullAreaDetailSprite(_area) {
+    if(_area==207) return sprUGDetailUndergrowth;
     switch(scrNTTEFullAreaKey(_area)) {
         case "coast": return scrNTTERefSprite("DetailCoast");
         case "oasis": return sprDetail101;
@@ -120,6 +126,7 @@ function scrNTTEFullAreaDetailSprite(_area) {
     return -1;
 }
 function scrNTTEFullAreaWallSprite(_area,_part) {
+    if(_area==207) { switch(_part) {case "Top":return sprUGWallUndergrowthTop;case "Bot":return sprUGWallUndergrowthBot;case "Out":return sprUGWallUndergrowthOut;case "Trans":return sprUGWallUndergrowthTrans;case "Debris":return sprUGDebrisUndergrowth;} }
     var _key=scrNTTEFullAreaKey(_area),_base=_area,_name="";
     switch(_key) {
         case "coast": _base=1; break;

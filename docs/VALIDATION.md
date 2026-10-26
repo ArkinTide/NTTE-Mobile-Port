@@ -2,6 +2,15 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [返回首页](../README.md)
 
+## 1.1.0
+
+21 项选定 Windows VM 测试在 30/60 帧通过，包括新增实体/武器/地形、双向融合、原生碰撞及销毁回调、1.0.x 续关编号迁移、自然 3-3 入口→新区域→丛林路线、10 秒战斗观察、先开箱关闭入口和 Last Wish 返还。保留披萨阴影像素回归、菜单汉化、掉落池、更新器与相关续关验证。
+
+Android 下载器通过 31 项 Java 检查。两端安装包经过源码冻结绑定、版本/签名/结构及编译函数保留审核。Android versionCode 3000083，iOS CFBundleVersion 83。
+
+未完成手机真机验收或新 Mac 原生构建；测试不代表完整战役验收。iOS 使用新编译 VM 数据及保留的原生 runner，安装前需重新签名。[下载](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.1.0)。
+
+
 ## 1.0.4
 
 9 项选定 Windows VM 测试在 30/60 帧通过：`PizzaShadow104Tests`, `PizzaShadow104NaturalTests`, `PizzaShadow78Tests`, `OptionalShadowNativeTests`, `IOSShadowPresentTests`, `TopShadowNativeDrawTests`, `SewerPizzaNaturalEntryTests`, `UpdateCheckTests`, `UpdateStartupMenuTests`。

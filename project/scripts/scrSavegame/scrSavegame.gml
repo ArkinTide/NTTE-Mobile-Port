@@ -169,6 +169,7 @@ catch(_ntte_palace_carry_error) { scrNTTEFullPalaceArtifactPortalCarryAbort(_ntt
 			}
 		}
 		
+        scrUGRebaseLoadedValue(_session_info.persistentweps,"persistentweps");
 		GameCont.persistentweps = _session_info.persistentweps
 		
 		array_foreach(_session_info.unlockscreens, function(_struct) {
@@ -291,6 +292,7 @@ function scrSavegamePlayers(_buffer, _is_load) {
 				_object_index = asset_get_index(_player_info.object_index_name)
 			
 			variable_struct_remove(_player_info, "object_index_name")
+            scrUGRebaseLoadedValue(_player_info);
 			
 			with (instance_create(0, 0, _object_index)) {
 				struct_foreach(_player_info, function(_vname, _value) {

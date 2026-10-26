@@ -45776,6 +45776,936 @@
         "name": "scrNTTEFollowup78Tests",
         "path": "scripts/scrNTTEFollowup78Tests/scrNTTEFollowup78Tests.yy"
       }
+    },
+    {
+      "id": {
+        "name": "sprUGEmber",
+        "path": "sprites/sprUGEmber/sprUGEmber.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGHealFire",
+        "path": "sprites/sprUGHealFire/sprUGHealFire.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGHealFireUltra",
+        "path": "sprites/sprUGHealFireUltra/sprUGHealFireUltra.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGDirectionalExplosion",
+        "path": "sprites/sprUGDirectionalExplosion/sprUGDirectionalExplosion.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGGreenDirectionalExplosion",
+        "path": "sprites/sprUGGreenDirectionalExplosion/sprUGGreenDirectionalExplosion.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGLavaSheet",
+        "path": "sprites/sprUGLavaSheet/sprUGLavaSheet.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFuelSheet",
+        "path": "sprites/sprUGFuelSheet/sprUGFuelSheet.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGLavaStreak",
+        "path": "sprites/sprUGLavaStreak/sprUGLavaStreak.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFuelStreak",
+        "path": "sprites/sprUGFuelStreak/sprUGFuelStreak.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGLavaSplash",
+        "path": "sprites/sprUGLavaSplash/sprUGLavaSplash.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGLavaSplashUltra",
+        "path": "sprites/sprUGLavaSplashUltra/sprUGLavaSplashUltra.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMushroomExplosion",
+        "path": "sprites/sprUGMushroomExplosion/sprUGMushroomExplosion.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "mskUGMushroomExplosion",
+        "path": "sprites/mskUGMushroomExplosion/mskUGMushroomExplosion.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFlamePuff",
+        "path": "sprites/sprUGFlamePuff/sprUGFlamePuff.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFlameSparkle",
+        "path": "sprites/sprUGFlameSparkle/sprUGFlameSparkle.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFlameSparkleBig",
+        "path": "sprites/sprUGFlameSparkleBig/sprUGFlameSparkleBig.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFloorUndergrowth",
+        "path": "sprites/sprUGFloorUndergrowth/sprUGFloorUndergrowth.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFloorUndergrowthB",
+        "path": "sprites/sprUGFloorUndergrowthB/sprUGFloorUndergrowthB.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFloorUndergrowthExplo",
+        "path": "sprites/sprUGFloorUndergrowthExplo/sprUGFloorUndergrowthExplo.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGWallUndergrowthTop",
+        "path": "sprites/sprUGWallUndergrowthTop/sprUGWallUndergrowthTop.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGWallUndergrowthBot",
+        "path": "sprites/sprUGWallUndergrowthBot/sprUGWallUndergrowthBot.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGWallUndergrowthOut",
+        "path": "sprites/sprUGWallUndergrowthOut/sprUGWallUndergrowthOut.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGWallUndergrowthTrans",
+        "path": "sprites/sprUGWallUndergrowthTrans/sprUGWallUndergrowthTrans.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGDebrisUndergrowth",
+        "path": "sprites/sprUGDebrisUndergrowth/sprUGDebrisUndergrowth.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGDetailUndergrowth",
+        "path": "sprites/sprUGDetailUndergrowth/sprUGDetailUndergrowth.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGUndergrowthTopDecal",
+        "path": "sprites/sprUGUndergrowthTopDecal/sprUGUndergrowthTopDecal.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGUndergrowthDecal",
+        "path": "sprites/sprUGUndergrowthDecal/sprUGUndergrowthDecal.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGBigDecalUndergrowth",
+        "path": "sprites/sprUGBigDecalUndergrowth/sprUGBigDecalUndergrowth.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFogUndergrowth",
+        "path": "sprites/sprUGFogUndergrowth/sprUGFogUndergrowth.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGLightBeamUndergrowth",
+        "path": "sprites/sprUGLightBeamUndergrowth/sprUGLightBeamUndergrowth.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGUndergrowthDecalVine",
+        "path": "sprites/sprUGUndergrowthDecalVine/sprUGUndergrowthDecalVine.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "mskUGUndergrowthDecalVine",
+        "path": "sprites/mskUGUndergrowthDecalVine/mskUGUndergrowthDecalVine.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGVineChest",
+        "path": "sprites/sprUGVineChest/sprUGVineChest.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGVineChestOpen",
+        "path": "sprites/sprUGVineChestOpen/sprUGVineChestOpen.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMushroom1Idle",
+        "path": "sprites/sprUGMushroom1Idle/sprUGMushroom1Idle.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMushroom1Hurt",
+        "path": "sprites/sprUGMushroom1Hurt/sprUGMushroom1Hurt.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMushroom1Dead",
+        "path": "sprites/sprUGMushroom1Dead/sprUGMushroom1Dead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMushroom1Spawn",
+        "path": "sprites/sprUGMushroom1Spawn/sprUGMushroom1Spawn.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMushroom1Explode",
+        "path": "sprites/sprUGMushroom1Explode/sprUGMushroom1Explode.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGVine1Idle",
+        "path": "sprites/sprUGVine1Idle/sprUGVine1Idle.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGVine1Hurt",
+        "path": "sprites/sprUGVine1Hurt/sprUGVine1Hurt.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGVine1Dead",
+        "path": "sprites/sprUGVine1Dead/sprUGVine1Dead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGVine2Idle",
+        "path": "sprites/sprUGVine2Idle/sprUGVine2Idle.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGVine2Hurt",
+        "path": "sprites/sprUGVine2Hurt/sprUGVine2Hurt.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGVine2Dead",
+        "path": "sprites/sprUGVine2Dead/sprUGVine2Dead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGEntryVineIdle",
+        "path": "sprites/sprUGEntryVineIdle/sprUGEntryVineIdle.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGEntryVineHurt",
+        "path": "sprites/sprUGEntryVineHurt/sprUGEntryVineHurt.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGEntryVineDead",
+        "path": "sprites/sprUGEntryVineDead/sprUGEntryVineDead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGEntryVineExit",
+        "path": "sprites/sprUGEntryVineExit/sprUGEntryVineExit.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "shdUGEntryVine",
+        "path": "sprites/shdUGEntryVine/shdUGEntryVine.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGBugBones1Idle",
+        "path": "sprites/sprUGBugBones1Idle/sprUGBugBones1Idle.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGBugBones1Hurt",
+        "path": "sprites/sprUGBugBones1Hurt/sprUGBugBones1Hurt.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGBugBones1Dead",
+        "path": "sprites/sprUGBugBones1Dead/sprUGBugBones1Dead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGPitcherPlantIdle",
+        "path": "sprites/sprUGPitcherPlantIdle/sprUGPitcherPlantIdle.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGPitcherPlantWalk",
+        "path": "sprites/sprUGPitcherPlantWalk/sprUGPitcherPlantWalk.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGPitcherPlantHurt",
+        "path": "sprites/sprUGPitcherPlantHurt/sprUGPitcherPlantHurt.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGPitcherPlantDead",
+        "path": "sprites/sprUGPitcherPlantDead/sprUGPitcherPlantDead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGPitcherPlantCharge",
+        "path": "sprites/sprUGPitcherPlantCharge/sprUGPitcherPlantCharge.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGPitcherPlantFire",
+        "path": "sprites/sprUGPitcherPlantFire/sprUGPitcherPlantFire.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGGoldPitcherPlantIdle",
+        "path": "sprites/sprUGGoldPitcherPlantIdle/sprUGGoldPitcherPlantIdle.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGGoldPitcherPlantWalk",
+        "path": "sprites/sprUGGoldPitcherPlantWalk/sprUGGoldPitcherPlantWalk.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGGoldPitcherPlantHurt",
+        "path": "sprites/sprUGGoldPitcherPlantHurt/sprUGGoldPitcherPlantHurt.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGGoldPitcherPlantDead",
+        "path": "sprites/sprUGGoldPitcherPlantDead/sprUGGoldPitcherPlantDead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGGoldPitcherPlantCharge",
+        "path": "sprites/sprUGGoldPitcherPlantCharge/sprUGGoldPitcherPlantCharge.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGGoldPitcherPlantFire",
+        "path": "sprites/sprUGGoldPitcherPlantFire/sprUGGoldPitcherPlantFire.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFlytrapIdle",
+        "path": "sprites/sprUGFlytrapIdle/sprUGFlytrapIdle.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFlytrapWalk",
+        "path": "sprites/sprUGFlytrapWalk/sprUGFlytrapWalk.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFlytrapHurt",
+        "path": "sprites/sprUGFlytrapHurt/sprUGFlytrapHurt.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFlytrapDead",
+        "path": "sprites/sprUGFlytrapDead/sprUGFlytrapDead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFlytrapChrg",
+        "path": "sprites/sprUGFlytrapChrg/sprUGFlytrapChrg.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFlytrapFire",
+        "path": "sprites/sprUGFlytrapFire/sprUGFlytrapFire.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "mskUGFlytrap",
+        "path": "sprites/mskUGFlytrap/mskUGFlytrap.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFireflyIdle",
+        "path": "sprites/sprUGFireflyIdle/sprUGFireflyIdle.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFireflyWalk",
+        "path": "sprites/sprUGFireflyWalk/sprUGFireflyWalk.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFireflyHurt",
+        "path": "sprites/sprUGFireflyHurt/sprUGFireflyHurt.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFireflyDead",
+        "path": "sprites/sprUGFireflyDead/sprUGFireflyDead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFireflyExplode",
+        "path": "sprites/sprUGFireflyExplode/sprUGFireflyExplode.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGUndergrowthBanditIdle",
+        "path": "sprites/sprUGUndergrowthBanditIdle/sprUGUndergrowthBanditIdle.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGUndergrowthBanditWalk",
+        "path": "sprites/sprUGUndergrowthBanditWalk/sprUGUndergrowthBanditWalk.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGUndergrowthBanditHurt",
+        "path": "sprites/sprUGUndergrowthBanditHurt/sprUGUndergrowthBanditHurt.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGUndergrowthBanditDead",
+        "path": "sprites/sprUGUndergrowthBanditDead/sprUGUndergrowthBanditDead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGUndergrowthBanditGun",
+        "path": "sprites/sprUGUndergrowthBanditGun/sprUGUndergrowthBanditGun.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGDragonflyIdle",
+        "path": "sprites/sprUGDragonflyIdle/sprUGDragonflyIdle.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGDragonflyWalk",
+        "path": "sprites/sprUGDragonflyWalk/sprUGDragonflyWalk.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGDragonflyTurn",
+        "path": "sprites/sprUGDragonflyTurn/sprUGDragonflyTurn.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGDragonflyHurt",
+        "path": "sprites/sprUGDragonflyHurt/sprUGDragonflyHurt.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGDragonflyDead",
+        "path": "sprites/sprUGDragonflyDead/sprUGDragonflyDead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "mskUGMillipede",
+        "path": "sprites/mskUGMillipede/mskUGMillipede.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeFootIdle",
+        "path": "sprites/sprUGMillipedeFootIdle/sprUGMillipedeFootIdle.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeFootHurt",
+        "path": "sprites/sprUGMillipedeFootHurt/sprUGMillipedeFootHurt.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeDead",
+        "path": "sprites/sprUGMillipedeDead/sprUGMillipedeDead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeBodyIdle1",
+        "path": "sprites/sprUGMillipedeBodyIdle1/sprUGMillipedeBodyIdle1.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeBodyIdle2",
+        "path": "sprites/sprUGMillipedeBodyIdle2/sprUGMillipedeBodyIdle2.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeBodyIdle3",
+        "path": "sprites/sprUGMillipedeBodyIdle3/sprUGMillipedeBodyIdle3.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeBodyIdle4",
+        "path": "sprites/sprUGMillipedeBodyIdle4/sprUGMillipedeBodyIdle4.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeBodyHurt1",
+        "path": "sprites/sprUGMillipedeBodyHurt1/sprUGMillipedeBodyHurt1.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeBodyHurt2",
+        "path": "sprites/sprUGMillipedeBodyHurt2/sprUGMillipedeBodyHurt2.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeBodyHurt3",
+        "path": "sprites/sprUGMillipedeBodyHurt3/sprUGMillipedeBodyHurt3.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeBodyHurt4",
+        "path": "sprites/sprUGMillipedeBodyHurt4/sprUGMillipedeBodyHurt4.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeHeadIdle1",
+        "path": "sprites/sprUGMillipedeHeadIdle1/sprUGMillipedeHeadIdle1.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeHeadIdle2",
+        "path": "sprites/sprUGMillipedeHeadIdle2/sprUGMillipedeHeadIdle2.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeHeadIdle3",
+        "path": "sprites/sprUGMillipedeHeadIdle3/sprUGMillipedeHeadIdle3.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeHeadIdle4",
+        "path": "sprites/sprUGMillipedeHeadIdle4/sprUGMillipedeHeadIdle4.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeHeadIdle5",
+        "path": "sprites/sprUGMillipedeHeadIdle5/sprUGMillipedeHeadIdle5.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeHeadIdle6",
+        "path": "sprites/sprUGMillipedeHeadIdle6/sprUGMillipedeHeadIdle6.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeHeadIdle7",
+        "path": "sprites/sprUGMillipedeHeadIdle7/sprUGMillipedeHeadIdle7.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeHeadIdle8",
+        "path": "sprites/sprUGMillipedeHeadIdle8/sprUGMillipedeHeadIdle8.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeHeadHurt1",
+        "path": "sprites/sprUGMillipedeHeadHurt1/sprUGMillipedeHeadHurt1.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeHeadHurt2",
+        "path": "sprites/sprUGMillipedeHeadHurt2/sprUGMillipedeHeadHurt2.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeHeadHurt3",
+        "path": "sprites/sprUGMillipedeHeadHurt3/sprUGMillipedeHeadHurt3.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeHeadHurt4",
+        "path": "sprites/sprUGMillipedeHeadHurt4/sprUGMillipedeHeadHurt4.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeHeadHurt5",
+        "path": "sprites/sprUGMillipedeHeadHurt5/sprUGMillipedeHeadHurt5.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeHeadHurt6",
+        "path": "sprites/sprUGMillipedeHeadHurt6/sprUGMillipedeHeadHurt6.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeHeadHurt7",
+        "path": "sprites/sprUGMillipedeHeadHurt7/sprUGMillipedeHeadHurt7.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeHeadHurt8",
+        "path": "sprites/sprUGMillipedeHeadHurt8/sprUGMillipedeHeadHurt8.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeTailIdle1",
+        "path": "sprites/sprUGMillipedeTailIdle1/sprUGMillipedeTailIdle1.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeTailIdle2",
+        "path": "sprites/sprUGMillipedeTailIdle2/sprUGMillipedeTailIdle2.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeTailIdle3",
+        "path": "sprites/sprUGMillipedeTailIdle3/sprUGMillipedeTailIdle3.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeTailIdle4",
+        "path": "sprites/sprUGMillipedeTailIdle4/sprUGMillipedeTailIdle4.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeTailHurt1",
+        "path": "sprites/sprUGMillipedeTailHurt1/sprUGMillipedeTailHurt1.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeTailHurt2",
+        "path": "sprites/sprUGMillipedeTailHurt2/sprUGMillipedeTailHurt2.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeTailHurt3",
+        "path": "sprites/sprUGMillipedeTailHurt3/sprUGMillipedeTailHurt3.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMillipedeTailHurt4",
+        "path": "sprites/sprUGMillipedeTailHurt4/sprUGMillipedeTailHurt4.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGWooIdle",
+        "path": "sprites/sprUGWooIdle/sprUGWooIdle.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGWooWalk",
+        "path": "sprites/sprUGWooWalk/sprUGWooWalk.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGWooHurt",
+        "path": "sprites/sprUGWooHurt/sprUGWooHurt.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGWooDead",
+        "path": "sprites/sprUGWooDead/sprUGWooDead.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFossilCannon",
+        "path": "sprites/sprUGFossilCannon/sprUGFossilCannon.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGLavaBombBig",
+        "path": "sprites/sprUGLavaBombBig/sprUGLavaBombBig.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFossilGun",
+        "path": "sprites/sprUGFossilGun/sprUGFossilGun.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGLavaBomb",
+        "path": "sprites/sprUGLavaBomb/sprUGLavaBomb.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFossilHammer",
+        "path": "sprites/sprUGFossilHammer/sprUGFossilHammer.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGLavaSlash",
+        "path": "sprites/sprUGLavaSlash/sprUGLavaSlash.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGFossilPistol",
+        "path": "sprites/sprUGFossilPistol/sprUGFossilPistol.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMegaGrenadeLauncher",
+        "path": "sprites/sprUGMegaGrenadeLauncher/sprUGMegaGrenadeLauncher.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMegaGrenade",
+        "path": "sprites/sprUGMegaGrenade/sprUGMegaGrenade.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprUGMegaGrenadeBlink",
+        "path": "sprites/sprUGMegaGrenadeBlink/sprUGMegaGrenadeBlink.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "musUGUndergrowth",
+        "path": "sounds/musUGUndergrowth/musUGUndergrowth.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrUndergrowthCallbacks",
+        "path": "scripts/scrUndergrowthCallbacks/scrUndergrowthCallbacks.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrUndergrowthNative",
+        "path": "scripts/scrUndergrowthNative/scrUndergrowthNative.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrUndergrowthArea",
+        "path": "scripts/scrUndergrowthArea/scrUndergrowthArea.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "UGEnemy",
+        "path": "objects/UGEnemy/UGEnemy.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "UGProp",
+        "path": "objects/UGProp/UGProp.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "UGHitme",
+        "path": "objects/UGHitme/UGHitme.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "UGObject",
+        "path": "objects/UGObject/UGObject.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "UGProjectile",
+        "path": "objects/UGProjectile/UGProjectile.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "UGSlash",
+        "path": "objects/UGSlash/UGSlash.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "UGTop",
+        "path": "objects/UGTop/UGTop.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "UGWorld",
+        "path": "objects/UGWorld/UGWorld.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "UGKnockback",
+        "path": "objects/UGKnockback/UGKnockback.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "UGChest",
+        "path": "objects/UGChest/UGChest.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "mskUGLilHunterDie",
+        "path": "sprites/mskUGLilHunterDie/mskUGLilHunterDie.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrUndergrowthTests",
+        "path": "scripts/scrUndergrowthTests/scrUndergrowthTests.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrUndergrowthNaturalTests",
+        "path": "scripts/scrUndergrowthNaturalTests/scrUndergrowthNaturalTests.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "UGNaturalTest",
+        "path": "objects/UGNaturalTest/UGNaturalTest.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

@@ -60,6 +60,11 @@ function scrNTTEFullSmokeStep() {
         if(scrNTTEFullParrotPauseWaitForNativeDraw()) return;
         global.ntte_full_test_count=0;
         scrNTTESmokeLog("FULL INTERNAL BEGIN @"+string(30/timescale))
+        if(scrNTTEFullSmokeAsyncCase("UndergrowthNaturalTests")) {scrUGNaturalTests();return;}
+        if(scrNTTEFullSmokeCase("UndergrowthEntityTests")) scrUndergrowthEntityTests();
+        if(scrNTTEFullSmokeCase("UndergrowthWeaponTests")) scrUndergrowthWeaponTests();
+        if(scrNTTEFullSmokeCase("UndergrowthAreaTests")) scrUndergrowthAreaTests();
+        if(scrNTTEFullSmokeCase("UndergrowthIntegrationTests")) scrUndergrowthIntegrationTests();
         if(scrNTTEFullSmokeCase("AreaMetadataTests")) scrNTTEFullAreaMetadataTests();
         if(scrNTTEFullSmokeDomain("world")) {
             if(scrNTTEFullSmokeCase("WorldSmoke")) scrNTTEFullWorldSmoke();

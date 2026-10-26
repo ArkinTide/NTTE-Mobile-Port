@@ -4,9 +4,11 @@
 /// @param {Enum.HitId|Array} hitid=HitId.None
 function scr_hit(_instance, _amount, _hitid = HitId.None, _ntte_raw = false, _ntte_direction = undefined, _ntte_force = 0) {
 
+    if(scrUGHasHurt(_instance)) return scrUGHurt(_instance,_amount,is_undefined(_ntte_direction)?scrNTTEFullValue(id,"direction",0):_ntte_direction,_ntte_force);
     // NTTE callback direction/force: raw0, explicit native projectile args
     if(_ntte_raw==1) { _ntte_direction=0; _ntte_force=0; }
     else if(is_undefined(_ntte_direction)) _ntte_direction=scrNTTEFullValue(id,"direction",0);
+    if(scrUGHasHurt(_instance)) return scrUGHurt(_instance,_amount,_ntte_direction,_ntte_force);
     // NTTE Weapon Mimic source hurt after raw/explicit direction normalization.
     if(instance_is(_instance,NTTEFullPetWeaponBoss))
         return scrNTTEFullWeaponMimicBossHurt(_instance,_amount,_ntte_direction,_ntte_force,id);
@@ -119,6 +121,7 @@ function scr_hit_self(_amount, _hitid = HitId.None) {
 /// @param knockback_amount=0
 /// @param knockback_direction=direction
 function scr_projectile_hit(_instance, _amount, _kb_amount = 0, _kb_direction = undefined, _ntte_native_direct = false, _ntte_hitid = undefined) {
+    if(scrUGHasHurt(_instance)) return scrUGHurt(_instance,_amount,is_undefined(_kb_direction)?scrNTTEFullValue(id,"direction",0):_kb_direction,_kb_amount);
     // NTTE Tesseract complete authored projectile callback.
     if(instance_is(_instance,NTTEFullTesseract))
         return scrNTTEFullTesseractHurt(_instance,_amount,is_undefined(_kb_direction)?scrNTTEFullValue(id,"direction",0):_kb_direction,_kb_amount,id);

@@ -152,6 +152,7 @@ function scrNTTEFullWeaponNativeExport() {
     return {version:1,base:global.ntte_full_native_weapon_base,root:_root,nodes:_graph.nodes}
 }
 function scrNTTEFullWeaponNativeImport(_data) {
+    global.ntte_weapon_load_rebase=undefined;
     if(!is_struct(_data) || !is_array(scrNTTEFullValue(_data,"nodes",undefined))) return;
     var _nodes=_data.nodes,_objects=[]
     for(var _i=0;_i<array_length(_nodes);++_i) array_push(_objects,_nodes[_i].array ? []:{})
@@ -163,11 +164,12 @@ function scrNTTEFullWeaponNativeImport(_data) {
             else variable_struct_set(_object,_entry[0],scrNTTEFullWeaponNativeDecode(_entry[1],_objects))
         }
     }
-    global.ntte_full_native_weapon_base=_data.base
+    scrUGWeaponImportRebase(_data,_objects);
+    global.ntte_full_native_weapon_base=max(maxwep+1,_data.base)
     global.ntte_full_native_weapon_models=scrNTTEFullWeaponNativeDecode(_data.root,_objects)
     var _models=global.ntte_full_native_weapon_models
     for(var _i=0;_i<array_length(_models);++_i) {
-        var _model=_models[_i],_handle=_data.base+_i
+        var _model=_models[_i],_handle=global.ntte_full_native_weapon_base+_i
         if(!is_struct(_model)) continue
         scrNTTEFullWeaponNativeRefresh(_handle)
         if(is_struct(scrNTTEFullValue(_model,"ntte_native_state",undefined)))

@@ -3,6 +3,7 @@
 // receive scrHurt's six-frame presentation. Original CustomEnemy/CustomHitme
 // targets instead call their MOD hurt callback with force=0,direction=0.
 function scrNTTEFullRawHitCustom(_target) {
+    if(scrUGHasHurt(_target)) return true;
     if(!variable_global_exists("ntte_full_raw_hurt_classes")) scrNTTEFullRawHitInit()
     for(var _i=0;_i<array_length(global.ntte_full_raw_hurt_classes);++_i)
         if(instance_is(_target,global.ntte_full_raw_hurt_classes[_i])) return true

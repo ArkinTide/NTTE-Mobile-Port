@@ -34,6 +34,7 @@ function scr_weapon_get_rads(_weapon) {
 }
 
 function scr_weapon_get_area(_weapon) {
+    if(_weapon==wep_ug_mega_grenade_launcher) return scrNTTEFullValue(id,"curse",0)>0 ? 8:-1;
     if(is_struct(_weapon) || scrNTTEFullWeaponIsNative(_weapon)) return scrNTTEFullWeaponNativeProperty(_weapon,"area")
     if(scrNTTEIsScythe(_weapon)) return scrNTTEFullBoneWeaponMetadata(_weapon,"area",0)
     var _registered_area=scrNTTEFullWeaponRegisteredArea(_weapon);

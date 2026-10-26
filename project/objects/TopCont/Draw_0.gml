@@ -4,6 +4,7 @@ if lockstep_stop
 wave += timescale
 
 var spr = -1
+if(GameCont.area==207) spr=sprUGFogUndergrowth;
 
 if (GameCont.area == area_pizza_sewers || GameCont.area == scrNTTEFullAreaId("lair") || GameCont.area == scrNTTEFullAreaId("pizza")) {
     spr = sprFog102

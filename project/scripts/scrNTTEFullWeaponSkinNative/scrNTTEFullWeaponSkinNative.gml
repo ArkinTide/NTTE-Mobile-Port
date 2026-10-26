@@ -56,6 +56,7 @@ function scrNTTEFullWeaponSkinName(_weapon,_name) {
 }
 function scrNTTEFullWeaponSkinStockSwap(_weapon) {
     var _raw=scrNTTEFullWeaponRaw(_weapon),_swap=wep_swap[_raw]
+    if(_raw>=wep_ug_fossil_pistol && _raw<=wep_ug_mega_grenade_launcher) _swap=scrUGWeaponSwap(_raw);
     if(_raw==wep_ntte_entangler || scrNTTEIsTunnel(_raw)) _swap=scrNTTEFullEntanglerSwap()
     else if(_raw==wep_ntte_annihilator) _swap=scrNTTEFullRedWeaponSwap()
     _swap=scrNTTEFullWeaponGoldMetadata(_weapon,"swap",_swap)

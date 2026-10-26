@@ -1,4 +1,4 @@
-﻿Localization Project Management
+Localization Project Management
 Local Heroes Worldwide B.V.
 Jelle Kihaishii-de Vaal
 
@@ -115,3 +115,10 @@ Special Thanks
 kuzumi
 Golden vegetable
 Dinosaur leader
+
+Undergrowth
+matt / attfooy
+https://attfooy.itch.io/undergrowth
+
+Original NTTE project
+https://github.com/Yokinman/NTTE

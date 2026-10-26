@@ -5,6 +5,7 @@ function scrNTTEFullRoadmapStep(_waypoint,_last,_warps) {
     var _area=_waypoint[0],_sub=_waypoint[1],_loops=_waypoint[2],
         _data={x:0,y:0,area:_area,subarea:_sub,loops:_loops,showdot:false,showline:true,warp:undefined}
     switch(scrNTTEFullAreaKey(_area)) {
+        case "undergrowth":_data.x=54;_data.y=0;break;
         case "coast":_data.x=18.15+9*(_sub-1);_data.y=-9;_data.showdot=_sub==1;break;
         case "oasis":_data.x=44;_data.y=-9;_data.showdot=_sub==1;break;
         case "pizza":case "lair":_data.x=_last.area==206?27:_last.x;_data.y=9;break;

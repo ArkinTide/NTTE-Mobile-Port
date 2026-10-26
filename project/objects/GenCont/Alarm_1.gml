@@ -102,5 +102,6 @@ with (Wall) {
 // 就在**上面把玩家摆到出生点（x/y = 10016）之后**，把坐标 / 武器还原回调用命令时的状态。
 // （放在这里而不是「每帧轮询」：这是关卡定稿的唯一确定时点，不会卡住、也不会被出生点覆盖。）
 scr_console_debugclear_restore()
+scrUGAfterGeneration();
 
 instance_destroy()

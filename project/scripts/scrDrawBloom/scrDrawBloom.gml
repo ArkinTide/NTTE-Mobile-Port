@@ -6,6 +6,7 @@ function scrDrawBloomSprite(_sprite,_frame,_x,_y,_xs,_ys,_angle,_color,_alpha) {
     draw_sprite_ext(_sprite,_frame,_x,_y,_xs,_ys,_angle,_color,_alpha)
 }
 function scrNTTEFullProjectileBloomDraw() {
+    scrUGBloom();
     // tegeneral6033: CustomProjectile glow, including bonus shell damage.
     with(projectile) if(variable_instance_exists(id,"ntte_bloom") && ntte_bloom>0
         && sprite_exists(sprite_index)) {

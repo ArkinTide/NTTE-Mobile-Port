@@ -1,3 +1,4 @@
+scrUGRoomStart();
 novans = false
 
 if (area == area_palace && subarea == maxsubarea) || (area == area_hq && subarea == maxsubarea)

@@ -3,18 +3,30 @@
 [简体中文](README.md) | [English](README.en.md)
 
 NTTE 移植版的 GameMaker 源码，包含 Android、iOS 适配和简体中文。
-当前源码基线为 **1.0.4（2026-10-26）**。
+当前源码基线为 **1.1.0（2026-10-26）**。
 
 ## 下载安装包
 
-最后交付的 Android APK 和 iOS IPA 可在 [1.0.4 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.0.4) 下载：
+最后交付的 Android APK 和 iOS IPA 可在 [1.1.0 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.1.0) 下载：
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.4/NuclearThrone.TerritorialExpansion-Android-1.0.4.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.4/NuclearThrone.TerritorialExpansion-iOS-1.0.4.ipa)：安装前需要用自己的签名身份重新签名。
-- [SHA-256 校验文件](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.4/SHA256SUMS.txt)
+- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.1.0/NuclearThrone.TerritorialExpansion-Android-1.1.0.apk)
+- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.1.0/NuclearThrone.TerritorialExpansion-iOS-1.1.0.ipa)：安装前需要用自己的签名身份重新签名。
+- [SHA-256 校验文件](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.1.0/SHA256SUMS.txt)
 
 两平台使用独立标识 `com.arkintide.nuclearthronentte`。本轮验证范围见[验证记录](docs/VALIDATION.md)。
 安装包作为 Releases 附件提供；Git 源码目录不包含安装包、签名密钥或个人存档。
+
+> 从本次更新开始，将会加入一些别的 MOD 的内容。想要玩到原版 NTTE，请下载 1.0.4 以及后续 1.0.x 版本。
+
+## 1.1.0 更新内容
+
+- 整合 Undergrowth v1.0.3：新增隐藏区域、敌人、场景物件、原作贴图、光效和音乐。
+- 在废车场 3-3 箱子附近保留藤蔓入口；先开箱会关闭入口。通过新区域后返回丛林。
+- 加入循环中的捕蝇草、马陆和黄金猪笼草，以及五把武器：化石手枪、化石枪、化石加农炮、化石锤、巨型榴弹发射器。
+- 新内容提供简体中文；其他语言显示英文。补齐所需中文字形，并适配融合武器及旧版续关中的武器编号。
+- Android/iOS 同步更新为 1.1.0，保留 1.0.4 的披萨下水道墙外阴影修复。
+
+Undergrowth: [https://attfooy.itch.io/undergrowth](https://attfooy.itch.io/undergrowth)
 
 ## 1.0.4 更新内容
 
@@ -103,3 +115,5 @@ iOS port by ArkinTide
 
 上游工程：<https://github.com/kcd-shichen/NuclearThrone-Recreated-Epsilon>  
 原 NTM 工程：<https://github.com/toarch7/nt-recreated-public>
+
+Undergrowth — matt / attfooy: [https://attfooy.itch.io/undergrowth](https://attfooy.itch.io/undergrowth)

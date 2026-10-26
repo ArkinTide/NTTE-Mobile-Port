@@ -95,6 +95,7 @@ function scrNTTEFullLoadingTipsSetup(_gen) {
                 }
             }
         }
+        if(GameCont.area==207) _gen.tip_ntte=scrUG_area_text();
         if(_gen.tip_ntte!="") _gen.tip=string_replace_all(scrNTTEFullDisplay(_gen.tip_ntte),"@1(sprKeySmall:pick)",scrNTTEFullLoadingPickTag())
     }
     finally {random_set_seed(_seed)}

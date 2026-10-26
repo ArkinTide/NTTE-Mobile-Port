@@ -2,6 +2,15 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [Home](../README.en.md)
 
+## 1.1.0
+
+21 selected Windows VM cases passed at 30/60 FPS. Coverage includes new entities/weapons/terrain, bidirectional fusion, native collision and terminal callbacks, 1.0.x continuation-handle migration, a scheduled Scrap3-3 entrance→Undergrowth→Jungle route, a 10-second combat soak, chest-first entrance closure and Last Wish refund. Retained regressions cover Pizza shadow pixels, localized menus, drop pools, updates and related continuation paths.
+
+The Android downloader passed 31 Java checks. Both installers passed frozen-source binding, version/signature/structure and compiled-function preservation audits. Android versionCode is 3000083; iOS CFBundleVersion is 83.
+
+No physical-phone acceptance or fresh native Mac build was performed; these tests are not full-campaign acceptance. iOS uses newly compiled VM data with the retained native runner and requires re-signing. [Downloads](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.1.0).
+
+
 ## 1.0.4
 
 9 selected Windows VM cases passed at 30/60 FPS: `PizzaShadow104Tests`, `PizzaShadow104NaturalTests`, `PizzaShadow78Tests`, `OptionalShadowNativeTests`, `IOSShadowPresentTests`, `TopShadowNativeDrawTests`, `SewerPizzaNaturalEntryTests`, `UpdateCheckTests`, `UpdateStartupMenuTests`.

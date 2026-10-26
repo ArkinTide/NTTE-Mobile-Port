@@ -116,6 +116,7 @@ if(area==scrNTTEFullAreaId("lair")) {
     scrNTTEFullLairTransit();
 }
 // END NTTE LAIR SOURCE FINISH TRANSIT
+if(area==207) {scrUGFinishDestination();}
 var _ntte_destination=scrNTTEFullAreaTakeDestination();
 if(is_struct(_ntte_destination)) {
     // BEGIN NTTE OASIS CRACK CONSUME ENTRY FINISH

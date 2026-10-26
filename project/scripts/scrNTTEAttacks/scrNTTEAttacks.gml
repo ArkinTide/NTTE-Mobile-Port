@@ -27,6 +27,7 @@ function scrNTTESlash(_kind, _damage, _sprite, _state = undefined, _scale = 1) {
 }
 
 function scrNTTEFireAll(_w, _primary) {
+    if(scrUGWeaponFire(_w,_primary)) return;
     if(scrNTTEFullCrabbonePhysicalFire(_w,_primary)) return;
     if(scrNTTEFullCrabboneFire(_w,_primary)) return;
     if(_w==wep_ntte_dematerializer) {scrNTTEFullDematerializerFire(_primary);return;}

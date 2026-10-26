@@ -1,22 +1,33 @@
 {
-  "source_candidate": "candidate81",
+  "source_candidate": "candidate83",
   "date": "2026-10-26",
-  "source_manifest_sha256": "6da3294fefb89f5516b3bf03173fd41c3e40c2f1cf7e899700301f0483b7e48c",
-  "windows_regression_receipt_sha256": "59445f7a3caf9a520180b47442111e5fe0bfb6dbecd9e20a1070f9c5db575c27",
+  "source_manifest_sha256": "410a31c6c61718a36b88b58b7f239b4ea13d62123f72435e8cc737175c6c60a6",
+  "windows_regression_receipt_sha256": "aff575f107899fc3f223da449236889649ae4cf3e17cd9da3e46ec0d53fd72e4",
   "android_overlay_paths": [
-    "objects/MakeGame/Alarm_0.gml",
     "options/android/options_android.yy"
   ],
   "selected_windows_cases": [
+    "UndergrowthEntityTests",
+    "UndergrowthWeaponTests",
+    "UndergrowthAreaTests",
+    "UndergrowthIntegrationTests",
+    "UndergrowthNaturalTests",
+    "AreaMetadataTests",
+    "WeaponDropUnitTests",
+    "WeaponDropLifecycleUnitTests",
+    "MergedNativeInventoryUnitTests",
+    "MergedRuntimeDispatchTests",
+    "MergedNativeCollisionTests",
+    "MergedNativePayloadTests",
+    "MenuNativeTests",
     "PizzaShadow104Tests",
     "PizzaShadow104NaturalTests",
-    "PizzaShadow78Tests",
-    "OptionalShadowNativeTests",
     "IOSShadowPresentTests",
-    "TopShadowNativeDrawTests",
-    "SewerPizzaNaturalEntryTests",
     "UpdateCheckTests",
-    "UpdateStartupMenuTests"
+    "UpdateStartupMenuTests",
+    "LanguagePreferencePersistenceTests",
+    "LastEnemyTimeoutNativeTests",
+    "SewerPizzaNaturalEntryTests"
   ],
   "rates": [
     30,
@@ -25,21 +36,22 @@
   "mobile_device_tested_this_round": false,
   "installers": {
     "android": {
-      "sha256": "1ce66dc960f66042349a9b0ee565d76efb53002305aad02b226017225ccaf2bc",
-      "bytes": 250444157
+      "sha256": "2ee36c164d178c41d9678de0e20cc448010232e41051142cdfa8feabaacc3ebb",
+      "bytes": 252271505
     },
     "ios": {
-      "sha256": "8e8d9528c754cab783f46abae67f90763df402d8ddefc6066e3bf5b1d0dbf543",
-      "bytes": 174344225
+      "sha256": "c0678d0f81b2de6492aaa5ad501b58298f303e86ef3b63fcde09f3cbd8cc4b18",
+      "bytes": 176145113
     }
   },
-  "android_native_policy_checks": 20,
+  "android_native_policy_checks": 31,
   "android_native_module_compiled": true,
   "ios_retained_runner_compatibility_checked": true,
   "native_xcode_compilation_performed": false,
   "installation_flow": "Android: in-game APK download and system installation confirmation; iOS: IPA download link with re-signing required",
-  "version": "1.0.4",
-  "version_policy": "Patch increments by 0.0.1; version-only public tags and installer filenames. Next 1.0.5.",
-  "android_version_code": 3000081,
-  "ios_bundle_version": "81"
+  "version": "1.1.0",
+  "version_policy": "1.1.x includes add-on MODs;1.0.4 and subsequent1.0.x retain original NTTE. Patch increments0.0.1; version-only public tags.",
+  "android_version_code": 3000083,
+  "ios_bundle_version": "83",
+  "undergrowth_source": "https://attfooy.itch.io/undergrowth"
 }

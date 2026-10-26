@@ -18,6 +18,7 @@ function scrNTTEFullMinerBanditStep() {
 // Call inside scrDarkness's existing gray and black passes. Original NTT draws
 // world coordinates using an engine matrix; Epsilon's target uses view-local.
 function scrNTTEFullWorldDarkDraw(_gray,_vx,_vy) {
+    scrUGDark(_gray,_vx,_vy);
     scrNTTEFullRedWorldDarkDraw(_gray,_vx,_vy);
 
     // tesewers6173..6252. Light sprites belong in both actual darkness passes;
@@ -68,6 +69,7 @@ function scrNTTEFullWorldDarkDraw(_gray,_vx,_vy) {
 
 // scrShadows renders into its view-local shadow surface.
 function scrNTTEFullWorldExtraShadowDraw(_vx,_vy) {
+    scrUGShadows(_vx,_vy);
     scrNTTEFullRedBossShadowDraw(_vx,_vy);
 
     with (NTTEFullCrystalBrainDeath) if (visible) draw_sprite(spr_shadow,0,x-_vx+spr_shadow_x,y-_vy+spr_shadow_y)

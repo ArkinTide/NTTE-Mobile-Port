@@ -5,7 +5,7 @@
 #macro wep_ntte_beetle_blaster 131
 #macro wep_ntte_lightring_launcher 132
 #macro wep_ntte_lightring_cannon 133
-#macro wep_ntte_last 173
+#macro wep_ntte_last 178
 
 function scrNTTEWeaponsInit() {
 	var _id = wep_ntte_rogue_carbine
@@ -37,6 +37,7 @@ function scrNTTEWeaponsInit() {
 		"LIGHTRING CANNON", "EYE OF THE STORM", 8, 90, true, 13,
 		sprNTTELightringCannon, sndSwapEnergy)
 	scrNTTEAllInit()
+    scrUGWeaponsInit();
     scrNTTEFullWeaponArtInit();
 	wep_type[wep_ntte_lightring_launcher] = Ammo.Energy
 	wep_type[wep_ntte_lightring_cannon] = Ammo.Energy

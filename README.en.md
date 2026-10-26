@@ -3,19 +3,31 @@
 [简体中文](README.md) | [English](README.en.md)
 
 GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
-The current source baseline is **1.0.4 (2026-10-26)**.
+The current source baseline is **1.1.0 (2026-10-26)**.
 
 ## Downloads
 
-The latest delivered Android APK and iOS IPA are available on the [1.0.4 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.0.4):
+The latest delivered Android APK and iOS IPA are available on the [1.1.0 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.1.0):
 
-- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.4/NuclearThrone.TerritorialExpansion-Android-1.0.4.apk)
-- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.4/NuclearThrone.TerritorialExpansion-iOS-1.0.4.ipa): sign or re-sign with your own signing identity before installing.
-- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.0.4/SHA256SUMS.txt)
+- [Android APK](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.1.0/NuclearThrone.TerritorialExpansion-Android-1.1.0.apk)
+- [iOS IPA](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.1.0/NuclearThrone.TerritorialExpansion-iOS-1.1.0.ipa): sign or re-sign with your own signing identity before installing.
+- [SHA-256 checksums](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/download/1.1.0/SHA256SUMS.txt)
 
 Both platforms use the separate application identifier `com.arkintide.nuclearthronentte`.
 See the [validation notes](docs/VALIDATION.en.md) for the scope of verification.
 Installers are distributed as release assets; the Git source tree contains no installers, signing keys, or personal saves.
+
+> Starting with this update, content from other MODs will be added. To play the original NTTE content, download 1.0.4 or a subsequent 1.0.x release.
+
+## Changes in 1.1.0
+
+- Integrated Undergrowth v1.0.3: a secret area, enemies, props, original artwork, lighting and music.
+- Preserved the Vine entrance near a chest in Scrapyards 3-3; opening the chest first closes it. The new area exits to Jungle.
+- Added loop Flytraps, Millipedes and Golden Pitcher Plants, plus Fossil Pistol, Fossil Gun, Fossil Cannon, Fossil Hammer and Mega Grenade Launcher.
+- Added Simplified Chinese text and glyphs; other languages retain English. Adapted fusion weapons and migrated legacy continuation weapon handles.
+- Updated Android/iOS to 1.1.0, retaining the 1.0.4 Pizza exterior-shadow repair.
+
+Undergrowth: [https://attfooy.itch.io/undergrowth](https://attfooy.itch.io/undergrowth)
 
 ## Changes in 1.0.4
 
@@ -104,3 +116,5 @@ Thanks also to the original NTTE MOD authors and contributors, and to ToD for th
 - Original NTTE project: [Yokinman/NTTE](https://github.com/Yokinman/NTTE)
 - Upstream Epsilon project: [kcd-shichen/NuclearThrone-Recreated-Epsilon](https://github.com/kcd-shichen/NuclearThrone-Recreated-Epsilon)
 - Original NTM project: [toarch7/nt-recreated-public](https://github.com/toarch7/nt-recreated-public)
+
+Undergrowth — matt / attfooy: [https://attfooy.itch.io/undergrowth](https://attfooy.itch.io/undergrowth)

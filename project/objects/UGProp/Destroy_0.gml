@@ -1,0 +1,2 @@
+scrUGDestroy();
+event_inherited();

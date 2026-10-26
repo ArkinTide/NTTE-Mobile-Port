@@ -64,6 +64,7 @@ function scrNTTEFullLairStep() {
 // Original area_effect callbacks run from the native BackCont alarm, retaining
 // the player's particles setting and native camera rather than a second timer.
 function scrNTTEFullAreaEffect() {
+    if(GameCont.area==207) {scrUGEffect();return true;}
     if(GameCont.area==scrNTTEFullAreaId("red")) { scrNTTEFullRedEffect(); return true }
 
     if(GameCont.area==scrNTTEFullAreaId("coast")) { scrNTTEFullCoastEffect(); return true }
@@ -119,6 +120,7 @@ function scrNTTEFullLairEnemies(_x,_y,_number) {
 // Real per-floor area callbacks, called by native population before its
 // vanilla spawn-area switch. Keep the native driver for density/chests/IDPD.
 function scrNTTEFullAreaPopEnemies(_area) {
+    if(_area==207) {scrUG_area_pop_enemies();return true;}
     if(_area==scrNTTEFullAreaId("red")) { scrNTTEFullRedPopEnemies(); return true }
 
     if(_area==scrNTTEFullAreaId("coast")) { scrNTTEFullCoastPopEnemies(); return true }
@@ -142,6 +144,7 @@ function scrNTTEFullAreaPopEnemies(_area) {
 }
 
 function scrNTTEFullAreaPopProps(_area) {
+    if(_area==207) {scrUG_area_pop_props();return true;}
     if(_area==scrNTTEFullAreaId("red")) { scrNTTEFullRedPopProps(); return true }
 
     if(_area==scrNTTEFullAreaId("coast")) { scrNTTEFullCoastPopProps(); return true }

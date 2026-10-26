@@ -20,6 +20,7 @@ function scrWallBreakSound() {
         case area_labs:
             _snd = sndWallBreakLabs
             break
+        case 207:
         case area_jungle:
             _snd = sndWallBreakJungle
             break

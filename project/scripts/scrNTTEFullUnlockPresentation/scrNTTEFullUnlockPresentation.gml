@@ -500,6 +500,7 @@ function scrNTTEFullIsSimplifiedChinese() {
 }
 function scrNTTEFullLocalizeInstall() {
     if(!variable_global_exists("ntte_zh_dictionary")) scrNTTEFullLocalizeDictionary()
+    scrUGLocalize();
     global.ntte_zh_keys=variable_struct_get_names(global.ntte_zh_dictionary)
     global.ntte_zh_cache={}
     if(!variable_global_exists("language_store") || !is_struct(global.language_store)) return;

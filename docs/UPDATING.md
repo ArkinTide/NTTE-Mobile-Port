@@ -13,11 +13,11 @@
 
 ## 版本及发布策略
 
-当前版本 **1.0.4**；以后修复版本依次为1.0.5、1.0.6。GitHub标签、Release标题均使用正式版本号，例如 `1.0.4`，不再新增 candidate标签或别名。历史发布保留。
+当前版本 **1.1.0**；附加 MOD 系列后续修复递增为 1.1.1、1.1.2。1.0.4 及后续 1.0.x 保留原 NTTE 内容。公开标签和文件名只使用正式版本号。
 
-1. 同步修改 `NTTE_RELEASE_VERSION`、`NTTE_RELEASE_TAG`、游戏版本和平台显示版本；`NTTE_RELEASE_NUMBER`作为内部构建序号递增。下一版为版本1.0.5、内部序号82。`GAME_BUILD`用于存档格式，不随发布修改。
-2. 编译、测试并审核两平台安装包。Android包名及签名身份保持一致；versionCode本版为3000081。iOS CFBundleVersion本版为81。后续两个数值均递增。
-3. 创建同名标签的草稿Release，上传 `NuclearThrone.TerritorialExpansion-Android-1.0.4.apk`、`NuclearThrone.TerritorialExpansion-iOS-1.0.4.ipa` 和SHA256SUMS.txt；核验远端摘要后公开并设为Latest。下一版替换文件名中的版本号。
+1. 同步修改 `NTTE_RELEASE_VERSION`、`NTTE_RELEASE_TAG`、游戏版本和平台显示版本；`NTTE_RELEASE_NUMBER`作为内部构建序号递增。下一版为版本 1.1.1、内部序号 84。`GAME_BUILD`用于存档格式，不随发布修改。
+2. 编译、测试并审核两平台安装包。Android包名及签名身份保持一致；versionCode本版为3000083。iOS CFBundleVersion本版为83。后续两个数值均递增。
+3. 创建同名标签的草稿Release，上传 `NuclearThrone.TerritorialExpansion-Android-1.1.0.apk`、`NuclearThrone.TerritorialExpansion-iOS-1.1.0.ipa` 和SHA256SUMS.txt；核验远端摘要后公开并设为Latest。下一版替换文件名中的版本号。
 4. 更新双语README、验证记录和发布说明，注明iOS签名要求。
 
 更新器读取本仓库 `releases/latest` API，只接受正式发布，逐段比较三个数字，拒绝降级、跨仓库地址、标签与文件名不匹配及无效摘要。旧candidate标签只可能被识别为历史版本，不会提供升级。缺少某平台安装包时该平台提示尚未上传，不会下载另一平台文件。

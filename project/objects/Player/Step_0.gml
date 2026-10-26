@@ -7,6 +7,7 @@ scrNTTEFullPlayerRateSync();
 // The native draw-only bob phase wraps every 6.2 radians; petlib needs a logical clock.
 ntte_twins_orbit_wave += timescale
 scrNTTEFullWeaponNativeNormalizeInventory()
+scrUGWeaponStep();
 scrNTTEFullPromptPlayerStep()
 scrNTTEFullPetSalamanderPlayerBegin();
 scrNTTEPlayerStep()

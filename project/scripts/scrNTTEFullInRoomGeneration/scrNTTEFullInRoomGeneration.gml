@@ -13,6 +13,7 @@ function scrNTTEFullAreaGeneratorRegister(_area,_make_floor,_populate,_start=und
 // Register the complete owned area callbacks. Native GenCont remains the
 // authority for finalization/player spawn, including same-room drain builds.
 function scrNTTEFullAreaNativeInit() {
+    scrNTTEFullAreaGeneratorRegister("undergrowth",scrUGBuild,scrUGPopulate,scrUGStart,scrUGSetup);
     scrNTTEFullAreaGeneratorRegister("red",scrNTTEFullRedBuildNative,scrNTTEFullRedPopulateNative,
         scrNTTEFullRedStart,scrNTTEFullRedSetupNative)
     scrNTTEFullAreaGeneratorRegister("coast",scrNTTEFullCoastBuildNative,scrNTTEFullCoastPopulateNative,

@@ -1,4 +1,5 @@
 function scrPlayerGunReloadFX(_weapon) {
+    if(scrUGWeaponReloaded(_weapon)) return;
 	if (!scr_weapon_is_valid(_weapon)) exit
 	
 	var _type = scr_weapon_get_type(_weapon),
