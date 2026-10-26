@@ -66,5 +66,8 @@
     "sprites": 40,
     "frames": 76,
     "exact_rgba_and_origins": true
-  }
+  },
+  "source_distribution": "text-only; assets obtained separately",
+  "assets_included": false,
+  "history_rewritten_date": "2026-10-26"
 }

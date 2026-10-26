@@ -59,3 +59,12 @@ GameMaker 当前 `.yy` 导出模板仍可能带上游占位 Bundle Name，不能
 内部测试由 `--ntte-full-smoke` 显式开启，普通启动不会激活。
 还需同时传入现有基础 smoke 启动参数，入口见 `scrNTTESmoke` / `scrNTTEFullSmoke`。
 本仓库不附带编译器、授权文件、平台证书或已编译运行库。
+
+## 素材不随源码分发
+
+源码已移除所有图片、音乐、音效、字体、应用图标和预编译扩展库，包括 MOD 和移植版新增的素材。`.yy`/`.yyp` 只保留工程声明和资源引用，不含像素或音频数据。
+
+上面的 `regen` 仅用于原游戏素材提取，不能恢复 NTTE、Undergrowth、Details+ 或本移植专用素材，也不能代替字体和本机扩展依赖。请从原作者或其他获得授权的来源自行取得所需文件，按工程声明放入 `.local/<platform>/project`；本仓库没有提供一键补齐全部素材的工具，空白源码检出不能直接编译出完整游戏。
+
+原 NTTE：<https://github.com/Yokinman/NTTE>；Undergrowth：<https://attfooy.itch.io/undergrowth>；Details+：<https://wigglercola.itch.io/detailsplus>。
+不要将补齐的文件复制回受版本控制的源码。提交前运行 `python tools/audit_source_only.py --index`。

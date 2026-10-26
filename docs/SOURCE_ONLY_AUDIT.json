@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-26",
+  "scope": "all reachable refs",
+  "status": "PASS",
+  "historical_unique_non_source_file_paths_removed": 7800,
+  "historical_binary_blobs_removed": 7802,
+  "all_text_source_blobs_preserved": true,
+  "remaining_binary_blobs": 0,
+  "non_source_paths": [],
+  "history_rewritten": true,
+  "local_development_assets_preserved": true
+}

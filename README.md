@@ -5,6 +5,12 @@
 NTTE 移植版的 GameMaker 源码，包含 Android、iOS 适配和简体中文。
 当前源码基线为 **1.2.0（2026-10-26）**。
 
+## 纯源码发布
+
+本仓库仅提供程序源码、工程资源声明、配置、汉化文本和文档，不包含任何游戏图片、贴图、音频、字体、图标、第三方二进制库或已编译游戏数据。原游戏、NTTE、Undergrowth、Details+ 及移植专用美术也全部排除。
+
+2026-10-26 已清理公开分支与所有标签的历史，并加入素材忽略规则和发布前审核。历史提交哈希已改变，已有克隆请重新克隆。素材仍由各自作者保有权利，构建时须自行从合法来源取得；详见[构建说明](docs/BUILDING.md)和[源码分发规则](docs/SOURCE_ONLY.md)。
+
 ## 下载安装包
 
 最后交付的 Android APK 和 iOS IPA 可在 [1.2.0 发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.2.0) 下载：

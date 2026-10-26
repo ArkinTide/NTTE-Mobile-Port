@@ -62,3 +62,12 @@ Open the prepared `.yyp` project in GameMaker and select Windows VM.
 Internal tests require the explicit `--ntte-full-smoke` argument; normal startup does not activate them.
 The existing base smoke arguments are also required. See the `scrNTTESmoke` and `scrNTTEFullSmoke` entry points.
 The source repository does not include a compiler, entitlement files, platform certificates, or compiled development runtimes.
+
+## Assets are distributed separately
+
+All images, music, sound effects, fonts, application icons, and precompiled extension libraries are excluded, including MOD and port-specific assets. The `.yy`/`.yyp` files retain resource declarations and references, not pixel or audio data.
+
+The `regen` command above extracts original-game assets only. It cannot restore NTTE, Undergrowth, Details+, or port-specific artwork, fonts, and native dependencies. Obtain the required files from their authors or other authorized sources and place them under `.local/<platform>/project` according to the resource declarations. No tool in this repository reconstructs all missing assets; a clean source checkout cannot directly build a complete game.
+
+Original NTTE: <https://github.com/Yokinman/NTTE>; Undergrowth: <https://attfooy.itch.io/undergrowth>; Details+: <https://wigglercola.itch.io/detailsplus>.
+Keep restored assets out of the tracked source tree. Run `python tools/audit_source_only.py --index` before committing.

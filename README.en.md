@@ -5,6 +5,12 @@
 GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
 The current source baseline is **1.2.0 (2026-10-26)**.
 
+## Source-only distribution
+
+This repository contains program source, resource declarations, configuration, localization text, and documentation only. It excludes all images, textures, audio, fonts, icons, third-party binary libraries, and compiled game data, including assets specific to the original game, NTTE, Undergrowth, Details+, and this port.
+
+On 2026-10-26, public branch and tag histories were rewritten to remove these files. Asset ignore rules and a pre-push source audit prevent reintroduction. Commit hashes changed; re-clone existing checkouts. Obtain required assets separately from authorized sources; see [Building](docs/BUILDING.en.md) and the [source distribution policy](docs/SOURCE_ONLY.md).
+
 ## Downloads
 
 The latest delivered Android APK and iOS IPA are available on the [1.2.0 release page](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/tag/1.2.0):
