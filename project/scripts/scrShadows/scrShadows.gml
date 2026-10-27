@@ -39,7 +39,7 @@ function scrShadows() {
 	
 	var _list = global.lis_walls_visible,
 		_count = ds_list_size(_list),
-		_pizza = GameCont.area==scrNTTEFullAreaId("pizza"),
+		_pizza = GameCont.area==scrNTTEFullAreaId("pizza") || GameCont.area==scrNTTEFullAreaId("lair"),
 		_floors = _pizza ? ds_list_create() : -1;
 		
 	try {

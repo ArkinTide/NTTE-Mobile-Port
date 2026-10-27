@@ -19,6 +19,7 @@ is_level_ended = false
 
 // No last-hostile timer may carry into another level, even within romGame.
 scrNTTELastEnemyTimeoutReset()
+scrNTTEPortalDeathReset()
 
 scrAmmoUpdateTypeStats()
 // BEGIN NTTE TRENCH CONNECTED CAMPAIGN TEST GameCont.RoomStart.after

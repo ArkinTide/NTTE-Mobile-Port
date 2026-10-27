@@ -1,3 +1,4 @@
+with(GameCont) scrNTTEPortalDeathReset();
 random_set_seed(global.rng_state[RNGStates.Generation])
 instance_create(0, 0, TopCont)
 wave = 0

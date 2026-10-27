@@ -334,3 +334,12 @@ function scrUGShadows(_vx,_vy) {
     with(UGObject) if(visible && name=="FireflyExplode" && sprite_exists(spr_shadow))
         draw_sprite(spr_shadow,0,x-_vx+spr_shadow_x,y-_vy+spr_shadow_y);
 }
+
+// The native loop cluster pass duplicates an object's class. UGEnemy is a
+// shared shell: its named factory must also run, just as at initial population.
+// Keep the original count, offset RNG, and ordinary enemy construction.
+function scrUGClusterCreate(_x,_y,_object,_source) {
+    if(_object==UGEnemy && instance_exists(_source))
+        return scrUGCreate(_x,_y,_source.name);
+    return instance_create(_x,_y,_object);
+}

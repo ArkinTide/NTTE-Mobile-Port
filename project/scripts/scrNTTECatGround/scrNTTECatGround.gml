@@ -33,3 +33,14 @@ function scrNTTECatHoleEnsure() {
     if(instance_exists(hole)) {hole.x=x;hole.y=y;}
     return true;
 }
+// Cats are floor walkers. Check their completed engine movement, while
+// keeping original prop/enemy perches and hidden manhole travel intact.
+function scrNTTECatGroundEndStep() {
+    if(lockstep_stop || instance_exists(GenCont) || hp<=0 || !ntte_cat_active
+        || instance_exists(ntte_cat_sit)) return;
+    if(GameCont.area!=scrNTTEFullAreaId("lair") && GameCont.area!=scrNTTEFullAreaId("pizza")) return;
+    if(scrNTTECatGroundClear(x,y)) return;
+    if(scrNTTECatGroundClear(xprevious,yprevious)) {x=xprevious;y=yprevious;}
+    else if(!scrNTTECatGroundPlace(x,y)) return;
+    speed=0;xprevious=x;yprevious=y;
+}

@@ -47030,6 +47030,18 @@
         "name": "scrRelease122Tests",
         "path": "scripts/scrRelease122Tests/scrRelease122Tests.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrRelease123Tests",
+        "path": "scripts/scrRelease123Tests/scrRelease123Tests.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "Release123NaturalTest",
+        "path": "objects/Release123NaturalTest/Release123NaturalTest.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

@@ -60,6 +60,8 @@ function scrNTTEFullSmokeStep() {
         if(scrNTTEFullParrotPauseWaitForNativeDraw()) return;
         global.ntte_full_test_count=0;
         scrNTTESmokeLog("FULL INTERNAL BEGIN @"+string(30/timescale))
+        if(scrNTTEFullSmokeAsyncCase("Release123UGSeedsTests")) {scrRelease123UGSeedsTests();return;}
+        if(scrNTTEFullSmokeAsyncCase("Release123NaturalTests")) {scrRelease123NaturalTests();return;}
         if(scrNTTEFullSmokeAsyncCase("UndergrowthNaturalTests")) {scrUGNaturalTests();return;}
         if(scrNTTEFullSmokeCase("Release122ChestTests")) scrRelease122ChestTests();
         if(scrNTTEFullSmokeCase("Release122VineTests")) scrRelease122VineTests();
@@ -549,6 +551,8 @@ function scrNTTEFullSmokeStep() {
         if(scrNTTEFullSmokeCase("SecretWeapon78Tests")) scrNTTEFullSecretWeapon78Tests();
         if(scrNTTEFullSmokeCase("PizzaSpawn78Tests")) scrNTTEFullPizzaSpawn78Tests();
         if(scrNTTEFullSmokeCase("PizzaShadow78Tests")) scrNTTEFullPizzaShadow78Tests();
+        if(scrNTTEFullSmokeCase("Release123PortalTests")) scrRelease123PortalTests();
+        if(scrNTTEFullSmokeCase("Release123LairShadowTests")) scrRelease123LairShadowTests();
         if(scrNTTEFullSmokeCase("PizzaShadow104Tests")) scrNTTEFullPizzaShadow104Tests();
         if(scrNTTEFullSmokeCase("PizzaShadow104NaturalTests")) scrNTTEFullPizzaShadow104NaturalTests();
         if(scrNTTEFullSmokeCase("CatWarning78Tests")) scrNTTEFullCatWarning78Tests();

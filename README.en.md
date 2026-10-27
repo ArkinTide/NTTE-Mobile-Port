@@ -3,7 +3,7 @@
 [简体中文](README.md) | [English](README.en.md)
 
 GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
-The current source baseline is **1.2.2 (2026-10-27)**.
+The current source baseline is **1.2.3 (2026-10-27)**.
 
 ## Source-only distribution
 
@@ -21,6 +21,14 @@ Version 1.2.0 and older need one manual update from the folder above. From 1.2.1
 
 
 > Starting with 1.1.0, content from other MODs is being added. To play the original NTTE content, download 1.0.4 or a subsequent 1.0.x release.
+
+## Changes in 1.2.3
+
+- Fixed Undergrowth loop clusters creating uninitialized, invisible 1-HP enemies that blocked level-clear portals.
+- Fixed the periodic decoration cleanup deleting the Crystal Spider's special nest on an intact wall; normal wall-break release, pickup, continuation and level transitions are preserved.
+- Fixed exterior shadows in the Pizza Sewer's Lair branch. Active Cats validate their completed movement against walkable floor without changing hidden manhole travel or perching behavior.
+- Normal clear portals now use the last hostile death point in the current level instead of an older corpse. Allied deaths and room cleanup do not replace it; missing floor falls back to valid ground.
+- Preserved authored special-portal positions, existing portal guards, and the same-sole-non-Boss 60-second timeout. No wall-position enemy-kill rule is restored.
 
 ## Changes in 1.2.2
 

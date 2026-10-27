@@ -27,14 +27,22 @@ if GameCont.area == area_campfire {
 	}
 }
 else {
-	if !place_meeting(x, y, Floor) {
-	    with (instance_nearest(x, y, Floor)) {
-			other.x = bbox_center_x
-			other.y = bbox_center_y
+    // The corpse remains where its animation/physics left it.
+    var _portal_x=x,_portal_y=y,_death_point=false;
+    if(!forceportal) {
+        var _last=scrNTTEPortalDeathPoint();
+        if(is_struct(_last)) {_portal_x=_last.x;_portal_y=_last.y;_death_point=true;}
+    }
+    // Authored forced portals and old continuations retain the native corpse
+    // footprint check. Only a remembered death uses the recorded point.
+	if (_death_point ? !position_meeting(_portal_x,_portal_y,Floor) : !place_meeting(x,y,Floor)) {
+	    with (instance_nearest(_portal_x, _portal_y, Floor)) {
+			_portal_x = bbox_center_x
+			_portal_y = bbox_center_y
 		}
 	}
 	
-	with instance_create(x, y, Portal) {
+	with instance_create(_portal_x, _portal_y, Portal) {
 	    type = 1
 		
 	    if GameCont.area == area_hq {

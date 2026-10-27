@@ -414,7 +414,7 @@ function scrNTTEFullPizzaShadow104Compare(_actual,_reference,_vx,_vy,_width,_hei
     }
     return {inside:_inside,negative_control_spill:_outside};
 }
-function scrNTTEFullPizzaShadow104Tests() {
+function scrNTTEFullPizzaShadow104Tests(_area_key="pizza") {
     var _before=scrNTTEFullInstances(all),_game=scrNTTEFullAreaGeneratorSnapshot(GameCont),
         _back=scrNTTEFullAreaGeneratorSnapshot(BackCont),_draw=scrNTTEFullCoastDrawState(),
         _view=[view_xview,view_yview,view_width,view_height],_seed=random_get_seed(),
@@ -427,7 +427,7 @@ function scrNTTEFullPizzaShadow104Tests() {
     gpu_push_state();
     try {
         view_xview=220000;view_yview=220000;view_width=128;view_height=128;
-        global.lis_walls_visible=_list;BackCont.shad=_shadow;GameCont.area=scrNTTEFullAreaId("pizza");
+        global.lis_walls_visible=_list;BackCont.shad=_shadow;GameCont.area=scrNTTEFullAreaId(_area_key);
         var _wall=instance_create(220032,220032,Wall),_spills=0,_retained=0;
         for(var _case=0;_case<6;++_case) {
             instance_destroy(Floor,false);instance_destroy(FloorExplo,false);
@@ -446,7 +446,7 @@ function scrNTTEFullPizzaShadow104Tests() {
             // Pizza sprite and subimage remain unchanged.
             GameCont.area=area_sewers;with(BackCont) scrShadows();
             var _reference=scrNTTEFullPizzaShadow104Pixels(_shadow);
-            GameCont.area=scrNTTEFullAreaId("pizza");with(BackCont) scrShadows();
+            GameCont.area=scrNTTEFullAreaId(_area_key);with(BackCont) scrShadows();
             var _actual=scrNTTEFullPizzaShadow104Pixels(_shadow),
                 _result=scrNTTEFullPizzaShadow104Compare(_actual,_reference,view_xview,view_yview,128,128);
             _spills+=_result.negative_control_spill;_retained+=_result.inside;
@@ -459,7 +459,7 @@ function scrNTTEFullPizzaShadow104Tests() {
         _enemy.spr_shadow=shd24;_enemy.visible=true;
         GameCont.area=area_sewers;with(BackCont) scrShadows();
         var _actor_reference=scrNTTEFullPizzaShadow104Pixels(_shadow);
-        GameCont.area=scrNTTEFullAreaId("pizza");with(BackCont) scrShadows();
+        GameCont.area=scrNTTEFullAreaId(_area_key);with(BackCont) scrShadows();
         var _actor_actual=scrNTTEFullPizzaShadow104Pixels(_shadow),_actor_coverage=0;
         for(var _i=0;_i<array_length(_actor_actual);++_i) {
             assert(_actor_actual[_i]==_actor_reference[_i],"Pizza clipping changed an ordinary actor shadow pixel");

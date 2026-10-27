@@ -2,6 +2,12 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [Home](../README.en.md)
 
+## 1.2.3
+
+21 selected Windows VM regression cases passed at 30/60 FPS on the final frozen 1.2.3 / internal 91 build. Coverage includes natural Undergrowth generation, Fossil Cannon and pet combat, three map seeds before and after looping, portals at the last hostile death point, Crystal Spider wall-break release and two real level transitions, Lair Cat movement and shadow pixels, Jungle behavior, the existing timeout, portal UI guards, language persistence and updates.
+
+The Android updater passed 31 Java host checks. Both packages passed version, identity, structure and retained compiled-repair checks; Android preserves its signing identity and passes 16 KB alignment checks. Android versionCode3000091, iOS build91 and save-format GAME_BUILD3004 are retained. No physical-phone, full-campaign or fresh native Mac acceptance was performed. iOS uses new VM data with the retained runner and requires re-signing.
+
 ## 1.2.2
 
 32 selected Windows VM cases passed at 30/60 FPS on the final frozen 1.2.2 / internal 90 build. Coverage includes Vine chest metadata, the cleared Scrap3-3 entrance, Millipede departure, Jungle Assassins, corpse countdown ownership, a real Undergrowth route, and Crystal Spider wall generation, native wall blast release, pickup, JSON continuation and two real portal room transitions. Additional checks cover updates, language persistence, Details+, golden loadout saves, healing/explosions and Pizza spawning.

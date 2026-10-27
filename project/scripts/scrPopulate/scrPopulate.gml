@@ -301,7 +301,7 @@ function scrPopulate() {
 		else if (_cluster_object == BuffGator) _cluster_object = Gator
 		
 		repeat (3 + _loops) {
-			instance_create(x + orandom(4), y + orandom(4), _cluster_object)
+			scrUGClusterCreate(x + orandom(4), y + orandom(4), _cluster_object, id)
 		}
 		
 		if (distance_to_point(10016, 10016) < 128) {

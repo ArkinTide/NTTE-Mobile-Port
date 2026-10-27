@@ -247,3 +247,20 @@ function scrNTTELastEnemyTimeoutNativeTests() {
         for(var _i=0;_i<array_length(_extra);++_i) instance_activate_object(_extra[_i])
     }
 }
+
+// Remember real hostile deaths independently of corpse animation order.
+// No terrain-based classification or damage is performed here.
+function scrNTTEPortalDeathReset() {
+    ntte_portal_last_death=undefined;
+}
+function scrNTTEPortalDeathRemember() {
+    if(hp>0 || team==team_player || instance_is(id,Van) || instance_is(id,BigDogMissile)
+        || !instance_exists(GameCont) || instance_exists(GenCont) || GameCont.is_level_ended) return;
+    GameCont.ntte_portal_last_death={x:x,y:y,area:GameCont.area,subarea:GameCont.subarea,loops:GameCont.loops};
+}
+function scrNTTEPortalDeathPoint() {
+    if(!instance_exists(GameCont)) return undefined;
+    var _last=scrNTTEFullValue(GameCont,"ntte_portal_last_death",undefined);
+    if(!is_struct(_last) || _last.area!=GameCont.area || _last.subarea!=GameCont.subarea || _last.loops!=GameCont.loops) return undefined;
+    return _last;
+}
