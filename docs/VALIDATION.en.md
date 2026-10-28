@@ -2,6 +2,12 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [Home](../README.en.md)
 
+## 1.2.4
+
+24 selected Windows VM regression cases passed at 30/60 FPS on the final frozen 1.2.4 / internal 92 build. Coverage includes native HUD/touch-label pixel comparison, consecutive blasts and interrupted cap reordering, entrance HP and old-continuation migration, real Caves nest release and adoption, native portal transitions into Cursed Caves with automatic conversion, JSON continuation and another transition preserving the cursed form, hidden-area terrain, wall props, pet transitions, last-enemy portals, language persistence and update settings.
+
+31 Android updater Java host checks passed. Package version, identity, structure and compiled-fix preservation checks passed for both platforms; Android retains its signing certificate and passes 16 KB alignment checks. Android versionCode 3000092, iOS build92; GAME_BUILD 3004 is unchanged. No physical-phone, full-campaign or fresh native Mac-build acceptance was performed. iOS uses newly compiled VM data with the retained runner and requires re-signing.
+
 ## 1.2.3
 
 21 selected Windows VM regression cases passed at 30/60 FPS on the final frozen 1.2.3 / internal 91 build. Coverage includes natural Undergrowth generation, Fossil Cannon and pet combat, three map seeds before and after looping, portals at the last hostile death point, Crystal Spider wall-break release and two real level transitions, Lair Cat movement and shadow pixels, Jungle behavior, the existing timeout, portal UI guards, language persistence and updates.

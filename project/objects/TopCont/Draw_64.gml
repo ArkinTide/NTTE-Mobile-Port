@@ -16,11 +16,15 @@ else {
 
 with (GameCont) scrDrawMiscHUD()
 
+// Touch controls own their interaction layer; do not draw it twice.
+var _draw_controls=drawcontrols && instance_exists(_player)
+    && !(instance_exists(MenuOptions) && MenuOptions.editing_mode)
+    && !UberCont.opt_keyboard && !UberCont.opt_gamepad;
 if instance_exists(_player) && !instance_exists(Credits) && !instance_exists(Cinematic) {
-    scrDrawPlayerHUD(_player)
+    scrDrawPlayerHUD(_player,!_draw_controls)
 }
 
-if drawcontrols && instance_exists(_player) && !(instance_exists(MenuOptions) && MenuOptions.editing_mode) && !UberCont.opt_keyboard && !UberCont.opt_gamepad {
+if _draw_controls {
     scrDrawMobileControls(_player)
 }
 

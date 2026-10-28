@@ -44,6 +44,10 @@ instance_create(x - 32, y - 32, Top)
 instance_create(x + 32, y + 32, Top)
 
 scrTerrainBlastRefreshWalls();
+// Original tegeneral.ntte_setup_FloorExplo: remove caps by tile origin,
+// including TopTiny reorder copies temporarily using mskNone. A collision
+// query alone cannot find those copies and can leave visible wall tops.
+with(TopSmall) if(x==other.x && y==other.y) instance_destroy();
 scrNTTEFullAreaFloorSetup(_area,true);
 
 // NTTE Coast source terrain origin/filter

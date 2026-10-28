@@ -60,9 +60,14 @@ function scrNTTEFullSmokeStep() {
         if(scrNTTEFullParrotPauseWaitForNativeDraw()) return;
         global.ntte_full_test_count=0;
         scrNTTESmokeLog("FULL INTERNAL BEGIN @"+string(30/timescale))
+        if(scrNTTEFullSmokeAsyncCase("Release124SpiderRouteTests")) {scrRelease124SpiderRouteTests();return;}
         if(scrNTTEFullSmokeAsyncCase("Release123UGSeedsTests")) {scrRelease123UGSeedsTests();return;}
         if(scrNTTEFullSmokeAsyncCase("Release123NaturalTests")) {scrRelease123NaturalTests();return;}
         if(scrNTTEFullSmokeAsyncCase("UndergrowthNaturalTests")) {scrUGNaturalTests();return;}
+        if(scrNTTEFullSmokeCase("Release124HUDTests")) scrRelease124HUDTests();
+        if(scrNTTEFullSmokeCase("Release124TerrainTests")) scrRelease124TerrainTests();
+        if(scrNTTEFullSmokeCase("Release124VineTests")) scrRelease124VineTests();
+        if(scrNTTEFullSmokeCase("Release124SpiderTests")) scrRelease124SpiderTests();
         if(scrNTTEFullSmokeCase("Release122ChestTests")) scrRelease122ChestTests();
         if(scrNTTEFullSmokeCase("Release122VineTests")) scrRelease122VineTests();
         if(scrNTTEFullSmokeCase("Release122MillipedeTests")) scrRelease122MillipedeTests();

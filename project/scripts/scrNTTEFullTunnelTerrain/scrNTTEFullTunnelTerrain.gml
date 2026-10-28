@@ -67,8 +67,12 @@ function scrNTTEFullTopTinyEndStep() {
             if (instance_exists(_tile) && real(_tile)<real(id)) {
                 with (_tile) {
                     var _copy=scrNTTEFullMergedNativeCopy(false),_mask=_copy.mask_index
+                    if(_mask==mskNone) _mask=scrNTTEFullValue(_copy,"ntte_toptiny_saved_mask",_mask);
+                    _copy.ntte_toptiny_saved_mask=_mask;
                     _copy.mask_index=mskNone
-                    if (variable_instance_exists(_copy,"ntte_toptiny_phase")) _copy.ntte_toptiny_phase=3
+                    if (variable_instance_exists(_copy,"ntte_toptiny_phase")) {
+                        _copy.ntte_toptiny_phase=3;_copy.ntte_toptiny_restore=[];
+                    }
                     array_push(other.ntte_toptiny_restore,[_copy,_mask])
                     instance_destroy(id,false)
                 }
@@ -77,10 +81,17 @@ function scrNTTEFullTopTinyEndStep() {
     }
     else if (ntte_toptiny_phase==2) {
         ntte_toptiny_phase=3
-        for(var _i=0;_i<array_length(ntte_toptiny_restore);++_i) {
-            var _entry=ntte_toptiny_restore[_i]
-            if (instance_exists(_entry[0]) && _entry[0].mask_index==mskNone) _entry[0].mask_index=_entry[1]
-        }
-        ntte_toptiny_restore=[]
+        scrNTTEFullTopTinyRestore();
     }
+}
+
+// Cleanup also runs for instance_destroy(false). Interrupted reorder owners
+// must not strand their surviving neighbour copies with disabled collision.
+function scrNTTEFullTopTinyRestore() {
+    var _pending=scrNTTEFullValue(id,"ntte_toptiny_restore",[]);
+    for(var _i=0;_i<array_length(_pending);++_i) {
+        var _entry=_pending[_i];
+        if(instance_exists(_entry[0]) && _entry[0].mask_index==mskNone) _entry[0].mask_index=_entry[1];
+    }
+    ntte_toptiny_restore=[];
 }

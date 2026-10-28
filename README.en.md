@@ -3,7 +3,7 @@
 [简体中文](README.md) | [English](README.en.md)
 
 GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
-The current source baseline is **1.2.3 (2026-10-27)**.
+The current source baseline is **1.2.4 (2026-10-27)**.
 
 ## Source-only distribution
 
@@ -21,6 +21,13 @@ Version 1.2.0 and older need one manual update from the folder above. From 1.2.1
 
 
 > Starting with 1.1.0, content from other MODs is being added. To play the original NTTE content, download 1.0.4 or a subsequent 1.0.x release.
+
+## Changes in 1.2.4
+
+- Fixed touch interaction labels being drawn by both the HUD and touch controls with different alignment, producing overlapping translated text. Each label is now drawn once with its own alignment.
+- Raised the 3-3 Undergrowth entrance Vine to 30,000 HP. Living entrances in older continuations retain prior damage; ordinary Vine props and the level-clear entrance requirement are unchanged.
+- Restored the original MOD's cap cleanup at new blast-floor origins and repaired collision-mask restoration when a TopTiny reorder is interrupted. Destroyed walls no longer leave orphan caps; wall-dwelling creatures are preserved.
+- Verified the original Cursed Crystal Spider mechanism through a real Caves nest, wall-break release, adoption, native portals into Cursed Caves, automatic conversion, JSON continuation and departure. No separate cursed nest was added.
 
 ## Changes in 1.2.3
 

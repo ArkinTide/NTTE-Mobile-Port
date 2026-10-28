@@ -580,7 +580,8 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGHitme)),_ug_eac
 		snd_dead = -1;
 		
 		         
-		hp = 500;
+		max_hp = 30000;
+		hp = max_hp;
 		size = 1;
 		prompt = scrNTTEFullPromptCreate(id,"VINE");
 		prompt.on_meet = method(prompt,scrUGFlowerPromptMeet);

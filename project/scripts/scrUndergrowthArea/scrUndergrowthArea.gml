@@ -92,6 +92,8 @@ function scrUGFlowerUsable() {
 }
 function scrUGFlowerPromptMeet(_player) {return scrUGFlowerUsable();}
 function scrUGFlowerStep() {
+    // Preserve damage on live entrances resumed from their old500HP version.
+    if(max_hp<30000 && hp>0) {hp=30000-max(0,500-hp);max_hp=30000;}
     x=xstart;y=ystart;speed=0;
     if(sprite_index==spr_hurt && image_index+image_speed>=image_number) sprite_index=spr_idle;
     var _usable=scrUGFlowerUsable();

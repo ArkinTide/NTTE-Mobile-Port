@@ -47042,6 +47042,18 @@
         "name": "Release123NaturalTest",
         "path": "objects/Release123NaturalTest/Release123NaturalTest.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrRelease124Tests",
+        "path": "scripts/scrRelease124Tests/scrRelease124Tests.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "Release124RouteTest",
+        "path": "objects/Release124RouteTest/Release124RouteTest.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

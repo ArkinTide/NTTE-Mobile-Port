@@ -1,30 +1,33 @@
 {
-  "source_candidate": "1.2.3",
-  "date": "2026-10-27",
-  "source_manifest_sha256": "3d6a0ff0bb1e3afa26c77c11b757ea12aff24196a65e888855ae67b154990c98",
-  "windows_regression_receipt_sha256": "25ed577dedaacc179fbd259cfcfff17de80b1c17320189ed6b5adbc4cfbf2bc2",
+  "source_candidate": "1.2.4",
+  "date": "2026-10-28",
+  "source_manifest_sha256": "ff7cdb2b6b0a3afce4349d7ed0467fa33bea19fc5082dd1fcb65b79f5a8ffd09",
+  "windows_regression_receipt_sha256": "1799aec161e58ab8bdca7f50555b0ba1e25607b4adbd0c916ca4a396fc223520",
   "android_overlay_paths": [
     "options/android/options_android.yy"
   ],
   "selected_windows_cases": [
+    "Release124HUDTests",
+    "Release124TerrainTests",
+    "Release124VineTests",
+    "Release124SpiderTests",
+    "Release124SpiderRouteTests",
+    "Release122VineTests",
+    "PromptTests",
+    "TextMarkupTests",
+    "MergedChinese78Tests",
+    "MenuNativeTests",
+    "TunnelTerrainSmoke",
+    "Release121TerrainTests",
+    "BuriedVaultNativeTests",
+    "CrystalHeartLevelNativeTests",
+    "WallFakeNativeTests",
+    "WallPropsLevelNativeTests",
+    "PetSpiderTests",
+    "PetSpiderRoomRestartTests",
     "Release123PortalTests",
     "Release123LairShadowTests",
-    "Release123NaturalTests",
-    "Release123UGSeedsTests",
-    "Release121CatHoleTests",
-    "Release121PizzaRatTests",
-    "PizzaSpawn78Tests",
-    "PizzaShadow104Tests",
-    "PizzaLairDrainNaturalTests",
-    "Release122MillipedeTests",
-    "Release122JungleTests",
-    "Release122CorpseTests",
     "LastEnemyTimeoutNativeTests",
-    "LastEnemyHiddenTimeoutTests",
-    "PortalSelectionTransitionTests",
-    "PetSpiderRoomRestartTests",
-    "PetSpiderTests",
-    "WallPropsLevelNativeTests",
     "UpdateCheckTests",
     "UpdateStartupMenuTests",
     "LanguagePreferencePersistenceTests"
@@ -36,12 +39,12 @@
   "mobile_device_tested_this_round": false,
   "installers": {
     "android": {
-      "sha256": "6235e812370af2984869de6c4ac876e28cdd3fb5cf2dcb4b582e8c0e14e60156",
-      "bytes": 252580411
+      "sha256": "04ca4559346a57cba4d49b32a6195b8c418be16c447180669b99e66d5259066f",
+      "bytes": 252604206
     },
     "ios": {
-      "sha256": "2bb22a17d392a8818291a185e128c9e8e742f26f11ea026b1c9fb4234b269e02",
-      "bytes": 176239318
+      "sha256": "56e1458ca084fdfc631b14580cfdbb1eb606b1ba5d2850153bb3703829573698",
+      "bytes": 176250324
     }
   },
   "android_native_policy_checks": 31,
@@ -49,10 +52,10 @@
   "ios_retained_runner_compatibility_checked": true,
   "native_xcode_compilation_performed": false,
   "installation_flow": "Android/iOS: fixed MEGA folder; Android in-place APK install; iOS re-signing required",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "version_policy": "1.1.0 and later include add-on MODs;1.0.4 and subsequent1.0.x retain original NTTE. Patch increments0.0.1; version-only public tags.",
-  "android_version_code": 3000091,
-  "ios_bundle_version": "91",
+  "android_version_code": 3000092,
+  "ios_bundle_version": "92",
   "undergrowth_source": "https://attfooy.itch.io/undergrowth",
   "detailsplus_source": "https://wigglercola.itch.io/detailsplus",
   "detailsplus_option": "visual_detailsplus",
