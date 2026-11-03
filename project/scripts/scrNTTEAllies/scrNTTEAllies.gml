@@ -100,6 +100,7 @@ function scrNTTELastEnemyTimeoutStep() {
     }
     if(_count<=1) with(becomenemy) {
         if(id==_target) continue; // Class changes can briefly overlap lists.
+        if(object_index==WantVan && !canspawn) continue; // Match completion.
         if(variable_instance_exists(id,"team") && team==team_player) continue;
         _target=id
         if(++_count>1) break;

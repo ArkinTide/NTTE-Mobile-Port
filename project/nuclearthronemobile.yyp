@@ -47054,6 +47054,18 @@
         "name": "Release124RouteTest",
         "path": "objects/Release124RouteTest/Release124RouteTest.yy"
       }
+    },
+    {
+      "id": {
+        "name": "shNTTECoastSwimSplit",
+        "path": "shaders/shNTTECoastSwimSplit/shNTTECoastSwimSplit.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrRelease125Tests",
+        "path": "scripts/scrRelease125Tests/scrRelease125Tests.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

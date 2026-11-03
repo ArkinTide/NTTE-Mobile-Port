@@ -24,11 +24,11 @@ function scrNTTEFullCoastConstructDust() {
     if(!scrNTTEFullCoastConstructActive() || position_meeting(x,y,Floor)) return;
     var _water
     if(random(10+instance_number(AcidStreak))<1) {
-        snd_play_hit(sndOasisCrabAttack,0.1); _water=scrNTTEFullCoastWaterFX(x,y,2)
+        scrNTTEFullCoastSplashSound(sndOasisCrabAttack,0.1); _water=scrNTTEFullCoastWaterFX(x,y,2)
         _water.hspeed+=hspeed/2; _water.vspeed+=vspeed/2
     }
     else {
-        if(random(5)<1 && scrNTTEFullPortalPointSeen(x,y,0)) snd_play_hit(choose(sndOasisChest,sndOasisMelee),0.2)
+        if(random(5)<1 && scrNTTEFullPortalPointSeen(x,y,0)) scrNTTEFullCoastSplashSound(choose(sndOasisChest,sndOasisMelee),0.2)
         _water=instance_create(x,y,NTTEFullSweat); _water.hspeed=hspeed/2; _water.vspeed=vspeed/2
     }
     instance_destroy()
@@ -36,13 +36,13 @@ function scrNTTEFullCoastConstructDust() {
 function scrNTTEFullCoastConstructExplosion() {
     if(scrNTTEFullCoastConstructActive() && !position_meeting(x,y,Floor)) {
         var _sound=snd_play_hit(sndOasisExplosion,0.2)
-        audio_sound_gain(_sound,5*UberCont.opt_sndvol,0)
+        if(_sound>=0) audio_sound_gain(_sound,UberCont.opt_sndvol,0)
     }
 }
 function scrNTTEFullCoastConstructMeltSplat() {
     if(!scrNTTEFullCoastConstructActive() || position_meeting(x,y,Floor)) return;
     var _sound=snd_play_hit(sndOasisExplosionSmall,0.2)
-    audio_sound_gain(_sound,5*UberCont.opt_sndvol,0)
+    if(_sound>=0) audio_sound_gain(_sound,UberCont.opt_sndvol,0)
     repeat(sprite_index==sprMeltSplatBig ? 16:8) {
         if(random(6)<1) scrNTTEFullCoastWaterFX(x,y,4)
         else instance_create(x,y,NTTEFullSweat)
@@ -82,4 +82,22 @@ function scrNTTEFullCoastConstructPortal() {
         xstart=x; ystart=y; xprevious=x; yprevious=y
     }
     alarm[0]=-1
+}
+
+// Cosmetic splash bursts share a short per-sample gate. Do not repeatedly
+// stop/restart the same waveform for every Dust in one burst. Caller RNG stays
+// untouched and all physical/visual replacement effects are still created.
+function scrNTTEFullCoastSplashSound(_sound,_spread) {
+    if(!variable_instance_exists(GameCont,"ntte_coast_splash_frames")) GameCont.ntte_coast_splash_frames={};
+    var _key=string(_sound),_frames=GameCont.ntte_coast_splash_frames;
+    if(variable_struct_exists(_frames,_key) && current_frame>=_frames[$ _key]
+        && current_frame-_frames[$ _key]<3) {
+        // snd_play_hit consumes one cosmetic pitch draw even when playback
+        // is unavailable. Preserve that stream when coalescing a burst.
+        if(!scrNTTEFullChestPreviewSoundMuted() && !scr_test_is_fps_uncapped()
+            && audio_exists(custom_sound_check(_sound))) random_range(-_spread,_spread);
+        return -1;
+    }
+    _frames[$ _key]=current_frame;
+    return snd_play_hit(_sound,_spread);
 }

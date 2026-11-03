@@ -9,6 +9,9 @@ function scr_check_enemies(_amount = 0) {
     // Transforming enemies may not have their combat fields until they hatch.
     with (becomenemy) {
         if (variable_instance_exists(id,"team") && team==team_player) continue
+        // A dormant van reservation is not an arriving hostile. It can only
+        // arm after a police death; counting it can lock an otherwise empty room.
+        if(object_index==WantVan && !canspawn) continue
         ++_count
     }
     return _count>_amount

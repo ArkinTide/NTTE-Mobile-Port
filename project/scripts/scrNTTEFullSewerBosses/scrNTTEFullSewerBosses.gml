@@ -63,7 +63,7 @@ function scrNTTEFullBatBossMorph() {
         mask_index=mskBanditBoss; visible=true; instance_create(x,y,PortalClear)
         with (NTTEBat) if (creator==other.id) {
             repeat(8) {
-                var _fx=scrNTTEFullTrenchFX(x,y,0,3,Dust); _fx.image_blend=c_black
+                var _fx=scrNTTEFullTrenchFX(x,y,0,3,Dust); with(_fx) image_blend=c_black
             }
             instance_destroy(id,false)
         }
@@ -91,7 +91,7 @@ function scrNTTEFullBatBossDecision() {
                     _p.target=target; _p.creator=creator; _p.ntte_full_saved_hp=hp
                     _p.direction=90+orandom(20); _p.team=team
                     snd_play(sndBloodHammer,1.4+random(0.2),0.5)
-                    repeat(10) { var _fx=scrNTTEFullTrenchFX(x,y,8,random(3),Smoke); _fx.image_blend=c_black }
+                    repeat(10) { var _fx=scrNTTEFullTrenchFX(x,y,8,random(3),Smoke); with(_fx) image_blend=c_black }
                     instance_destroy(id,false)
                 }
             }
@@ -146,7 +146,7 @@ function scrNTTEFullBatBossCloudVisual() {
             var _cy=_y1+_c.y,_offset=_cy/2,_cx=x+cos(_offset)*_w/2*_c.right
             repeat(3) {
                 var _fx=scrNTTEFullTrenchFX(_cx,_cy,4,0,Dust)
-                _fx.image_blend=c_black; _fx.depth=depth+(sin(_offset)<0 ? -1:1)
+                with(_fx) {image_blend=c_black; depth=other.depth+(sin(_offset)<0 ? -1:1)}
             }
             _c.y+=_c.y_add*timescale
         }
@@ -236,7 +236,7 @@ function scrNTTEFullBatCloudStep() {
     if (lockstep_stop) return;
     if (speed>6*timescale) speed-=2*timescale*timescale
     if (current_frame_active) {
-        repeat(4) { var _fx=scrNTTEFullTrenchFX(x,y,4,0,Dust); _fx.image_blend=image_blend; _fx.depth=depth }
+        repeat(4) { var _fx=scrNTTEFullTrenchFX(x,y,4,0,Dust); with(_fx) {image_blend=other.image_blend; depth=other.depth} }
         direction+=orandom(16)
     }
     if (!instance_exists(target)) { instance_destroy(); return }
@@ -266,9 +266,12 @@ function scrNTTEFullBatCloudDestroy() {
         if (instance_exists(other.target)) scrNTTESewerLook(point_direction(x,y,other.target.x,other.target.y))
         for(var _d=0;_d<360;_d+=30) {
             var _fx=instance_create(x,y+6,Smoke)
-            with (_fx) { motion_set(_d,2*timescale); motion_add(other.direction,timescale) }
-            _fx.image_blend=other.image_blend; _fx.depth=-3
-            if (variable_instance_exists(_fx,"growspeed")) _fx.growspeed*=-10
+            var _cloud_blend=other.image_blend
+            with (_fx) {
+                motion_set(_d,2*timescale); motion_add(other.direction,timescale)
+                image_blend=_cloud_blend; depth=-3
+                if (variable_instance_exists(id,"growspeed")) growspeed*=-10
+            }
         }
     }
     snd_play(sndBouncerSmg,0.2+random(0.2),0.6)

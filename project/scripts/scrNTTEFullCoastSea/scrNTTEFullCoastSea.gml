@@ -7,6 +7,7 @@ function scrNTTEFullCoastSeaCreate() {
     ntte_coast_surfaces=[]
     repeat(8) array_push(ntte_coast_surfaces,{surf:-1,w:1,h:1,scale:1,x:0,y:0,reset:true})
     ntte_coast_floor_count=-1; ntte_coast_floor_min=0; ntte_coast_draw_ready=false
+    ntte_coast_fast_swim=(os_type!=os_ios)
     ntte_coast_target_active=false
     // The retained iOS runner needs explicit texture-alpha preservation.
     // Keep Android/desktop on their already-working source compositor.
@@ -203,10 +204,14 @@ function scrNTTEFullCoastSwimCapture(_bottom,_top,_sub,_capture) {
         with(_renderer) scrNTTEFullCoastSurfaceTarget(_bottom)
         draw_set_alpha(wading_sink ? 1-wading_sink/abs(sprite_height):1)
         scrNTTEFullCoastSurfaceDraw(_capture); draw_set_alpha(1)
+        var _cut_y=_bbox_bottom-_wh
+        if(_renderer.ntte_coast_fast_swim && shader_is_compiled(shNTTECoastSwimSplit)) {
+            var _swimmer=id
+            with(_renderer) scrNTTEFullCoastSwimTop(_capture,_top,_cut_y,_wh,_bbox_bottom,_bbox_width,_bbox_height,_swimmer)
+        } else {
         with(_renderer) scrNTTEFullCoastSurfaceTarget(_sub)
         gpu_set_blendmode_ext(bm_one,bm_zero); scrNTTEFullCoastSurfaceDraw(_capture)
         gpu_set_blendmode_ext(bm_zero,bm_inv_src_alpha)
-        var _cut_y=_bbox_bottom-_wh
         draw_sprite_ext(scrNTTERefSprite("WaterGradient"),0,x,_cut_y,(_bbox_width+40)/128,(_bbox_height+40)/128,0,c_white,1)
         if(wading_sink && _wh>_bbox_height/1.5) {
             draw_set_alpha(wading_sink/abs(sprite_height)); draw_rectangle(_sub.x,_sub.y,_sub.x+_sub.w,_sub.y+_sub.h,false); draw_set_alpha(1)
@@ -216,6 +221,7 @@ function scrNTTEFullCoastSwimCapture(_bottom,_top,_sub,_capture) {
         draw_set_alpha(0.4)
         with(_renderer) scrNTTEFullCoastSurfacePresent(_sub,c_white,_cut_y)
         draw_set_alpha(1);scrNTTEFullCoastSurfaceDraw(_sub)
+        }
         } finally {mask_index=_previous_mask}
     }
     var _surfaces=[_bottom,_top]
@@ -715,4 +721,37 @@ function scrNTTEFullCoastObjectHasDraw(_object) {
         case YVBoss: return true;
     }
     return false;
+}
+
+// Equivalent top gradient/sink compositor without a full-resolution scratch
+// write and read for every swimmer. The original path remains available when
+// this shader is unavailable, and on the retained iOS compositor by default.
+function scrNTTEFullCoastSwimTop(_capture,_top,_cut_y,_wh,_bottom,_bw,_bh,_actor) {
+    if(!variable_instance_exists(id,"ntte_coast_swim_uniforms")) {
+        ntte_coast_swim_uniforms={};
+        var _names=["captureRect","gradientRect","gradientUV","sinkFactor","whiteRow"];
+        for(var _i=0;_i<array_length(_names);++_i)
+            ntte_coast_swim_uniforms[$ _names[_i]]=shader_get_uniform(shNTTECoastSwimSplit,_names[_i]);
+        ntte_coast_swim_uniforms.sampler=shader_get_sampler_index(shNTTECoastSwimSplit,"gradientTex");
+    }
+    var _u=ntte_coast_swim_uniforms;
+    var _gradient=scrNTTERefSprite("WaterGradient"),_uv=sprite_get_uvs(_gradient,0),
+        _sx=(_bw+40)/128,_sy=(_bh+40)/128,
+        _sink=(_actor.wading_sink && _wh>_bh/1.5)?1-_actor.wading_sink/abs(_actor.sprite_height):1;
+    scrNTTEFullCoastSurfaceTarget(_top);
+    shader_set(shNTTECoastSwimSplit);
+    texture_set_stage(_u.sampler,sprite_get_texture(_gradient,0));
+    shader_set_uniform_f(_u.captureRect,_capture.x,_capture.y,_capture.w,_capture.h);
+    shader_set_uniform_f(_u.gradientRect,
+        _actor.x-sprite_get_xoffset(_gradient)*_sx,_cut_y-sprite_get_yoffset(_gradient)*_sy,
+        sprite_get_width(_gradient)*_sx,sprite_get_height(_gradient)*_sy);
+    shader_set_uniform_f(_u.gradientUV,_uv[0],_uv[1],_uv[2],_uv[3]);
+    shader_set_uniform_f(_u.sinkFactor,_sink);
+    shader_set_uniform_f(_u.whiteRow,1);
+    draw_set_alpha(0.4);
+    draw_surface_part_ext(_capture.surf,0,(_cut_y-_capture.y)*_capture.scale-_capture.scale/_top.scale,
+        _capture.w*_capture.scale,_capture.scale/_top.scale,_capture.x,_cut_y,
+        1/_capture.scale,_top.scale/_capture.scale,c_white,0.4);
+    shader_set_uniform_f(_u.whiteRow,0);
+    draw_set_alpha(1);scrNTTEFullCoastSurfaceDraw(_capture);shader_reset();
 }

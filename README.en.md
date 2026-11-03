@@ -3,7 +3,7 @@
 [简体中文](README.md) | [English](README.en.md)
 
 GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
-The current source baseline is **1.2.4 (2026-10-27)**.
+The current source baseline is **1.2.5 (2026-10-27)**.
 
 ## Source-only distribution
 
@@ -21,6 +21,13 @@ Version 1.2.0 and older need one manual update from the folder above. From 1.2.1
 
 
 > Starting with 1.1.0, content from other MODs is being added. To play the original NTTE content, download 1.0.4 or a subsequent 1.0.x release.
+
+## Changes in 1.2.5
+
+- Fixed dormant police-van reservations being counted as enemies, which could prevent an empty Desert from opening its exit and interrupt the sole non-Boss one-minute timeout. Armed reinforcements and Boss guards remain active.
+- Optimized Android Coast swimmer compositing by folding the per-entity full-screen gradient scratch pass into the top-layer draw. Waterlines, sinking, weapon rendering and the original shader fallback are preserved; iOS retains its verified compositor.
+- Fixed Big Bat morph-cloud and smoke callbacks accessing effects already destroyed during creation, including disabled particles and underwater replacements.
+- Removed the extra fivefold ocean-explosion amplification, guarded invalid playback handles and coalesced repeated splash triggers to address low-frequency rumble or clipping while preserving visual effects and RNG order.
 
 ## Changes in 1.2.4
 
