@@ -962,6 +962,13 @@ function scrFire(_wep, _consume_ammo = true, _primary = true) {
 			snd_play_gun(sndGunGun)
 			var _drop_wep = scrDecideWep(10)
 			with scrWeaponPickupCreate(x, y, _drop_wep) {
+				// Native representation of NTTE's ThrownWep. Fusion must keep
+				// this physical weapon and append its front, rather than omit it
+				// because modern WepPickup has no projectile parent.
+				ntte_merged_thrown=true;
+				temerge_on_fire=scrNTTEFullMergedThrownWeaponFire;
+				damage=22+2*(instance_is(other.id,Player)?GameCont.level:0);
+				knockback_speed=0;hitid=HitId.None;
 				motion_add_m(_gunangle, (16) * timescale)
 				instance_create(x + hspeed, y + vspeed, GunGun)
 				mask_index = mskPlasma

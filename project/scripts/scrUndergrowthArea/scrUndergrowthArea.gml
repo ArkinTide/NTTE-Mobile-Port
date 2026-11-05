@@ -110,10 +110,7 @@ function scrUGFlowerStep() {
         with(chestprop) mask_index=mskNone;
         instance_create(x,y,Portal);hp=0;
     }
-    if(instance_exists(ChestOpen) && instance_exists(FXChestOpen)) {
-        repeat(3) with(instance_create(x,y,Smoke)) motion_set(random(360),random(3)*timescale);
-        spr_dead=spr_exit;hp=0;
-    }
+    // A chest elsewhere in this level must not remove this entrance.
     if(hp<=0) {
         with(instance_create(x,y,Corpse)) {sprite_index=other.spr_dead;image_xscale=other.image_xscale;size=other.size;}
         instance_destroy();

@@ -5,7 +5,7 @@ try {
 if (speed > (4) * timescale && mask_index != mskWepPickup && scr_can_hit(other.id)) {
 	var _level = (instance_is(creator, Player) ? GameCont.level : 0)
 	
-	if (!scr_hit(other.id, 22 + 2 * _level)) exit
+	if (!scr_hit(other.id, scrNTTEFullValue(id,"ntte_merged_thrown",false)?damage:22 + 2 * _level)) exit
 	
 	instance_create(x, y, ThrowHit)
 	

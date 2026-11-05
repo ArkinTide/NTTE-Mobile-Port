@@ -114,3 +114,4 @@ if GameCont.area == 107 {
 }
 
 scrNTTEFullAreaFloorSetup(_area,false);
+scrNTTESolidWallCarve(bbox_left,bbox_top,bbox_right-bbox_left,bbox_bottom-bbox_top);

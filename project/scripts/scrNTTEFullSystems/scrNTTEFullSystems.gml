@@ -17,6 +17,9 @@ function scrNTTEFullValue(_target,_key,_default=undefined) {
 }
 
 function scrNTTEFullSystemsInit() {
+    // The native collision adapter is required in ordinary games as well as
+    // regression fixtures. GML has no global post-Step collision phase.
+    if(!variable_global_exists("ntte_merge_native_collision_mode")) global.ntte_merge_native_collision_mode=true;
     scrNTTEFullPortalPickupsInit();
     scrNTTEFullPickupDropInit();
     scrNTTEFullLabsHooksInit();

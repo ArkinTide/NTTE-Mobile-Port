@@ -6,7 +6,7 @@
 
   "name": "iOS",
 
-  "option_ios_build_number": 93,
+  "option_ios_build_number": 94,
 
   "option_ios_bundle_name": "123456",
 
@@ -88,7 +88,7 @@
 
   "option_ios_texture_page": "1024x1024",
 
-  "option_ios_version": "1.2.5",
+  "option_ios_version": "1.2.6",
 
   "resourceType": "GMiOSOptions",
 

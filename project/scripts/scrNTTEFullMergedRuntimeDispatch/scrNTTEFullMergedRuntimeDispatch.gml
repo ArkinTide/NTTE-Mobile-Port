@@ -36,7 +36,8 @@ function scrNTTEFullMergedRuntimePart(_weapon) {
 function scrNTTEFullMergedRuntimeProjectiles(_instances) {
     var _out=[]
     for(var _i=0;_i<array_length(_instances);++_i)
-        if(instance_exists(_instances[_i]) && instance_is(_instances[_i],projectile)) array_push(_out,_instances[_i])
+        if(instance_exists(_instances[_i]) && (instance_is(_instances[_i],projectile)
+            || scrNTTEFullValue(_instances[_i],"ntte_merged_thrown",false))) array_push(_out,_instances[_i])
     return _out
 }
 function scrNTTEFullMergedRuntimeNew(_before) {

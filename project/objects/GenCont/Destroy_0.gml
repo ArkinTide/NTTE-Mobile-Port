@@ -278,6 +278,8 @@ scrNTTEFullBabySludgeLevelStart();
 scrNTTEFullWorldFinalizeLevelStart();
 }
 // END NTTE CANONICAL LEVEL START
+// Complete authored placement before creating static exterior collision.
+scrNTTESolidWallGenerate();
 with(NTTECatHole) ntte_cat_ground_checked=scrNTTECatHoleEnsure();
 // BEGIN NTTE TRENCH SECOND HOP TEST GenCont.Destroy.after
 if(os_type==os_windows && scrNTTEFullSmokeEnabled() && instance_exists(NTTEFullTrenchSecondHopConnectedTest)) try { scrNTTEFullTrenchSecondHopProbe("GenCont.Destroy.after"); }

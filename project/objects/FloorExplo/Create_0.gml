@@ -1,3 +1,4 @@
+scrNTTESolidWallCarve(x,y,16,16);
 var _area;
 
 if (!instance_exists(MenuGen) && !instance_exists(Menu)) {

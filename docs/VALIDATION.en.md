@@ -2,6 +2,12 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [Home](../README.en.md)
 
+## 1.2.6
+
+45 selected final Windows VM regressions passed at30/60FPS, plus31 Android updater Java host checks. Coverage includes actual PlayerFiring across18 inherited effect families, native piercing/reflection, sticky follow/release, both Gun Gun merge positions, copies and delayed shots, Red corridor masks,22 terrain checks, precise blast/script carving, sparse distant-room fill and vine interaction. All77 original specialized fusion callbacks and44 lifecycle routes are inventoried; all weapon-pair combinations were not exhaustively played.
+
+Tests use isolated saves, a private desktop that is never activated and process muting. Package version/identity/structure and compiled-fix preservation are verified; Android retains its certificate and16KB alignment. Android versionCode3000094, iOS build94; GAME_BUILD3004 retained. No physical-phone or full-campaign acceptance. iOS uses freshly compiled VM data and a retained runner, requires re-signing and is not a fresh native Mac build.
+
 ## 1.2.5
 
 19 selected Windows VM cases passed at 30/60 FPS on the final frozen 1.2.5 / internal93 build, plus 31 Android updater Java host checks. Coverage includes dormant/armed van reservations, the exact sole-enemy timeout and Boss protection, native corpse portals, Big Bat morph effects, original/new Player and enemy rendering in six sink states, full sea compositing and the original wading motion/RNG oracle. The maximum pixel channel difference was 1. Timings for 24 swimmers describe the desktop backend, not Android device FPS.

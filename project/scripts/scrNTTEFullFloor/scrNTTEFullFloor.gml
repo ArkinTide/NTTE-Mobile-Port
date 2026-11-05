@@ -208,6 +208,7 @@ function scrNTTEFullFloorAlign(_x,_y,_w,_h,_type) {
 }
 
 function scrNTTEFullWallDelete(_x1,_y1,_x2,_y2) {
+    scrNTTESolidWallMaterialize(_x1,_y1,_x2,_y2);
     var _walls=scrNTTEFullRectInstances(_x1,_y1,_x2,_y2,[Wall,InvisiWall])
     for(var _i=0;_i<array_length(_walls);++_i) with (_walls[_i]) {
         var _wx=x,_wy=y
@@ -236,6 +237,7 @@ function scrNTTEFullFloorWalls(_floor) {
 function scrNTTEFullWallUpdate(_x1,_y1,_x2,_y2) {
     var _ws=scrNTTEFullRectInstances(_x1,_y1,_x2,_y2,Wall,true)
     for(var _i=0;_i<array_length(_ws);++_i) with (_ws[_i]) {
+        if(instance_is(id,NTTESolidWall)) continue;
         visible=place_meeting(x,y+16,Floor)
         l=place_free(x-16,y) ? 0:4; w=(place_free(x+16,y) ? 24:20)-l
         r=place_free(x,y-16) ? 0:4; h=(place_free(x,y+16) ? 24:20)-r

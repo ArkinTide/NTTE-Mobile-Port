@@ -2,6 +2,7 @@
 /// @param wall_instance
 function scrWallDestroy(_instance) {
 	if (!instance_exists(_instance)) exit
+    if(scrNTTESolidWallDestroy(_instance)) exit;
 	
 	with (_instance) {
 		do {

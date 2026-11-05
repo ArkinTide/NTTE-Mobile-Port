@@ -3,7 +3,7 @@
 [简体中文](README.md) | [English](README.en.md)
 
 GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
-The current source baseline is **1.2.5 (2026-10-27)**.
+The current source baseline is **1.2.6 (2026-10-27)**.
 
 ## Source-only distribution
 
@@ -21,6 +21,14 @@ Version 1.2.0 and older need one manual update from the folder above. From 1.2.1
 
 
 > Starting with 1.1.0, content from other MODs is being added. To play the original NTTE content, download 1.0.4 or a subsequent 1.0.x release.
+
+## Changes in 1.2.6
+
+- Fixed the missing effect-provider exception on the first merged Hyper Bubbler shot.
+- Enabled production fusion collision/destruction callbacks, restoring Ultra Crossbow wall piercing, bouncer reflection and other hit/destruction effects. Fixed native sticky follow/release and Gun Gun physical-weapon inheritance. Audited all77 original specialized callbacks and44 effect lifecycle routes, with actual firing checks across18 effect families.
+- Added sparse packed solid exterior walls to land areas while retaining authored edges/transitions. Plain exterior rendering supports local destruction/carving without scanning vast empty rectangles between distant rooms. Marine, abyss and platform spaces retain their terrain behavior.
+- Fixed ordinary Player wall handling ejecting players from or destroying the Red Caves secret corridor disguise. Preserved original gradual reveal, masks and hidden-room access.
+- Prevented opening unrelated weapon chests from withering the3-3 entrance vine; retained30000HP and clear-before-entry rules.
 
 ## Changes in 1.2.5
 

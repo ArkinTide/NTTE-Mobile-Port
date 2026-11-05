@@ -78,12 +78,16 @@ function scrNTTEFullMergedNativeDeathCapture(_target) {
     }
 }
 function scrNTTEFullMergedNativeEndStep() {
-    // Only destroy bookkeeping is adapted to native End Step. hit/wall are
-    // handled at real collision entry, never predicted twice from this phase.
+    // hit/wall run at real collision entry. Sticky attachment follows the
+    // target after native motion, without adding predictive motion twice.
     var _controllers=scrNTTEFullInstances(NTTEFullMergedEffectScheduler)
     for(var _i=0;_i<array_length(_controllers);++_i) if(instance_exists(_controllers[_i])) with(_controllers[_i]) {
         if(ntte_effect_name=="destroy_event" && ntte_effect_event=="post_step")
             scrNTTEFullMergedEffectCallEvent(ntte_effect_name,ntte_effect_event)
+        else if(ntte_effect_name=="sticky" && ntte_effect_event=="post_step") {
+            var _vars=scrNTTEFullMergedEffectVars("sticky");
+            if(is_struct(_vars)) scrNTTEFullMergedStickyPostStep(_vars.instance_list,true);
+        }
     }
 }
 function scrNTTEFullMergedNativeSchedulerCapabilities() {

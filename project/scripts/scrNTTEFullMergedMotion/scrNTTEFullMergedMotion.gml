@@ -23,14 +23,16 @@ function scrNTTEFullMergedStickySetup(_instances) {
         scrNTTEFullMergedProjectileAddEvent(id,"wall",scrNTTEFullMergedStickyStick)
     }
 }
-function scrNTTEFullMergedStickyPostStep(_instances) {
+function scrNTTEFullMergedStickyPostStep(_instances,_native=false) {
     for(var _i=0;_i<array_length(_instances);++_i) if(instance_exists(_instances[_i])) with(_instances[_i]) {
         if(temerge_sticky_target==noone) continue
         if(instance_exists(temerge_sticky_target)) {
             var _fraction=1-power(0.5,timescale)
             x=lerp(x,temerge_sticky_target.x+temerge_sticky_xoffset,_fraction)
             y=lerp(y,temerge_sticky_target.y+temerge_sticky_yoffset,_fraction)
-            scrNTTEFullMergedEffectsMotion(id,false)
+            // Native End Step follows physical motion. Only the legacy
+            // pre-motion scheduler needs its predictive position update.
+            if(!_native) scrNTTEFullMergedEffectsMotion(id,false)
             if(speed!=0 && (object_index==Rocket || object_index==Nuke) && active && instance_is(temerge_sticky_target,hitme)) {
                 var _angle=direction,_force=speed*timescale/(3*(max(0,temerge_sticky_target.size)+1))
                 with(temerge_sticky_target) motion_add(_angle,_force)
@@ -68,7 +70,7 @@ function scrNTTEFullMergedStickyStick() {
         case UltraBolt:canhurt=false;break;
         case Laser:case EnemyLaser:alarm[0]=-1;break;
     }
-    scrNTTEFullMergedStickyPostStep([id])
+    scrNTTEFullMergedStickyPostStep([id],variable_global_exists("ntte_merge_native_collision_mode") && global.ntte_merge_native_collision_mode)
 }
 function scrNTTEFullMergedPullingSetup(_instances) {
     for(var _i=0;_i<array_length(_instances);++_i) if(instance_exists(_instances[_i])

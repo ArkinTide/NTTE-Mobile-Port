@@ -9,10 +9,9 @@ function scrNTTEFullHyperBubbleCreate() {
     temerge_on_setup=scrNTTEFullHyperBubbleMerge
 }
 function scrNTTEFullHyperBubbleMerge(_instances) {
-    if (!variable_global_exists("ntte_full_projectile_merge_effect") || !is_callable(global.ntte_full_projectile_merge_effect)) throw "HyperBubble requires original merged projectile effect provider"
-    var _provider=global.ntte_full_projectile_merge_effect
-    _provider(_instances,"hyper",[])
-    _provider(_instances,"explosion",[{is_bubble:true}])
+    // Setup can be the first fusion fired after startup or continuation.
+    scrNTTEFullMergedProjectileAddEffect(_instances,"hyper",[])
+    scrNTTEFullMergedProjectileAddEffect(_instances,"explosion",[{is_bubble:true}])
 }
 function scrNTTEFullHyperBubbleEndStep() {
     if (lockstep_stop) return;

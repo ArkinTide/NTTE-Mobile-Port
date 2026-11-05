@@ -64,6 +64,10 @@ function scrNTTEFullSmokeStep() {
         if(scrNTTEFullSmokeAsyncCase("Release123UGSeedsTests")) {scrRelease123UGSeedsTests();return;}
         if(scrNTTEFullSmokeAsyncCase("Release123NaturalTests")) {scrRelease123NaturalTests();return;}
         if(scrNTTEFullSmokeAsyncCase("UndergrowthNaturalTests")) {scrUGNaturalTests();return;}
+        if(scrNTTEFullSmokeCase("Release126FusionTests")) scrRelease126FusionTests();
+        if(scrNTTEFullSmokeCase("Release126VineTests")) scrRelease126VineTests();
+        if(scrNTTEFullSmokeCase("Release126WallsTests")) scrRelease126WallsTests();
+        if(scrNTTEFullSmokeCase("Release126RedPassageTests")) scrRelease126RedPassageTests();
         if(scrNTTEFullSmokeCase("Release125BatTests")) scrRelease125BatTests();
         if(scrNTTEFullSmokeCase("Release125ClearTests")) scrRelease125ClearTests();
         if(scrNTTEFullSmokeCase("Release125SwimTests")) scrRelease125SwimTests();

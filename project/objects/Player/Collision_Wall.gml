@@ -1,3 +1,8 @@
+// The original red secret passage uses non-solid visual Wall instances.
+// Its helper/reveal controller owns their masks; normal wall ejection would
+// destroy the disguise or push the player back out of this real floor path.
+if(instance_is(other.id,NTTEFullWallFake)) exit;
+
 if (hammerhead && hammering > 6) {
 	hammering = 12
 	hammerhead --

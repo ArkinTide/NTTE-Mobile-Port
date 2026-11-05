@@ -1,0 +1,890 @@
+{
+  "status": "PASS",
+  "scope": "All original projectile-specific fusion callbacks and named effect lifecycle registrations; behavioral verification recorded separately, not all weapon-pair combinations.",
+  "callback_count": 77,
+  "effect_event_count": 44,
+  "callbacks": [
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5098",
+      "object": "HeavyBullet",
+      "event": "setup",
+      "native": "HeavyBullet",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:4"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5107",
+      "object": "UltraBullet",
+      "event": "setup",
+      "native": "UltraBullet",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:9"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5117",
+      "object": "BouncerBullet",
+      "event": "wall",
+      "native": "BouncerBullet",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:243"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5129",
+      "object": "FlameShell",
+      "event": "setup",
+      "native": "FlameShell",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:15"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5134",
+      "object": "UltraShell",
+      "event": "setup",
+      "native": "UltraShell",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:18"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5156",
+      "object": "Slug",
+      "event": "setup",
+      "native": "Slug",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:30"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5165",
+      "object": "HeavySlug",
+      "event": "setup",
+      "native": "HeavySlug",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:35"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5174",
+      "object": "HyperSlug",
+      "event": "setup",
+      "native": "HyperSlug",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:40"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5182",
+      "object": "FlakBullet",
+      "event": "destroy",
+      "native": "FlakBullet",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:352"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5221",
+      "object": "SuperFlakBullet",
+      "event": "setup",
+      "native": "SuperFlakBullet",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:44"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5225",
+      "object": "SuperFlakBullet",
+      "event": "destroy",
+      "native": "SuperFlakBullet",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:363"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5276",
+      "object": "Bolt",
+      "event": "fire",
+      "native": "Bolt",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:47"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5280",
+      "object": "Bolt",
+      "event": "setup",
+      "native": "Bolt",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:48"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5288",
+      "object": "HeavyBolt",
+      "event": "fire",
+      "native": "HeavyBolt",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:47"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5292",
+      "object": "HeavyBolt",
+      "event": "setup",
+      "native": "HeavyBolt",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:52"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5304",
+      "object": "ToxicBolt",
+      "event": "fire",
+      "native": "ToxicBolt",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:47"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5308",
+      "object": "ToxicBolt",
+      "event": "setup",
+      "native": "ToxicBolt",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:58"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5319",
+      "object": "UltraBolt",
+      "event": "fire",
+      "native": "UltraBolt",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:47"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5323",
+      "object": "UltraBolt",
+      "event": "setup",
+      "native": "UltraBolt",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:63"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5336",
+      "object": "Splinter",
+      "event": "setup",
+      "native": "Splinter",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:68"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5341",
+      "object": "Seeker",
+      "event": "setup",
+      "native": "Seeker",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:69"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5352",
+      "object": "Disc",
+      "event": "setup",
+      "native": "Disc",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:248"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5374",
+      "object": "Disc",
+      "event": "wall",
+      "native": "Disc",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:262"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5438",
+      "object": "Grenade",
+      "event": "fire",
+      "native": "Grenade",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:289"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5475",
+      "object": "Grenade",
+      "event": "setup",
+      "native": "Grenade",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:310"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5560",
+      "object": "HyperGrenade",
+      "event": "fire",
+      "native": "HyperGrenade",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:345"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5566",
+      "object": "HyperGrenade",
+      "event": "setup",
+      "native": "HyperGrenade",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:348"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5574",
+      "object": "Flare",
+      "event": "setup",
+      "native": "Flare",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:74"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5579",
+      "object": "FlameBall",
+      "event": "setup",
+      "native": "FlameBall",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:75"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5593",
+      "object": "Rocket",
+      "event": "setup",
+      "native": "Rocket",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:81"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5598",
+      "object": "Nuke",
+      "event": "fire",
+      "native": "Nuke",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:82"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5606",
+      "object": "Nuke",
+      "event": "setup",
+      "native": "Nuke",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:83"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5615",
+      "object": "Laser",
+      "event": "fire",
+      "native": "Laser",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:88"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5646",
+      "object": "Laser",
+      "event": "setup",
+      "native": "Laser",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:101"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5655",
+      "object": "Lightning",
+      "event": "setup",
+      "native": "Lightning",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:111"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5671",
+      "object": "LightningBall",
+      "event": "setup",
+      "native": "LightningBall",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:130"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5685",
+      "object": "PlasmaBall",
+      "event": "setup",
+      "native": "PlasmaBall",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:136"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5695",
+      "object": "PlasmaBig",
+      "event": "setup",
+      "native": "PlasmaBig",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:140"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5706",
+      "object": "PlasmaHuge",
+      "event": "setup",
+      "native": "PlasmaHuge",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:147"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5716",
+      "object": "PlasmaHuge",
+      "event": "destroy",
+      "native": "PlasmaHuge",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:154"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5730",
+      "object": "Devastator",
+      "event": "fire",
+      "native": "Devastator",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:162"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5736",
+      "object": "Devastator",
+      "event": "setup",
+      "native": "Devastator",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:165"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5752",
+      "object": "Slash",
+      "event": "fire",
+      "native": "Slash",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:173"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5756",
+      "object": "EnergySlash",
+      "event": "fire",
+      "native": "EnergySlash",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:173"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5759",
+      "object": "EnergyHammerSlash",
+      "event": "fire",
+      "native": "EnergyHammerSlash",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:173"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5762",
+      "object": "LightningSlash",
+      "event": "fire",
+      "native": "LightningSlash",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:173"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5765",
+      "object": "BloodSlash",
+      "event": "fire",
+      "native": "BloodSlash",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:173"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5768",
+      "object": "GuitarSlash",
+      "event": "fire",
+      "native": "NTTEFullGuitarSlash",
+      "route": "original pseudo-class -> concrete native Slash ancestry",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:173"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5771",
+      "object": "CustomSlash",
+      "event": "fire",
+      "native": "NTTEFullCustomSlash",
+      "route": "original pseudo-class -> concrete native Slash ancestry",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:173"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5775",
+      "object": "Shank",
+      "event": "fire",
+      "native": "Shank",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:177"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5779",
+      "object": "EnergyShank",
+      "event": "fire",
+      "native": "EnergyShank",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:177"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5783",
+      "object": "ThrownWep",
+      "event": "fire",
+      "native": "NTTEFullThrownWep",
+      "route": "actual scrFire Gun Gun -> marked WepPickup -> native capture and explicit fire hook",
+      "implementation": "project/scripts/scrNTTEFullMergedCustomStock/scrNTTEFullMergedCustomStock.gml:165"
+    },
+    {
+      "original": "reference/NTTE/temerge.mod.gml:5790",
+      "object": "ConfettiBall",
+      "event": "hit",
+      "native": "ConfettiBall",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:381"
+    },
+    {
+      "original": "reference/NTTE/objects/tecaves.mod.gml:1970",
+      "object": "CrystalHeartBullet",
+      "event": "fire",
+      "native": "NTTEFullCrystalHeartBullet",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:191"
+    },
+    {
+      "original": "reference/NTTE/objects/tecaves.mod.gml:2693",
+      "object": "RedBullet",
+      "event": "setup",
+      "native": "NTTEFullRedBullet",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullCustomProjectileWeapons/scrNTTEFullCustomProjectileWeapons.gml:14"
+    },
+    {
+      "original": "reference/NTTE/objects/tecaves.mod.gml:2703",
+      "object": "RedBullet",
+      "event": "hit",
+      "native": "NTTEFullRedBullet",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullCustomProjectileWeapons/scrNTTEFullCustomProjectileWeapons.gml:17"
+    },
+    {
+      "original": "reference/NTTE/objects/tecoast.mod.gml:1470",
+      "object": "Harpoon",
+      "event": "hit",
+      "native": "NTTEFullHarpoon",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedCustomStock/scrNTTEFullMergedCustomStock.gml:86"
+    },
+    {
+      "original": "reference/NTTE/objects/tecoast.mod.gml:1748",
+      "object": "NetNade",
+      "event": "fire",
+      "native": "NTTEFullNetNade",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedCustomStock/scrNTTEFullMergedCustomStock.gml:108"
+    },
+    {
+      "original": "reference/NTTE/objects/tecoast.mod.gml:1751",
+      "object": "NetNade",
+      "event": "setup",
+      "native": "NTTEFullNetNade",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedCustomStock/scrNTTEFullMergedCustomStock.gml:109"
+    },
+    {
+      "original": "reference/NTTE/objects/tecoast.mod.gml:1757",
+      "object": "NetNade",
+      "event": "hit",
+      "native": "NTTEFullNetNade",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedCustomStock/scrNTTEFullMergedCustomStock.gml:115"
+    },
+    {
+      "original": "reference/NTTE/objects/tecoast.mod.gml:1771",
+      "object": "NetNade",
+      "event": "destroy",
+      "native": "NTTEFullNetNade",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedCustomStock/scrNTTEFullMergedCustomStock.gml:121"
+    },
+    {
+      "original": "reference/NTTE/objects/tegeneral.mod.gml:1070",
+      "object": "BoneArrow",
+      "event": "fire",
+      "native": "NTTEFullBoneArrow",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:191"
+    },
+    {
+      "original": "reference/NTTE/objects/telabs.mod.gml:2335",
+      "object": "PortalBullet",
+      "event": "setup",
+      "native": "NTTEFullPortalBullet",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStockExtra/scrNTTEFullMergedStockExtra.gml:149"
+    },
+    {
+      "original": "reference/NTTE/objects/telabs.mod.gml:2352",
+      "object": "PortalBullet",
+      "event": "hit",
+      "native": "NTTEFullPortalBullet",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStockExtra/scrNTTEFullMergedStockExtra.gml:152"
+    },
+    {
+      "original": "reference/NTTE/objects/teoasis.mod.gml:637",
+      "object": "BubbleBomb",
+      "event": "fire",
+      "native": "NTTEFullBubbleBomb",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:192"
+    },
+    {
+      "original": "reference/NTTE/objects/teoasis.mod.gml:640",
+      "object": "BubbleBomb",
+      "event": "setup",
+      "native": "NTTEFullBubbleBomb",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:193"
+    },
+    {
+      "original": "reference/NTTE/objects/teoasis.mod.gml:1162",
+      "object": "HyperBubble",
+      "event": "setup",
+      "native": "NTTEFullHyperBubble",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:196"
+    },
+    {
+      "original": "reference/NTTE/objects/tesewers.mod.gml:1978",
+      "object": "BatDisc",
+      "event": "fire",
+      "native": "NTTEFullBatDisc",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedCustomStock/scrNTTEFullMergedCustomStock.gml:164"
+    },
+    {
+      "original": "reference/NTTE/objects/tetrench.mod.gml:1156",
+      "object": "ElectroPlasma",
+      "event": "fire",
+      "native": "NTTEFullElectroPlasma",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:200"
+    },
+    {
+      "original": "reference/NTTE/objects/tetrench.mod.gml:1159",
+      "object": "ElectroPlasma",
+      "event": "setup",
+      "native": "NTTEFullElectroPlasma",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:201"
+    },
+    {
+      "original": "reference/NTTE/objects/tetrench.mod.gml:1796",
+      "object": "LightningDisc",
+      "event": "fire",
+      "native": "NTTEFullLightningDisc",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStockExtra/scrNTTEFullMergedStockExtra.gml:41"
+    },
+    {
+      "original": "reference/NTTE/objects/tetrench.mod.gml:1799",
+      "object": "LightningDisc",
+      "event": "setup",
+      "native": "NTTEFullLightningDisc",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStockExtra/scrNTTEFullMergedStockExtra.gml:44"
+    },
+    {
+      "original": "reference/NTTE/objects/tetrench.mod.gml:1810",
+      "object": "LightningDisc",
+      "event": "hit",
+      "native": "NTTEFullLightningDisc",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStockExtra/scrNTTEFullMergedStockExtra.gml:54"
+    },
+    {
+      "original": "reference/NTTE/objects/tetrench.mod.gml:1832",
+      "object": "LightningDisc",
+      "event": "destroy",
+      "native": "NTTEFullLightningDisc",
+      "route": "conditional destroy callback installed by original setup",
+      "implementation": "project/scripts/scrNTTEFullMergedStockExtra/scrNTTEFullMergedStockExtra.gml:70"
+    },
+    {
+      "original": "reference/NTTE/objects/tetrench.mod.gml:4408",
+      "object": "QuasarBeam",
+      "event": "fire",
+      "native": "NTTEFullQuasarBeam",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStockExtra/scrNTTEFullMergedStockExtra.gml:6"
+    },
+    {
+      "original": "reference/NTTE/objects/tetrench.mod.gml:4415",
+      "object": "QuasarBeam",
+      "event": "setup",
+      "native": "NTTEFullQuasarBeam",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStockExtra/scrNTTEFullMergedStockExtra.gml:11"
+    },
+    {
+      "original": "reference/NTTE/objects/tetrench.mod.gml:4662",
+      "object": "TeslaCoil",
+      "event": "setup",
+      "native": "NTTEFullTeslaCoil",
+      "route": "native ancestry callback table",
+      "implementation": "project/scripts/scrNTTEFullMergedStock/scrNTTEFullMergedStock.gml:217"
+    }
+  ],
+  "effects": [
+    {
+      "effect": "blood_trail",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedEnergy/scrNTTEFullMergedEnergy.gml:121",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "blood_trail",
+      "event": "step",
+      "implementation": "project/scripts/scrNTTEFullMergedEnergy/scrNTTEFullMergedEnergy.gml:126",
+      "route": "native effect scheduler step"
+    },
+    {
+      "effect": "collision_event",
+      "event": "post_step",
+      "implementation": "project/scripts/scrNTTEFullMergedNativeScheduler/scrNTTEFullMergedNativeScheduler.gml:38",
+      "route": "real native hit/wall entry; replaces unavailable global pre-motion callback"
+    },
+    {
+      "effect": "destroy_event",
+      "event": "post_step",
+      "implementation": "project/scripts/scrNTTEFullMergedEffects/scrNTTEFullMergedEffects.gml:308",
+      "route": "native effect scheduler post_step"
+    },
+    {
+      "effect": "explosion",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedExplosive/scrNTTEFullMergedExplosive.gml:13",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "fixed_lightning_yscale",
+      "event": "draw",
+      "implementation": "project/scripts/scrNTTEFullMergedEffects/scrNTTEFullMergedEffects.gml:439",
+      "route": "native effect scheduler draw"
+    },
+    {
+      "effect": "fixed_plasma_speed_factor",
+      "event": "begin_step",
+      "implementation": "project/scripts/scrNTTEFullMergedEffects/scrNTTEFullMergedEffects.gml:418",
+      "route": "native effect scheduler begin_step"
+    },
+    {
+      "effect": "fixed_rocket_speed_factor",
+      "event": "step",
+      "implementation": "project/scripts/scrNTTEFullMergedEffects/scrNTTEFullMergedEffects.gml:430",
+      "route": "native effect scheduler step"
+    },
+    {
+      "effect": "fixed_scale",
+      "event": "draw",
+      "implementation": "project/scripts/scrNTTEFullMergedEffects/scrNTTEFullMergedEffects.gml:436",
+      "route": "native effect scheduler draw"
+    },
+    {
+      "effect": "fixed_seeker_speed_factor",
+      "event": "step",
+      "implementation": "project/scripts/scrNTTEFullMergedEffects/scrNTTEFullMergedEffects.gml:426",
+      "route": "native effect scheduler step"
+    },
+    {
+      "effect": "flame",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedBasic/scrNTTEFullMergedBasic.gml:81",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "flame",
+      "event": "step",
+      "implementation": "project/scripts/scrNTTEFullMergedBasic/scrNTTEFullMergedBasic.gml:90",
+      "route": "native effect scheduler step"
+    },
+    {
+      "effect": "flame_trail",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedBasic/scrNTTEFullMergedBasic.gml:104",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "flame_trail",
+      "event": "step",
+      "implementation": "project/scripts/scrNTTEFullMergedBasic/scrNTTEFullMergedBasic.gml:115",
+      "route": "native effect scheduler step"
+    },
+    {
+      "effect": "grenade",
+      "event": "draw",
+      "implementation": "project/scripts/scrNTTEFullMergedExplosive/scrNTTEFullMergedExplosive.gml:134",
+      "route": "native effect scheduler draw"
+    },
+    {
+      "effect": "grenade",
+      "event": "end_step",
+      "implementation": "project/scripts/scrNTTEFullMergedExplosive/scrNTTEFullMergedExplosive.gml:127",
+      "route": "native effect scheduler end_step"
+    },
+    {
+      "effect": "grenade",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedExplosive/scrNTTEFullMergedExplosive.gml:105",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "grenade",
+      "event": "step",
+      "implementation": "project/scripts/scrNTTEFullMergedExplosive/scrNTTEFullMergedExplosive.gml:120",
+      "route": "native effect scheduler step"
+    },
+    {
+      "effect": "guiding",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedMotion/scrNTTEFullMergedMotion.gml:207",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "guiding",
+      "event": "step",
+      "implementation": "project/scripts/scrNTTEFullMergedMotion/scrNTTEFullMergedMotion.gml:210",
+      "route": "native effect scheduler step"
+    },
+    {
+      "effect": "hyper",
+      "event": "begin_step",
+      "implementation": "project/scripts/scrNTTEFullMergedHyper/scrNTTEFullMergedHyper.gml:100",
+      "route": "native effect scheduler begin_step"
+    },
+    {
+      "effect": "hyper",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedHyper/scrNTTEFullMergedHyper.gml:39",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "laser",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedMotion/scrNTTEFullMergedMotion.gml:224",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "lightning_trail",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedLightning/scrNTTEFullMergedLightning.gml:139",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "lightning_trail",
+      "event": "step",
+      "implementation": "project/scripts/scrNTTEFullMergedLightning/scrNTTEFullMergedLightning.gml:154",
+      "route": "native effect scheduler step"
+    },
+    {
+      "effect": "piercing",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedPayload/scrNTTEFullMergedPayload.gml:82",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "plasma",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedEnergy/scrNTTEFullMergedEnergy.gml:14",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "plasma",
+      "event": "step",
+      "implementation": "project/scripts/scrNTTEFullMergedEnergy/scrNTTEFullMergedEnergy.gml:24",
+      "route": "native effect scheduler step"
+    },
+    {
+      "effect": "plasma_trail",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedEnergy/scrNTTEFullMergedEnergy.gml:88",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "plasma_trail",
+      "event": "step",
+      "implementation": "project/scripts/scrNTTEFullMergedEnergy/scrNTTEFullMergedEnergy.gml:98",
+      "route": "native effect scheduler step"
+    },
+    {
+      "effect": "pulling",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedMotion/scrNTTEFullMergedMotion.gml:75",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "pulling",
+      "event": "step",
+      "implementation": "project/scripts/scrNTTEFullMergedMotion/scrNTTEFullMergedMotion.gml:91",
+      "route": "native effect scheduler step"
+    },
+    {
+      "effect": "rocket",
+      "event": "draw",
+      "implementation": "project/scripts/scrNTTEFullMergedMotion/scrNTTEFullMergedMotion.gml:171",
+      "route": "native effect scheduler draw"
+    },
+    {
+      "effect": "rocket",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedMotion/scrNTTEFullMergedMotion.gml:126",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "rocket",
+      "event": "step",
+      "implementation": "project/scripts/scrNTTEFullMergedMotion/scrNTTEFullMergedMotion.gml:142",
+      "route": "native effect scheduler step"
+    },
+    {
+      "effect": "seeking",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedBasic/scrNTTEFullMergedBasic.gml:185",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "seeking",
+      "event": "step",
+      "implementation": "project/scripts/scrNTTEFullMergedBasic/scrNTTEFullMergedBasic.gml:216",
+      "route": "native effect scheduler step"
+    },
+    {
+      "effect": "slug",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedPayload/scrNTTEFullMergedPayload.gml:24",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "sticky",
+      "event": "post_step",
+      "implementation": "project/scripts/scrNTTEFullMergedMotion/scrNTTEFullMergedMotion.gml:26",
+      "route": "native GameCont End Step attachment, no predictive motion replay"
+    },
+    {
+      "effect": "sticky",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedMotion/scrNTTEFullMergedMotion.gml:18",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "toxic",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedBasic/scrNTTEFullMergedBasic.gml:156",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "trail",
+      "event": "end_step",
+      "implementation": "project/scripts/scrNTTEFullMergedBasic/scrNTTEFullMergedBasic.gml:62",
+      "route": "native effect scheduler end_step"
+    },
+    {
+      "effect": "trail",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedBasic/scrNTTEFullMergedBasic.gml:48",
+      "route": "synchronous AddEffect setup"
+    },
+    {
+      "effect": "wall_piercing",
+      "event": "setup",
+      "implementation": "project/scripts/scrNTTEFullMergedPayload/scrNTTEFullMergedPayload.gml:105",
+      "route": "synchronous AddEffect setup"
+    }
+  ]
+}

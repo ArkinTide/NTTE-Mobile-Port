@@ -38,6 +38,7 @@ function scrNTTEFullMergedEffectsRemove(_list,_value) {
     return _out
 }
 function scrNTTEFullMergedEffectsInit() {
+    if(!variable_global_exists("ntte_merge_native_collision_mode")) global.ntte_merge_native_collision_mode=true;
     if(variable_global_exists("ntte_full_merge_effect_initialized") && global.ntte_full_merge_effect_initialized
         && variable_global_exists("ntte_full_merge_effect_registry") && is_struct(global.ntte_full_merge_effect_registry)) return;
     global.ntte_full_merge_effect_initialized=true
@@ -548,7 +549,11 @@ function scrNTTEFullMergedEffectsUnitTests() {
         _players=scrNTTEFullAreaGeneratorSnapshot(Player),_back=scrNTTEFullAreaGeneratorSnapshot(BackCont),
         _old_registry=variable_global_exists("ntte_full_merge_effect_registry")?global.ntte_full_merge_effect_registry:undefined,
         _old_initialized=variable_global_exists("ntte_full_merge_effect_initialized")?global.ntte_full_merge_effect_initialized:false,
-        _old_test=variable_global_exists("ntte_full_merge_effect_test")?global.ntte_full_merge_effect_test:undefined
+        _old_test=variable_global_exists("ntte_full_merge_effect_test")?global.ntte_full_merge_effect_test:undefined,
+        _old_native=global.ntte_merge_native_collision_mode
+    // This fixture verifies the original predictive algorithm explicitly;
+    // production uses the separate native-collision suite.
+    global.ntte_merge_native_collision_mode=false
     global.ntte_full_merge_effect_registry={};global.ntte_full_merge_effect_initialized=false
     global.ntte_full_merge_effect_test={calls:0,trace:[],dead:0,unused:0,phase:[],extra:noone}
     GameCont.temerge_effect_vars_map={};GameCont.temerge_effect_call_step_instance_list=[]
@@ -739,6 +744,7 @@ function scrNTTEFullMergedEffectsUnitTests() {
         scrNTTEFullAreaGeneratorRestore(_game);scrNTTEFullAreaGeneratorRestore(_players);scrNTTEFullAreaGeneratorRestore(_back)
         global.ntte_full_merge_effect_registry=_old_registry;global.ntte_full_merge_effect_initialized=_old_initialized
         global.ntte_full_merge_effect_test=_old_test
+        global.ntte_merge_native_collision_mode=_old_native
     }
     scrNTTESmokeLog("FULL MERGED EFFECTS: actual callback context/duplicates, setup replacement, in-event registration, copy(false), native collision, destroy replay and logical primitives OK @"+string(30/timescale))
 }

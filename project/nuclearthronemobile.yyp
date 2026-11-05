@@ -47066,6 +47066,24 @@
         "name": "scrRelease125Tests",
         "path": "scripts/scrRelease125Tests/scrRelease125Tests.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrNTTESolidWalls",
+        "path": "scripts/scrNTTESolidWalls/scrNTTESolidWalls.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "NTTESolidWall",
+        "path": "objects/NTTESolidWall/NTTESolidWall.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrRelease126Tests",
+        "path": "scripts/scrRelease126Tests/scrRelease126Tests.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

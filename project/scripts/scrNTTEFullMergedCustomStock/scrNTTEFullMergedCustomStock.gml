@@ -163,8 +163,12 @@ function scrNTTEFullMergedCustomBind(_shot,_kind) {
 }
 function scrNTTEFullMergedCustomKeepFire(_at=undefined,_info=undefined) {temerge_can_delete=false}
 function scrNTTEFullMergedThrownWeaponFire(_at,_info=undefined) {
-    wep=scrNTTEFullWeaponMerge(wep,_at.wep)
+    wep=scrNTTEFullWeaponMerge(wep,is_array(_at.wep)?_at.wep[0]:_at.wep)
     sprite_index=scr_weapon_get_sprite(wep)
+    if(instance_is(id,WepPickup)) {
+        wep=scrNTTEFullWeaponNative(wep);ntte_state=scrNTTEFullWeaponNativeState(wep);
+        name=scr_weapon_get_name(wep);type=scr_weapon_get_type(wep);
+    }
     temerge_can_delete=false
 }
 

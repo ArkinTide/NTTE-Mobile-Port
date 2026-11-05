@@ -12,7 +12,7 @@ function scrTerrainBlastRefreshWalls() {
         // newest first; preserve that order for dependent visibility updates.
         array_sort(_walls,function(_a,_b) {return real(_b)-real(_a);});
         for(var _i=0;_i<array_length(_walls);++_i) if(instance_exists(_walls[_i])) with(_walls[_i]) {
-            if(point_distance(x,y,other.x,other.y)>32) continue;
+            if(instance_is(id,NTTESolidWall) || point_distance(x,y,other.x,other.y)>32) continue;
             if(position_meeting(x,y,FloorExplo)) {instance_destroy();continue;}
             visible=place_meeting(x,y+16,Floor);
             if(place_free(x-16,y)) l=0;else l=4;

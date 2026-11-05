@@ -114,7 +114,16 @@ function scrNTTEFullMergedWallPiercingSetup(_instances,_amount) {
 function scrNTTEFullMergedWallPiercingWall() {
     if(temerge_wall_piercing_count<=0) return true
     var _wall=other.id
-    with(_wall) { instance_create(x,y,FloorExplo);instance_destroy() }
+    if(instance_is(_wall,NTTESolidWall)) {
+        // Break the contact cell, preserving the remaining packed exterior.
+        var _cells=scrNTTESolidWallSplit(_wall),_near=noone,_distance=infinity;
+        for(var _i=0;_i<array_length(_cells);++_i) {
+            var _v=_cells[_i],_d=point_distance(x,y,_v.x+8,_v.y+8);
+            if(_d<_distance) {_near=_v;_distance=_d;}
+        }
+        if(instance_exists(_near)) {var _x=_near.x,_y=_near.y;instance_destroy(_near,false);instance_create(_x,_y,FloorExplo);}
+    }
+    else with(_wall) {instance_create(x,y,FloorExplo);if(instance_exists(id)) instance_destroy();}
     if(speed>16*timescale) speed=16*timescale
     temerge_wall_piercing_count-=1
     if(temerge_wall_piercing_count<=0) return true
