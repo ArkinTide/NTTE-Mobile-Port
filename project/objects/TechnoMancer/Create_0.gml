@@ -14,6 +14,7 @@ event_inherited()
 snd_hurt = sndTechnomancerHurt
 snd_dead = sndTechnomancerDestroy
 
+scrNTTESolidWallMaterializeShape(id);
 with Wall {
 	if (place_meeting(x, y, other)) scrWallDestroy(id)
 }

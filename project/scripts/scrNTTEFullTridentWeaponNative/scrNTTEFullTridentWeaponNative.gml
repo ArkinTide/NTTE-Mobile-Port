@@ -66,10 +66,11 @@ function scrNTTEFullTridentFire(_weapon,_primary) {
                 if(_length<_distance) _shot.visible=false
                 else with(_shot) if(place_meeting(x+hspeed/timescale,y+vspeed/timescale,Wall)) {
                     snd_play(sndMeleeWall);instance_create(x+orandom(4),y+orandom(4),Debris)
-                    var _wall=instance_nearest(x+hspeed/timescale-8,y+vspeed/timescale-8,Wall)
+                    var _wall=instance_place(x+hspeed/timescale,y+vspeed/timescale,Wall)
                     if(instance_exists(_wall)) {
-                        var _fx=instance_create((_wall.bbox_left+_wall.bbox_right+1)/2+orandom(4),
-                            (_wall.bbox_top+_wall.bbox_bottom+1)/2+orandom(4),MeleeHitWall)
+                        var _contact=_wall.object_index==NTTESolidWall?scrNTTESolidWallContact(_wall,x,y)
+                            :[(_wall.bbox_left+_wall.bbox_right+1)/2,(_wall.bbox_top+_wall.bbox_bottom+1)/2],
+                            _fx=instance_create(_contact[0]+orandom(4),_contact[1]+orandom(4),MeleeHitWall)
                         _fx.image_angle=_dir
                     }
                 }

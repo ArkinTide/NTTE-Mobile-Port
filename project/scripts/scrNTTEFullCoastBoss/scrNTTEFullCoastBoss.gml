@@ -26,7 +26,9 @@ function scrNTTEFullCoastBossBecomeStep() {
         }
     }
     if (part>0) {
-        var _size=4*part,_walls=scrNTTEFullRectInstances(bbox_left-_size-_size*image_xscale,bbox_top,bbox_right-1+_size-_size*image_xscale,bbox_bottom-1,Wall)
+        var _size=4*part;
+        scrNTTESolidWallMaterialize(bbox_left-_size-_size*image_xscale,bbox_top,bbox_right-1+_size-_size*image_xscale,bbox_bottom-1);
+        var _walls=scrNTTEFullRectInstances(bbox_left-_size-_size*image_xscale,bbox_top,bbox_right-1+_size-_size*image_xscale,bbox_bottom-1,Wall)
         for(var _i=0;_i<array_length(_walls);++_i) with (_walls[_i]) { instance_create(x,y,FloorExplo); instance_destroy() }
         if (part>=sprite_get_number(spr_idle)-1) {
             var _boss=instance_create(x-image_xscale*8,y-6,NTTEFullCoastBoss)

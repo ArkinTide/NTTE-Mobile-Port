@@ -116,11 +116,7 @@ function scrNTTEFullMergedWallPiercingWall() {
     var _wall=other.id
     if(instance_is(_wall,NTTESolidWall)) {
         // Break the contact cell, preserving the remaining packed exterior.
-        var _cells=scrNTTESolidWallSplit(_wall),_near=noone,_distance=infinity;
-        for(var _i=0;_i<array_length(_cells);++_i) {
-            var _v=_cells[_i],_d=point_distance(x,y,_v.x+8,_v.y+8);
-            if(_d<_distance) {_near=_v;_distance=_d;}
-        }
+        var _near=scrNTTESolidWallCellAt(_wall,x,y);
         if(instance_exists(_near)) {var _x=_near.x,_y=_near.y;instance_destroy(_near,false);instance_create(_x,_y,FloorExplo);}
     }
     else with(_wall) {instance_create(x,y,FloorExplo);if(instance_exists(id)) instance_destroy();}

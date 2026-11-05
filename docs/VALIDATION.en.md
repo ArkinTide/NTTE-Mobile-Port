@@ -2,6 +2,12 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [Home](../README.en.md)
 
+## 1.2.7
+
+62 final Windows VM regressions passed in 30/60 FPS modes, with 156 actual Draw image comparisons and 31 Android updater Java host checks. Coverage includes Lab/HQ delayed chambers, doors and native clear lifecycle, packed-wall interactions, static object updates, regional Coast swimming composition and fallbacks, plus prior fusion, Red corridor and vine regressions. A single-swimmer diagnostic reduced copied pixels by about 92%; this is not a total-cost or phone-FPS improvement figure.
+
+Tests use isolated saves, a private desktop that is never activated and process muting. Package version, identity, structure, updater and compiled-fix preservation are verified; Android retains its certificate and 16KB alignment. Android versionCode 3000095, iOS build 95; GAME_BUILD 3004 retained. No physical-phone or full random-campaign acceptance, so no particular mobile FPS is promised. iOS uses freshly compiled VM data and a retained runner, requires re-signing and is not a fresh native Mac build.
+
 ## 1.2.6
 
 45 selected final Windows VM regressions passed at30/60FPS, plus31 Android updater Java host checks. Coverage includes actual PlayerFiring across18 inherited effect families, native piercing/reflection, sticky follow/release, both Gun Gun merge positions, copies and delayed shots, Red corridor masks,22 terrain checks, precise blast/script carving, sparse distant-room fill and vine interaction. All77 original specialized fusion callbacks and44 lifecycle routes are inventoried; all weapon-pair combinations were not exhaustively played.

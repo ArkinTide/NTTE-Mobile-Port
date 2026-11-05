@@ -1,10 +1,10 @@
 // Release numbering is independent of GAME_BUILD, which belongs to save formats.
 
-#macro NTTE_RELEASE_NUMBER 94
+#macro NTTE_RELEASE_NUMBER 95
 
-#macro NTTE_RELEASE_TAG "1.2.6"
+#macro NTTE_RELEASE_TAG "1.2.7"
 
-#macro NTTE_RELEASE_VERSION "1.2.6"
+#macro NTTE_RELEASE_VERSION "1.2.7"
 
 #macro NTTE_RELEASE_REPO "https://github.com/ArkinTide/NTTE-Mobile-Port"
 

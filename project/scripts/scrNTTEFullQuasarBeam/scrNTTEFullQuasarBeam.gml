@@ -190,6 +190,7 @@ function scrNTTEFullQuasarBeamLine() {
         x=_cx; y=_cy
         if (ntte_full_ring && place_meeting(x,y,Wall)) {
             speed*=0.96
+            scrNTTESolidWallMaterializeShape(id);
             var _walls=ds_list_create()
             collision_rectangle_list(bbox_left,bbox_top,bbox_right-1,bbox_bottom-1,Wall,false,true,_walls,false)
             for(var _i=0;_i<ds_list_size(_walls);++_i) {

@@ -67,35 +67,8 @@ for (var i = 0; i < player_count; i++) {
 }
 
 if (!lockstep_stop && !paused && !instance_exists(PauseImage)) {
-    var _left = view_xview - 32,
-		_right = view_xview + view_width + 32,
-		_top = view_yview - 32,
-		_bottom = view_yview + view_height + 32,
-		
-		_wall_list = global.lis_walls_visible,
-		_floor_list = global.lis_floors_visible,
-		
-		_camera_boundaries_check = (!instance_exists(Cinematic))
-	
-    ds_list_clear(_wall_list)
-    ds_list_clear(_floor_list)
-	
-	if (_camera_boundaries_check) {
-	    with (Wall) {
-	        if (bbox_right >= _left && bbox_bottom >= _top && bbox_left < _right && bbox_top < _bottom) {
-	            ds_list_add(_wall_list, id)
-	        }
-	    }
-		with (Floor) {
-	        if (bbox_right >= _left && bbox_bottom >= _top && bbox_left < _right && bbox_top < _bottom) {
-	            ds_list_add(_floor_list, id)
-	        }
-	    }
-	}
-	else {
-		with (Wall) ds_list_add(_wall_list, id)
-		with (Floor) ds_list_add(_floor_list, id)
-	}
+    scrNTTEWallVisibilityBuild(view_xview-32,view_yview-32,
+        view_xview+view_width+32,view_yview+view_height+32,!instance_exists(Cinematic));
 }
 
 if mainvol < 1 {

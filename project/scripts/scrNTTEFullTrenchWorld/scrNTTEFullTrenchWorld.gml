@@ -246,7 +246,7 @@ function scrNTTEFullPitRendererDraw() {
             for(var _j=0;_j<array_length(_parts);_j+=2) {
                 var _normal=_parts[_j],_small=_parts[_j+1]
                 with (Floor) if (object_index==Floor && sprite_index!=_pits) draw_sprite(_normal,image_index,x,y)
-                with (Wall) if (sprite_index!=_pits) draw_sprite(_small,image_index,x,y)
+                with (Wall) if (object_index!=NTTESolidWall && sprite_index!=_pits) draw_sprite(_small,image_index,x,y)
                 with (FloorExplo) if (sprite_index!=_pits) draw_sprite(_small,image_index,x,y)
             }
             surface_reset_target()

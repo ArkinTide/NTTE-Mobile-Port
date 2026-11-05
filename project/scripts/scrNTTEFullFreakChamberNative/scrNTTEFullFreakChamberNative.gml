@@ -137,16 +137,17 @@ catch(_ntte_hq_stolen_error) { scrNTTEFullHQStolenContinueAbort(_ntte_hq_stolen_
             var _hw=max(1,abs(lengthdir_x(_hallDis/32,_dir))),_hh=max(1,abs(lengthdir_y(_hallDis/32,_dir))),
                 _hx=_fx+lengthdir_x(max(32,_hallDis)/2,_dir),_hy=_fy+lengthdir_y(max(32,_hallDis)/2,_dir),
                 _hox=lengthdir_x(32,_dir),_hoy=lengthdir_y(32,_dir)
-            if(array_length(scrNTTEFullRectInstances(_hx-_hw*16+max(0,_hox),_hy-_hh*16+max(0,_hoy),
+            if(array_length(scrNTTESolidWallPlanRect(_hx-_hw*16+max(0,_hox),_hy-_hh*16+max(0,_hoy),
                 _hx+_hw*16+min(0,_hox)-1,_hy+_hh*16+min(0,_hoy)-1,_avoid))) continue
             var _yoff=-sprite_get_height(mask_index)*image_yscale/2,_spawn=true
             x=_fx+lengthdir_x(_hallDis,_dir)+lengthdir_x(_yoff,_dir-90)
             y=_fy+lengthdir_y(_hallDis,_dir)+lengthdir_y(_yoff,_dir-90);image_angle=_dir
-            for(var _i=0;_i<array_length(_avoid);++_i) if(place_meeting(x,y,_avoid[_i])) { _spawn=false;break }
+            for(var _i=0;_i<array_length(_avoid);++_i)
+                if(_avoid[_i]==Wall?scrNTTESolidWallPlanPlace(x,y):place_meeting(x,y,_avoid[_i])) { _spawn=false;break }
             if(!_spawn) continue
             var _cx=(bbox_left+bbox_right)/2,_cy=(bbox_top+bbox_bottom)/2,
                 _w=floor((bbox_right-bbox_left)/32),_h=floor((bbox_bottom-bbox_top)/32),_walls=[],_tops=[]
-            var _oldWalls=scrNTTEFullRectInstances(_hx-_hw*16,_hy-_hh*16,_hx+_hw*16-1,_hy+_hh*16-1,Wall)
+            var _oldWalls=scrNTTESolidWallPlanRect(_hx-_hw*16,_hy-_hh*16,_hx+_hw*16-1,_hy+_hh*16-1,Wall)
             for(var _i=0;_i<array_length(_oldWalls);++_i) {
                 array_push(_walls,scrNTTEFullChamberSnapshot(_oldWalls[_i]));instance_destroy(_oldWalls[_i],false)
             }
@@ -251,7 +252,7 @@ catch(_ntte_hq_stolen_error) { scrNTTEFullHQStolenContinueAbort(_ntte_hq_stolen_
             var _sliders=[]
             for(var _i=0;_i<array_length(_tops);++_i) {
                 var _top=_tops[_i],_override=[]
-                with(Wall) if(x==_top.x && y==_top.y) array_push(_override,id)
+                with(Wall) if(object_index!=NTTESolidWall && x==_top.x && y==_top.y) array_push(_override,id)
                 if(array_length(_override)) for(var _j=0;_j<array_length(_override);++_j) {
                     _override[_j].topspr=_top.values.sprite_index;_override[_j].topindex=_top.values.image_index
                 }
@@ -296,7 +297,7 @@ function scrNTTEFullWallSlideEnd() {
     if(slide_time<=0) {
         for(var _i=0;_i<array_length(slide_inst);++_i) {
             var _wall=slide_inst[_i],_older=[]
-            with(Wall) if(x==_wall.x && y==_wall.y && id<_wall.id) array_push(_older,id)
+            with(Wall) if(object_index!=NTTESolidWall && x==_wall.x && y==_wall.y && id<_wall.id) array_push(_older,id)
             for(var _j=0;_j<array_length(_older);++_j) {
                 var _keys=["image_blend","topspr","topindex","l","h","w","r"]
                 for(var _k=0;_k<array_length(_keys);++_k) variable_instance_set(_wall,_keys[_k],variable_instance_get(_older[_j],_keys[_k]))

@@ -3636,7 +3636,7 @@ instance_create(x, y, Dust);
 	
 	                         
 	if((speed/timescale) > 2){
-		if(instance_is(other.id, Wall)) for(var _ug_each0=scrNTTEFullInstances(other.id),_ug_each0i=0;_ug_each0i<array_length(_ug_each0);++_ug_each0i) with(_ug_each0[_ug_each0i]){
+		if(instance_is(other.id, Wall)) for(var _ug_each0=scrNTTEFullInstances(scrNTTESolidWallCellAt(other.id,x,y)),_ug_each0i=0;_ug_each0i<array_length(_ug_each0);++_ug_each0i) with(_ug_each0[_ug_each0i]){
 			instance_create(x, y, FloorExplo);
 			instance_destroy();
 		}

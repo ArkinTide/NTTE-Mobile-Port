@@ -96,6 +96,7 @@ function scrNTTEFullThroneIntroBreakWalls(_body,_frame) {
         if(place_meeting(x,y,Wall)) {
             var _walls=ds_list_create(),_bottom=bbox_bottom-1,_right=bbox_right-1,
                 _top=lerp(_bottom,bbox_top,clamp(floor(_frame)/6,0,1))
+            scrNTTESolidWallMaterialize(bbox_left,_top,_right,_bottom);
             collision_rectangle_list(bbox_left,_top,_right,_bottom,Wall,false,false,_walls,false)
             for(var _i=0;_i<ds_list_size(_walls);++_i) {
                 var _wall=_walls[|_i],_meeting=false

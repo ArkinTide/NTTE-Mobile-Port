@@ -19,6 +19,7 @@ if instance_exists(target) {
     instance_destroy()
 
     with Wall {
+        if(object_index==NTTESolidWall) continue;
         image_blend = c_white
 
         if x > bx1 && x < bx2 && y > by1 && y < by2 {

@@ -25,8 +25,13 @@ with TopSmall {
     draw_sprite_ext(sprite_index, -1, x, y - 8, 1, 1, 0, image_blend, 1)
 }
 	
-with Wall {
-	{ if(sprite_exists(topspr)) draw_sprite_ext(topspr, instance_is(id,NTTEFullWallFake)?topindex:image_index, x, y - 8, 1, 1, 0, image_blend, 1); }
+// Use the already culled artwork list. Packed collision blocks have no top
+// sprite and never belong to this pass (or the reflected-shadow pass).
+for (var i = _count - 1; i >= 0; --i) {
+    if(instance_exists(_list[| i])) with(_list[| i]) {
+        if(sprite_exists(topspr)) draw_sprite_ext(topspr, instance_is(id,NTTEFullWallFake)?topindex:image_index,
+            x,y-8,1,1,0,image_blend,1);
+    }
 }
 	
 scrNTTEFullTrapSpinTopDraw();

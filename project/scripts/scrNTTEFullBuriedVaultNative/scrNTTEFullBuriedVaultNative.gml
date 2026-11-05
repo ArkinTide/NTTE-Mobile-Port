@@ -7,7 +7,8 @@ function scrNTTEFullBuriedVaultMaxID() {
 }
 function scrNTTEFullBuriedVaultNew(_object,_min) {
     var _all=scrNTTEFullInstances(_object),_out=[]
-    for(var _i=0;_i<array_length(_all);++_i) if(real(_all[_i].id)>_min) array_push(_out,_all[_i])
+    for(var _i=0;_i<array_length(_all);++_i)
+        if(real(_all[_i].id)>_min && _all[_i].object_index!=NTTESolidWall) array_push(_out,_all[_i])
     return _out
 }
 // telib:3620. Do not update wall geometry: source wall_tops only creates Top.
@@ -60,7 +61,7 @@ function scrNTTEFullBuriedVaultGenerate() {
             var _center=_ix>0 && _iy>0 && _ix<image_xscale-1 && _iy<image_xscale-1
             if(_center || random(3)<1) {
                 var _sx=x+_ix*16,_sy=y+_iy*16
-                if(!position_meeting(_sx,_sy,Floor) && !position_meeting(_sx,_sy,Wall) && !position_meeting(_sx,_sy,TopSmall)) {
+                if(!position_meeting(_sx,_sy,Floor) && !scrNTTESolidWallPlanPoint(_sx,_sy) && !position_meeting(_sx,_sy,TopSmall)) {
                     var _tile=instance_create(_sx,_sy,TopSmall)
                     if(instance_exists(_tile)) {
                         if(collision_line(_x1,_y1,_x2,_y2,_tile,false,false)) {
@@ -153,6 +154,7 @@ function scrNTTEFullBuriedVaultExcavate(_sx,_sy) {
         scrNTTEFullBuriedVaultTinyEdges(_tiles,5)
         for(var _i=0;_i<array_length(_extraFloors);++_i) if(instance_exists(_extraFloors[_i])) with(_extraFloors[_i]) {
             if(position_meeting(x-16,y,Wall) && position_meeting(x,y-16,Wall) && position_meeting(x+16,y,Wall) && position_meeting(x,y+16,Wall)) {
+                scrNTTESolidWallMaterialize(bbox_left-16,bbox_top-16,bbox_right+15,bbox_bottom+15);
                 var _clear=array_concat(scrNTTEFullRectInstances(bbox_left-16,bbox_top,bbox_right+15,bbox_bottom-1,Wall),
                     scrNTTEFullRectInstances(bbox_left,bbox_top-16,bbox_right-1,bbox_bottom+15,Wall))
                 for(var _j=0;_j<array_length(_clear);++_j) if(instance_exists(_clear[_j])) with(_clear[_j]) {
@@ -184,7 +186,7 @@ function scrNTTEFullBuriedVaultStep() {
             if(place_meeting(x,y,Floor)) { _open=true;scrNTTEFullWorldWallClear(id) }
             for(var _i=0;_i<array_length(layout) && !_open;++_i) {
                 var _node=layout[_i]
-                if(_node.obj==Floor && collision_rectangle(_node.x-1,_node.y-1,_node.x+32,_node.y+32,Wall,false,false)) { _open=true;_sx=_node.x;_sy=_node.y }
+                if(_node.obj==Floor && array_length(scrNTTESolidWallPlanRect(_node.x-1,_node.y-1,_node.x+32,_node.y+32))) { _open=true;_sx=_node.x;_sy=_node.y }
             }
             if(_open) scrNTTEFullBuriedVaultExcavate(_sx,_sy)
         }

@@ -210,6 +210,7 @@ function scrNTTEFullBlockedRoomWantBossAlarm() {
         // PC iterates GameCont.lisWalls. Epsilon has no such cached list;
         // native with(Wall) supplies the corresponding actual live geometry.
         with (Wall) {
+            if(object_index==NTTESolidWall) continue;
             var _distance=point_distance(x,y,_tx,_ty)
             if (_distance>110 && _distance<120 && !collision_line(x,y,_tx,_ty,Wall,true,true)
                 && ((!place_free(x-16,y) && !place_free(x+16,y))
@@ -240,7 +241,7 @@ function scrNTTEFullBlockedRoomStep() {
             // authored center. That movement is not a broken target.
             if (!instance_exists(dummy_target)) {
                 var _walls=[],_players=[]
-                with (Wall) if ((!place_free(x-16,y) && !place_free(x+16,y)) || (!place_free(x,y+16) && !place_free(x,y-16))) {
+                with (Wall) if (object_index!=NTTESolidWall && ((!place_free(x-16,y) && !place_free(x+16,y)) || (!place_free(x,y+16) && !place_free(x,y-16)))) {
                     if (array_length(scrNTTEFullRectInstances(bbox_left-1,bbox_top-1,bbox_right,bbox_bottom,TopSmall))>0) array_push(_walls,id)
                 }
                 var _px=x+orandom(16),_py=y+orandom(16),_near=scrNTTEFullWorldNearestRectBBox(_px,_py,_px,_py,_walls)

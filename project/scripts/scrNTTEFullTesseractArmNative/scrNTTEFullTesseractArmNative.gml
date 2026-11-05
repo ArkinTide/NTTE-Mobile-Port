@@ -19,6 +19,7 @@ function scrNTTEFullTesseractArmDeathHit(_victim) {
 function scrNTTEFullTesseractArmDeathWall(_wall) {
     if(lockstep_stop || !instance_exists(_wall)) return;
     speed*=0.95
+    _wall=scrNTTESolidWallCellAt(_wall,x,y);
     with(_wall) {instance_create(x,y,FloorExplo);instance_destroy()}
 }
 function scrNTTEFullTesseractArmDeathDraw() {

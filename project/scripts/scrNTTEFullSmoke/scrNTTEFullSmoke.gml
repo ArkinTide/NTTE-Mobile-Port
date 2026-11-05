@@ -60,10 +60,18 @@ function scrNTTEFullSmokeStep() {
         if(scrNTTEFullParrotPauseWaitForNativeDraw()) return;
         global.ntte_full_test_count=0;
         scrNTTESmokeLog("FULL INTERNAL BEGIN @"+string(30/timescale))
+        if(scrNTTEFullSmokeAsyncCase("Release127PerfTests")) {scrRelease127PerfStart();return;}
+        if(scrNTTEFullSmokeAsyncCase("Release127LabNaturalTests")) {scrRelease127LabNaturalTests();return;}
         if(scrNTTEFullSmokeAsyncCase("Release124SpiderRouteTests")) {scrRelease124SpiderRouteTests();return;}
         if(scrNTTEFullSmokeAsyncCase("Release123UGSeedsTests")) {scrRelease123UGSeedsTests();return;}
         if(scrNTTEFullSmokeAsyncCase("Release123NaturalTests")) {scrRelease123NaturalTests();return;}
         if(scrNTTEFullSmokeAsyncCase("UndergrowthNaturalTests")) {scrUGNaturalTests();return;}
+        if(scrNTTEFullSmokeCase("Release127ChamberTests")) scrRelease127ChamberTests();
+        if(scrNTTEFullSmokeCase("Release127WallInteractionTests")) scrRelease127WallInteractionTests();
+        if(scrNTTEFullSmokeCase("Release127AlarmTests")) scrRelease127AlarmTests();
+        if(scrNTTEFullSmokeCase("Release127PackingTests")) scrRelease127PackingTests();
+        if(scrNTTEFullSmokeCase("Release127RenderTests")) scrRelease127RenderTests();
+        if(scrNTTEFullSmokeCase("Release127WaterTests")) scrRelease127WaterTests();
         if(scrNTTEFullSmokeCase("Release126FusionTests")) scrRelease126FusionTests();
         if(scrNTTEFullSmokeCase("Release126VineTests")) scrRelease126VineTests();
         if(scrNTTEFullSmokeCase("Release126WallsTests")) scrRelease126WallsTests();

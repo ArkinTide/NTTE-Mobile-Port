@@ -59,6 +59,7 @@ function scrNTTEFullHammerSharkStep() {
         // Source probes one movement step forward, then restores the position.
         var _px=x,_py=y,_walls=[]
         x+=hspeed; y+=vspeed
+        scrNTTESolidWallMaterializeShape(id);
         var _list=ds_list_create(); instance_place_list(x,y,Wall,_list,false)
         for(var _i=0;_i<ds_list_size(_list);++_i) array_push(_walls,_list[|_i])
         ds_list_destroy(_list)

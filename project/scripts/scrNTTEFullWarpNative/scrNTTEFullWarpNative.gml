@@ -60,6 +60,7 @@ function scrNTTEFullWarpAlarm() {
 function scrNTTEFullWarpBreakWalls() {
     var _old_area=GameCont.area
     GameCont.area=area;y+=4
+    scrNTTESolidWallMaterializeShape(id);
     if(place_meeting(x,y,Wall)) {
         var _walls=scrNTTEFullInstances(Wall)
         for(var _i=0;_i<array_length(_walls);++_i) if(place_meeting(x,y,_walls[_i])) with(_walls[_i]) {
@@ -67,7 +68,9 @@ function scrNTTEFullWarpBreakWalls() {
         }
     }
     else {
-        var _wall=scrNTTEFullNearestBBox(x-32+scrNTTEFullSourceRandom(64),y-32+scrNTTEFullSourceRandom(64),Wall)
+        var _qx=x-32+scrNTTEFullSourceRandom(64),_qy=y-32+scrNTTEFullSourceRandom(64),
+            _wall=scrNTTEFullNearestBBox(_qx,_qy,Wall)
+        _wall=scrNTTESolidWallCellAt(_wall,_qx,_qy);
         if(instance_exists(_wall)) with(_wall) {instance_create(x,y,FloorExplo);instance_destroy()}
     }
     snd_stop(sndWallBreak);y-=4;GameCont.area=_old_area

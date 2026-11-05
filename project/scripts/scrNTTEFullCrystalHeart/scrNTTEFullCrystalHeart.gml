@@ -161,6 +161,7 @@ function scrNTTEFullCrystalHeartBulletWall(_wall) {
     if (min(image_xscale,image_yscale)>0.85) {
         image_xscale-=0.05; image_yscale-=0.05
         var _sound=snd_play(sndGammaGutsProc,0.8+random(0.4),1.5)
+        _wall=scrNTTESolidWallCellAt(_wall,x,y);
         with (_wall) { instance_create(x,y,FloorExplo); instance_destroy() }
         if (_sound>=0) audio_stop_sound(_sound+1)
     }

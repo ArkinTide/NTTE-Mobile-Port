@@ -612,8 +612,9 @@ function scrNTTEFullPetSalamanderWallLiteral(_mover) {
                 if(_d<_best) {_best=_d;_near=id}
             }
             with(_near) {
-                var _dir=point_direction(bbox_center_x,bbox_center_y,other.x,other.y)
-                repeat(5) with(scrNTTEFullPetEffectFaceSourceReference(bbox_center_x+lengthdir_x(8,_dir),bbox_center_y+lengthdir_y(8,_dir),[_dir,random_range(3,4)],Smoke)) {
+                var _contact=scrNTTESolidWallContact(id,other.x,other.y),
+                    _dir=point_direction(_contact[0],_contact[1],other.x,other.y)
+                repeat(5) with(scrNTTEFullPetEffectFaceSourceReference(_contact[0]+lengthdir_x(8,_dir),_contact[1]+lengthdir_y(8,_dir),[_dir,random_range(3,4)],Smoke)) {
                     image_index=irandom(image_number-1)
                     image_xscale/=1.5;image_yscale/=1.5;friction*=3;depth=-4
                 }

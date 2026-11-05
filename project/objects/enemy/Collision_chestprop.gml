@@ -4,10 +4,11 @@ if lockstep_stop
 motion_add(point_direction(other.x, other.y, x, y), (0.5) * timescale)
 
 if (busycollisions) {
-	var _wall = instance_nearest(x + hspeed, y + vspeed, Wall)
+	var _wall = instance_place(x + hspeed, y + vspeed, Wall)
 	
-	if (instance_exists(_wall) && place_meeting(x + hspeed, y + vspeed, Wall)) {
-		motion_add(point_direction(_wall.x, _wall.y, x, y), (0.5) * timescale)
+	if (instance_exists(_wall)) {
+		var _contact=scrNTTESolidWallContact(_wall,x+hspeed,y+vspeed,false);
+		motion_add(point_direction(_contact[0], _contact[1], x, y), (0.5) * timescale)
 		if (!place_meeting(x + hspeed, y + vspeed, Wall)) {
 			x += hspeed
 			y += vspeed

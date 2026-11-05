@@ -71,6 +71,7 @@ function scrNTTEFullSunkenSealSpawnStep() {
         instance_destroy(); return;
     }
     scrNTTEFullPortalPoof()
+    scrNTTESolidWallMaterializeShape(id);
     var _list=ds_list_create(); instance_place_list(x,y,Wall,_list,false)
     for(var _i=0;_i<ds_list_size(_list);++_i) with(_list[|_i]) { instance_create(x,y,FloorExplo); instance_destroy() }
     ds_list_destroy(_list)

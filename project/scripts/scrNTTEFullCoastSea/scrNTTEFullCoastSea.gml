@@ -12,7 +12,7 @@ function scrNTTEFullCoastSeaCreate() {
     // The retained iOS runner needs explicit texture-alpha preservation.
     // Keep Android/desktop on their already-working source compositor.
     ntte_coast_opaque_output=(os_type==os_ios)
-    ntte_coast_cached_opaque=undefined;ntte_coast_swimmer_count=0
+    ntte_coast_cached_opaque=undefined;ntte_coast_swimmer_count=0;ntte_coast_swim_blit_pixels=0
     ntte_coast_safe_factor=1;ntte_coast_fixture_reject_target=false;ntte_coast_frame_fallback=false
 }
 function scrNTTEFullCoastSeaEnsure() {
@@ -178,8 +178,69 @@ function scrNTTEFullCoastBottomsDraw() {
         draw_sprite_ext(spr_bott,image_index,x,y,image_xscale*right,image_yscale,image_angle,image_blend,image_alpha)
     gpu_set_fog(false,0,0,0)
 }
+// Blit source texels only where an actual swimmer drew. Keep the same full
+// capture camera and texture UVs: fractional quality and long sights must not
+// acquire a new pixel phase, lose their far end, or change waterline sampling.
+function scrNTTEFullCoastSurfaceDrawRect(_s,_rect) {
+    if(is_undefined(_rect)) {scrNTTEFullCoastSurfaceDraw(_s);return;}
+    var _width=surface_get_width(_s.surf),_height=surface_get_height(_s.surf),
+        _left=clamp(floor((_rect[0]-_s.x)*_s.scale),0,_width),
+        _top=clamp(floor((_rect[1]-_s.y)*_s.scale),0,_height),
+        _right=clamp(ceil((_rect[2]-_s.x)*_s.scale),_left,_width),
+        _bottom=clamp(ceil((_rect[3]-_s.y)*_s.scale),_top,_height);
+    if(_right<=_left || _bottom<=_top) return;
+    if(_left==0 && _top==0 && _right==_width && _bottom==_height)
+        scrNTTEFullCoastSurfaceDraw(_s);
+    else draw_surface_part_ext(_s.surf,_left,_top,_right-_left,_bottom-_top,
+        _s.x+_left/_s.scale,_s.y+_top/_s.scale,1/_s.scale,1/_s.scale,c_white,draw_get_alpha());
+    ntte_coast_swim_blit_pixels+=(_right-_left)*(_bottom-_top);
+}
+function scrNTTEFullCoastSpriteRadius(_spr,_xs=1,_ys=1) {
+    if(!sprite_exists(_spr)) return 0;
+    return max(abs(sprite_get_xoffset(_spr)),abs(sprite_get_width(_spr)-sprite_get_xoffset(_spr)))*abs(_xs)
+        +max(abs(sprite_get_yoffset(_spr)),abs(sprite_get_height(_spr)-sprite_get_yoffset(_spr)))*abs(_ys);
+}
+function scrNTTEFullCoastSwimRect(_actor,_capture) {
+    var _full=[_capture.x,_capture.y,_capture.x+_capture.w+2/_capture.scale,_capture.y+_capture.h+2/_capture.scale];
+    with(_actor) {
+        var _radius=scrNTTEFullCoastSpriteRadius(sprite_index,image_xscale,image_yscale);
+        if(object_index==Player) {
+            // Native Player.Draw also owns guns, outlines, status and spirit
+            // tokens. Preserve full-frame coverage for its long bolt sights
+            // and variable-width empty-ammo text instead of guessing a bound.
+            if((scr_weapon_get_type(wep)==Ammo.Bolts && wep!=wep_disc_gun)
+                || (race==Race.Steroids && scr_weapon_get_type(bwep)==Ammo.Bolts && bwep!=wep_disc_gun)
+                || drawempty>0) return _full;
+            _radius=max(_radius,scrNTTEFullCoastSpriteRadius(sprite_index,max(1,abs(right)),1),32);
+            _radius=max(_radius,scrNTTEFullCoastSpriteRadius(scrNTTEHeldSprite(wep))+abs(wkick)+abs(swapanim),
+                scrNTTEFullCoastSpriteRadius(scrNTTEHeldSprite(bwep,true))+abs(bwkick)+abs(swapanim)+6);
+            for(var _j=0;_j<array_length(extra_weps);++_j)
+                _radius=max(_radius,scrNTTEFullCoastSpriteRadius(scrNTTEFullSkinPlayerSprite(scr_weapon_get_sprite(extra_weps[_j])))
+                    +2+_j+abs(swapanim));
+            if(race==Race.Eyes) _radius=max(_radius,scrNTTEFullCoastSpriteRadius(sprMindPower),
+                scrNTTEFullCoastSpriteRadius(sprMindPowerTB),scrNTTEFullCoastSpriteRadius(sprEyesB));
+            if(GameCont.underwater) _radius=max(_radius,scrNTTEFullCoastSpriteRadius(sprPlayerBubble));
+            if(infammo) _radius=max(_radius,scrNTTEFullCoastSpriteRadius(sprGunWarrant));
+            if(variable_instance_exists(id,"bonus_spirit")) for(var _j=0;_j<array_length(bonus_spirit);++_j)
+                _radius=max(_radius,8+7*_j+scrNTTEFullCoastSpriteRadius(scrNTTEFullValue(bonus_spirit[_j],"sprite_index",mskNone)));
+        } else if(object_index==NTTEFullTrafficCrab) {
+            _radius=scrNTTEFullCoastSpriteRadius(sprite_index,image_xscale*right,image_yscale);
+        } else if(object_index==WepPickup) {
+            _radius=max(_radius,scrNTTEFullCoastSpriteRadius(scr_weapon_get_sprite(wep)))+2;
+        } else if(scrNTTEFullCoastObjectHasDraw(object_index)) return _full;
+        // Margin includes the white waterline, sub/main resampling and the
+        // rotated sprite's corners. Unknown custom Draws keep the full frame.
+        _radius+=4+4/min(_capture.scale,1);
+        // Keep original viewport-edge rasterization, including sub/main
+        // resampling at half-texel boundaries on high-coordinate maps.
+        if(x-_radius<_full[0] || y-_radius<_full[1] || x+_radius>_full[2] || y+_radius>_full[3]) return _full;
+        return [max(_full[0],x-_radius),max(_full[1],y-_radius),min(_full[2],x+_radius),min(_full[3],y+_radius)];
+    }
+    return _full;
+}
 function scrNTTEFullCoastSwimCapture(_bottom,_top,_sub,_capture) {
     var _swimmers=scrNTTEFullValue(GameCont,"ntte_sea_inst",[]),_visible=[],_renderer=id
+    ntte_coast_swim_blit_pixels=0;
     for(var _i=0;_i<array_length(_swimmers);++_i) {
         var _v=_swimmers[_i]
         if(instance_exists(_v) && _v.wading>0 && _v.bbox_left<view_xview+view_width+24 && _v.bbox_right>view_xview-24
@@ -187,7 +248,14 @@ function scrNTTEFullCoastSwimCapture(_bottom,_top,_sub,_capture) {
     }
     ntte_coast_swimmer_count=array_length(_visible)
     if(ntte_coast_swimmer_count==0) return;
+    var _union=[infinity,infinity,-infinity,-infinity];
     for(var _i=0;_i<array_length(_visible);++_i) with(_visible[_i]) {
+        // Keep the retained iOS and subpixel-quality rasterization intact.
+        // Android's normal physical-display-quality targets use local blits.
+        var _regional=!_renderer.ntte_coast_opaque_output && _top.scale>=1 && _capture.scale>=1,
+            _rect=_regional?scrNTTEFullCoastSwimRect(id,_capture):
+                [_capture.x,_capture.y,_capture.x+_capture.w+2/_capture.scale,_capture.y+_capture.h+2/_capture.scale];
+        _union=[min(_union[0],_rect[0]),min(_union[1],_rect[1]),max(_union[2],_rect[2]),max(_union[3],_rect[3])];
         with(_renderer) scrNTTEFullCoastSurfaceTarget(_capture)
         draw_clear_alpha(c_black,0)
         if(scrNTTEFullCoastObjectHasDraw(object_index)) event_perform(ev_draw,0)
@@ -203,14 +271,15 @@ function scrNTTEFullCoastSwimCapture(_bottom,_top,_sub,_capture) {
         // Source bottom screenshot accumulates each whole actual Draw event.
         with(_renderer) scrNTTEFullCoastSurfaceTarget(_bottom)
         draw_set_alpha(wading_sink ? 1-wading_sink/abs(sprite_height):1)
-        scrNTTEFullCoastSurfaceDraw(_capture); draw_set_alpha(1)
+        with(_renderer) scrNTTEFullCoastSurfaceDrawRect(_capture,_rect); draw_set_alpha(1)
         var _cut_y=_bbox_bottom-_wh
         if(_renderer.ntte_coast_fast_swim && shader_is_compiled(shNTTECoastSwimSplit)) {
             var _swimmer=id
-            with(_renderer) scrNTTEFullCoastSwimTop(_capture,_top,_cut_y,_wh,_bbox_bottom,_bbox_width,_bbox_height,_swimmer)
+            with(_renderer) scrNTTEFullCoastSwimTop(_capture,_top,_cut_y,_wh,_bbox_bottom,_bbox_width,_bbox_height,_swimmer,_rect)
         } else {
         with(_renderer) scrNTTEFullCoastSurfaceTarget(_sub)
-        gpu_set_blendmode_ext(bm_one,bm_zero); scrNTTEFullCoastSurfaceDraw(_capture)
+        draw_clear_alpha(c_black,0)
+        gpu_set_blendmode_ext(bm_one,bm_zero); with(_renderer) scrNTTEFullCoastSurfaceDrawRect(_capture,_rect)
         gpu_set_blendmode_ext(bm_zero,bm_inv_src_alpha)
         draw_sprite_ext(scrNTTERefSprite("WaterGradient"),0,x,_cut_y,(_bbox_width+40)/128,(_bbox_height+40)/128,0,c_white,1)
         if(wading_sink && _wh>_bbox_height/1.5) {
@@ -220,14 +289,14 @@ function scrNTTEFullCoastSwimCapture(_bottom,_top,_sub,_capture) {
         with(_renderer) scrNTTEFullCoastSurfaceTarget(_top)
         draw_set_alpha(0.4)
         with(_renderer) scrNTTEFullCoastSurfacePresent(_sub,c_white,_cut_y)
-        draw_set_alpha(1);scrNTTEFullCoastSurfaceDraw(_sub)
+        draw_set_alpha(1);with(_renderer) scrNTTEFullCoastSurfaceDrawRect(_sub,_rect)
         }
         } finally {mask_index=_previous_mask}
     }
     var _surfaces=[_bottom,_top]
-    for(var _i=0;_i<2;++_i) scrNTTEFullCoastUnblendSurface(_surfaces[_i],_capture)
+    for(var _i=0;_i<2;++_i) scrNTTEFullCoastUnblendSurface(_surfaces[_i],_capture,_union)
 }
-function scrNTTEFullCoastUnblendSurface(_s,_capture) {
+function scrNTTEFullCoastUnblendSurface(_s,_capture,_rect=undefined) {
     // Source Unblend[2] sets blendPower=1/pow(2,2)=1/4. Copy through scratch
     // to avoid sampling the active render target. The scratch is minor quality
     // as in CoastSwimScreen, including while processing a main-quality top.
@@ -235,18 +304,18 @@ function scrNTTEFullCoastUnblendSurface(_s,_capture) {
     gpu_set_blendmode_ext(bm_one,bm_zero)
     var _shader=scrNTTEFullSourceUnblendBegin(2)
     if(_shader) {
-        scrNTTEFullCoastSurfaceDraw(_s);shader_reset()
-        scrNTTEFullCoastSurfaceTarget(_s);scrNTTEFullCoastSurfaceDraw(_capture)
+        scrNTTEFullCoastSurfaceDrawRect(_s,_rect);shader_reset()
+        scrNTTEFullCoastSurfaceTarget(_s);scrNTTEFullCoastSurfaceDrawRect(_capture,_rect)
     }
     else {
         // Original partial-unblend copies the unchanged screen once with
         // inv-src-alpha/one, then three more times with alpha writes only.
-        scrNTTEFullCoastSurfaceDraw(_s)
+        scrNTTEFullCoastSurfaceDrawRect(_s,_rect)
         scrNTTEFullCoastSurfaceTarget(_s)
         gpu_set_blendmode_ext(bm_inv_src_alpha,bm_one)
-        scrNTTEFullCoastSurfaceDraw(_capture)
+        scrNTTEFullCoastSurfaceDrawRect(_capture,_rect)
         gpu_set_colorwriteenable(false,false,false,true)
-        repeat(3) scrNTTEFullCoastSurfaceDraw(_capture)
+        repeat(3) scrNTTEFullCoastSurfaceDrawRect(_capture,_rect)
         gpu_set_colorwriteenable(true,true,true,true)
     }
     gpu_set_blendmode(bm_normal)
@@ -726,7 +795,7 @@ function scrNTTEFullCoastObjectHasDraw(_object) {
 // Equivalent top gradient/sink compositor without a full-resolution scratch
 // write and read for every swimmer. The original path remains available when
 // this shader is unavailable, and on the retained iOS compositor by default.
-function scrNTTEFullCoastSwimTop(_capture,_top,_cut_y,_wh,_bottom,_bw,_bh,_actor) {
+function scrNTTEFullCoastSwimTop(_capture,_top,_cut_y,_wh,_bottom,_bw,_bh,_actor,_rect=undefined) {
     if(!variable_instance_exists(id,"ntte_coast_swim_uniforms")) {
         ntte_coast_swim_uniforms={};
         var _names=["captureRect","gradientRect","gradientUV","sinkFactor","whiteRow"];
@@ -753,5 +822,5 @@ function scrNTTEFullCoastSwimTop(_capture,_top,_cut_y,_wh,_bottom,_bw,_bh,_actor
         _capture.w*_capture.scale,_capture.scale/_top.scale,_capture.x,_cut_y,
         1/_capture.scale,_top.scale/_capture.scale,c_white,0.4);
     shader_set_uniform_f(_u.whiteRow,0);
-    draw_set_alpha(1);scrNTTEFullCoastSurfaceDraw(_capture);shader_reset();
+    draw_set_alpha(1);scrNTTEFullCoastSurfaceDrawRect(_capture,_rect);shader_reset();
 }

@@ -375,6 +375,7 @@ function scrNTTEFullNetNadeHit(_who) {
 function scrNTTEFullNetNadeDestroy() {
     repeat(8) scrNTTEFullMergedStockFX(x,y,1+random(2),Dust)
     snd_play(sndUltraCrossbow);snd_play(sndFlakExplode);scrNTTEFullTrenchShake(x,y,20)
+    scrNTTESolidWallMaterialize(x-48,y-48,x+47,y+47);
     while(distance_to_object(Wall)<32) {
         var _wall=instance_nearest(x-8,y-8,Wall)
         if(!instance_exists(_wall)) break

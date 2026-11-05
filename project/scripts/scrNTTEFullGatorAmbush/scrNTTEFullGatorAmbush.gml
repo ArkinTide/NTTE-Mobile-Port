@@ -3,6 +3,9 @@ function scrNTTEFullWallCrateCreate() {
     mask_index=mskIcon; sprite_index=scrNTTERefSprite("FloorCrate"); image_speed=0; depth=5
     crate_wall=[]; crate_loot=noone; ntte_crate_reorder=0; ntte_crate_masks=[]
     var _area=GameCont.area; GameCont.area=area_campfire
+    // Replace fill under the crate with its own breakable physical wall tiles.
+    var _fill=scrNTTESolidWallMaterialize(bbox_left,bbox_top,bbox_right-1,bbox_bottom-1);
+    for(var _i=0;_i<array_length(_fill);++_i) instance_destroy(_fill[_i],false);
     for(var _wy=bbox_top;_wy<bbox_bottom;_wy+=16) for(var _wx=bbox_left;_wx<bbox_right;_wx+=16)
         array_push(crate_wall,instance_create(_wx,_wy,Wall))
     GameCont.area=_area
@@ -16,7 +19,7 @@ function scrNTTEFullWallCrateStep() {
     if (ntte_crate_reorder==0) {
         // Original fork/wait0 moves the older surrounding Walls to later
         // instance IDs, suppressing copied collision masks for one yield.
-        var _old=scrNTTEFullRectInstances(bbox_left-16,bbox_top-16,bbox_right,bbox_bottom,Wall,true)
+        var _old=scrNTTESolidWallAuthored(scrNTTEFullRectInstances(bbox_left-16,bbox_top-16,bbox_right,bbox_bottom,Wall,true))
         array_sort(_old,true)
         for(var _i=0;_i<array_length(_old);++_i) if (_old[_i].id<id) with (_old[_i]) {
             var _copy=scrNTTEFullMergedNativeCopy(false)

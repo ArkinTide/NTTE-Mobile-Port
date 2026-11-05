@@ -28,7 +28,7 @@ function scrNTTEFullEnergyBatWall(_wall) {
         }
     }
     if(instance_exists(_target)) {
-        var _fx=instance_create((_target.bbox_left+_target.bbox_right)/2,(_target.bbox_top+_target.bbox_bottom)/2,MeleeHitWall)
+        var _contact=scrNTTESolidWallContact(_target,_cx,_cy),_fx=instance_create(_contact[0],_contact[1],MeleeHitWall)
         _fx.image_angle=point_direction(_cx,_cy,_fx.x,_fx.y);_fx.image_blend=_color
         with(_fx) snd_play_hit(sndMeleeWall,0.3)
     }

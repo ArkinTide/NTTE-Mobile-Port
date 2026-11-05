@@ -30,6 +30,7 @@ function scrNTTEFX(_sprite,_x,_y,_scale=1) {
 }
 
 function scrNTTEClearWalls(_x,_y,_radius) {
+    scrNTTESolidWallMaterialize(_x-_radius,_y-_radius,_x+_radius,_y+_radius);
     var _walls = ds_list_create()
     collision_circle_list(_x,_y,_radius,Wall,false,false,_walls,false)
     for(var _i=0;_i<ds_list_size(_walls);++_i) {

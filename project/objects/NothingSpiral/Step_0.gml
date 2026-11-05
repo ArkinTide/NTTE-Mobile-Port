@@ -11,6 +11,9 @@ if ((current_frame % 30) < timescale) {
 }
 
 with (Wall) {
-	instance_create(x, y, InvisiWall)
+	var _wall=instance_create(x, y, InvisiWall);
+    if(object_index==NTTESolidWall) {
+        _wall.image_xscale=image_xscale;_wall.image_yscale=image_yscale;
+    }
     instance_destroy(id, false)
 }

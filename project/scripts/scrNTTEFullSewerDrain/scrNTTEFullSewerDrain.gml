@@ -56,6 +56,9 @@ function scrNTTEFullSewerDrainStep() {
             for(var _xx=x-32;_xx<x+32;_xx+=16) for(var _yy=y-32;_yy<y;_yy+=16) instance_create(_xx,_yy,Wall)
         }
         if (place_meeting(x,y,Wall)) {
+            // This routine MOVES a physical transition tile. Only contacted
+            // 16px cells can become moving artwork, never a packed rectangle.
+            scrNTTESolidWallMaterializeShape(id,true);
             var _left=scrNTTEFullWorldNearestRectBBox(bbox_left-8,y-8,bbox_left-8,y-8,Wall)
             var _right=scrNTTEFullWorldNearestRectBBox(bbox_right-1+8,y-8,bbox_right-1+8,y-8,Wall)
             if (instance_exists(_left)) _left.outindex=0

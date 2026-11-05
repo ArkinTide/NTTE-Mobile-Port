@@ -255,6 +255,7 @@ function scrNTTEFullLightningDiscHit(_victim) {
 }
 
 function scrNTTEFullLightningDiscWall(_wall) {
+    _wall=scrNTTESolidWallCellAt(_wall,x,y);
     var _hx=hspeed/timescale,_vy=vspeed/timescale
     if (image_xscale>=ntte_full_charge && min(image_xscale,image_yscale)<2.5) {
         if (place_meeting(x+hspeed/timescale,y,Wall)) hspeed=-hspeed
@@ -266,6 +267,7 @@ function scrNTTEFullLightningDiscWall(_wall) {
         with(_wall) snd_play_hit(sndLightningHit,0.2)
     }
     if (max(image_xscale,image_yscale)>1.2) {
+        scrNTTESolidWallMaterialize(bbox_left+_hx,bbox_top+_vy,bbox_right-1+_hx,bbox_bottom-1+_vy);
         if(instance_exists(_wall)) with(_wall) {instance_create(x,y,FloorExplo);instance_destroy()}
         var _walls=scrNTTEFullInstances(Wall)
         for(var _i=0;_i<array_length(_walls);++_i) if(instance_exists(_walls[_i])) with(_walls[_i]) {
@@ -300,6 +302,7 @@ function scrNTTEFullLightningDiscDestroy() {
 }
 
 function scrNTTEFullLightningDiscClearWalls(_bbox) {
+    scrNTTESolidWallMaterializeShape(id);
     var _disc=id,_walls=scrNTTEFullInstances(Wall)
     for(var _i=0;_i<array_length(_walls);++_i) {
         var _wall=_walls[_i]

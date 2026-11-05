@@ -194,7 +194,7 @@ function scrNTTEFullRedSlashWall(_target) {
             if(_distance<_best) {_best=_distance;_hit=_wall}
         }
     }
-    var _fx=instance_create((_hit.bbox_left+_hit.bbox_right)/2,(_hit.bbox_top+_hit.bbox_bottom)/2,MeleeHitWall)
+    var _contact=scrNTTESolidWallContact(_hit,_cx,_cy),_fx=instance_create(_contact[0],_contact[1],MeleeHitWall)
     _fx.image_angle=point_direction(_cx,_cy,_fx.x,_fx.y)
     _fx.image_blend=scrAreaGetBackroundColor(scrNTTEFullAreaId("red"))
     snd_play_hit(sndMeleeWall,0.3)

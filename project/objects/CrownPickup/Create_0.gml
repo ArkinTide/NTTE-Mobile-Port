@@ -30,6 +30,7 @@ instance_create(x - 16 - 32, y - 16, Floor)
 instance_create(x - 16 + 32, y - 16, Floor)
 
 
+scrNTTESolidWallMaterializeShape(id);
 with (Wall) {
     if (place_meeting(x, y, other)) scrWallDestroy(id)
 }

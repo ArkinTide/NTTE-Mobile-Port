@@ -130,6 +130,7 @@ function scrNTTEFullElectroPlasmaWall(_wall) {
     image_xscale-=0.03; image_yscale-=0.03
     // Source directly replaces every collided wall, including InvisiWall.
     if (ntte_full_big && instance_exists(_wall)) {
+        _wall=scrNTTESolidWallCellAt(_wall,x,y);
         with(_wall) {instance_create(x,y,FloorExplo);instance_destroy()}
     }
 }

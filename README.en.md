@@ -3,7 +3,7 @@
 [简体中文](README.md) | [English](README.en.md)
 
 GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
-The current source baseline is **1.2.6 (2026-10-27)**.
+The current source baseline is **1.2.7 (2026-11-05)**.
 
 ## Source-only distribution
 
@@ -21,6 +21,14 @@ Version 1.2.0 and older need one manual update from the folder above. From 1.2.1
 
 
 > Starting with 1.1.0, content from other MODs is being added. To play the original NTTE content, download 1.0.4 or a subsequent 1.0.x release.
+
+## Changes in 1.2.7
+
+- Fixed Lab/HQ delayed chamber planning treating packed exterior fill as native obstacles, restoring doors, access routes and the native clear/exit lifecycle.
+- Checked packed-wall interaction with hidden rooms, buried objects, wall chests, sewer entrances, path grids, wide collision masks, projectiles, melee and portals. Local carving/contact handling retains distant collision walls.
+- Reduced repeated updates and rendering work for sparse exterior walls and static objects, addressing costs present both on entry and during combat.
+- Optimized Coast swimming composition around each swimmer instead of repeatedly copying transparent full-screen surfaces. Preserved waterlines, sinking, layers and original artwork, with full-frame fallbacks for long sights, special Draw behavior, screen edges and iOS.
+- Retained previous fusion effects, 3-3 vine, Red secret corridor, audio and frame-pacing fixes.
 
 ## Changes in 1.2.6
 

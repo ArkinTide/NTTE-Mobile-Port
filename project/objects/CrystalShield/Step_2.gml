@@ -51,10 +51,11 @@ if (scr_skill_get(mut_throne_butt)) {
 			if (_meeting && place_meeting(_tx, _ty, Wall)) {
 				var _iteration = 0
 				while (place_meeting(_tx, _ty, Wall) && ((++_iteration) < 20)) {
-					var _wall = instance_nearest(_tx, _ty, Wall)
+					var _wall = instance_place(_tx, _ty, Wall)
 					if (!instance_exists(_wall)) break
 					
-					var _direction = point_direction(_wall.x, _wall.y, _tx, _ty)
+					var _contact=scrNTTESolidWallContact(_wall,_tx,_ty,false);
+					var _direction = point_direction(_contact[0], _contact[1], _tx, _ty)
 					_tx += ldrx(1, _direction)
 					_ty += ldry(1, _direction)
 				}

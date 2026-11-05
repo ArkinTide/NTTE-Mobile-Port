@@ -51,6 +51,7 @@ function scrNTTELightRingZap(_target) {
 }
 
 function scrNTTELightRingClearWalls() {
+	scrNTTESolidWallMaterializeShape(id);
 	with (Wall) {
 		if (!instance_is(self, InvisiWall) && place_meeting(x, y, other.id)) {
 			instance_create(x, y, FloorExplo)

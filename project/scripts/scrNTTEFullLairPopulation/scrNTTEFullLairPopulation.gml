@@ -218,6 +218,9 @@ function scrNTTEFullLairPopExtras() {
     // then drops doors with floor extending through both sides of the seam.
     with (NTTEFullCatDoor) {
         var _angle=image_angle-90*image_yscale
+        var _qx=x+lengthdir_x(8,_angle)+lengthdir_x(8,image_angle),
+            _qy=y+lengthdir_y(8,_angle)+lengthdir_y(8,image_angle);
+        scrNTTESolidWallMaterialize(_qx,_qy,_qx,_qy);
         var _walls=scrNTTEFullRectInstances(x+lengthdir_x(8,_angle)+lengthdir_x(8,image_angle),
             y+lengthdir_y(8,_angle)+lengthdir_y(8,image_angle),
             x+lengthdir_x(8,_angle)+lengthdir_x(8,image_angle),

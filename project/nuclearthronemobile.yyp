@@ -47084,6 +47084,18 @@
         "name": "scrRelease126Tests",
         "path": "scripts/scrRelease126Tests/scrRelease126Tests.yy"
       }
+    },
+    {
+      "id": {
+        "name": "Release127PerfTest",
+        "path": "objects/Release127PerfTest/Release127PerfTest.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrRelease127Tests",
+        "path": "scripts/scrRelease127Tests/scrRelease127Tests.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

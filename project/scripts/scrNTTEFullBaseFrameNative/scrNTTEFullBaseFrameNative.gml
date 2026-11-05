@@ -73,3 +73,16 @@ function scrNTTEFullPlayerWalkCap(_nominal) {
     return max(0,_nominal+friction*(1-1/timescale));
 }
 // END NTTE PLAYER RATE BOOTSTRAP
+
+function scrNTTEFullAlarmTopUp(_add) {
+		with (all) {
+            // Static terrain has no alarms. The solid exterior must not add
+            // twelve interpreted timer reads per block on every second frame.
+            switch(object_index) {
+                case NTTESolidWall: case Wall: case Floor: case TopSmall: continue;
+            }
+			for (var _i = 0; _i < 12; ++_i) {
+				if (alarm[_i] > 0) alarm[_i] += _add
+			}
+		}
+}

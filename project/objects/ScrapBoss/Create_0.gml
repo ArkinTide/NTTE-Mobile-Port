@@ -39,6 +39,7 @@ repeat(10) {
     dir += 36
 }
 
+scrNTTESolidWallMaterializeShape(id);
 with Wall {
     if (place_meeting(x, y, other)) scrWallDestroy(id)
 }

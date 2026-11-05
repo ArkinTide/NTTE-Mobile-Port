@@ -252,6 +252,7 @@ function scrNTTEFullBigDecalScorpionDeath() {
     var _hitid=[sprite_index,"GRAND SCORPION"],_clear=instance_create(x,y,PortalClear)
     with(_clear) {
         image_xscale*=1.5;image_yscale*=1.5
+        scrNTTESolidWallMaterializeShape(id);
         with(Wall) if(place_meeting(x,y,other)) with(other) event_perform(ev_collision,Wall)
     }
     repeat(75) {

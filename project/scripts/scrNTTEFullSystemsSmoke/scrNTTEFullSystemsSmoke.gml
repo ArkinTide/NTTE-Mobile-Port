@@ -585,6 +585,11 @@ function scrNTTEFullCrimeEffectLifetimeTests(_only="") {
         GameCont.crown=NTTEFullCrown.Crime;GameCont.hard=0;GameCont.loops=0;GameCont.subarea=1
         GameCont.ntte_pet_max=0;GameCont.ntte_pet_icon=[];GameCont.killenemies=0
         GameCont.rad=0;GameCont.level=1;GameCont.skillpoints=0;GameCont.wantdestinyskill=false
+        // Compare the single Crime wave immediately after an empty-room
+        // recovery poll. Otherwise only the full GameCont Step creates its
+        // unrelated portal-recovery Corpse before this wave is spawned.
+        // Both measured passes restore this same live 30-tick countdown.
+        GameCont.ntte_ally_portal_timer=30
         _p.ntte_pet=[];_p.ntte_pet_max=0;_p.race=Race.Fish
         _p.x=10016;_p.y=10016;_p.xprevious=_p.x;_p.yprevious=_p.y;_p.speed=0
         _p.hp=_p.max_hp;_p.visible=true;global.pet_max=0;global.pet_max_last=0

@@ -95,7 +95,11 @@ function scrNTTEFullCrimeStep() {
                 var _d=_dx*_dx+_dy*_dy
                 if(_d<_best) { _best=_d; _wall=id }
             }
-            if(instance_exists(_wall)) _direction=point_direction(_x,_y,(_wall.bbox_left+_wall.bbox_right+1)/2,(_wall.bbox_top+_wall.bbox_bottom+1)/2)
+            if(instance_exists(_wall)) {
+                var _contact=_wall.object_index==NTTESolidWall?scrNTTESolidWallContact(_wall,_query_x,_query_y)
+                    :[(_wall.bbox_left+_wall.bbox_right+1)/2,(_wall.bbox_top+_wall.bbox_bottom+1)/2]
+                _direction=point_direction(_x,_y,_contact[0],_contact[1])
+            }
         }
         var _notice=instance_create(_anchor.x+lengthdir_x(4,_direction),_anchor.y+8+lengthdir_y(4,_direction),BulletHit)
         _notice.sprite_index=sprAssassinNotice; _notice.image_angle=0

@@ -73,6 +73,7 @@ function scrNTTEFullVenomFlakHit(_who) {
 function scrNTTEFullVenomFlakWall(_wall) {
     if (lockstep_stop) return;
     if (charging) {
+        _wall=scrNTTESolidWallCellAt(_wall,x,y);
         with (_wall) { instance_create(x,y,FloorExplo); instance_destroy() }
     }
     else if (speed>timescale) {

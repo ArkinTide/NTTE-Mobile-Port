@@ -44,6 +44,7 @@ function scrNTTEFullBigMaggotSpawnStep() {
         if (image_index<1 && sprite_index==spr_idle) image_index+=random(image_speed*(_near ? 0.3:0.2))-image_speed
     }
     // Resolve actual mask overlap rather than clearing every rectangle candidate.
+    scrNTTESolidWallMaterializeShape(id);
     with (Wall) if (place_meeting(x,y,other.id)) { instance_create(x,y,FloorExplo); instance_destroy() }
     if (lsthealth>hp) {
         if (current_frame_active) {

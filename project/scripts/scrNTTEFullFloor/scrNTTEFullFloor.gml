@@ -35,28 +35,30 @@ function scrNTTEFullInstances(_object,_normal=false) {
     return _out
 }
 
-function scrNTTEFullRectInstances(_x1,_y1,_x2,_y2,_objects,_positions=false,_normal=false) {
+function scrNTTEFullRectInstances(_x1,_y1,_x2,_y2,_objects,_positions=false,_normal=false,_authored=false) {
     // Empty queries need no ordered result. Keep every nonempty result on
     // the original instance_find path; with order/reference types can differ.
-    if(!scrNTTEFullRectHasAny(_x1,_y1,_x2,_y2,_objects,_positions,_normal)) return [];
+    if(!scrNTTEFullRectHasAny(_x1,_y1,_x2,_y2,_objects,_positions,_normal,_authored)) return [];
     var _src=scrNTTEFullInstances(_objects,_normal),_out=[]
     for(var _i=0;_i<array_length(_src);++_i) {
         var _v=_src[_i]
+        if(_authored && _v.object_index==NTTESolidWall) continue;
         if (_positions ? (_v.x>=_x1 && _v.y>=_y1 && _v.x<=_x2 && _v.y<=_y2)
             : ((_v.bbox_right-1)>=_x1 && (_v.bbox_bottom-1)>=_y1 && _v.bbox_left<=_x2 && _v.bbox_top<=_y2)) array_push(_out,_v)
     }
     return _out
 }
 
-function scrNTTEFullRectHasAny(_x1,_y1,_x2,_y2,_objects,_positions=false,_normal=false) {
+function scrNTTEFullRectHasAny(_x1,_y1,_x2,_y2,_objects,_positions=false,_normal=false,_authored=false) {
     if(is_array(_objects)) {
         for(var _i=0;_i<array_length(_objects);++_i)
-            if(scrNTTEFullRectHasAny(_x1,_y1,_x2,_y2,_objects[_i],_positions,_normal)) return true;
+            if(scrNTTEFullRectHasAny(_x1,_y1,_x2,_y2,_objects[_i],_positions,_normal,_authored)) return true;
         return false;
     }
     if(object_exists(_objects) || _objects==all) {
         var _found=false
         with(_objects) {
+            if(_authored && object_index==NTTESolidWall) continue;
             if(_normal && object_index!=Floor) continue;
             if(_positions ? (x>=_x1 && y>=_y1 && x<=_x2 && y<=_y2)
                 : ((bbox_right-1)>=_x1 && (bbox_bottom-1)>=_y1 && bbox_left<=_x2 && bbox_top<=_y2)) {
@@ -65,7 +67,8 @@ function scrNTTEFullRectHasAny(_x1,_y1,_x2,_y2,_objects,_positions=false,_normal
         }
         return _found;
     }
-    if(!instance_exists(_objects) || (_normal && _objects.object_index!=Floor)) return false;
+    if(!instance_exists(_objects) || (_normal && _objects.object_index!=Floor)
+        || (_authored && _objects.object_index==NTTESolidWall)) return false;
     return _positions ? (_objects.x>=_x1 && _objects.y>=_y1 && _objects.x<=_x2 && _objects.y<=_y2)
         : ((_objects.bbox_right-1)>=_x1 && (_objects.bbox_bottom-1)>=_y1 && _objects.bbox_left<=_x2 && _objects.bbox_top<=_y2);
 }
@@ -256,7 +259,11 @@ function scrNTTEFullFloorDelete(_x1,_y1,_x2,_y2) {
                     var _shake=UberCont.opt_shake,_freeze=UberCont.opt_freeze,_snd=UberCont.opt_sndvol
                     UberCont.opt_shake=0; UberCont.opt_freeze=0; UberCont.opt_sndvol=0
                     var _explo=instance_create(_x,_y,FloorExplo),_new=scrNTTEFullInstances(all)
-                    for(var _j=0;_j<array_length(_new);++_j) if (_new[_j].id>_explo.id) instance_destroy(_new[_j],false)
+                    // FloorExplo now also creates collision remainders and
+                    // exposed edge tiles. Only discard its optional effects.
+                    for(var _j=0;_j<array_length(_new);++_j) if (_new[_j].id>_explo.id
+                        && !instance_is(_new[_j],Wall) && !instance_is(_new[_j],Floor)
+                        && !instance_is(_new[_j],TopSmall)) instance_destroy(_new[_j],false)
                     UberCont.opt_shake=_shake; UberCont.opt_freeze=_freeze; UberCont.opt_sndvol=_snd
                 }
             }
@@ -348,9 +355,18 @@ function scrNTTEFullPathCreate(_xs,_ys,_xt,_yt,_walls) {
     var _gw=ceil(_aw/16),_gh=ceil(_ah/16),_gx=round(((_xs+_xt)/2-_aw/2)/16)*16,_gy=round(((_ys+_yt)/2-_ah/2)/16)*16
     var _grid=ds_grid_create(_gw,_gh),_cost=ds_grid_create(_gw,_gh)
     ds_grid_clear(_grid,-1); ds_grid_clear(_cost,0)
-    var _ws=scrNTTEFullRectInstances(_gx,_gy,_gx+_aw,_gy+_ah,_walls,true)
+    var _ws=scrNTTEFullRectInstances(_gx,_gy,_gx+_aw,_gy+_ah,_walls)
     // BEGIN NTTE PATH WALL GRID BOUNDS
     for(var _i=0;_i<array_length(_ws);++_i) with (_ws[_i]) {
+        // Packed collision covers every cell of its rectangle, including when
+        // its origin lies outside this path grid. Authored masks retain the
+        // original origin-only source semantics below.
+        if(object_index==NTTESolidWall) {
+            var _a=max(0,floor((bbox_left-_gx)/16)),_b=max(0,floor((bbox_top-_gy)/16)),
+                _c=min(_gw,ceil((bbox_right-_gx)/16)),_d=min(_gh,ceil((bbox_bottom-_gy)/16));
+            for(var _yy=_b;_yy<_d;++_yy) for(var _xx=_a;_xx<_c;++_xx) _grid[# _xx,_yy]=-2;
+            continue;
+        }
         var _wx=(x-_gx)/16,_wy=(y-_gy)/16
         // The source rectangle includes its right/bottom edge. Those origins
         // have cell index equal to grid width/height and cannot be written.

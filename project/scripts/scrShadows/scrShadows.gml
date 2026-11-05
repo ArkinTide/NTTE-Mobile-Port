@@ -45,7 +45,7 @@ function scrShadows() {
 	try {
 		for (var i = _count - 1; i >= 0; --i) {
 			with _list[| i] {
-				if !position_meeting(x, y + 16, TopSmall) {
+				if sprite_exists(outspr) && !position_meeting(x, y + 16, TopSmall) {
 					if(_pizza) scrNTTEFullPizzaWallShadowDraw(_xview,_yview,_floors);
 					else if(sprite_exists(outspr)) draw_sprite_ext(outspr, outindex, x - _xview, y + 2 + 16 - _yview, 1, -1, 0, c_black, 1);
 				}

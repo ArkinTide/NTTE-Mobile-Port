@@ -25,8 +25,8 @@ if (__wall_frame != current_frame) {
 if (walled || shank) exit
 
 with other {
-	var _cx = bbox_center_x,
-		_cy = bbox_center_y,
+	var _contact=scrNTTESolidWallContact(id,other.x,other.y),_cx = _contact[0],
+		_cy = _contact[1],
 		_angle = point_direction(other.x, other.y, _cx, _cy)
 	
 	with instance_create(_cx, _cy, MeleeHitWall) {

@@ -194,3 +194,4 @@ function scrRelease126RedPassageTests() {
         scrNTTESmokeLog("PASS R126 RED real Player collision preserves hidden passage, static-fill exclusion and source gradual reveal/close @"+string(30/timescale));
     } finally {lockstep_stop=_lock;scrRelease122FixtureEnd(_s);}
 }
+

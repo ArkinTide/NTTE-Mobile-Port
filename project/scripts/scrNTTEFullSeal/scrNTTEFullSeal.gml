@@ -200,7 +200,7 @@ function scrNTTEFullSealDeadeyeStep() {
         if (instance_exists(_wall)) with (_wall) if (distance_to_point(other.x,other.y)<other.toss_speed+max(other.toss.sprite_height,other.toss.sprite_width)/2) {
             // Retreat from the actual wall center. Reusing its X as Y
             // pushed the owner toward horizontal walls at unequal coordinates.
-            var _dir=point_direction((bbox_left+bbox_right)/2,(bbox_top+bbox_bottom)/2,other.x,other.y)
+            var _contact=scrNTTESolidWallContact(id,other.x,other.y),_dir=point_direction(_contact[0],_contact[1],other.x,other.y)
             with (other) motion_add(_dir,timescale*timescale)
         }
     }

@@ -25,11 +25,7 @@ if (timescale < 1) {
 	var _add = floor(global.alarm_topup_acc)
 	if (_add > 0) {
 		global.alarm_topup_acc -= _add
-		with (all) {
-			for (var _i = 0; _i < 12; ++_i) {
-				if (alarm[_i] > 0) alarm[_i] += _add
-			}
-		}
+        scrNTTEFullAlarmTopUp(_add);
 	}
 }
 

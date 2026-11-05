@@ -10,6 +10,18 @@ function scrNTTEFullLairBorderCreate() {
 function scrNTTEFullLairBorderSetupInstance(_created) {
     if (!instance_exists(_created)) return;
     with (NTTEFullLairBorder) {
+        if(_created.object_index==NTTESolidWall) {
+            if(_created.area!=GameCont.area || _created.bbox_bottom<=y) continue;
+            if(_created.y>=y) {_created.area=area;continue;}
+            // A packed block can straddle two biomes. Split at the aligned
+            // border without adding a top sprite or moving either collider.
+            var _cut=clamp(ceil((y-_created.y)/16)*16,0,_created.ntte_fill_height),
+                _state={area:_created.area,blend:_created.image_blend,alpha:_created.image_alpha};
+            scrNTTESolidWallPiece(_created.x,_created.y,_created.ntte_fill_width,_cut,_state);
+            _state.area=area;
+            scrNTTESolidWallPiece(_created.x,_created.y+_cut,_created.ntte_fill_width,_created.ntte_fill_height-_cut,_state);
+            instance_destroy(_created,false);return;
+        }
         if (_created.y<y) continue
         var _object=_created.object_index,_sprite=-1
         if (instance_is(_created,Debris)) {
@@ -128,7 +140,7 @@ function scrNTTEFullLairBorderStep() {
         for(var _i=0;_i<array_length(ntte_full_cavein_saved);++_i) if (instance_exists(ntte_full_cavein_saved[_i])) ntte_full_cavein_saved[_i].visible=true
         var _floors=scrNTTEFullLairBorderFloorSet(y)
         for(var _i=0;_i<array_length(_floors);++_i) scrNTTEFullFloorWalls(_floors[_i])
-        with (Wall) if (bbox_bottom-1>other.y) {
+        with (Wall) if (object_index!=NTTESolidWall && bbox_bottom-1>other.y) {
             instance_create(x-16,y-16,Top); instance_create(x-16,y,Top); instance_create(x,y-16,Top); instance_create(x,y,Top)
         }
         var _near=noone,_distance=infinity
@@ -223,6 +235,7 @@ function scrNTTEFullPizzaRubbleDeath() {
     }
     var _clear=instance_create(x,y+24,PortalClear)
     _clear.sprite_index=mskPlasmaImpact; _clear.image_index=_clear.image_number-4; _clear.image_speed=-1.2*timescale
+    scrNTTESolidWallMaterializeShape(id);
     var _walls=scrNTTEFullRectInstances(bbox_left,bbox_top,bbox_right-1,bbox_bottom-1,[Wall,InvisiWall])
     for(var _i=0;_i<array_length(_walls);++_i) with (_walls[_i]) {
         if (!place_meeting(x,y,other.id)) continue

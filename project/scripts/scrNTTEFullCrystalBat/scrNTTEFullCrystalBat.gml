@@ -81,8 +81,15 @@ function scrNTTEFullCrystalBatCanCrossWall() {
     if (!curse || !dash) return false
     var _allowed=true
     with (Wall) {
-        if (place_meeting(x,y,other.id)
-            && collision_rectangle(bbox_left-1,bbox_top-1,bbox_right+1,bbox_bottom+1,TopSmall,false,false)) {
+        if(!place_meeting(x,y,other.id)) continue;
+        var _a=bbox_left,_b=bbox_top,_c=bbox_right,_d=bbox_bottom;
+        if(object_index==NTTESolidWall) {
+            _a=max(_a,x+floor((other.bbox_left-x)/16)*16);
+            _b=max(_b,y+floor((other.bbox_top-y)/16)*16);
+            _c=min(_c,x+ceil((other.bbox_right-x)/16)*16);
+            _d=min(_d,y+ceil((other.bbox_bottom-y)/16)*16);
+        }
+        if (collision_rectangle(_a-1,_b-1,_c+1,_d+1,TopSmall,false,false)) {
             _allowed=false
             break
         }

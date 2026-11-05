@@ -26,6 +26,7 @@ function scrNTTEFullWarpPortalStep() {
         }
     }
     if (place_meeting(x,y,Wall)) {
+        scrNTTESolidWallMaterializeShape(id);
         var _area=GameCont.area; GameCont.area=area
         var _walls=scrNTTEFullInstances(Wall)
         for(var _i=0;_i<array_length(_walls);++_i) if (place_meeting(x,y,_walls[_i])) with (_walls[_i]) {

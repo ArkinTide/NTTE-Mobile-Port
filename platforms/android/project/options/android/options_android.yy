@@ -160,7 +160,7 @@
 
   "option_android_use_facebook": false,
 
-  "option_android_version": "1.2.6",
+  "option_android_version": "1.2.7",
 
   "resourceType": "GMAndroidOptions",
 
