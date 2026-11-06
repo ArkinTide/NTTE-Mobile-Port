@@ -2,6 +2,10 @@
 /// @param area
 /// @param macrolike_format
 function scrAreaGetName(_area, _macrolike_format=false) {
+    var _fr_name=scrFRAreaDebugName(_area);
+    if(!is_undefined(_fr_name)) return _macrolike_format
+        ? string_replace_all(string_lower(_fr_name)," ","_"):_fr_name;
+
 	var _name;
 	
 	switch (_area) {
@@ -129,6 +133,9 @@ function scrAreaGetShadowColor(_area, _check_custom=true) {
 }
 
 function scrAreaGetGenerationGoal() {
+    if(instance_exists(GameCont) && scrFRAreaActive(GameCont.area))
+        return scrFRAreaMetadata(GameCont.area,"area_goal",110);
+
 	with (GameCont) {
 		if (area == area_vault) return 40
 		if (area == area_campfire) return 60

@@ -1,0 +1,22 @@
+sprite_index = spr_idle
+
+draw_self()
+
+draw_sprite(sprThroneCorpseDead, 0, x, y - 22)
+
+if (flame == -1) exit
+
+draw_sprite(flame, flameanim, x - 81, y - 38)
+draw_sprite(flame, flameanim, x + 81, y - 38)
+draw_sprite(flame, flameanim, x - 81, y + 18)
+draw_sprite(flame, flameanim, x + 81, y + 18)
+
+if flameanim < 3 {
+    flameanim += (0.4) * timescale
+}
+else {
+    flameanim = 0
+
+    if flame == sprThroneFlameEnd
+        flame = -1
+}

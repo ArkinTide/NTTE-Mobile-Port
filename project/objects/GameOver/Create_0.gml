@@ -1,3 +1,5 @@
+// FRONTIER LATE UNLOCK DEATH GATE
+if(scrFRUnlockPendingPortrait()) {instance_destroy();exit;}
 scrLetterbox(true)
 
 text = loc("GameOver:Text:0", "YOU DID NOT REACH THE NUCLEAR THRONE")

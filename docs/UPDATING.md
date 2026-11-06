@@ -2,6 +2,14 @@
 
 [简体中文](UPDATING.md) | [English](UPDATING.en.md) | [首页](../README.md)
 
+## 2.0.0 版本与同源验证
+
+平台版本和正式发布标签为三段 `2.0.0`，供更新器识别。游戏角落保留简写 `2.0`，
+设置中的已安装版本为 `2.0.0`。本次正规化仅改变平台版本元数据，内部构建仍为 96；
+VM、素材及原生库保持同一已验证游戏的字节。88 项选定回归与 94 项 Python 检查
+来自该同一 VM；新的同源验收单独证明版本元数据以外的内容未改变。
+
+
 ## 下载和安装
 
 安装包统一放在 [MEGA 下载文件夹](https://mega.nz/folder/PfIDSaSZ#ZcRokP34or9J0JofsIgrEA)。GitHub Releases 只发布版本说明和不含素材的文本源码，没有安装包附件。
@@ -16,6 +24,6 @@ Android请下载后覆盖安装，保留存档。iOS仍需自行重新签名IPA�
 
 ## 发布策略
 
-当前版本 **1.2.7**，内部构建95（Android versionCode 3000095，iOS build95）；下一修复版1.2.8、内部构建96。后续修复按0.0.1递增；1.0.4及后续1.0.x保留原NTTE内容。`GAME_BUILD`属于存档格式，不随发布修改。
+当前版本 **2.0.0**，内部构建96（Android versionCode 3000096，iOS build96），整合 Uncharted Frontier（NTUF）1.0.3.3。仓库已更名为 `NTTE-NTUF-Mobile-Port`；旧 GitHub 地址保留重定向，固定 MEGA 文件夹保持。后续修复按0.0.1递增；1.0.4及后续1.0.x保留原NTTE内容。`GAME_BUILD`属于存档格式，不随发布修改。
 
 每次同步游戏/更新器/平台版本并完成测试；源码上传前执行 `python tools/audit_source_only.py --index` 和 `--history`。不上传图片、音频、字体、运行库、安装包、签名或个人存档。发布同名正式标签，双语说明附上同一MEGA下载链接和第三方鸣谢。

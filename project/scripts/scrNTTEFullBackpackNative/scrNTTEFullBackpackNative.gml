@@ -19,7 +19,7 @@ function scrNTTEFullBackpackNew(_before) {
 function scrNTTEFullBackpackAmmoCollect(_opener) {
     var _who=instance_is(_opener,Player)?_opener:instance_nearest(x,y,Player),_num=ntte_full_ammo_num
     with(scr_ultra_get(Race.CoopUltra,1)?Player:_who) {
-        var _type=scrAmmoDecideType(id,false),_amount=round(typ_ammo[_type]*_num)
+        var _type=scrAmmoDecideType(id,false),_amount=round(scrFRAmmoRead(id,"typ_ammo",_type)*_num)
         if(scrCrownCheck(crwn_haste)) _amount+=1
         scrPlayerGiveAmmo(id,_type,_amount,true)
     }

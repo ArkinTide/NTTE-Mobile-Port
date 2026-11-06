@@ -1853,6 +1853,9 @@ function scrNTTERefSpriteCacheState() {
     return _state
 }
 function scrNTTERefSprite(_key,_index=-1) {
+    var _fr_sprite=scrFRNTTESpriteOverride(_key,_index);
+    if(!is_undefined(_fr_sprite)) return _fr_sprite;
+
     var _state=scrNTTERefSpriteCacheState()
     if(is_string(_key) && variable_struct_exists(_state.entries,_key)) {
         if(_index>=0) throw "NTTE scalar sprite indexed: "+_key

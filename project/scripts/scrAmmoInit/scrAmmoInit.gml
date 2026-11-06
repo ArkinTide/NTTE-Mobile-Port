@@ -49,18 +49,18 @@ function scrAmmoDecideType(_player, _prioritize_primary = false) {
 		}
 		
 		if (_prioritize_primary || !bwep) {
-			if (_atype != Ammo.None && ammo[_atype] < typ_amax[_atype]) {
+			if (_atype != Ammo.None && ammo[_atype] < scrFRAmmoRead(id,"typ_amax",_atype)) {
 				return _atype
 			}
 			
-			if (_btype != Ammo.None && ammo[_btype] < typ_amax[_btype]) {
+			if (_btype != Ammo.None && ammo[_btype] < scrFRAmmoRead(id,"typ_amax",_btype)) {
 				return (_atype != Ammo.None) ? choose(_atype, _btype) : _btype
 			}
 		}
 		else {
 			var _type = choose(_atype, _btype)
 			
-			if (_type != Ammo.None && ammo[_type] < typ_amax[_type]) {
+			if (_type != Ammo.None && ammo[_type] < scrFRAmmoRead(id,"typ_amax",_type)) {
 				return _type
 			}
 		}
@@ -86,9 +86,10 @@ function scrAmmoDecideTypeMystery(_player) {
 
 /// @function scrAmmoGetPickupAmount
 /// @param {Enum.Ammo} ammo_type
-function scrAmmoGetPickupAmount(_type) {
+function scrAmmoGetPickupAmount(_type,_owner=undefined) {
+    if(is_undefined(_owner)) _owner=id;
 	if _type >= Ammo.Bullets && _type < Ammo.NUM_AMMO_TYPES {
-		return typ_ammo[_type]
+		return scrFRAmmoRead(_owner,"typ_ammo",_type)
 	}
 	
 	return 0
@@ -96,9 +97,10 @@ function scrAmmoGetPickupAmount(_type) {
 
 /// @function scrAmmoGetTypeCapacity
 /// @param {Enum.Ammo} ammo_type
-function scrAmmoGetTypeCapacity(_type) {
+function scrAmmoGetTypeCapacity(_type,_owner=undefined) {
+    if(is_undefined(_owner)) _owner=id;
 	if _type >= Ammo.Bullets && _type < Ammo.NUM_AMMO_TYPES {
-		return typ_amax[_type]
+		return scrFRAmmoRead(_owner,"typ_amax",_type)
 	}
 	
 	return 0

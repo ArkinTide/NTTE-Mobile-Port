@@ -1,0 +1,2 @@
+scrNTTEFullOasisPetBecomeDeath()
+event_inherited()

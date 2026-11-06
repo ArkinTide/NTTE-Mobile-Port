@@ -1,0 +1,1 @@
+with (scrBoltTrail()) image_yscale *= 0.8

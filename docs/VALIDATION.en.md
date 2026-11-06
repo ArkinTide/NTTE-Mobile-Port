@@ -2,6 +2,32 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [Home](../README.en.md)
 
+## 2.0.0 — NTTE + Uncharted Frontier
+
+88 cases passed on the same final Windows VM/input, with 94 Python checks,
+covering 30/60 FPS modes, four genuine Bubbles starts, 12 actual manual weapon
+exchanges/recoveries, weather/interactions, walls/hidden rooms, Wormhole NTTE
+damage attribution, save/continue and rendering. See the
+[validation summary](validation/2.0.0-development-regression.json) and
+[source baseline](SOURCE_BASELINE.json) for source/VM/input/package hashes.
+
+2.0.0 normalizes platform-version metadata; the game corner retains shorthand
+2.0. The 88 selected cases and 94 Python checks belong to the identical verified
+VM. Separate member-by-member provenance verifies unchanged assets, VM and
+native libraries. No new VM run or complete retained historical test suite is
+claimed.
+
+The confirmed packed-wall weapon ejection path was fixed; generic weapon
+deletion was not reproduced. Bubbles screenshots contain the world only;
+GUI evidence comes from actual draw callbacks. No physical Android/iOS,
+complete random-campaign, or universal 60 FPS acceptance was performed.
+Desktop performance diagnostics do not establish phone frame rates.
+
+APK/IPA identity, structure, versions and compilation inputs were verified.
+Android retains signing identity and 16KB alignment, versionCode 3000096.
+iOS build 96 requires re-signing and combines new game data with a retained
+native Runner; it is not a fresh native Mac build. GAME_BUILD remains 3004.
+
 ## 1.2.7
 
 62 final Windows VM regressions passed in 30/60 FPS modes, with 156 actual Draw image comparisons and 31 Android updater Java host checks. Coverage includes Lab/HQ delayed chambers, doors and native clear lifecycle, packed-wall interactions, static object updates, regional Coast swimming composition and fallbacks, plus prior fusion, Red corridor and vine regressions. A single-swimmer diagnostic reduced copied pixels by about 92%; this is not a total-cost or phone-FPS improvement figure.

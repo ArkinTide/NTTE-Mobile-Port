@@ -145,6 +145,7 @@ function scrCrownUnlock(_race_id, _crown_id) {
     if(scr_loadout_race_is_crown_unlocked(_race_id,_crown_id)
         || !scr_loadout_is_available_for_race(_race_id)) return false;
     if(!scr_loadout_race_unlock_crown(_race_id,_crown_id)) return false;
+    if(_crown_id==17) return true;
     // Source MOD crowns already announce their global ownership once.
     if(_crown_id>=14 && _crown_id<=16) return true;
     var _crown_name=loc("Crowns",_crown_id,"Name",scr_crown_get_name(_crown_id)),

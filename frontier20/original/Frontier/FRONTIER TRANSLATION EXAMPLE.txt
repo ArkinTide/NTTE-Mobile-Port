@@ -1,0 +1,101 @@
+
+    // THIS FILE IS AN EXAMPLE OF A TRANSLATION FOR FRONTIER, CHANGE TO A .MOD.GML FILE THEN REPLACE TEXTS WITH TRANSLATED VERSIONS TO CREATE LOCALIZATION PATCH
+    // some lines might be missing here because I'll probably forget to add some when adding new content that makes use of it.
+	// probably just check for loc() using gmedit's global search
+	// if theres something here you dont want to bother translating just delete the line
+
+#define init
+
+        // BUBBLES:
+    loc_set("Frontier:BubblesName",             "BUBBLES");                             
+    loc_set("Frontier:BubblesText",             "BUBBLES TEXT");                        
+    loc_set("Frontier:BubblesThronebutt",       "BUBBLES THRONEBUTT TEXT");             
+    loc_set("Frontier:BubblesUltraA:Name",      "BUBBLES ULTRA A NAME");               
+    loc_set("Frontier:BubblesUltraA:Text",      "BUBBLES ULTRA A Text");                
+    loc_set("Frontier:BubblesUltraB:Name",      "BUBBLES ULTRA B NAME");                
+    loc_set("Frontier:BubblesUltraB:Text",      "BUBBLES ULTRA B Text");                
+
+        // MUTATIONS:
+    loc_set("Frontier:AugmentBloodlust:0",      "BLOODLUST AUGMENT");
+    loc_set("Frontier:AugmentBloodlust:1",      "BLOODLUST AUGMENT TEXT");             
+    loc_set("Frontier:AugmentBoilingVeins:0",   "BOILING VEINS AUGMENT");               
+    loc_set("Frontier:AugmentBoilingVeins:1",   "BOILING VEINS AUGMENT TEXT");        
+    loc_set("Frontier:AugmentCompassion:0", 	"COMPASSION AUGMENT");              
+    loc_set("Frontier:AugmentCompassion:1", 	"COMPASSION AUGMENT TEXT");         
+    loc_set("Frontier:AugmentEagleEyes:0",      "EAGLE EYES AUGMENT");             
+    loc_set("Frontier:AugmentEagleEyes:1",      "EAGLE EYES AUGMENT TEXT");         
+    loc_set("Frontier:AugmentEuphoria:0",       "EUPHORIA AUGMENT");                
+    loc_set("Frontier:AugmentEuphoria:1",       "EUPHORIA AUGMENT TEXT");            
+    loc_set("Frontier:AugmentExtraFeet:0",      "EXTRA FEET AUGMENT");                
+    loc_set("Frontier:AugmentExtraFeet:1",      "EXTRA FEET AUGMENT TEXT");           
+    loc_set("Frontier:AugmentHeavyHeart:0",     "HEAVY HEART AUGMENT");                
+    loc_set("Frontier:AugmentHeavyHeart:1",     "HEAVY HEART AUGMENT TEXT");           
+    loc_set("Frontier:AugmentImpactWrists:0",   "IMPACT WRISTS AUGMENT");          
+    loc_set("Frontier:AugmentImpactWrists:1",   "IMPACT WRISTS AUGMENT TEXT");       
+    loc_set("Frontier:AugmentLaserBrain:0",     "LASER BRAIN AUGMENT");               
+    loc_set("Frontier:AugmentLaserBrain:1",     "LASER BRAIN AUGMENT TEXT");          
+    loc_set("Frontier:AugmentLastWish:0",       "LAST WISH AUGMENT");                  
+    loc_set("Frontier:AugmentLastWish:1",       "LAST WISH AUGMENT TEXT");             
+    loc_set("Frontier:AugmentLongArms:0",       "LONG ARMS AUGMENT");                  
+    loc_set("Frontier:AugmentLongArms:1",       "LONG ARMS AUGMENT TEXT");             
+    loc_set("Frontier:AugmentLuckyShot:0",      "LUCKY SHOT AUGMENT");               
+    loc_set("Frontier:AugmentLuckyShot:1",      "LUCKY SHOT AUGMENT TEXT");            
+    loc_set("Frontier:AugmentOpenMind:0",       "OPEN MIND AUGMENT");                 
+    loc_set("Frontier:AugmentOpenMind:1",       "OPEN MIND AUGMENT TEXT");            
+    loc_set("Frontier:AugmentRabbitPaw:0",      "RABBIT PAW AUGMENT");                
+    loc_set("Frontier:AugmentRabbitPaw:1",      "RABBIT PAW AUGMENT TEXT");            
+    loc_set("Frontier:AugmentScarierFace:0",    "SCARIER FACE AUGMENT");               
+    loc_set("Frontier:AugmentScarierFace:1",    "SCARIER FACE AUGMENT TEXT");          
+    loc_set("Frontier:AugmentSecondStomach:0",  "SECOND STOMACH AUGMENT");             
+    loc_set("Frontier:AugmentSecondStomach:1",  "SECOND STOMACH AUGMENT TEXT");       
+    loc_set("Frontier:AugmentSharpTeeth:0",     "SHARP TEETH AUGMENT");                
+    loc_set("Frontier:AugmentSharpTeeth:1",     "SHARP TEETH AUGMENT TEXT");           
+    
+    loc_set("Frontier:BurdenOcean:0",           "PELAGIC PREDICAMENT");                
+    loc_set("Frontier:BurdenOcean:1",           "PELAGIC PREDICAMENT TEXT");           
+    
+    	// ROBOT PASSIVE:
+    loc_set("Frontier:RobotPassive,				""FINDS BETTER TECH#@(color:16469814)SYSTEM REBOOT@w");
+    
+        // MAX STAT PICKUPS:
+    loc_set("Frontier:MaxHealthPickup",         "MAX HEALTH");                         
+    loc_set("Frontier:MaxAmmoPickup",           "MAX AMMO");                           
+    loc_set("Frontier:MaxRadPickup",            "MAX RADS");                         
+    
+        // OASIS STATUE:
+    loc_set("Frontier:OceanStatuePrompt",       "ACTIVATE?");                         
+    loc_set("Frontier:OceanStatueText:0",       "DIFFICULTY LEVEL");                
+    loc_set("Frontier:OceanStatueText:1",       "RESTORED");                           
+    loc_set("Frontier:OceanStatueText:2",       "BURDENED WITH");                      
+    loc_set("Frontier:OceanStatueText:3",       "PELAGIC#PREDICAMENT");              
+    
+        // BLOOD FOUNTAIN:
+    loc_set("Frontier:BloodFountainPrompt",       "@wHARVEST?#@sMORE @wENEMIES#@sLESS @gRADS"); 
+    loc_set("Frontier:BloodFountainText:0",       "BURDENED WITH");                     
+    loc_set("Frontier:BloodFountainText:1",       "BLOSSOMING#BLOODSHED");             
+    
+        // CROWNS:
+    loc_set("Frontier:CrownStorms:0",           "CROWN OF STORMS");                   
+    loc_set("Frontier:CrownStorms:1",           "CROWN OF STORMS TEXT");             
+    
+        // MEALS:
+        // (see Frontier_Pickups' meal_init for all meal names and texts)
+    loc_set("Frontier:Meal1:Name",              "MEAL 1 NAME");                      
+    loc_set("Frontier:Meal1:Text",              "MEAL 1 TEXT");                       
+    loc_set("Frontier:Meal2:Name",              "MEAL 2 NAME");                      
+    loc_set("Frontier:Meal2:Text",              "MEAL 2 TEXT");                         
+    loc_set("Frontier:Meal3:Name",              "MEAL 3 NAME");                       
+    loc_set("Frontier:Meal3:Text",              "MEAL 3 TEXT");                   
+    loc_set("Frontier:Meal4:Name",              "MEAL 4 NAME");                        
+    loc_set("Frontier:Meal4:Text",              "MEAL 4 TEXT");                      
+    loc_set("Frontier:Meal5:Name",              "MEAL 5 NAME");                      
+    loc_set("Frontier:Meal5:Text",              "MEAL 5 TEXT");                   
+    loc_set("Frontier:Meal100:Name",            "MEAL 100 NAME");                    
+    loc_set("Frontier:Meal100:Text",            "MEAL 100 TEXT");                  
+    loc_set("Frontier:MealCurseText:0",         "MEAL CURSE 0 TEXT");                 
+    loc_set("Frontier:MealCurseText:1",         "MEAL CURSE 1 TEXT");              
+    
+        // FISHING:
+    loc_set("Frontier:Fishing:0",               "FIRST CATCH!");                      
+    loc_set("Frontier:Fishing:1",               "NEW RECORD!");                     
+    

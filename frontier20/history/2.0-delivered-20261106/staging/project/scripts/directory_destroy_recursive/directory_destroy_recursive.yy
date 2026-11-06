@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"directory_destroy_recursive",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"directory_destroy_recursive",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

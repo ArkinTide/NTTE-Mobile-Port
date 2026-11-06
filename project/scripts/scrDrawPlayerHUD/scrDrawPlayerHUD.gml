@@ -158,7 +158,7 @@ function scrDrawPlayerHUD(_player = noone, _draw_interaction = true) {
 						if (_player.ammo[_type] <= 0) {
 							draw_set_color(c_uidark)
 						}
-						else if (_player.ammo[_type] <= scrAmmoGetPickupAmount(_type)) {
+						else if (_player.ammo[_type] <= scrAmmoGetPickupAmount(_type,_player)) {
 							draw_set_color(_is_active_ammo ? c_red : c_gray)
 						}
 						
@@ -216,7 +216,7 @@ function scrDrawPlayerHUD(_player = noone, _draw_interaction = true) {
 		
 		for(var _ammo_type = Ammo.Bullets; _ammo_type < Ammo.NUM_AMMO_TYPES; ++_ammo_type) {
 			var _background_index = 0,
-				_type_capacity = scrAmmoGetTypeCapacity(_ammo_type),
+				_type_capacity = scrAmmoGetTypeCapacity(_ammo_type,_player),
 				_percentage = clamp(_ammo[_ammo_type] / _type_capacity, 0, 1),
 				_icon_index = ceil(_percentage * _frames),
 				_dx = 2 + (_ammo_type - 1) * 10,
@@ -254,7 +254,7 @@ function scrDrawPlayerHUD(_player = noone, _draw_interaction = true) {
 				_rads = scr_weapon_get_rads(_check_weapon)
 			
 			repeat ((_is_steroids && scr_weapon_get_type(_bwep) != _type) ? 2 : 1) {
-				var _pickup_amount = scrAmmoGetPickupAmount(_type)
+				var _pickup_amount = scrAmmoGetPickupAmount(_type,_player)
 				
 				if _player.drawempty > 0 && _type && (_ammo[_type] <= _pickup_amount || GameCont.rad < _rads) && sin(wave) > 0 {
 					var _txt = loc_fmt_either($"HUD:LowAmmo:{_type}", "HUD:LowAmmo",
@@ -343,6 +343,7 @@ function scrDrawInteractionHUD(_player) {
     var _ha=draw_get_halign(),_va=draw_get_valign();
     try {
     draw_align(fa_center,fa_top);
+    if(scrFRPromptHUD(_player)) return; // FRONTIER SOURCE PROMPT HUD
 	with (_player) array_foreach([ WepPickup, CarVenusFixed, IceFlower, Van, NTTEFullPrompt ], function(_object_index) {
 		var _player = id
 		
@@ -366,7 +367,7 @@ function scrDrawInteractionHUD(_player) {
 			if (_offset != 0) _y -= _offset
 			
 			if instance_is(self, WepPickup) {
-				var _type_capacity = scrAmmoGetTypeCapacity(type),
+				var _type_capacity = scrAmmoGetTypeCapacity(type,_player),
 					_frames = sprite_get_number(sprBulletIcon) - 1,
 					_percentage = _player.ammo[type] / _type_capacity,
 					_icon_index = ceil(_frames * _percentage)

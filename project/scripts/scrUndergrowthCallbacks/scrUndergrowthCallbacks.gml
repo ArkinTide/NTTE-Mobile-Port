@@ -160,7 +160,7 @@ if(
 	                
 	if(distance_to_object(instance_nearest(x, y, LightBeam)) > 64 && random(7) < 1){
 		for(var _ug_each1=scrNTTEFullInstances(instance_create(x, y, LightBeam)),_ug_each1i=0;_ug_each1i<array_length(_ug_each1);++_ug_each1i) with(_ug_each1[_ug_each1i]){
-			sprite_index = sprUGLightBeamUndergrowth;
+			sprite_index = scrFRNTTENativeSprite(sprUGLightBeamUndergrowth);
 		}
 	}
 }
@@ -198,7 +198,7 @@ for(var _ug_each0=scrNTTEFullInstances(chestprop),_ug_each0i=0;_ug_each0i<array_
 	    			
 	    			if(random(5) < 3){
 			    		for(var _ug_each3=scrNTTEFullInstances(instance_create(x + 16, _y, Bones)),_ug_each3i=0;_ug_each3i<array_length(_ug_each3);++_ug_each3i) with(_ug_each3[_ug_each3i]){
-			    			sprite_index = sprUGUndergrowthDecalVine;
+			    			sprite_index = scrFRNTTENativeSprite(sprUGUndergrowthDecalVine);
 			    			mask_index   = mskUGUndergrowthDecalVine;
 			    			image_xscale = choose(-1, 1);
 			    			image_index  = irandom(i);
@@ -283,9 +283,9 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGProp)),_ug_each
 		name = "BugBones";
 		
 		           
-		spr_idle = sprUGBugBones1Idle;
-		spr_hurt = sprUGBugBones1Hurt;
-		spr_dead = sprUGBugBones1Dead;
+		spr_idle = scrFRNTTENativeSprite(sprUGBugBones1Idle);
+		spr_hurt = scrFRNTTENativeSprite(sprUGBugBones1Hurt);
+		spr_dead = scrFRNTTENativeSprite(sprUGBugBones1Dead);
 		spr_shadow = -1;
 		sprite_index = spr_idle;
 		
@@ -308,7 +308,7 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGProjectile)),_u
 		name = "DirectionalExplosion";
 		
 		           
-		hitid = [sprUGDirectionalExplosion, "EXPLOSION"];
+		hitid = [scrFRNTTENativeSprite(sprUGDirectionalExplosion), "EXPLOSION"];
 		
 		         
 		mask_index   = mskUGLilHunterDie;
@@ -379,7 +379,7 @@ if(setup){
 			
 			                    
 			for(var _ug_each0=scrNTTEFullInstances(instance_create(x, y, SmallExplosion)),_ug_each0i=0;_ug_each0i<array_length(_ug_each0);++_ug_each0i) with(_ug_each0[_ug_each0i]){
-				sprite_index = other.ultra ? sprUGGreenDirectionalExplosion : sprUGDirectionalExplosion;
+				sprite_index = other.ultra ? scrFRNTTENativeSprite(sprUGGreenDirectionalExplosion) : scrFRNTTENativeSprite(sprUGDirectionalExplosion);
 				image_xscale = other.image_xscale;
 				image_yscale = other.image_yscale;
 				image_angle  = other.direction;
@@ -449,11 +449,11 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGEnemy)),_ug_eac
 		name = "Dragonfly";
 		
 		           
-		spr_idle = sprUGDragonflyIdle;
-		spr_walk = sprUGDragonflyWalk;
-		spr_turn = sprUGDragonflyTurn;
-		spr_hurt = sprUGDragonflyHurt;
-		spr_dead = sprUGDragonflyDead;
+		spr_idle = scrFRNTTENativeSprite(sprUGDragonflyIdle);
+		spr_walk = scrFRNTTENativeSprite(sprUGDragonflyWalk);
+		spr_turn = scrFRNTTENativeSprite(sprUGDragonflyTurn);
+		spr_hurt = scrFRNTTENativeSprite(sprUGDragonflyHurt);
+		spr_dead = scrFRNTTENativeSprite(sprUGDragonflyDead);
 		spr_shadow = shd64B;
 		spr_shadow_y = 12;
 		sprite_index = spr_idle;
@@ -543,7 +543,7 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, BulletHit)),_ug_e
 		name = "Ember";
 		
 		           
-		sprite_index = sprUGEmber;
+		sprite_index = scrFRNTTENativeSprite(sprUGEmber);
 		image_xscale = random_range(0.25, 0.75);
 		image_yscale = image_xscale;
 		image_index  = random(1);
@@ -565,10 +565,10 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGHitme)),_ug_eac
 		name = "FireFlower";
 		
 		           
-		spr_idle = sprUGEntryVineIdle;
-		spr_hurt = sprUGEntryVineHurt;
-		spr_dead = sprUGEntryVineDead;
-		spr_exit = sprUGEntryVineExit;
+		spr_idle = scrFRNTTENativeSprite(sprUGEntryVineIdle);
+		spr_hurt = scrFRNTTENativeSprite(sprUGEntryVineHurt);
+		spr_dead = scrFRNTTENativeSprite(sprUGEntryVineDead);
+		spr_exit = scrFRNTTENativeSprite(sprUGEntryVineExit);
 		spr_shadow = shdUGEntryVine;
 		sprite_index = spr_idle;
 		image_speed=( 0.4)*timescale;
@@ -641,10 +641,10 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGEnemy)),_ug_eac
 		name = "Firefly";
 		
 		           
-		spr_idle = sprUGFireflyIdle;
-		spr_walk = sprUGFireflyWalk;
-		spr_hurt = sprUGFireflyHurt;
-		spr_dead = sprUGFireflyDead;
+		spr_idle = scrFRNTTENativeSprite(sprUGFireflyIdle);
+		spr_walk = scrFRNTTENativeSprite(sprUGFireflyWalk);
+		spr_hurt = scrFRNTTENativeSprite(sprUGFireflyHurt);
+		spr_dead = scrFRNTTENativeSprite(sprUGFireflyDead);
 		spr_shadow = shd24;
 		spr_shadow_y = 5;
 		sprite_index = spr_idle;
@@ -771,8 +771,8 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGObject)),_ug_ea
 		name = "FireflyExplode";
 		
 		           
-		spr_idle = sprUGFireflyHurt;
-		spr_dead = sprUGFireflyExplode;
+		spr_idle = scrFRNTTENativeSprite(sprUGFireflyHurt);
+		spr_dead = scrFRNTTENativeSprite(sprUGFireflyExplode);
 		spr_shadow = shd24;
 		spr_shadox_x = 0;
 		spr_shadow_y = 0;
@@ -883,7 +883,7 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, RecycleGland)),_u
 		name = "FlamePuff";
 		
 		           
-		sprite_index = sprUGFlamePuff;
+		sprite_index = scrFRNTTENativeSprite(sprUGFlamePuff);
 		image_xscale = choose(-1, 1);
 		
 		         
@@ -900,7 +900,7 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, ThrowHit)),_ug_ea
 		name = "FlameSparkle";
 		
 		           
-		sprite_index = sprUGFlameSparkle;
+		sprite_index = scrFRNTTENativeSprite(sprUGFlameSparkle);
 		
 		return id;
 	}
@@ -912,7 +912,7 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, ThrowHit)),_ug_ea
 		name = "FlameSparkleBig";
 		
 		           
-		sprite_index = sprUGFlameSparkleBig;
+		sprite_index = scrFRNTTENativeSprite(sprUGFlameSparkleBig);
 		
 		return id;
 	}
@@ -924,11 +924,11 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGEnemy)),_ug_eac
 		name = "Flytrap";
 		
 		           
-		spr_idle = sprUGFlytrapIdle;
-		spr_walk = sprUGFlytrapWalk;
-		spr_hurt = sprUGFlytrapHurt;
-		spr_dead = sprUGFlytrapDead;
-		spr_fire = sprUGFlytrapFire;
+		spr_idle = scrFRNTTENativeSprite(sprUGFlytrapIdle);
+		spr_walk = scrFRNTTENativeSprite(sprUGFlytrapWalk);
+		spr_hurt = scrFRNTTENativeSprite(sprUGFlytrapHurt);
+		spr_dead = scrFRNTTENativeSprite(sprUGFlytrapDead);
+		spr_fire = scrFRNTTENativeSprite(sprUGFlytrapFire);
 		spr_shadow = shd64B;
 		spr_shadow_y = 6;
 		sprite_index = spr_idle;
@@ -1004,7 +1004,7 @@ if(scrUGAlarm(1)) return;
 	if(sprite_index == spr_fire && ammo <= 0){
 		if(random(5) < (2 * timescale)){
 			for(var _ug_each0=scrNTTEFullInstances(scrUGCreate(x + (random_range(-4, 20) * right), y - random_range(2, 20), "FlameSparkle")),_ug_each0i=0;_ug_each0i<array_length(_ug_each0);++_ug_each0i) with(_ug_each0[_ug_each0i]){
-				sprite_index = (random(5) < 2) ? sprUGFlameSparkleBig : sprUGFlameSparkle;
+				sprite_index = (random(5) < 2) ? scrFRNTTENativeSprite(sprUGFlameSparkleBig) : scrFRNTTENativeSprite(sprUGFlameSparkle);
 				depth = other.depth - 1;
 				speed*=( 2);
 			}
@@ -1192,7 +1192,7 @@ alarm1 = 40 + random(40);
 						}
 						
 						for(var _ug_each5=scrNTTEFullInstances(scrUGCreate(x, y, "FlameSparkle")),_ug_each5i=0;_ug_each5i<array_length(_ug_each5);++_ug_each5i) with(_ug_each5[_ug_each5i]){
-							sprite_index = sprUGFlameSparkleBig;
+							sprite_index = scrFRNTTENativeSprite(sprUGFlameSparkleBig);
 						}
 						
 						            
@@ -1289,12 +1289,12 @@ for(var _ug_each0=scrNTTEFullInstances(scrUGCreate(_x, _y, "PitcherPlant")),_ug_
 		name = "GoldPitcherPlant";
 		
 		           
-		spr_idle = sprUGGoldPitcherPlantIdle;
-		spr_walk = sprUGGoldPitcherPlantWalk;
-		spr_hurt = sprUGGoldPitcherPlantHurt;
-		spr_dead = sprUGGoldPitcherPlantDead;
-		spr_chrg = sprUGGoldPitcherPlantCharge;
-		spr_fire = sprUGGoldPitcherPlantFire;
+		spr_idle = scrFRNTTENativeSprite(sprUGGoldPitcherPlantIdle);
+		spr_walk = scrFRNTTENativeSprite(sprUGGoldPitcherPlantWalk);
+		spr_hurt = scrFRNTTENativeSprite(sprUGGoldPitcherPlantHurt);
+		spr_dead = scrFRNTTENativeSprite(sprUGGoldPitcherPlantDead);
+		spr_chrg = scrFRNTTENativeSprite(sprUGGoldPitcherPlantCharge);
+		spr_fire = scrFRNTTENativeSprite(sprUGGoldPitcherPlantFire);
 		sprite_index = spr_idle;
 		hitid = [sprite_index, "GOLDEN PITCHER PLANT"];
 		
@@ -1387,7 +1387,7 @@ sprite_index = spr_fire;
 	
 	            
 	for(var _ug_each0=scrNTTEFullInstances(scrUGCreate(x, y, "LavaSplash")),_ug_each0i=0;_ug_each0i<array_length(_ug_each0);++_ug_each0i) with(_ug_each0[_ug_each0i]){
-		sprite_index = sprUGLavaSplashUltra;
+		sprite_index = scrFRNTTENativeSprite(sprUGLavaSplashUltra);
 		image_angle  = other.gunangle;
 		depth		 = other.depth - 1;
 	}
@@ -1510,7 +1510,7 @@ for(var _ug_each0=scrNTTEFullInstances(scrUGCreate(_x, _y, "DirectionalExplosion
 		name = "GreenDirectionalExplosion";
 		
 		           
-		hitid = [sprUGGreenDirectionalExplosion, "EXPLOSION"];
+		hitid = [scrFRNTTENativeSprite(sprUGGreenDirectionalExplosion), "EXPLOSION"];
 		
 		         
 		ultra = true;
@@ -1526,7 +1526,7 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, AnimParticle)),_u
 		name = "LavaSplash";
 		
 		           
-		sprite_index = sprUGLavaSplash;
+		sprite_index = scrFRNTTENativeSprite(sprUGLavaSplash);
 		image_yscale = choose(-1, 1);
 		
 		return id;
@@ -1539,7 +1539,7 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, RecycleGland)),_u
 		name = "LavaSheet";
 		
 		           
-		sprite_index = sprUGLavaSheet;
+		sprite_index = scrFRNTTENativeSprite(sprUGLavaSheet);
 		image_xscale = choose(-1, 1);
 		
 		return id;
@@ -1552,7 +1552,7 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, BloodStreak)),_ug
 		name = "LavaStreak";
 		
 		           
-		sprite_index = sprUGLavaStreak;
+		sprite_index = scrFRNTTENativeSprite(sprUGLavaStreak);
 		image_yscale = choose(-1, 1);
 		
 		return id;
@@ -1598,29 +1598,29 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGEnemy)),_ug_eac
 		
 		           
 		spr_idle_array = [
-			sprUGMillipedeBodyIdle1,
-			sprUGMillipedeBodyIdle2,
-			sprUGMillipedeBodyIdle3,
-			sprUGMillipedeBodyIdle4
+			scrFRNTTENativeSprite(sprUGMillipedeBodyIdle1),
+			scrFRNTTENativeSprite(sprUGMillipedeBodyIdle2),
+			scrFRNTTENativeSprite(sprUGMillipedeBodyIdle3),
+			scrFRNTTENativeSprite(sprUGMillipedeBodyIdle4)
 		];
 		spr_hurt_array = [
-			sprUGMillipedeBodyHurt1,
-			sprUGMillipedeBodyHurt2,
-			sprUGMillipedeBodyHurt3,
-			sprUGMillipedeBodyHurt4
+			scrFRNTTENativeSprite(sprUGMillipedeBodyHurt1),
+			scrFRNTTENativeSprite(sprUGMillipedeBodyHurt2),
+			scrFRNTTENativeSprite(sprUGMillipedeBodyHurt3),
+			scrFRNTTENativeSprite(sprUGMillipedeBodyHurt4)
 		];
 		spr_idle = spr_idle_array[0];
 		spr_hurt = spr_hurt_array[0];
-		spr_dead = sprUGMillipedeDead;
-		spr_foot_idle = sprUGMillipedeFootIdle;
-		spr_foot_hurt = sprUGMillipedeFootHurt;
+		spr_dead = scrFRNTTENativeSprite(sprUGMillipedeDead);
+		spr_foot_idle = scrFRNTTENativeSprite(sprUGMillipedeFootIdle);
+		spr_foot_hurt = scrFRNTTENativeSprite(sprUGMillipedeFootHurt);
 		spr_shadow = shd64B;
 		spr_shadow_hold = -1;
 		spr_shadow_x = 0;
 		spr_shadow_y = 6;
 		sprite_index = spr_idle;
 		image_speed=( 0.4)*timescale;
-		hitid = [sprUGMillipedeHeadIdle8, "MILLIPEDE"];
+		hitid = [scrFRNTTENativeSprite(sprUGMillipedeHeadIdle8), "MILLIPEDE"];
 		
 		           
 		snd_hurt = sndScorpionHit;
@@ -1674,24 +1674,24 @@ switch(type){
 		case "head":
 			           
 			spr_idle_array = [
-				sprUGMillipedeHeadIdle1,
-				sprUGMillipedeHeadIdle2,
-				sprUGMillipedeHeadIdle3,
-				sprUGMillipedeHeadIdle4,
-				sprUGMillipedeHeadIdle5,
-				sprUGMillipedeHeadIdle6,
-				sprUGMillipedeHeadIdle7,
-				sprUGMillipedeHeadIdle8
+				scrFRNTTENativeSprite(sprUGMillipedeHeadIdle1),
+				scrFRNTTENativeSprite(sprUGMillipedeHeadIdle2),
+				scrFRNTTENativeSprite(sprUGMillipedeHeadIdle3),
+				scrFRNTTENativeSprite(sprUGMillipedeHeadIdle4),
+				scrFRNTTENativeSprite(sprUGMillipedeHeadIdle5),
+				scrFRNTTENativeSprite(sprUGMillipedeHeadIdle6),
+				scrFRNTTENativeSprite(sprUGMillipedeHeadIdle7),
+				scrFRNTTENativeSprite(sprUGMillipedeHeadIdle8)
 			];
 			spr_hurt_array = [
-				sprUGMillipedeHeadHurt1,
-				sprUGMillipedeHeadHurt2,
-				sprUGMillipedeHeadHurt3,
-				sprUGMillipedeHeadHurt4,
-				sprUGMillipedeHeadHurt5,
-				sprUGMillipedeHeadHurt6,
-				sprUGMillipedeHeadHurt7,
-				sprUGMillipedeHeadHurt8
+				scrFRNTTENativeSprite(sprUGMillipedeHeadHurt1),
+				scrFRNTTENativeSprite(sprUGMillipedeHeadHurt2),
+				scrFRNTTENativeSprite(sprUGMillipedeHeadHurt3),
+				scrFRNTTENativeSprite(sprUGMillipedeHeadHurt4),
+				scrFRNTTENativeSprite(sprUGMillipedeHeadHurt5),
+				scrFRNTTENativeSprite(sprUGMillipedeHeadHurt6),
+				scrFRNTTENativeSprite(sprUGMillipedeHeadHurt7),
+				scrFRNTTENativeSprite(sprUGMillipedeHeadHurt8)
 			];
 			
 			         
@@ -1723,16 +1723,16 @@ switch(type){
 		case "tail":
 			           
 			spr_idle_array = [
-				sprUGMillipedeTailIdle1,
-				sprUGMillipedeTailIdle2,
-				sprUGMillipedeTailIdle3,
-				sprUGMillipedeTailIdle4
+				scrFRNTTENativeSprite(sprUGMillipedeTailIdle1),
+				scrFRNTTENativeSprite(sprUGMillipedeTailIdle2),
+				scrFRNTTENativeSprite(sprUGMillipedeTailIdle3),
+				scrFRNTTENativeSprite(sprUGMillipedeTailIdle4)
 			];			
 			spr_hurt_array = [
-				sprUGMillipedeTailHurt1,
-				sprUGMillipedeTailHurt2,
-				sprUGMillipedeTailHurt3,
-				sprUGMillipedeTailHurt4
+				scrFRNTTENativeSprite(sprUGMillipedeTailHurt1),
+				scrFRNTTENativeSprite(sprUGMillipedeTailHurt2),
+				scrFRNTTENativeSprite(sprUGMillipedeTailHurt3),
+				scrFRNTTENativeSprite(sprUGMillipedeTailHurt4)
 			];
 			
 			         
@@ -1827,7 +1827,7 @@ if(scrUGAlarm(1)) return;
 	                
 	if(random(30) < timescale){
 		for(var _ug_each1=scrNTTEFullInstances(scrUGCreate(random_range(bbox_left, bbox_right), random_range(bbox_top, y) - z, "LavaSheet")),_ug_each1i=0;_ug_each1i<array_length(_ug_each1);++_ug_each1i) with(_ug_each1[_ug_each1i]){
-			sprite_index = sprUGFuelSheet;
+			sprite_index = scrFRNTTENativeSprite(sprUGFuelSheet);
 		}
 	}
 	
@@ -1894,7 +1894,9 @@ if(x == (xprevious + hspeed)) x -= hspeed;
 	              
 	if(type == "head"){
 		
-		var _inst = id,
+		// FRONTIER MILLIPEDE LIVE CHAIN PARENT
+		var _ug_head = id,
+			_inst = id,
 			_kill = !active,
 			_x1   = +infinity,
 			_y1   = +infinity,
@@ -1920,7 +1922,7 @@ if(x == (xprevious + hspeed)) x -= hspeed;
 			for(var _ug_each0=scrNTTEFullInstances(_inst),_ug_each0i=0;_ug_each0i<array_length(_ug_each0);++_ug_each0i) with(_ug_each0[_ug_each0i]){
 				
 				                   
-				if(id != other.id){
+				if(id != _ug_head && instance_exists(parent)){
 				
 					                    
 					var _fd = 16 + (16 * abs(dcos(gunangle))),                                       
@@ -2086,7 +2088,7 @@ instance_create(x, y, PortalClear);
 	
 	for(var d = 0; d < 360; d += (360 / 4)){
 		for(var _ug_each0=scrNTTEFullInstances(instance_create(x, y, BloodStreak)),_ug_each0i=0;_ug_each0i<array_length(_ug_each0);++_ug_each0i) with(_ug_each0[_ug_each0i]){
-			sprite_index = sprUGFuelStreak;
+			sprite_index = scrFRNTTENativeSprite(sprUGFuelStreak);
 			direction	 = d + orandom(10);
 			image_angle  = direction;
 			speed=( 4)*timescale;
@@ -2116,10 +2118,10 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGProp)),_ug_each
 		name = "Mushroom";
 		
 		           
-		spr_idle = sprUGMushroom1Idle;
-		spr_hurt = sprUGMushroom1Hurt;
-		spr_dead = sprUGMushroom1Dead;
-		spr_fire = sprUGMushroom1Explode;
+		spr_idle = scrFRNTTENativeSprite(sprUGMushroom1Idle);
+		spr_hurt = scrFRNTTENativeSprite(sprUGMushroom1Hurt);
+		spr_dead = scrFRNTTENativeSprite(sprUGMushroom1Dead);
+		spr_fire = scrFRNTTENativeSprite(sprUGMushroom1Explode);
 		spr_shadow = shd16;
 		spr_shadow_y = 5;
 		sprite_index = spr_idle;
@@ -2162,11 +2164,11 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGObject)),_ug_ea
 		name = "MushroomExplode";
 		
 		           
-		spr_dead	 = sprUGMushroom1Dead;
+		spr_dead	 = scrFRNTTENativeSprite(sprUGMushroom1Dead);
 		spr_shadow	 = shd16;
 		spr_shadow_x = 0;
 		spr_shadow_y = 0;
-		sprite_index = sprUGMushroom1Explode;
+		sprite_index = scrFRNTTENativeSprite(sprUGMushroom1Explode);
 		image_speed=( 0.4)*timescale;
 		hitid		 = [mskNone, ""];
 		
@@ -2213,7 +2215,7 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, Explosion)),_ug_e
 		name = "MushroomExplosion";
 		
 		           
-		sprite_index = sprUGMushroomExplosion;
+		sprite_index = scrFRNTTENativeSprite(sprUGMushroomExplosion);
 		image_speed=( 0.4)*timescale;
 		image_alpha  = -1;
 		hitid		 = [sprite_index, "EXPLOSION"];
@@ -2249,7 +2251,7 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGObject)),_ug_ea
 		name = "MushroomSpawn";
 		
 		           
-		sprite_index = sprUGMushroom1Spawn;
+		sprite_index = scrFRNTTENativeSprite(sprUGMushroom1Spawn);
 		image_xscale = choose(-1, 1);
 		image_speed=( 0.4)*timescale;
 		
@@ -2291,12 +2293,12 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGEnemy)),_ug_eac
 		name = "PitcherPlant";
 		
 		           
-		spr_idle = sprUGPitcherPlantIdle;
-		spr_walk = sprUGPitcherPlantWalk;
-		spr_hurt = sprUGPitcherPlantHurt;
-		spr_dead = sprUGPitcherPlantDead;
-		spr_chrg = sprUGPitcherPlantCharge;
-		spr_fire = sprUGPitcherPlantFire;
+		spr_idle = scrFRNTTENativeSprite(sprUGPitcherPlantIdle);
+		spr_walk = scrFRNTTENativeSprite(sprUGPitcherPlantWalk);
+		spr_hurt = scrFRNTTENativeSprite(sprUGPitcherPlantHurt);
+		spr_dead = scrFRNTTENativeSprite(sprUGPitcherPlantDead);
+		spr_chrg = scrFRNTTENativeSprite(sprUGPitcherPlantCharge);
+		spr_fire = scrFRNTTENativeSprite(sprUGPitcherPlantFire);
 		spr_shadow = shd32;
 		spr_shadow_y = 6;
 		sprite_index = spr_idle;
@@ -2463,7 +2465,7 @@ alarm1 = 60 + random(30);
 	
 	            
 	for(var _ug_each1=scrNTTEFullInstances(scrUGCreate(x, y, "LavaSplash")),_ug_each1i=0;_ug_each1i<array_length(_ug_each1);++_ug_each1i) with(_ug_each1[_ug_each1i]){
-		sprite_index = sprUGLavaSplash;
+		sprite_index = scrFRNTTENativeSprite(sprUGLavaSplash);
 		image_angle  = other.gunangle;
 		depth		 = other.depth - 1;
 	}
@@ -2491,11 +2493,11 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, Bandit)),_ug_each
 		name = "UndergrowthBandit";
 		
 		           
-		spr_idle	 = sprUGUndergrowthBanditIdle;
-		spr_walk	 = sprUGUndergrowthBanditWalk;
-		spr_hurt	 = sprUGUndergrowthBanditHurt;
-		spr_dead	 = sprUGUndergrowthBanditDead;
-		gunspr		 = sprUGUndergrowthBanditGun;
+		spr_idle	 = scrFRNTTENativeSprite(sprUGUndergrowthBanditIdle);
+		spr_walk	 = scrFRNTTENativeSprite(sprUGUndergrowthBanditWalk);
+		spr_hurt	 = scrFRNTTENativeSprite(sprUGUndergrowthBanditHurt);
+		spr_dead	 = scrFRNTTENativeSprite(sprUGUndergrowthBanditDead);
+		gunspr		 = scrFRNTTENativeSprite(sprUGUndergrowthBanditGun);
 		sprite_index = spr_idle;
 		hitid		 = [sprite_index, "BANDIT"];
 		
@@ -2514,9 +2516,9 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGProp)),_ug_each
 		
 		           
 		var _num=irandom_range(1,2);
-spr_idle=(_num==1?sprUGVine1Idle:sprUGVine2Idle);
-spr_hurt=(_num==1?sprUGVine1Hurt:sprUGVine2Hurt);
-spr_dead=(_num==1?sprUGVine1Dead:sprUGVine2Dead);
+spr_idle=(_num==1?scrFRNTTENativeSprite(sprUGVine1Idle):scrFRNTTENativeSprite(sprUGVine2Idle));
+spr_hurt=(_num==1?scrFRNTTENativeSprite(sprUGVine1Hurt):scrFRNTTENativeSprite(sprUGVine2Hurt));
+spr_dead=(_num==1?scrFRNTTENativeSprite(sprUGVine1Dead):scrFRNTTENativeSprite(sprUGVine2Dead));
 spr_shadow=-1;
 		sprite_index = spr_idle;
 		
@@ -2539,8 +2541,8 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, chestprop)),_ug_e
 		name = "VineChest";
 		
 		           
-		spr_dead = sprUGVineChestOpen;
-		sprite_index = sprUGVineChest;
+		spr_dead = scrFRNTTENativeSprite(sprUGVineChestOpen);
+		sprite_index = scrFRNTTENativeSprite(sprUGVineChest);
 		spr_shadow = shd32;
 		
 		return id;
@@ -2553,10 +2555,10 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGEnemy)),_ug_eac
 		name = "Woo";
 		
 		           
-		spr_idle = sprUGWooIdle;
-		spr_walk = sprUGWooWalk;
-		spr_hurt = sprUGWooHurt;
-		spr_dead = sprUGWooDead;
+		spr_idle = scrFRNTTENativeSprite(sprUGWooIdle);
+		spr_walk = scrFRNTTENativeSprite(sprUGWooWalk);
+		spr_hurt = scrFRNTTENativeSprite(sprUGWooHurt);
+		spr_dead = scrFRNTTENativeSprite(sprUGWooDead);
 		spr_shadow = shd24;
 		spr_shadow_y = -1;
 		sprite_index = spr_idle;
@@ -2705,7 +2707,7 @@ if(nextfire <= current_frame){
 							
 							          
 							for(var _ug_each2=scrNTTEFullInstances(instance_create(x, bbox_top, UGPlantHeal)),_ug_each2i=0;_ug_each2i<array_length(_ug_each2);++_ug_each2i) with(_ug_each2[_ug_each2i]){
-								sprite_index = _ultra ? sprUGHealFireUltra : sprUGHealFire;
+								sprite_index = _ultra ? scrFRNTTENativeSprite(sprUGHealFireUltra) : scrFRNTTENativeSprite(sprUGHealFire);
 								depth		 = other.depth - 1;
 								creator		 = other.id;
 							}
@@ -2725,7 +2727,7 @@ if(nextfire <= current_frame){
 
 // Undergrowth weapons/fossil cannon.wep.gml::weapon_sprt
 function scrUG_fossil_cannon_weapon_sprt() {
-return sprUGFossilCannon;
+return scrFRNTTENativeSprite(sprUGFossilCannon);
 }
 
 // Undergrowth weapons/fossil cannon.wep.gml::weapon_name
@@ -2841,7 +2843,7 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGProjectile)),_u
 		name = "LavaBombBig";
 		
 		           
-		sprite_index = sprUGLavaBombBig;
+		sprite_index = scrFRNTTENativeSprite(sprUGLavaBombBig);
 		image_speed=( 0.4)*timescale;
 		
 		         
@@ -2960,7 +2962,7 @@ scrNTTEFullFrameSleepRequest(45);
 
 // Undergrowth weapons/fossil gun.wep.gml::weapon_sprt
 function scrUG_fossil_gun_weapon_sprt() {
-return sprUGFossilGun;
+return scrFRNTTENativeSprite(sprUGFossilGun);
 }
 
 // Undergrowth weapons/fossil gun.wep.gml::weapon_name
@@ -3059,7 +3061,7 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGProjectile)),_u
 		name = "LavaBomb";
 		
 		           
-		sprite_index = sprUGLavaBomb;
+		sprite_index = scrFRNTTENativeSprite(sprUGLavaBomb);
 		image_speed=( 0.4)*timescale;
 		
 		         
@@ -3156,7 +3158,7 @@ scrNTTEFullFrameSleepRequest(10);
 
 // Undergrowth weapons/fossil hammer.wep.gml::weapon_sprt
 function scrUG_fossil_hammer_weapon_sprt() {
-return sprUGFossilHammer;
+return scrFRNTTENativeSprite(sprUGFossilHammer);
 }
 
 // Undergrowth weapons/fossil hammer.wep.gml::weapon_name
@@ -3258,7 +3260,7 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGSlash)),_ug_eac
 		name = "LavaSlash";
 		
 		           
-		sprite_index = sprUGLavaSlash;
+		sprite_index = scrFRNTTENativeSprite(sprUGLavaSlash);
 		image_yscale = choose(-1, 1);
 		image_speed=( 0.4)*timescale;
 		
@@ -3356,7 +3358,7 @@ if(!walled){
 
 // Undergrowth weapons/fossil pistol.wep.gml::weapon_sprt
 function scrUG_fossil_pistol_weapon_sprt() {
-return sprUGFossilPistol;
+return scrFRNTTENativeSprite(sprUGFossilPistol);
 }
 
 // Undergrowth weapons/fossil pistol.wep.gml::weapon_name
@@ -3447,7 +3449,7 @@ var l = 8,
 
 // Undergrowth weapons/mega grenade launcher.wep.gml::weapon_sprt
 function scrUG_mega_grenade_launcher_weapon_sprt() {
-return sprUGMegaGrenadeLauncher;
+return scrFRNTTENativeSprite(sprUGMegaGrenadeLauncher);
 }
 
 // Undergrowth weapons/mega grenade launcher.wep.gml::weapon_name
@@ -3562,8 +3564,8 @@ for(var _ug_each0=scrNTTEFullInstances(instance_create(_x, _y, UGProjectile)),_u
 		name = "MegaGrenade";
 		
 		           
-		spr_dead = sprUGMegaGrenadeBlink;
-		sprite_index = sprUGMegaGrenade;
+		spr_dead = scrFRNTTENativeSprite(sprUGMegaGrenadeBlink);
+		sprite_index = scrFRNTTENativeSprite(sprUGMegaGrenade);
 		image_speed=( 0.4)*timescale;
 		
 		         

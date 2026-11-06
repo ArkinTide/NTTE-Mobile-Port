@@ -3,6 +3,13 @@
 /// @param amount
 /// @param {Enum.HitId|Array} hitid=HitId.None
 function scr_hit(_instance, _amount, _hitid = HitId.None, _ntte_raw = false, _ntte_direction = undefined, _ntte_force = 0) {
+    // BEGIN FRONTIER CUSTOM HURT
+    if(scrFRActorHasHurt(_instance)) {
+        var _fr_direction=(_ntte_raw==1)?0:(is_undefined(_ntte_direction)?scrNTTEFullValue(id,"direction",0):_ntte_direction);
+        return scrFRActorHurt(_instance,_amount,_hitid,(_ntte_raw==1)?0:_ntte_force,_fr_direction);
+    }
+    // END FRONTIER CUSTOM HURT
+
 
     if(scrUGHasHurt(_instance)) return scrUGHurt(_instance,_amount,is_undefined(_ntte_direction)?scrNTTEFullValue(id,"direction",0):_ntte_direction,_ntte_force);
     // NTTE callback direction/force: raw0, explicit native projectile args
@@ -121,6 +128,14 @@ function scr_hit_self(_amount, _hitid = HitId.None) {
 /// @param knockback_amount=0
 /// @param knockback_direction=direction
 function scr_projectile_hit(_instance, _amount, _kb_amount = 0, _kb_direction = undefined, _ntte_native_direct = false, _ntte_hitid = undefined) {
+    // BEGIN FRONTIER CUSTOM PROJECTILE HURT
+    if(_amount>0 && scrFRActorHasHurt(_instance)) {
+        var _fr_direction=is_undefined(_kb_direction)?scrNTTEFullValue(id,"direction",0):_kb_direction;
+        var _fr_hitid=is_undefined(_ntte_hitid)?scrNTTEFullValue(id,"hitid",HitId.None):_ntte_hitid;
+        return scrFRActorHurt(_instance,_amount,_fr_hitid,_kb_amount,_fr_direction);
+    }
+    // END FRONTIER CUSTOM PROJECTILE HURT
+
     if(scrUGHasHurt(_instance)) return scrUGHurt(_instance,_amount,is_undefined(_kb_direction)?scrNTTEFullValue(id,"direction",0):_kb_direction,_kb_amount);
     // NTTE Tesseract complete authored projectile callback.
     if(instance_is(_instance,NTTEFullTesseract))

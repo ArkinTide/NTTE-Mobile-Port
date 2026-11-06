@@ -355,6 +355,8 @@ function scrNTTEFullRerollChosen(_chosen) {
 }
 
 function scrNTTEFullCrownKey(_crown) {
+    if(scrFRCrownKey(_crown)!="") return "storms";
+
     if(is_string(_crown)) return _crown
     switch(_crown) {
         case NTTEFullCrown.Bonus:return "bonus"
@@ -364,6 +366,8 @@ function scrNTTEFullCrownKey(_crown) {
     return ""
 }
 function scrNTTEFullCrownAvailable(_crown,_loadout=false) {
+    if(scrFRCrownKey(_crown)!="") return scrFRCrownAvailable(_loadout);
+
     var _key=scrNTTEFullCrownKey(_crown)
     if(_key=="") return false
     if(_loadout) return scrNTTEFullUnlockGet("loadout:crown:"+_key)
@@ -449,8 +453,66 @@ function scrNTTEFullCrownMetadataInit() {
     crown_text[16]="CHAOTIC @rCRYSTAL HEARTS#@sSMALLER @wAREAS"
     crown_tips[16]=choose("FULL OF LIFE","SO CRAMPED"); crown_sond[16]=sndCrownCurses
     crownmax=16
+    scrFRCrownMetadataInit();
+
 }
 function scrNTTEFullSkillIcon(_skill,_button=false) {
+// BEGIN FRONTIER SKILL ICON
+if(_skill>=38 && !is_undefined(scrFRSkillKey(_skill))) return scrFRSkillIcon(_skill,_button);
+// END FRONTIER SKILL ICON
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     var _keys=["Annihilation","BatEars","Compassion","LeadRibs","MagneticPulse","Reroll","SilverTongue","ToadBreath"]
     var _id=is_string(_skill) ? scrNTTEFullSkillId(_skill):_skill
     if(_id<30 || _id>37) return [-1,-1]
@@ -462,6 +524,8 @@ function scrNTTEFullDrawSkillHUD(_skill,_x,_y) {
     scrNTTEFullOrchidHUD(_skill,_icon[0],_icon[1],_x,_y)
 }
 function scrNTTEFullCrownSprite(_crown,_kind="Icon") {
+    if(scrFRCrownKey(_crown)!="") return scrFRCrownSprite(_kind);
+
     var _key=scrNTTEFullCrownKey(_crown)
     switch(_key) {
         case "bonus":return scrNTTERefSprite("Crown.Bonus."+_kind)

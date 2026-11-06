@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"load_custom_sounds",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"load_custom_sounds",
+  "parent":{
+    "name":"CustomResources",
+    "path":"folders/Scripts/CustomResources.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

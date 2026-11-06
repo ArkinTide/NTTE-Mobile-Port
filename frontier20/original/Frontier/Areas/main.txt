@@ -1,0 +1,9 @@
+/loadarea devzone.area
+
+/loadarea cove.area
+/loadarea robocenter.area
+/loadarea graveyard.area
+/loadarea deeplabs.area
+/loadarea cyberspace.area
+
+/loadarea AlternateAreaHandler.area

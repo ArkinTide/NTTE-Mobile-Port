@@ -9,7 +9,9 @@ if (hammerhead && hammering > 6) {
 	
 	snd_play_hit(hammerhead ? sndHammerHeadProc : sndHammerHeadEnd, 0.1)
 	
-	instance_create(other.x + 8, other.y + 8, Hammerhead)
+	// A packed rectangle represents many original wall tiles.
+	var _fr_wall_origin=scrNTTESolidWallContact(other.id,x,y,false);
+	instance_create(_fr_wall_origin[0]+8,_fr_wall_origin[1]+8,Hammerhead)
 	
 	scrWallDestroy(other.id)
 	
@@ -20,6 +22,8 @@ if (hammerhead) hammering += timescale * 2
 
 if !roll && race != Race.Frog {
 	var _iteration = 0, _px = x, _py = y;
+	// Fix the original contacted tile before ejection can move across cells.
+	var _fr_wall_contact=scrNTTESolidWallContact(other.id,x,y);
 	
 	if (instance_exists(Floor)) while (place_meeting(x, y, Wall)) {
 		if ((++_iteration) > 100) {
@@ -35,10 +39,8 @@ if !roll && race != Race.Frog {
 			_distance_max = infinity,
 			_wx, _wy;
 		
-		with (other) {
-			_wx = bbox_center_x
-			_wy = bbox_center_y
-		}
+		_wx = _fr_wall_contact[0]
+		_wy = _fr_wall_contact[1]
 		
 		with (Floor) {
 			var _distance = point_distance(bbox_center_x, bbox_center_y, _wx, _wy)

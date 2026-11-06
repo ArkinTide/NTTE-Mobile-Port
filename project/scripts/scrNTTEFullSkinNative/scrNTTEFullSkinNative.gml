@@ -27,10 +27,19 @@ function scrNTTEFullSkinSaved(_race) {
         && scrNTTEFullFeatureReady("skin:"+_key) ? _id:-1
 }
 function scrNTTEFullSkinMenuSprite(_race,_skin,_sprite) {
+    // BEGIN FRONTIER HIDDEN SKIN MENU
+    if(scrFRRaceIs(_race)) return scrFRRaceMenuSprite(_skin,_sprite);
+    if(scrFRSkinMatches(_race,_skin)) return scrFRSkinSprite(_skin,_sprite);
+    // END FRONTIER HIDDEN SKIN MENU
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return scrNTTEFullRaceMenuSprite(_race,_skin,_sprite)
     return scrNTTEFullSkinMatches(_race,_skin) ? scrNTTEFullSkinSprite(scrNTTEFullSkinKey(_skin),_sprite):_sprite
 }
 function scrNTTEFullSkinRaceSprite(_race,_skin,_kind,_default) {
+    // BEGIN FRONTIER HIDDEN SKIN BODY
+    if(scrFRSkinMatches(_race,_skin)) return scrFRSkinRaceSprite(_race,_skin,_kind,_default);
+    // END FRONTIER HIDDEN SKIN BODY
+
     var _base=asset_get_index("sprMutant"+string(_race)+_kind)
     return _base>=0 ? scrNTTEFullSkinSprite(scrNTTEFullSkinKey(_skin),_base):_default
 }
@@ -38,6 +47,11 @@ function scrNTTEFullSkinPlayerSprite(_sprite,_mode="weapon") {
     return scrNTTEFullSkinTargetSprite(id,_sprite,_mode)
 }
 function scrNTTEFullSkinTargetSprite(_target,_sprite,_mode="weapon") {
+    // BEGIN FRONTIER HIDDEN SKIN TARGET
+    var _fr_race=scrNTTEFullValue(_target,"race",-1),_fr_skin=scrNTTEFullValue(_target,"bskin",scrNTTEFullValue(_target,"skin",0));
+    if(scrFRSkinMatches(_fr_race,_fr_skin)) return scrFRSkinSprite(_fr_skin,_sprite);
+    // END FRONTIER HIDDEN SKIN TARGET
+
     var _race=scrNTTEFullValue(_target,"race",-1),_skin=scrNTTEFullValue(_target,"bskin",scrNTTEFullValue(_target,"skin",0))
     return scrNTTEFullSkinMatches(_race,_skin) ? scrNTTEFullSkinSprite(scrNTTEFullSkinKey(_skin),_sprite,_mode):_sprite
 }

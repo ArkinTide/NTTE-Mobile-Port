@@ -256,7 +256,7 @@ function scrCreatePlayers(_my_index = global.index) {
                     _pinst.cwep = scr_loadout_race_get_start_weapon(_pinst.race)
                 }
 				else if !UberCont.weekly_run {
-                    _pinst.cwep = scrRaceGetStarterWeapon(_pinst.race)
+                    _pinst.cwep = scrFRRaceIs(_pinst.race) ? scrFRRaceStarterWeapon(_pinst.skin):scrRaceGetStarterWeapon(_pinst.race) // FRONTIER PLAYER STARTER
                 }
             }
 
@@ -282,6 +282,8 @@ function scrCreatePlayers(_my_index = global.index) {
 		
 		KeyCont.activeforever[_pinst.index] = false
 
+        // FRONTIER SKIN STARTER: changing A/B must retain each player's own starter.
+        if(scrFRRaceIs(_pinst.race) && (_pinst.cwep==FR_BUBBLES_CUTLASS || _pinst.cwep==FR_BUBBLES_SHOVEL)) _pinst.cwep=scrFRRaceStarterWeapon(_pinst.skin);
         with scrPlayerCreate(_pinst.index, _pinst.race, _pinst.skin) {
             is_me = (index == _my_index)
 

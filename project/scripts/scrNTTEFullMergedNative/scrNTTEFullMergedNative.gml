@@ -138,6 +138,8 @@ function scrNTTEFullWeaponNativeEncode(_value,_graph) {
         var _keys=variable_struct_get_names(_value)
         for(var _i=0;_i<array_length(_keys);++_i) {
             var _key=_keys[_i],_entry=variable_struct_get(_value,_key)
+            if(_key=="fr_source_weapon" && scrFREnabled()) _entry=scrFRContinueWeaponEncode(_entry);
+
             if(!is_method(_entry)) array_push(_node.entries,[_key,scrNTTEFullWeaponNativeEncode(_entry,_graph)])
         }
     }
@@ -164,6 +166,7 @@ function scrNTTEFullWeaponNativeImport(_data) {
             else variable_struct_set(_object,_entry[0],scrNTTEFullWeaponNativeDecode(_entry[1],_objects))
         }
     }
+    scrFRContinueMergedWeaponsRestore(_objects);
     scrUGWeaponImportRebase(_data,_objects);
     global.ntte_full_native_weapon_base=max(maxwep+1,_data.base)
     global.ntte_full_native_weapon_models=scrNTTEFullWeaponNativeDecode(_data.root,_objects)

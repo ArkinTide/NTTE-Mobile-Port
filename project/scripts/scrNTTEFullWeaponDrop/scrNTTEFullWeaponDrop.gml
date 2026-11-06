@@ -65,11 +65,21 @@ function scrNTTEFullWeaponDropFire(_weapon) {
     return scrNTTEFullWeaponDropLWOInit(_weapon,scrNTTEState(),"fire")
 }
 function scrNTTEFullWeaponDropResolve(_raw) {
+// BEGIN FRONTIER WEAPON DROP RESOLVE
+var _fr_weapon=scrFRWeaponDropRaw(_raw);
+if(!is_undefined(_fr_weapon)) return _fr_weapon;
+// END FRONTIER WEAPON DROP RESOLVE
+
     if(!is_string(_raw)) return _raw
     var _record=scrNTTEFullWeaponDropRecord(_raw)
     return is_undefined(_record)?wep_none:_record.weapon
 }
 function scrNTTEFullWeaponDropArea(_raw,_context) {
+// BEGIN FRONTIER WEAPON DROP AREA
+var _fr_weapon=scrFRWeaponDropRaw(_raw);
+if(!is_undefined(_fr_weapon)) return scr_weapon_get_area(_fr_weapon);
+// END FRONTIER WEAPON DROP AREA
+
     if(_raw=="mega grenade launcher" || _raw==wep_ug_mega_grenade_launcher) return scrNTTEFullValue(_context,"curse",0)>0 ? 8:-1;
     if(!is_string(_raw)) return scr_weapon_get_area(_raw)
     var _record=scrNTTEFullWeaponDropRecord(_raw)
@@ -119,6 +129,11 @@ function scrNTTEFullWeaponDropShuffle(_list,_random=undefined) {
     return _list
 }
 function scrNTTEFullWeaponDropDuplicates(_raw,_nearest) {
+// BEGIN FRONTIER WEAPON DROP DUPLICATES
+var _fr_duplicate=scrFRWeaponDropDuplicates(_raw,_nearest);
+if(!is_undefined(_fr_duplicate)) return _fr_duplicate;
+// END FRONTIER WEAPON DROP DUPLICATES
+
     if(!instance_exists(_nearest) || _nearest.race==Race.Steroids) return false
     var _w=_nearest.wep,_b=_nearest.bwep
     if(!is_string(_raw)) return _raw==_w || _raw==_b
@@ -160,7 +175,7 @@ function scrNTTEFullWeaponDropDecide(_context,_extra=0,_random=undefined) {
     if(_refined) instance_create(_context.x,_context.y,RobotA)
     var _nearest=instance_nearest(_context.x,_context.y,Player),
         _tutorial=scrNTTEFullValue(UberCont,"showtutorial",instance_exists(TutCont))
-    return scrNTTEFullWeaponDropSelect(scrNTTEFullWeaponDropCandidates(_tutorial),_bounds[0],_bounds[1],_context,_nearest,_random)
+    return scrNTTEFullWeaponDropSelect(scrFRWeaponDropCandidates(scrNTTEFullWeaponDropCandidates(_tutorial)),_bounds[0],_bounds[1],_context,_nearest,_random)
 }
 function scrNTTEFullWeaponDropUnitTests() {
     var _saved=scrNTTEFullValue(GameCont,"ntte_full_pickup_seed",undefined),_hard=GameCont.hard,

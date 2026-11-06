@@ -12,8 +12,8 @@ function scrNTTEFullRogueBulletHit(_victim) {
     if(gland!=0 && instance_is(creator,Player) && random(5)<3*scr_skill_get(mut_recycle_gland)) {
         // Epsilon scrWeapons declares typ_amax global; unlike NTT it is not
         // a player field. Use the same capacity table as scrPlayerGiveAmmo.
-        if(creator.ammo[Ammo.Bullets]<typ_amax[Ammo.Bullets]) {
-            creator.ammo[Ammo.Bullets]=min(creator.ammo[Ammo.Bullets]+gland,typ_amax[Ammo.Bullets])
+        if(creator.ammo[Ammo.Bullets]<scrFRAmmoRead(creator,"typ_amax",Ammo.Bullets)) {
+            creator.ammo[Ammo.Bullets]=min(creator.ammo[Ammo.Bullets]+gland,scrFRAmmoRead(creator,"typ_amax",Ammo.Bullets))
             instance_create(x,y,RecycleGland);snd_play_hit(sndRecGlandProc,0.1)
         }
     }

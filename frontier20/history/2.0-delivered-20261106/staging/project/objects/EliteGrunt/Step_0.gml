@@ -1,0 +1,42 @@
+if lockstep_stop
+	exit
+
+event_inherited();
+
+if !roll {
+    fuel = 100
+    angle = 0
+	
+    if walk > 0 {
+		motion_add(direction, (0.8) * timescale * timescale)
+        walk-= timescale
+    }
+
+    if speed > (3) * timescale
+		speed = (3) * timescale
+
+    if instance_exists(target) {
+        if target.speed > 0 or hp < max_hp {
+			freeze += timescale
+		}
+		
+        if !scrNTTEFullValue(target,"can_shoot",false) {
+			freeze += (3) * timescale
+		}
+	}
+
+    exit
+}
+
+fuel-= timescale
+if fuel <= 0 {
+    roll = 0
+    fuel = 0
+    //with instance_create(x, y, EliteGruntFlame)
+}
+
+if instance_exists(target) motion_add(mcr_target_direction, (0.4) * timescale * timescale)
+
+speed = (7) * timescale
+angle = direction - 90
+instance_create(x + orandom(3), y + orandom(3), Dust)

@@ -1,0 +1,19 @@
+if lockstep_stop
+	exit
+
+image_angle = random_angle
+motion_add(random_angle, (random(1.5) + 0.2) * timescale)
+friction = (0.01) * timescale * timescale
+image_speed = 0
+image_index = random(5)
+
+image_xscale = 0.6
+image_yscale = 0.6
+rot = (1 + random(3)) * choose(1, -1)
+growspeed = 0.003 + random(0.002)
+
+team = 0
+typ = 2
+
+instance_create(x, y, SuperFrog)
+instance_destroy(id, false)

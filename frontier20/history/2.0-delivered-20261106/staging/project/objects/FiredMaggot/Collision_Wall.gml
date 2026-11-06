@@ -1,0 +1,11 @@
+if lockstep_stop
+	exit
+
+move_bounce_solid(true)
+
+with instance_create(x, y, Maggot) {
+    motion_add(point_direction(other.x, other.y, x, y), (4) * timescale)
+    givekill = 0
+}
+
+instance_destroy(id, 0)

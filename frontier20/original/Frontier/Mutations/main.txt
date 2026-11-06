@@ -1,0 +1,23 @@
+
+/loadskill AugmentBloodlust
+/loadskill AugmentEuphoria
+/loadskill AugmentExtraFeet
+/loadskill AugmentHeavyHeart
+/loadskill AugmentImpactWrists
+/loadskill AugmentLastWish
+/loadskill AugmentLongArms
+/loadskill AugmentLuckyShot
+/loadskill AugmentOpenMind
+/loadskill AugmentRabbitPaw
+/loadskill AugmentScarierFace
+/loadskill AugmentSharpTeeth
+/loadskill AugmentStrongSpirit
+
+/loadskill BurdenBlood
+/loadskill BurdenPelagicPredicament
+/loadskill BurdenPlagueOfFlesh
+
+/loadskill SurgerySlot1
+/loadskill SurgerySlot2
+/loadskill SurgerySlot3
+/loadskill SurgerySlot4

@@ -169,7 +169,7 @@ function scrNTTEFullCrystalHeartBulletWall(_wall) {
 }
 function scrNTTEFullCrystalHeartNewInstances(_objects,_generation,_normal=false) {
     var _all=scrNTTEFullInstances(_objects,_normal),_out=[]
-    for(var _i=0;_i<array_length(_all);++_i) if (real(_all[_i])>real(_generation)) array_push(_out,_all[_i])
+    for(var _i=0;_i<array_length(_all);++_i) if (_all[_i].object_index!=NTTESolidWall && real(_all[_i])>real(_generation)) array_push(_out,_all[_i])
     return _out
 }
 function scrNTTEFullCrystalHeartAreaSetup() {

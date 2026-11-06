@@ -1,6 +1,8 @@
 // NTT BBOX NORMALIZED: source inclusive right/bottom = modern runner edge-1.
 // tesewers: original furniture, lights and double-boss manhole lifecycle.
 function scrNTTEFullPortalBlocked() {
+    if(scrFRAreaPortalBlocked()) return true;
+
     var _blocked=false
     with (NTTEFullPortalPrevent) {
         if (creator!=noone && !instance_exists(creator)) instance_destroy()

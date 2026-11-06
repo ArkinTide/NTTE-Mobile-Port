@@ -141,3 +141,6 @@ alarm[10] = 10
 // NTTE Coast constructor wading variables
 scrNTTEFullCoastConstructWading();
 scrNTTEFullAnglerTrailEnsure();
+// BEGIN FRONTIER LEGACY PLAYER STATE
+scrFRPlayerCompatInit();
+// END FRONTIER LEGACY PLAYER STATE

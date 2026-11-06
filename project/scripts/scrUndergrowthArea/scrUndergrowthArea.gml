@@ -27,17 +27,17 @@ function scrUGPopulate() {scrPopulate();scrUG_area_pop_extras();}
 function scrUGStart() {GameCont.ug_active=true;}
 function scrUG_area_sprite(_spr) {
     switch(_spr) {
-        case sprFloor1:return sprUGFloorUndergrowth;
-        case sprFloor1B:return sprUGFloorUndergrowthB;
-        case sprFloor1Explo:return sprUGFloorUndergrowthExplo;
-        case sprWall1Top:return sprUGWallUndergrowthTop;
-        case sprWall1Bot:return sprUGWallUndergrowthBot;
-        case sprWall1Out:return sprUGWallUndergrowthOut;
-        case sprWall1Trans:return sprUGWallUndergrowthTrans;
-        case sprTopPot:return sprUGUndergrowthTopDecal;
-        case sprBones:return sprUGUndergrowthDecal;
-        case sprDebris1:return sprUGDebrisUndergrowth;
-        case sprDetail1:return sprUGDetailUndergrowth;
+        case sprFloor1:return scrFRNTTENativeSprite(sprUGFloorUndergrowth);
+        case sprFloor1B:return scrFRNTTENativeSprite(sprUGFloorUndergrowthB);
+        case sprFloor1Explo:return scrFRNTTENativeSprite(sprUGFloorUndergrowthExplo);
+        case sprWall1Top:return scrFRNTTENativeSprite(sprUGWallUndergrowthTop);
+        case sprWall1Bot:return scrFRNTTENativeSprite(sprUGWallUndergrowthBot);
+        case sprWall1Out:return scrFRNTTENativeSprite(sprUGWallUndergrowthOut);
+        case sprWall1Trans:return scrFRNTTENativeSprite(sprUGWallUndergrowthTrans);
+        case sprTopPot:return scrFRNTTENativeSprite(sprUGUndergrowthTopDecal);
+        case sprBones:return scrFRNTTENativeSprite(sprUGUndergrowthDecal);
+        case sprDebris1:return scrFRNTTENativeSprite(sprUGDebrisUndergrowth);
+        case sprDetail1:return scrFRNTTENativeSprite(sprUGDetailUndergrowth);
     }
     return _spr;
 }
@@ -105,7 +105,7 @@ function scrUGFlowerStep() {
     if(_usable && instance_exists(prompt) && prompt.pick>=0) {
         with(GameCont) {scrNTTEFullAreaSet(207,1,loops);killenemies=true;}
         for(var _d=0;_d<360;_d+=120) with(instance_create(x+lengthdir_x(5,_d),y+lengthdir_y(5,_d),BloodStreak)) {
-            sprite_index=sprUGFuelStreak;direction=_d+orandom(10);image_angle=direction;speed=5*timescale;
+            sprite_index=scrFRNTTENativeSprite(sprUGFuelStreak);direction=_d+orandom(10);image_angle=direction;speed=5*timescale;
         }
         with(chestprop) mask_index=mskNone;
         instance_create(x,y,Portal);hp=0;

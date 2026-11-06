@@ -1,0 +1,2 @@
+scrNTTEFullPalaceAltarDeath()
+event_inherited()

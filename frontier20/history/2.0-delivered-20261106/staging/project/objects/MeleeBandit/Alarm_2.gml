@@ -1,0 +1,11 @@
+with instance_create(x, y, EnemySlash) {
+    image_angle = other.gunangle
+    motion_add(other.gunangle + random(10) - 5, (2) * timescale)
+    creator = other.id
+    team = other.team
+    hitid = other.hitid
+}
+
+wepangle *= -1
+
+alarm[1] += 7

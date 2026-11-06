@@ -1,0 +1,2 @@
+scrNTTEFullBigCactusDeath()
+event_inherited()

@@ -112,7 +112,7 @@ function scrNTTEFullCustomBulletCreate() {
 function scrNTTEFullCustomBulletHit(_target) {
     if(team==_target.team || !scr_can_hit(_target)) return;
     if(gland!=0 && instance_is(creator,Player) && chance(3*scr_skill_get(mut_recycle_gland),5)) {
-        var _max=typ_amax[Ammo.Bullets]
+        var _max=scrFRAmmoRead(creator,"typ_amax",Ammo.Bullets)
         if(creator.ammo[Ammo.Bullets]<_max) {
             creator.ammo[Ammo.Bullets]=min(creator.ammo[Ammo.Bullets]+gland,_max)
             instance_create(x,y,RecycleGland);snd_play_hit(sndRecGlandProc,0.1)

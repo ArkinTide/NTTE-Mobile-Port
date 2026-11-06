@@ -1,0 +1,2 @@
+scrNTTEFullBanditHikerDeath();
+event_inherited();

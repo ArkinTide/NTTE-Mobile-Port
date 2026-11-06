@@ -70,6 +70,9 @@ if (scrGameIsCustomMode()) {
 else _mult = 1
 
 max_rad = max(1, level) * 60 * _mult
+// BEGIN FRONTIER LEGACY RADIATION CAPACITY
+max_rad=scrFRPlayerCompatRadMax(max_rad);
+// END FRONTIER LEGACY RADIATION CAPACITY
 
 var _level_max = PLAYER_LEVEL_MAX
 

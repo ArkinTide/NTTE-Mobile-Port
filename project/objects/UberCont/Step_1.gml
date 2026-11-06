@@ -40,7 +40,12 @@ if (want_pause > 0) {
 		
 		    with (MobileUI) index = -1
 		
+		    scrFRPausePrepare(); // FRONTIER CAPTURE LIVE LIBRARY
 		    instance_deactivate_all(true)
+		    scrFRPauseKeepAlive(); // FRONTIER PAUSED REGISTRY
+		    if(os_type==os_windows && scrNTTEFullSmokeEnabled()) scrFRLifecycleTestsPauseKeepAlive();
+		    scrFRPauseKeepAlive(); // FRONTIER PAUSED REGISTRY
+		    if(os_type==os_windows && scrNTTEFullSmokeEnabled()) scrFRLifecycleTestsPauseKeepAlive();
 		    instance_activate_object(BackCont)
 		    instance_activate_object(GameCont)
 		    instance_activate_object(TopCont)

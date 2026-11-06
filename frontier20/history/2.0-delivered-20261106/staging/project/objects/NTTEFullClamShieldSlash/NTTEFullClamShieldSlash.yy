@@ -1,0 +1,54 @@
+{
+  "$GMObject": "",
+  "%Name": "NTTEFullClamShieldSlash",
+  "eventList": [
+    {
+      "$GMEvent": "v1",
+      "%Name": "",
+      "collisionObjectId": null,
+      "eventNum": 0,
+      "eventType": 0,
+      "isDnD": false,
+      "name": "",
+      "resourceType": "GMEvent",
+      "resourceVersion": "2.0"
+    }
+  ],
+  "managed": true,
+  "name": "NTTEFullClamShieldSlash",
+  "overriddenProperties": [],
+  "parent": {
+    "name": "Projectiles",
+    "path": "folders/Objects/Projectiles.yy"
+  },
+  "parentObjectId": {
+    "name": "Slash",
+    "path": "objects/Slash/Slash.yy"
+  },
+  "persistent": false,
+  "physicsAngularDamping": 0.1,
+  "physicsDensity": 0.5,
+  "physicsFriction": 0.2,
+  "physicsGroup": 0,
+  "physicsKinematic": false,
+  "physicsLinearDamping": 0.1,
+  "physicsObject": false,
+  "physicsRestitution": 0.1,
+  "physicsSensor": false,
+  "physicsShape": 0,
+  "physicsShapePoints": [],
+  "physicsStartAwake": true,
+  "properties": [],
+  "resourceType": "GMObject",
+  "resourceVersion": "2.0",
+  "solid": false,
+  "spriteId": {
+    "name": "sprSlash",
+    "path": "sprites/sprSlash/sprSlash.yy"
+  },
+  "spriteMaskId": {
+    "name": "mskSlash",
+    "path": "sprites/mskSlash/mskSlash.yy"
+  },
+  "visible": true
+}

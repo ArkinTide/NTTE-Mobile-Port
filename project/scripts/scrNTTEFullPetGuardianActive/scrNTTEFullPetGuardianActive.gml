@@ -7,6 +7,10 @@ function scrNTTEFullPetGuardianPlayerActive() {
     with(NTTEFullPet) if(pet=="Guardian" && visible && leader==_player && hp>0) scrNTTEFullPetGuardianActive()
 }
 function scrNTTEFullPetGuardianActive() {
+    // BEGIN FRONTIER GUARDIAN RACE ABILITY
+    scrFRRaceGuardianActive();
+    // END FRONTIER GUARDIAN RACE ABILITY
+
     if(!instance_exists(leader) || !instance_is(leader,Player) || !leader.visible) return;
     var _p=leader,_held=_p.can_spec && KeyCont.hold_spec[_p.index],_press=_p.can_spec && KeyCont.press_spec[_p.index]
     var _aimx=_p.x+lengthdir_x(192,_p.gunangle),_aimy=_p.y+lengthdir_y(192,_p.gunangle),_pet=id

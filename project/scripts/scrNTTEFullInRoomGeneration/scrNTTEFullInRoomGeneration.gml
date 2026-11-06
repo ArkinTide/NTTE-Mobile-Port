@@ -13,6 +13,8 @@ function scrNTTEFullAreaGeneratorRegister(_area,_make_floor,_populate,_start=und
 // Register the complete owned area callbacks. Native GenCont remains the
 // authority for finalization/player spawn, including same-room drain builds.
 function scrNTTEFullAreaNativeInit() {
+    if(variable_global_exists("fr_area_ids")) scrFRRegisterAreas();
+
     scrNTTEFullAreaGeneratorRegister("undergrowth",scrUGBuild,scrUGPopulate,scrUGStart,scrUGSetup);
     scrNTTEFullAreaGeneratorRegister("red",scrNTTEFullRedBuildNative,scrNTTEFullRedPopulateNative,
         scrNTTEFullRedStart,scrNTTEFullRedSetupNative)
@@ -217,7 +219,7 @@ function scrNTTEFullAreaGenerateNative(_area,_subarea,_loops,_x,_y,_set_area=tru
     if (_area>=201 && _area<=206 && !is_struct(_builder)) throw "NTTE custom area generator is not integrated: "+string(_area)
     // `background_color` is an NTTE global; map it to the native area colour
     // while preserving the value across the temporary generator transition.
-    var _last_area=GameCont.area,_last_subarea=GameCont.subarea,_last_loops=GameCont.loops,_background=scrAreaGetBackroundColor(GameCont.area)
+    var _last_area=GameCont.area,_last_subarea=GameCont.subarea,_last_loops=GameCont.loops,_background=scrFRWallBackgroundColor()
     var _last_maxsubarea=GameCont.maxsubarea,_last_finalsubarea=GameCont.finalsubarea
     var _viewx=view_xview,_viewy=view_yview,_underwater=GameCont.underwater
     var _render_camera=view_camera[0],_render_camera_x=camera_get_view_x(view_camera[0]),
@@ -260,6 +262,11 @@ function scrNTTEFullAreaGenerateNative(_area,_subarea,_loops,_x,_y,_set_area=tru
         // Source setArea is independent of sync: false appends a submap only.
         // Store before setup/alarms; global sync is restored before Destroy.
         _generation.ntte_full_set_area=_set_area
+        // The appended geometry must merge before a compact collar is
+        // made. A temporary target collar can cover the entire old map.
+        _generation.ntte_full_sync_compact_defer=true
+        if(_set_area) with(_generation) scrFRContinueGenerationBegin(true);
+
         global.ntte_full_sync_generation=_old_sync
         if (!instance_exists(BackCont)) instance_create(0,0,BackCont)
         if (_set_area) with (MusCont) alarm[3]=-1
@@ -369,6 +376,9 @@ function scrNTTEFullAreaGenerateNative(_area,_subarea,_loops,_x,_y,_set_area=tru
         GameCont.maxsubarea=scrAreaGetMaxSubarea(_area);GameCont.finalsubarea=_subarea==GameCont.maxsubarea
         GameCont.underwater=(_area==area_oasis || _area==scrNTTEFullAreaId("trench") || _area==scrNTTEFullAreaId("oasis"))
         background_set_colour(scrAreaGetBackroundColor(_area))
+        // Split only contacted old packed cells, and keep every resulting
+        // remainder classified as old terrain during source reconciliation.
+        _all_before=scrFRWallPrepareInRoomMerge(_all_before)
         var _overlap_objects=[Floor,Wall,InvisiWall,TopSmall,TopPot,Bones]
         for(var _a=0;_a<array_length(_overlap_objects);++_a) {
             var _object=_overlap_objects[_a],_new=scrNTTEFullInstances(_object),_new_list=[],_old_list=[]
@@ -430,6 +440,9 @@ function scrNTTEFullAreaGenerateNative(_area,_subarea,_loops,_x,_y,_set_area=tru
         layer_background_blend(_merge_background[0],_merge_background_color)
     }
     // END NTTE INROOM OVERLAP SOURCE REPAIR V1
+    // Old-map context is restored for a local area orb: only its new
+    // authored walls change biome; empty exterior keeps the room colour.
+    scrNTTESolidWallGenerate()
     return _generation
 }
 

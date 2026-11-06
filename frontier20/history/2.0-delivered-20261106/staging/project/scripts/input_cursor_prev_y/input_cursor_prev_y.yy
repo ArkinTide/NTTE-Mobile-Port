@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"input_cursor_prev_y",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"input_cursor_prev_y",
+  "parent":{
+    "name":"Cursor",
+    "path":"folders/Extensions/Input/(System)/Deprecated/Cursor.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

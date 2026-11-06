@@ -1413,3 +1413,7 @@ scrOptionsMenuCategoryEnd()
 #endregion
 
 scrNTTEFullMenuDefine();
+
+// BEGIN FRONTIER OPTIONS PAGES
+scrFRMenuOptionsBuild();
+// END FRONTIER OPTIONS PAGES

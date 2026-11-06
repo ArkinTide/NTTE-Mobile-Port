@@ -1,0 +1,13 @@
+image_angle = random_angle
+alarm[0] = 150 + random(30)
+motion_add(random_angle, (1.8 + random(1.2)) * timescale)
+vspeed -= (1.2 - random(0.3)) * timescale
+fall = 40 + random(30)
+rot = random(6) - 3
+image_speed = (0.4) * timescale
+
+move_contact_solid(direction, random(speed + 1))
+
+hp = 0
+max_hp = 0
+spr_shadow_y = 0

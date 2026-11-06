@@ -1,0 +1,712 @@
+[
+  {
+    "path": "Areas/AlternateAreaHandler.area.gml",
+    "defs": 9,
+    "status": "PARSED"
+  },
+  {
+    "path": "Areas/cove.area.gml",
+    "error": "Areas/cove.area.gml::area_step:529: Expected while; got ';'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Areas/cyberspace.area.gml",
+    "error": "Areas/cyberspace.area.gml::cyberspace_revive:820: Unexpected expression token {; got '}'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Areas/deeplabs.area.gml",
+    "error": "Areas/deeplabs.area.gml::SpinTurret_draw:4686: Expected ); got ';'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Areas/devzone.area.gml",
+    "defs": 27,
+    "status": "PARSED"
+  },
+  {
+    "path": "Areas/graveyard.area.gml",
+    "defs": 53,
+    "status": "PARSED"
+  },
+  {
+    "path": "Areas/robocenter.area.gml",
+    "defs": 41,
+    "status": "PARSED"
+  },
+  {
+    "path": "Characters/bubbles.race.gml",
+    "error": "Characters/bubbles.race.gml::race_handy_data0:271: Unexpected expression token {; got '\"hand_color\"'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Characters/campfire_loader.mod.gml",
+    "defs": 3,
+    "status": "PARSED"
+  },
+  {
+    "path": "Characters/Frontier_CharHuds.mod.gml",
+    "error": "Characters/Frontier_CharHuds.mod.gml::draw_pause:197: Unexpected expression token {; got '}'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Characters/Frontier_REMs.mod.gml",
+    "error": "Characters/Frontier_REMs.mod.gml::init:63: Unexpected expression token ,; got 'STAY_CLOSE'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Crowns/storms.crown.gml",
+    "defs": 9,
+    "status": "PARSED"
+  },
+  {
+    "path": "custom_options.mod.gml",
+    "error": "custom_options.mod.gml::init:5: Unexpected expression token {; got '}'",
+    "status": "ERROR"
+  },
+  {
+    "path": "CustomIDPDHandler.mod.gml",
+    "defs": 19,
+    "status": "PARSED"
+  },
+  {
+    "path": "Frontier_Events.mod.gml",
+    "error": "Frontier_Events.mod.gml::StormPortal_create:517: Unexpected expression token {; got '\"Desert\"'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Frontier_Loader.mod.gml",
+    "error": "Frontier_Loader.mod.gml::add_post_load_statement:278: Unexpected expression token {; got '\"str\"'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Frontier_Main.mod.gml",
+    "error": "Frontier_Main.mod.gml::init:15: Unexpected expression token {; got 'cache_level'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Frontier_Options.mod.gml",
+    "error": "Frontier_Options.mod.gml::init:39: Unexpected expression token {; got '\"settingVanillaGlow\"'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Frontier_StatusEffects.mod.gml",
+    "error": "Frontier_StatusEffects.mod.gml::status_effects_init:861: Unexpected expression token {; got 'targets'",
+    "status": "ERROR"
+  },
+  {
+    "path": "LibLoader.mod.gml",
+    "error": "LibLoader.mod.gml::init:11: Unexpected expression token {; got '}'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Mutations/AugmentBloodlust.skill.gml",
+    "defs": 13,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentBoilingVeins.skill.gml",
+    "defs": 29,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentCompassion.skill.gml",
+    "defs": 20,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentEagleEyes.skill.gml",
+    "defs": 12,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentEuphoria.skill.gml",
+    "defs": 24,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentExtraFeet.skill.gml",
+    "defs": 17,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentGammaGuts.skill.gml",
+    "defs": 17,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentHeavyHeart.skill.gml",
+    "defs": 14,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentImpactWrists.skill.gml",
+    "defs": 29,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentLaserBrain.skill.gml",
+    "defs": 25,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentLastWish.skill.gml",
+    "defs": 17,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentLongArms.skill.gml",
+    "defs": 17,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentLuckyShot.skill.gml",
+    "defs": 13,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentOpenMind.skill.gml",
+    "defs": 17,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentRabbitPaw.skill.gml",
+    "defs": 12,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentScarierFace.skill.gml",
+    "defs": 12,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentSecondStomach.skill.gml",
+    "defs": 12,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/AugmentSharpTeeth.skill.gml",
+    "defs": 16,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/BurdenAutomotiveApocalypse.skill.gml",
+    "defs": 14,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/BurdenBlood.skill.gml",
+    "defs": 13,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/BurdenPelagicPredicament.skill.gml",
+    "defs": 21,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/BurdenPlagueOfFlesh.skill.gml",
+    "defs": 11,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/SurgerySlot.skill.gml",
+    "defs": 20,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/SurgerySlot2.skill.gml",
+    "defs": 20,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/SurgerySlot3.skill.gml",
+    "defs": 20,
+    "status": "PARSED"
+  },
+  {
+    "path": "Mutations/SurgerySlot4.skill.gml",
+    "defs": 20,
+    "status": "PARSED"
+  },
+  {
+    "path": "Objects/Frontier_Bosses.mod.gml",
+    "error": "Objects/Frontier_Bosses.mod.gml::chance:2059: Unexpected expression token <; got '_numer'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Objects/Frontier_Caves.mod.gml",
+    "error": "Objects/Frontier_Caves.mod.gml::chance:2467: Unexpected expression token <; got '_numer'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Objects/Frontier_Deeplabs.mod.gml",
+    "error": "Objects/Frontier_Deeplabs.mod.gml::pround:1713: Unexpected expression token *; got '_precision'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Objects/Frontier_IDPD.mod.gml",
+    "error": "Objects/Frontier_IDPD.mod.gml::AugmentStation_spawn:279: Unexpected expression token {; got '}'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Objects/Frontier_Labs.mod.gml",
+    "error": "Objects/Frontier_Labs.mod.gml::chance:4301: Unexpected expression token <; got '_numer'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Objects/Frontier_Objects.mod.gml",
+    "error": "Objects/Frontier_Objects.mod.gml::chance:1338: Unexpected expression token <; got '_numer'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Objects/Frontier_Palace.mod.gml",
+    "error": "Objects/Frontier_Palace.mod.gml::ProtoCache_draw:839: Expected ); got ';'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Objects/Frontier_Pickups.mod.gml",
+    "error": "Objects/Frontier_Pickups.mod.gml::meal_init:1102: Unexpected expression token {; got 'mod2Call'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Objects/Frontier_Projectiles.mod.gml",
+    "error": "Objects/Frontier_Projectiles.mod.gml::charge_weapon_fire_init:4470: Unexpected expression token {; got '\"wep\"'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Objects/Frontier_Projectiles2.mod.gml",
+    "error": "Objects/Frontier_Projectiles2.mod.gml::chance:2016: Unexpected expression token <; got '_numer'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Objects/Frontier_Sewers.mod.gml",
+    "error": "Objects/Frontier_Sewers.mod.gml::chance:1709: Unexpected expression token <; got '_numer'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Skins/FreakFish.skin.gml",
+    "defs": 12,
+    "status": "PARSED"
+  },
+  {
+    "path": "Skins/RobotBluescreened.skin.gml",
+    "defs": 12,
+    "status": "PARSED"
+  },
+  {
+    "path": "Skins/RobotBluescreenedB.skin.gml",
+    "defs": 12,
+    "status": "PARSED"
+  },
+  {
+    "path": "Skins/RobotBluescreenedBonus.skin.gml",
+    "defs": 12,
+    "status": "PARSED"
+  },
+  {
+    "path": "Skins/RobotBluescreenedC.skin.gml",
+    "defs": 12,
+    "status": "PARSED"
+  },
+  {
+    "path": "Skins/RobotBluescreenedTurret.skin.gml",
+    "defs": 12,
+    "status": "PARSED"
+  },
+  {
+    "path": "Trinkets/TrinketReservation.mod.gml",
+    "defs": 15,
+    "status": "PARSED"
+  },
+  {
+    "path": "Weapons/FR_AR3.wep.gml",
+    "error": "Weapons/FR_AR3.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_AutoBallista.wep.gml",
+    "error": "Weapons/FR_AutoBallista.wep.gml::weapon_handy_data:20: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_AutoBlunderbuss.wep.gml",
+    "error": "Weapons/FR_AutoBlunderbuss.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_Ballista.wep.gml",
+    "error": "Weapons/FR_Ballista.wep.gml::weapon_sprt:9: Unexpected expression token ?; got 'global'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_Blunderball.wep.gml",
+    "error": "Weapons/FR_Blunderball.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_Blunderboulder.wep.gml",
+    "error": "Weapons/FR_Blunderboulder.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_Blunderbug.wep.gml",
+    "error": "Weapons/FR_Blunderbug.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_Blunderbuss.wep.gml",
+    "error": "Weapons/FR_Blunderbuss.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_BubblesCutlass.wep.gml",
+    "error": "Weapons/FR_BubblesCutlass.wep.gml::weapon_handy_data:22: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_BubblesShovel.wep.gml",
+    "error": "Weapons/FR_BubblesShovel.wep.gml::weapon_handy_data:22: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_CandleBarrage.wep.gml",
+    "error": "Weapons/FR_CandleBarrage.wep.gml::weapon_handy_data:19: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_CandleLauncher.wep.gml",
+    "error": "Weapons/FR_CandleLauncher.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_CoralAutoCrossbow.wep.gml",
+    "error": "Weapons/FR_CoralAutoCrossbow.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_CoralCrossbow.wep.gml",
+    "error": "Weapons/FR_CoralCrossbow.wep.gml::weapon_sprt:10: Unexpected expression token ?; got 'global'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_CoralSuperCrossbow.wep.gml",
+    "error": "Weapons/FR_CoralSuperCrossbow.wep.gml::weapon_handy_data:18: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_Deckblazer.wep.gml",
+    "error": "Weapons/FR_Deckblazer.wep.gml::weapon_handy_data:34: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_DevWep.wep.gml",
+    "defs": 13,
+    "status": "PARSED"
+  },
+  {
+    "path": "Weapons/FR_DoubleBlunderbuss.wep.gml",
+    "error": "Weapons/FR_DoubleBlunderbuss.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_DoublePowderShotgun.wep.gml",
+    "error": "Weapons/FR_DoublePowderShotgun.wep.gml::weapon_handy_data:19: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_Enfilader.wep.gml",
+    "error": "Weapons/FR_Enfilader.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_Enfileter.wep.gml",
+    "error": "Weapons/FR_Enfileter.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_FireworkCannon.wep.gml",
+    "error": "Weapons/FR_FireworkCannon.wep.gml::weapon_handy_data:18: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_Flaken.wep.gml",
+    "error": "Weapons/FR_Flaken.wep.gml::weapon_handy_data:18: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_GhostCutlass.wep.gml",
+    "error": "Weapons/FR_GhostCutlass.wep.gml::lwo_initialize:117: Unexpected expression token {; got '\"wep\"'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_GildedBlunderball.wep.gml",
+    "error": "Weapons/FR_GildedBlunderball.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_GildedBlunderbuss.wep.gml",
+    "error": "Weapons/FR_GildedBlunderbuss.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_GildedCoralCrossbow.wep.gml",
+    "error": "Weapons/FR_GildedCoralCrossbow.wep.gml::weapon_sprt:10: Unexpected expression token ?; got 'global'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_GildedDeckblazer.wep.gml",
+    "error": "Weapons/FR_GildedDeckblazer.wep.gml::weapon_handy_data:34: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_GildedFireworkCannon.wep.gml",
+    "error": "Weapons/FR_GildedFireworkCannon.wep.gml::weapon_handy_data:18: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_GildedHookpole.wep.gml",
+    "error": "Weapons/FR_GildedHookpole.wep.gml::weapon_handy_data:26: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_GildedHullShredder.wep.gml",
+    "error": "Weapons/FR_GildedHullShredder.wep.gml::weapon_handy_data:35: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_GildedSpikerRifle.wep.gml",
+    "error": "Weapons/FR_GildedSpikerRifle.wep.gml::weapon_handy_data:19: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_GildedTideTurner.wep.gml",
+    "error": "Weapons/FR_GildedTideTurner.wep.gml::weapon_handy_data:18: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_GluonSlugger.wep.gml",
+    "error": "Weapons/FR_GluonSlugger.wep.gml::weapon_handy_data:20: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_HiveLauncher.wep.gml",
+    "error": "Weapons/FR_HiveLauncher.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_Hookpole.wep.gml",
+    "error": "Weapons/FR_Hookpole.wep.gml::weapon_handy_data:26: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_HullMangler.wep.gml",
+    "error": "Weapons/FR_HullMangler.wep.gml::weapon_handy_data:25: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_HullShredder.wep.gml",
+    "error": "Weapons/FR_HullShredder.wep.gml::weapon_handy_data:35: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_HurdyGurdy.wep.gml",
+    "error": "Weapons/FR_HurdyGurdy.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_Plaguebringer.wep.gml",
+    "error": "Weapons/FR_Plaguebringer.wep.gml::weapon_handy_data:18: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_PowderHammer.wep.gml",
+    "error": "Weapons/FR_PowderHammer.wep.gml::weapon_handy_data:34: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_PowderPopper.wep.gml",
+    "error": "Weapons/FR_PowderPopper.wep.gml::weapon_handy_data:21: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_PowderShotgun.wep.gml",
+    "error": "Weapons/FR_PowderShotgun.wep.gml::weapon_handy_data:19: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_PowderSpear.wep.gml",
+    "error": "Weapons/FR_PowderSpear.wep.gml::weapon_handy_data:27: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_QuadBarrel.wep.gml",
+    "error": "Weapons/FR_QuadBarrel.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_RogueBlunderbuss.wep.gml",
+    "error": "Weapons/FR_RogueBlunderbuss.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_SpikerPistol.wep.gml",
+    "error": "Weapons/FR_SpikerPistol.wep.gml::weapon_handy_data:19: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_SpikerRifle.wep.gml",
+    "error": "Weapons/FR_SpikerRifle.wep.gml::weapon_handy_data:19: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_StarPistol.wep.gml",
+    "error": "Weapons/FR_StarPistol.wep.gml::weapon_handy_data:19: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_StarRifle.wep.gml",
+    "error": "Weapons/FR_StarRifle.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_StarShotgun.wep.gml",
+    "error": "Weapons/FR_StarShotgun.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_StarSMG.wep.gml",
+    "error": "Weapons/FR_StarSMG.wep.gml::weapon_handy_data:19: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_SuperSpiker.wep.gml",
+    "error": "Weapons/FR_SuperSpiker.wep.gml::weapon_handy_data:19: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_TeminiteCannon.wep.gml",
+    "error": "Weapons/FR_TeminiteCannon.wep.gml::weapon_handy_data:36: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_TemporalRifle.wep.gml",
+    "error": "Weapons/FR_TemporalRifle.wep.gml::weapon_handy_data:20: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_TideTurner.wep.gml",
+    "error": "Weapons/FR_TideTurner.wep.gml::weapon_handy_data:18: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_ToxicCoralCrossbow.wep.gml",
+    "error": "Weapons/FR_ToxicCoralCrossbow.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_VolleyGun.wep.gml",
+    "error": "Weapons/FR_VolleyGun.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/FR_Wormhole.wep.gml",
+    "error": "Weapons/FR_Wormhole.wep.gml::weapon_sprt:21: Unexpected expression token ?; got 'global'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/bouncer enfilader.wep.gml",
+    "error": "Weapons/Iris Weapons/bouncer enfilader.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/bouncer temporal rifle.wep.gml",
+    "error": "Weapons/Iris Weapons/bouncer temporal rifle.wep.gml::weapon_handy_data:20: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/bouncer volley gun.wep.gml",
+    "error": "Weapons/Iris Weapons/bouncer volley gun.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/fire enfilader.wep.gml",
+    "error": "Weapons/Iris Weapons/fire enfilader.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/fire temporal rifle.wep.gml",
+    "error": "Weapons/Iris Weapons/fire temporal rifle.wep.gml::weapon_handy_data:20: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/fire volley gun.wep.gml",
+    "error": "Weapons/Iris Weapons/fire volley gun.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/gamma enfilader.wep.gml",
+    "error": "Weapons/Iris Weapons/gamma enfilader.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/gamma temporal rifle.wep.gml",
+    "error": "Weapons/Iris Weapons/gamma temporal rifle.wep.gml::weapon_handy_data:20: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/gamma volley gun.wep.gml",
+    "error": "Weapons/Iris Weapons/gamma volley gun.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/pest enfilader.wep.gml",
+    "error": "Weapons/Iris Weapons/pest enfilader.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/pest temporal rifle.wep.gml",
+    "error": "Weapons/Iris Weapons/pest temporal rifle.wep.gml::weapon_handy_data:20: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/pest volley gun.wep.gml",
+    "error": "Weapons/Iris Weapons/pest volley gun.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/psy enfilader.wep.gml",
+    "error": "Weapons/Iris Weapons/psy enfilader.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/psy temporal rifle.wep.gml",
+    "error": "Weapons/Iris Weapons/psy temporal rifle.wep.gml::weapon_handy_data:20: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/psy volley gun.wep.gml",
+    "error": "Weapons/Iris Weapons/psy volley gun.wep.gml::weapon_handy_data:17: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/thunder enfilader.wep.gml",
+    "error": "Weapons/Iris Weapons/thunder enfilader.wep.gml::weapon_handy_data:19: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/thunder temporal rifle.wep.gml",
+    "error": "Weapons/Iris Weapons/thunder temporal rifle.wep.gml::weapon_handy_data:20: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Weapons/Iris Weapons/thunder volley gun.wep.gml",
+    "error": "Weapons/Iris Weapons/thunder volley gun.wep.gml::weapon_handy_data:19: Unexpected expression token {; got 'x'",
+    "status": "ERROR"
+  },
+  {
+    "path": "Wibbly_Loader.mod.gml",
+    "defs": 3,
+    "status": "PARSED"
+  }
+]

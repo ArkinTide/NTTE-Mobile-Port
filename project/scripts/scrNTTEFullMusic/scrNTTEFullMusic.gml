@@ -66,6 +66,8 @@ function scrNTTEFullMusicBoss() {
     return true;
 }
 function scrNTTEFullMusicArea() {
+    if(scrFRAreaMusic()) return true;
+
     if(!instance_exists(GameCont)) return false;
     var _info=scrNTTEFullAreaInfo(GameCont.area);
     if(is_undefined(_info)) return false;

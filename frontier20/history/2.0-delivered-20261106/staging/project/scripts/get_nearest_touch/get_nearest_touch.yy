@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"get_nearest_touch",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"get_nearest_touch",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

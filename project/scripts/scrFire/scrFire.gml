@@ -85,6 +85,9 @@ function scrFire(_wep, _consume_ammo = true, _primary = true) {
 	}
 	else wepangle *= -1
 	
+// BEGIN FRONTIER WEAPON FIRE
+if(scrFRWeaponFire(_wep,_primary)) { } else
+// END FRONTIER WEAPON FIRE
 	if (_wep >= wep_ntte_bubble_bat && _wep <= wep_ntte_last) {
 		scrNTTEFireAll(_wep, _primary)
 	}

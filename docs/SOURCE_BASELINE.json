@@ -1,12 +1,41 @@
 {
-  "source_candidate": "1.2.7",
-  "date": "2026-11-05",
-  "source_manifest_sha256": "2b9aceaf8b1f79bee5b59aa68c4c3bfcbe3a92d7879851506839c2fcfcd6a292",
-  "windows_regression_receipt_sha256": "2b6b04df4aa7cfde775677c90e8dc7df67a26b1ce2f767f1ed5c1eeb745a2965",
-  "android_overlay_paths": [
-    "options/android/options_android.yy"
-  ],
+  "source_candidate": "2.0.0",
+  "version": "2.0.0",
+  "internal": 96,
+  "date": "2026-11-06",
+  "source_manifest_sha256": "81e9541100490bfd705619a11120a225c9bcf77917bbdad98f2b50965089e612",
+  "native_acceptance_sha256": "3aa1f23272d9ce368c1c4ac6e276e0734f108f4e56855ed4c7b969b6aef74d7f",
+  "development_regression_sha256": "387565b672be19cf305cb1e90a4e2384b3d43f3220fdee693844625c6551f8fe",
+  "mobile_delivery_sha256": "e1d2c6fe288e8f81dafdf6c8bed5bbe88eb0cf070ea988bd7e1a66c90587ca02",
+  "vm_sha256": "49053e0ea4c46790a1acf26216de624a76ec134ce4ba381da91f317c367a568f",
+  "input_sha256": "8c316bb80b353c6ade0e151cac35b09f29db92d70478dd5b737c9963e2625e1c",
   "selected_windows_cases": [
+    "FrontierCoreTests",
+    "FrontierOptionTests",
+    "FrontierVisualTests",
+    "FrontierLocalizationTests",
+    "FrontierMillipedeTests",
+    "FrontierAreaTests",
+    "FrontierWeaponTests",
+    "FrontierGroundWeaponTests",
+    "FrontierPerformanceTests",
+    "FrontierPromptTests",
+    "FrontierWallFixTests",
+    "FrontierPlayerWallTests",
+    "FrontierSceneryWeatherTests",
+    "FrontierSceneryWeather60Tests",
+    "FrontierLifecycleTests",
+    "FrontierProgressionTests",
+    "FrontierRobocenterPerformanceTests",
+    "FrontierDeeplabsPerformanceTests",
+    "FrontierEventTests",
+    "FrontierSkillTests",
+    "FrontierRaceTests",
+    "FrontierBubblesStartupATests",
+    "FrontierBubblesStartupBTests",
+    "FrontierUnlockTests",
+    "FrontierContinueWriteTests",
+    "FrontierContinueReadTests",
     "Release127WaterTests",
     "CrimeEffectLifetimeTests",
     "Release127LabNaturalTests",
@@ -70,43 +99,65 @@
     "CoastUnblendSmoke",
     "CoastVaultReturnNaturalTests"
   ],
+  "windows_cases": 88,
   "rates": [
     30,
     60
   ],
-  "mobile_device_tested_this_round": false,
+  "python_tests": 94,
+  "android_overlay_paths": [
+    "objects/MakeGame/Alarm_0.gml",
+    "options/android/options_android.yy"
+  ],
   "installers": {
     "android": {
-      "sha256": "8b62f622a114894fc68b8803a7123493db44ded4c6bfeacbf0396203a837fd3f",
-      "bytes": 252733619
+      "name": "NuclearThrone.NTTE-NTUF-Android-2.0.0.apk",
+      "bytes": 304278355,
+      "sha256": "7a968a2073be3ad9ae2aaf3dffe9fc4a9d50f3ae54404d83071a38a5406a85b8"
     },
     "ios": {
-      "sha256": "6c32ef43cd65e836015f3db4d66d21d3432054a4ed1ca7ae375b59bd6d503495",
-      "bytes": 176287283
+      "name": "NuclearThrone.NTTE-NTUF-iOS-2.0.0.ipa",
+      "bytes": 212641722,
+      "sha256": "a438f5d479137c6a30067aedbe87db36492d79b7039a1a4c5aa093f8f16d06e3"
     }
   },
-  "android_native_policy_checks": 31,
-  "android_native_module_compiled": true,
-  "ios_retained_runner_compatibility_checked": true,
+  "android_version_code": 3000096,
+  "ios_bundle_version": "96",
+  "game_build_save_protocol": 3004,
+  "mobile_device_tested_this_round": false,
   "native_xcode_compilation_performed": false,
-  "installation_flow": "Android/iOS: fixed MEGA folder; Android in-place APK install; iOS re-signing required",
-  "version": "1.2.7",
-  "version_policy": "1.1.0 and later include add-on MODs;1.0.4 and subsequent1.0.x retain original NTTE. Patch increments0.0.1; version-only public tags.",
-  "android_version_code": 3000095,
-  "ios_bundle_version": "95",
-  "undergrowth_source": "https://attfooy.itch.io/undergrowth",
-  "detailsplus_source": "https://wigglercola.itch.io/detailsplus",
-  "detailsplus_option": "visual_detailsplus",
-  "detailsplus_default_enabled": true,
-  "detailsplus_sprite_audit": {
-    "sprites": 40,
-    "frames": 76,
-    "exact_rgba_and_origins": true
-  },
+  "ios_requires_resigning": true,
   "source_distribution": "text-only; assets obtained separately",
   "assets_included": false,
-  "history_rewritten_date": "2026-10-26",
+  "platform_versions_normalized_only": true,
+  "new_vm_regression_claimed": false,
+  "runtime_versions": {
+    "GAME_VERSION": "2.0",
+    "NTTE_RELEASE_TAG": "2.0",
+    "NTTE_RELEASE_VERSION": "2.0.0",
+    "compiler_ios": "2.0.0",
+    "compiler_android": "2.0.0",
+    "legacy_abbreviation_semantically_equivalent": true,
+    "legacy_tag_usage": "HTTP User-Agent only; the installed-version comparison uses NTTE_RELEASE_VERSION"
+  },
+  "normalization_receipt_sha256": "e129a63dc84e82582345bf6a2dd52e8bd21fa63e4dc12fff1321203964023385",
+  "base_delivery": {
+    "path": "mobile-release20-20261106/delivery-verification.json",
+    "sha256": "aba4c6981a10ccbc75b57ce7612ebc20e55259ac5c91b5688b3f74aecab0d6d9"
+  },
   "upload_installers_to_github": false,
   "download_page": "https://mega.nz/folder/PfIDSaSZ#ZcRokP34or9J0JofsIgrEA",
-  "actual_draw_image_comparisons": 156
+  "repository": "ArkinTide/NTTE-NTUF-Mobile-Port",
+  "original_ntte_source": "https://github.com/Yokinman/NTTE",
+  "preserved_upstream_markdown_web_routes": [
+    {
+      "file": "project/README.md",
+      "target": "../../graphs/contributors",
+      "reason": "preserved canonical upstream web route; not a local file"
+    }
+  ],
+  "frontier_source": "https://wigglercola.itch.io/uncharted-frontier",
+  "frontier_version": "1.0.3.3",
+  "undergrowth_source": "https://attfooy.itch.io/undergrowth",
+  "detailsplus_source": "https://wigglercola.itch.io/detailsplus"
 }

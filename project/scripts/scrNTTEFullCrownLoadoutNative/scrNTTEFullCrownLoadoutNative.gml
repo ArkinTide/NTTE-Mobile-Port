@@ -4,9 +4,12 @@ function scrNTTEFullCrownLoadoutSlots() {
     var _slots=[]
     for(var _id=0;_id<=13;++_id) array_push(_slots,_id)
     for(var _id=14;_id<=16;++_id) if(scrNTTEFullFeatureReady("crown:"+scrNTTEFullCrownKey(_id))) array_push(_slots,_id)
+    if(scrFRCrownReady()) array_push(_slots,17);
     return _slots
 }
 function scrNTTEFullCrownLoadoutAvailable(_race,_crown) {
+    if(scrFRCrownKey(_crown)!="") return scrFRCrownLoadoutAvailable(_race);
+
     return scr_race_is_unlocked(_race) && scrNTTEFullFeatureReady("crown:"+scrNTTEFullCrownKey(_crown))
         && scrNTTEFullCrownAvailable(_crown,true)
 }
@@ -18,9 +21,12 @@ function scrNTTEFullCrownLoadoutCount(_race) {
     // previously cached crownmax16 total.
     for(var _id=1;_id<=13;++_id) if(_id>crwn_none && UberCont.crowngot[_race,_id]) _count+=1
     for(var _id=14;_id<=16;++_id) if(scrNTTEFullCrownLoadoutAvailable(_race,_id)) _count+=1
+    if(scrFRCrownLoadoutAvailable(_race)) _count+=1;
     return _count
 }
 function scrNTTEFullCrownLoadoutSprite(_crown,_unlocked=true) {
+    if(scrFRCrownKey(_crown)!="") return [scrFRCrownSprite("Loadout"),0];
+
     if(_crown>=14 && _crown<=16) return [scrNTTEFullCrownSprite(_crown,"Loadout"),_unlocked?0:1]
     return [_unlocked?sprLoadoutCrown:sprLockedLoadoutCrown,_crown]
 }

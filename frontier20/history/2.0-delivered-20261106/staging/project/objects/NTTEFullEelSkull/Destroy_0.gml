@@ -1,0 +1,2 @@
+scrNTTEFullEelSkullDeath()
+event_inherited()

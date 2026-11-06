@@ -1,0 +1,23 @@
+if (charge == 0) {
+    charge = 1
+    alarm[4] = 10
+    snd_play_hit_big(sndLastMelee, 0)
+    snd_play(sndExplosion)
+    with(instance_create(x, y, PopoExplosion)) {
+        team = other.team
+        hitid = other.hitid
+    }
+    scrTarget()
+    if (target) {
+        if (target.x < x) right = -1
+        else right = 1
+        drawspr = sprLastDashStart
+        gunangle = ((mcr_target_direction + random(30)) - 15)
+        motion_add(gunangle, (10) * timescale)
+    }
+} else if (charge == 1) {
+    drawspr = sprLastDashEnd
+    drawimg = 0
+    charge = -1
+    alarm[5] = 12
+}

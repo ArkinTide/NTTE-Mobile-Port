@@ -1,0 +1,1 @@
+scrNTTEUpdateDialogEvent(async_load)

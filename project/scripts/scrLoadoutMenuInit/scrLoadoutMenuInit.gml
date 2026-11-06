@@ -97,6 +97,9 @@ function scr_loadout_race_set_start_weapon(_race_id, _weapon_id) {
 /// @function scr_loadout_race_get_start_crown
 /// @param {Real|Enum.Race} race_id
 function scr_loadout_race_get_start_crown(_race_id) {
+    var _fr_saved=save_get_value("ccrown",_race_id,crwn_none);
+    if(_fr_saved==17) return scrFRCrownLoadoutAvailable(_race_id)?17:crwn_none;
+
     var _ntte_crown=save_get_value("ccrown",_race_id,crwn_none)
     if(_ntte_crown>=14 && _ntte_crown<=16) return scrNTTEFullCrownLoadoutAvailable(_race_id,_ntte_crown)?_ntte_crown:crwn_none
 	if scr_race_is_unlocked(_race_id) {
@@ -110,6 +113,11 @@ function scr_loadout_race_get_start_crown(_race_id) {
 /// @param {Real|Enum.Race} race_id
 /// @param crown_id
 function scr_loadout_race_set_start_crown(_race_id, _crown_id) {
+    if(_crown_id==17) {
+        if(!scrFRCrownLoadoutAvailable(_race_id)) return false;
+        save_set_value("ccrown",_race_id,17);return true;
+    }
+
     if(_crown_id>=14 && _crown_id<=16) {
         if(!scrNTTEFullCrownLoadoutAvailable(_race_id,_crown_id)) return false
         save_set_value("ccrown",_race_id,_crown_id)
@@ -128,6 +136,8 @@ function scr_loadout_race_set_start_crown(_race_id, _crown_id) {
 /// @param {Real|Enum.Race} race_id
 /// @param crown_id
 function scr_loadout_race_is_crown_unlocked(_race_id, _crown_id) {
+    if(_crown_id==17) return scrFRCrownLoadoutAvailable(_race_id);
+
     if(_crown_id>=14 && _crown_id<=16) return scrNTTEFullCrownLoadoutAvailable(_race_id,_crown_id)
 	with UberCont {
 		if (scrGameIsCustomMode() && scrCustomParam("unlock_crowns")) {
@@ -144,6 +154,8 @@ function scr_loadout_race_is_crown_unlocked(_race_id, _crown_id) {
 /// @param {Real|Enum.Race} race_id
 /// @param {Real|Enum.Crown} crown_id
 function scr_loadout_race_unlock_crown(_race_id, _crown_id) {
+    if(_crown_id==17) return scrNTTEFullUnlockSet("loadout:crown:storms",true);
+
     if(_crown_id>=14 && _crown_id<=16) return scrNTTEFullUnlockSet("loadout:crown:"+scrNTTEFullCrownKey(_crown_id),true);
     with(UberCont) {
         if(crowngot[_race_id,_crown_id]) return false;

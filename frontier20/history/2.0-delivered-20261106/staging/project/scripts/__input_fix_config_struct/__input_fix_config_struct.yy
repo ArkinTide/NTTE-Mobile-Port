@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__input_fix_config_struct",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__input_fix_config_struct",
+  "parent":{
+    "name":"(System)",
+    "path":"folders/Extensions/Input/(System).yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

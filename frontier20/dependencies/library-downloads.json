@@ -1,0 +1,104 @@
+[
+  {
+    "name": "LibLoader.mod.gml",
+    "bytes": 3794,
+    "git_blob_sha": "6d92b013ddf9395cbbe9a78f68f4ce9c5cc817f6",
+    "sha256": "77f6d2069ab2903e0aa08ebc85b8179b9f8f52986971db6210c4870eb91547f9"
+  },
+  {
+    "name": "libAreas.mod.gml",
+    "bytes": 43704,
+    "git_blob_sha": "22c09c7b441e51abf8dd7ab5d4bc22cc38e26cd8",
+    "sha256": "42800ddfb8c936da3a450403e48784c5189c7e79a370e5d0411aae162c364f99"
+  },
+  {
+    "name": "libAutoUpdate.mod.gml",
+    "bytes": 9938,
+    "git_blob_sha": "cf33410b7142ffa95c40b7e8234fc43a0fbcd80a",
+    "sha256": "3c869efc8217863ba85f2962b57b600fbf06dfcda7253f57112594379847c4c0"
+  },
+  {
+    "name": "libBoilerplate.mod.gml",
+    "bytes": 926,
+    "git_blob_sha": "a6120b31a471bbcb1d1264ebec8605d61f08d6f3",
+    "sha256": "8324ddd7c1c4fa9db3ecb696b34ce6ce532caca19f222dbcb45c47246f2376b6"
+  },
+  {
+    "name": "libBoss.mod.gml",
+    "bytes": 4712,
+    "git_blob_sha": "e1b5be0131e10c49b0eb2a7dc013c0c8303759ff",
+    "sha256": "bb4874e7f86fdfd216a238ba11fa67a892d5e6bdc32ec4f2f87ed057ef9340e6"
+  },
+  {
+    "name": "libCharm.mod.gml",
+    "bytes": 30304,
+    "git_blob_sha": "5cd3f9fe7f8d90175553e9f1140229c956038db0",
+    "sha256": "0a3e3fba180073df2876e906202aa877825a63883990474421e007169916a3db"
+  },
+  {
+    "name": "libChars.mod.gml",
+    "bytes": 522,
+    "git_blob_sha": "fe06daa9194ef20e31b0bb7865d80ccadf28a17d",
+    "sha256": "0744ab3de1f56dbcab14d67b8dc40f48578755480ba7198e37083658d053bc8e"
+  },
+  {
+    "name": "libEvents.mod.gml",
+    "bytes": 7610,
+    "git_blob_sha": "88daf6a7e53f3e83961c577e2e7553cbc0f2af60",
+    "sha256": "132200d19ce8a9fd851d9f2c1aa7c1a839dea3e2aab104a9796f5b40995084a9"
+  },
+  {
+    "name": "libGeneral.mod.gml",
+    "bytes": 75674,
+    "git_blob_sha": "e349e637b3d67f344e781cbdc00028a42644244c",
+    "sha256": "051c0ab105e42fef1f7d9e1b09ec885a96b1b4264e3d4b4781912273493cbe90"
+  },
+  {
+    "name": "libImprovements.mod.gml",
+    "bytes": 2990,
+    "git_blob_sha": "fef845f2b2ef27c5b16b85fdc28afdf734de2376",
+    "sha256": "2eaf881b3fa1471b5ff2401bc1b0b28b05fdba7b38b59e60f886c4234a445559"
+  },
+  {
+    "name": "libMenu.mod.gml",
+    "bytes": 5618,
+    "git_blob_sha": "b69ff338b29d87088506dea6e8d39a66b0a65ce5",
+    "sha256": "8acdd0e7542144d8de7177cac4f07857bc612c9a26c22930a1a91b39d00b1d2a"
+  },
+  {
+    "name": "libMuts.mod.gml",
+    "bytes": 11836,
+    "git_blob_sha": "7c2272f0d38334d52b5d65a6f3380c79de3274b6",
+    "sha256": "fd7d30093c58b7616d8bfbd1b8e70c611ecd60058af6c8bb320b9b36767420ef"
+  },
+  {
+    "name": "libPickups.mod.gml",
+    "bytes": 15179,
+    "git_blob_sha": "95e60df0361d926f9ee42b5d6c861ffbdb1af491",
+    "sha256": "fc04402a3db9b41d5c484b905fd58beeca9c4c34d4fb9ab1245613d500ffae90"
+  },
+  {
+    "name": "libSaves.mod.gml",
+    "bytes": 10839,
+    "git_blob_sha": "0376f9de66cfb3db4f901f02eec7238d61cc4833",
+    "sha256": "277f0c8b6c32fe1c12b6d3bd425ce63e650a099ae19b10f4fc8a57718d5b6a11"
+  },
+  {
+    "name": "libSettings.mod.gml",
+    "bytes": 5905,
+    "git_blob_sha": "39e004cf0322d4d0919a435e8b32e5d507454105",
+    "sha256": "b41ca77a417ba06cf2c708ddb1b1761822394a63e3abca158945ca027caf1241"
+  },
+  {
+    "name": "libStats.mod.gml",
+    "bytes": 2353,
+    "git_blob_sha": "29b7001e2c3e9a1fb3bb2f8c87a0eec9aa7b8027",
+    "sha256": "a2f6bd22354408dbec7c4fd0d332283acc3e7ae8908892720bb6066354c0d8e5"
+  },
+  {
+    "name": "libWeps.mod.gml",
+    "bytes": 20257,
+    "git_blob_sha": "0cf407c604c55446cdbb757af6b8fcd1ae80206a",
+    "sha256": "aad5ef7c7be81033fdff98f23764ea5c3b2b9d01bef1f00bcbb3ffbbb2860f6a"
+  }
+]

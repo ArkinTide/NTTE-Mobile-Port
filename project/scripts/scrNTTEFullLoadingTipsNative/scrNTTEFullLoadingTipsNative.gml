@@ -68,6 +68,8 @@ function scrNTTEFullLoadingShuffle(_array) {
 function scrNTTEFullLoadingTipsSetup(_gen) {
     if(!instance_exists(_gen) || scrNTTEFullValue(_gen,"ntte_loading_tips_setup",false)) return false
     _gen.ntte_loading_tips_setup=true;_gen.tip_ntte=""
+    if(scrFRAreaTip(_gen)) return true;
+
     var _seed=random_get_seed()
     try {
         if(GameCont.hard>1) {

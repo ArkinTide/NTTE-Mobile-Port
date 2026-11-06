@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"load_custom_sprites",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"load_custom_sprites",
+  "parent":{
+    "name":"CustomResources",
+    "path":"folders/Scripts/CustomResources.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

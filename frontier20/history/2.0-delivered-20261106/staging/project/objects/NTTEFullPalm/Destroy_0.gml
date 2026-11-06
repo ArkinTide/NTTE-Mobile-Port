@@ -1,0 +1,2 @@
+scrNTTEFullPalmDeath()
+event_inherited()

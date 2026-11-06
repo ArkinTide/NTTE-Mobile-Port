@@ -2,6 +2,9 @@
 // evaluates a recursive fallback map once, then reconnects completed warps.
 // Two explicit passes preserve that ordering without recursive Draw effects.
 function scrNTTEFullRoadmapStep(_waypoint,_last,_warps) {
+    var _fr_roadmap=scrFRAreaRoadmap(_waypoint,_last);
+    if(!is_undefined(_fr_roadmap)) return _fr_roadmap;
+
     var _area=_waypoint[0],_sub=_waypoint[1],_loops=_waypoint[2],
         _data={x:0,y:0,area:_area,subarea:_sub,loops:_loops,showdot:false,showline:true,warp:undefined}
     switch(scrNTTEFullAreaKey(_area)) {

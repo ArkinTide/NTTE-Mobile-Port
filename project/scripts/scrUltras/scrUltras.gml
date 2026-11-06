@@ -223,6 +223,10 @@ function scrUltrasReset() {
 /// @param {Real|Enum.UltraSkill} ultra
 /// @param {Real} value
 function scr_ultra_set(_race, _ultra, _value) {
+    // BEGIN FRONTIER RACE ULTRA SET
+    if(scrFRRaceIs(_race)) {scrFRUltraSet(_race,_ultra,_value);return;}
+    // END FRONTIER RACE ULTRA SET
+
     if(scrNTTEFullRaceNumeric(_race)>=0) { scrNTTEFullRaceUltraNativeSet(_race,_ultra,_value); return }
 	with (GameCont) {
 		var _previous = scr_ultra_get(_race, _ultra)

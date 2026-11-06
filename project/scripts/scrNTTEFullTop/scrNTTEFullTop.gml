@@ -159,6 +159,9 @@ function scrNTTEFullTopCreate(_x,_y,_obj,_spawn_dir=-1,_spawn_dis=-1) {
                 if(++_iterations>4096) throw "NTTE wall-top spawn could not leave floors";
             }
         }
+        // Keep ordinary wall-top occupants within a reachable lip.
+        // Deliberate islands, flying ravens and props retain their source placement.
+        scrFRWallTopConstrainSpawn(id);
         x=round(x); y=round(y);
         if(instance_is(target,enemy)) {
             if(jump_time==0) {

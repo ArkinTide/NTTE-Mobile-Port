@@ -102,7 +102,9 @@ function scrNTTEFullWallFakeDrawCreate(_top,_reveal=false) {
     ntte_wall_fake_surface_x=0;ntte_wall_fake_surface_y=0;ntte_wall_fake_scale=1
     ntte_wall_fake_mask_x=undefined;ntte_wall_fake_mask_y=undefined
     ntte_wall_fake_mask_count=-1;ntte_wall_fake_mask_max=-1
-    depth=_top?(_reveal?-6:-5):(_reveal?2:4)
+    // SubTopCont is -6. A tied depth lets its later-created tops
+    // paint over the revealed room again; compose strictly afterwards.
+    depth=_top?(_reveal?-7:-5):(_reveal?2:4)
 }
 function scrNTTEFullWallFakeDrawCleanup() {
     if(surface_exists(ntte_wall_fake_mask)) surface_free(ntte_wall_fake_mask)

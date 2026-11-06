@@ -1,6 +1,8 @@
 /// @function scrCrownCheck
 /// @param crown_id
 function scrCrownCheck(_crown) {
+    _crown=scrFRCrownResolve(_crown);
+
 	with (GameCont) return (crown == _crown)
 }
 
@@ -8,6 +10,8 @@ function scrCrownCheck(_crown) {
 /// @param crown_id
 /// @param is_start_crown=false
 function scrCrownSetCurrent(_crown, _is_start_crown = false) {
+    _crown=scrFRCrownResolve(_crown);
+
 	with (GameCont) {
 		// unequip old crown
 		scrCrownApplyEquipEffect(crown, false)

@@ -3,7 +3,7 @@ event_inherited()
 if instance_exists(MenuOptions) or UberCont.opt_keyboard or UberCont.opt_gamepad
 	exit
 
-var i = get_nearest_touch(rad)
+var i = scrFRTouchNearest(rad) // FRONTIER TOUCH MOVE NEAREST
 
 // reset movement
 KeyCont.moving[global.index] = 0
@@ -11,8 +11,8 @@ KeyCont.moving[global.index] = 0
 if (index == -1) index = i
 
 if (index != -1) {
-    var mx = device_mouse_x_to_gui(index),
-		my = device_mouse_y_to_gui(index),
+    var mx = scrFRTouchX(index) /* FRONTIER TOUCH MOVE X */,
+		my = scrFRTouchY(index) /* FRONTIER TOUCH MOVE Y */,
 		
 		dir = point_direction(x, y, mx, my),
 		dis = point_distance(x, y, mx, my),
@@ -47,7 +47,7 @@ if (index != -1) {
 	KeyCont.hold_sout[global.index] = (mv == 1)
 	KeyCont.hold_nort[global.index] = (mv == -1)
 
-    if device_mouse_check_button_released(index, mb_left) {
+    if scrFRTouchReleased(index) /* FRONTIER TOUCH MOVE RELEASE */ {
 		index = -1
 	}
 }
@@ -57,6 +57,8 @@ else if (current_move_direction_time > 0) {
 		current_move_direction_time = 0
 	}
 }
+
+scrFRTouchMovementSample(global.index,index); // FRONTIER TOUCH MOVE EDGES
 
 if UberCont.opt_hiddensticks {
 	image_alpha = lerp(image_alpha, (index != -1) * 0.2, 0.4)

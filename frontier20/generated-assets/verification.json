@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "original_media_sha256": 2236,
+  "sprite_variants": 1868,
+  "frame_pixels_verified": 7312,
+  "sound_files_sha256": 160,
+  "native_resources": 2028,
+  "generated_files_sha256": 16816,
+  "resolved_source_calls": 2128,
+  "unresolved_source_calls": 0,
+  "production_project_modified": false,
+  "frozen_native_sprite_strips": 17,
+  "defpack_iris": {
+    "source_sha256": "834848d637cc87ea5e40795e776d8da7077943a32e6f3fa6ab7c5596388ae669",
+    "source_definitions": 34,
+    "sprite_sources": 18,
+    "sprite_resources": 18,
+    "frame_pixels_verified": 47,
+    "original_archive_media": 2236,
+    "original_native_resources": 2010,
+    "original_frame_pixels": 7265,
+    "original_sound_files": 160,
+    "original_source_declarations": 2110
+  }
+}

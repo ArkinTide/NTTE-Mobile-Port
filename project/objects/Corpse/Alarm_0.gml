@@ -22,7 +22,7 @@ if (
 }
 
 if GameCont.area == area_campfire {
-	if !instance_exists(IDPDSpawn) && !(instance_exists(Nothing2Appear) || instance_exists(Nothing2) || instance_exists(NothingSpiral)) {
+	if !instance_exists(IDPDSpawn) && scrFRPendingPoliceCount()==0 && !(instance_exists(Nothing2Appear) || instance_exists(Nothing2) || instance_exists(NothingSpiral)) {
 	    instance_create(x, y, Nothing2Appear)
 	}
 }

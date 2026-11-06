@@ -1,0 +1,2 @@
+scrNTTEFullIglooDeath()
+event_inherited()

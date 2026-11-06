@@ -116,7 +116,7 @@ function scrNTTEFullLoadoutWeaponGameStart() {
         var _data=scrNTTEFullUnlockGet(_key+":main",undefined),_model=scrNTTEFullLoadoutWeaponUnpack(_data)
         if(_model==wep_none || !scrNTTEFullLoadoutWeaponEligible(_model)) continue
         var _type=scr_weapon_get_type(wep)
-        if(_type!=Ammo.None) ammo[_type]=max(0,ammo[_type]-typ_ammo[_type]*3)
+        if(_type!=Ammo.None) ammo[_type]=max(0,ammo[_type]-scrFRAmmoRead(id,"typ_ammo",_type)*3)
         // Every body and every run receives a separate physical model, so
         // mutable charges/merge cooldowns cannot consume the saved template.
         wep=scrNTTEFullWeaponNative(_model)
@@ -133,6 +133,6 @@ function scrNTTEFullLoadoutWeaponGameStart() {
         }
         ntte_state=scrNTTEFullWeaponNativeState(wep)
         _type=scr_weapon_get_type(wep)
-        if(_type!=Ammo.None) ammo[_type]+=round(typ_ammo[_type]*3)
+        if(_type!=Ammo.None) ammo[_type]+=round(scrFRAmmoRead(id,"typ_ammo",_type)*3)
     }
 }

@@ -186,8 +186,8 @@ function scrNTTEFullBonusOpen(_opener) {
                 bonus_ammo=scrNTTEFullValue(id,"bonus_ammo",0)+_num*60; bonus_ammo_flash=1;
                 var _wep=(_chest || bwep==wep_none) ? wep:choose(wep,bwep);
                 var _type=scr_weapon_get_type(_wep);
-                if(_type==Ammo.None || ammo[_type]>=typ_amax[_type]) _type=irandom_range(1,array_length(ammo)-1);
-                if(ammo[_type]<typ_amax[_type]) ammo[_type]=min(ammo[_type]+round(_num),typ_amax[_type]);
+                if(_type==Ammo.None || ammo[_type]>=scrFRAmmoRead(id,"typ_amax",_type)) _type=irandom_range(1,array_length(ammo)-1);
+                if(ammo[_type]<scrFRAmmoRead(id,"typ_amax",_type)) ammo[_type]=min(ammo[_type]+round(_num),scrFRAmmoRead(id,"typ_amax",_type));
                 scrNTTEFullBonusPopup(false,_num);
             }
         }
@@ -206,7 +206,7 @@ function scrNTTEFullBonusPlayerStep() {
         bonus_ammo_tick=scrNTTEFullValue(id,"bonus_ammo_tick",0);
         for(var _i=min(array_length(ammo),array_length(_save))-1;_i>=0;--_i) {
             var _diff=_save[_i]-ammo[_i];
-            if(_diff>0 && (_save[_i]<=typ_amax[_i] || bonus_ammo_tick!=0)) {
+            if(_diff>0 && (_save[_i]<=scrFRAmmoRead(id,"typ_amax",_i) || bonus_ammo_tick!=0)) {
                 ammo[_i]+=_diff; _used+=_diff;
             }
         }

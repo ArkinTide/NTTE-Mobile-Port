@@ -1,0 +1,2 @@
+scrNTTEFullScorpionRockDeath()
+event_inherited()

@@ -19,6 +19,10 @@ snd_dead = sndHyperCrystalDead
 alarm[1] = (30 + random(90))
 cnumber = (3 + (GameCont.loops * 2))
 crystals = 0
+// BEGIN FRONTIER HYPER CRYSTAL ORBIT ARRAY
+crystal=[];
+// END FRONTIER HYPER CRYSTAL ORBIT ARRAY
+
 fastspin = 0
 nospin = 0
 angle = 0

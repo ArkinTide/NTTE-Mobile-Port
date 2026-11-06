@@ -1,0 +1,9 @@
+event_inherited()
+team=team_player
+visible=false
+persistent=true
+phase=0
+tick=0
+weapon_id=wep_ntte_rogue_carbine
+pass_index=0
+rates=[30,60]

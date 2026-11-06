@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scrFrogGasStat",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scrFrogGasStat",
+  "parent":{
+    "name":"Stats",
+    "path":"folders/Scripts/Savedata/Stats.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

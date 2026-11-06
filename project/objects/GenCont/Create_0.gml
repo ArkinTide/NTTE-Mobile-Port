@@ -1,3 +1,4 @@
+scrFRContinueGenerationBegin();
 with(GameCont) scrNTTEPortalDeathReset();
 random_set_seed(global.rng_state[RNGStates.Generation])
 instance_create(0, 0, TopCont)
@@ -69,7 +70,10 @@ with (MusCont) alarm[11] = 1
 
 scrLetterbox(true)
 
+scrFRGenerationMetadataSetup();
 scrNTTEFullAreaGeneratorPrepare();
+scrFRGenerationEventsSetup();
+
 
 // Source ntte_setup_GenCont custom golden/merged main loadout.
 scrNTTEFullLoadoutWeaponGenerationStart();

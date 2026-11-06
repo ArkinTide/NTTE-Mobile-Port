@@ -1,0 +1,2 @@
+scrNTTEFullMutantVatDeath()
+event_inherited()

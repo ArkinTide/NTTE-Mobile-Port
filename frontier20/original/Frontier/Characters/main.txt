@@ -1,0 +1,6 @@
+/loadmod campfire_loader.mod
+/loadrace bubbles.race
+/loadmod Frontier_CharHuds.mod
+/loadmod Frontier_REMs.mod
+
+/load main2

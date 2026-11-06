@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scrRaces",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scrRaces",
+  "parent":{
+    "name":"Content",
+    "path":"folders/Scripts/Content.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

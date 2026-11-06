@@ -40,13 +40,13 @@ function scrNTTEFullPromptWinner(_player) {
             _winner=id; _depth=depth; _distance=_d
         }
     }
-    return _winner
+    return scrFRPromptWinner(_player,_winner,_depth,_distance) // FRONTIER SHARED PROMPT WINNER
 }
 function scrNTTEFullPromptPlayerStep() {
     var _player=id
     with(NTTEFullPrompt) if(pick==_player.index) pick=-1
     var _winner=scrNTTEFullPromptWinner(id)
-    if(instance_exists(_winner)) {
+    if(instance_exists(_winner) && !scrFRPromptIs(_winner)) { // FRONTIER SOURCE OWNS PICK
         _winner.nearwep=_winner
         if(KeyCont.press_pick[index]) _winner.pick=index
     }

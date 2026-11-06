@@ -16,7 +16,8 @@ function scrNTTEFullLairBorderSetupInstance(_created) {
             // A packed block can straddle two biomes. Split at the aligned
             // border without adding a top sprite or moving either collider.
             var _cut=clamp(ceil((y-_created.y)/16)*16,0,_created.ntte_fill_height),
-                _state={area:_created.area,blend:_created.image_blend,alpha:_created.image_alpha};
+                _state={area:_created.area,blend:_created.image_blend,alpha:_created.image_alpha,
+                    color:scrFRWallFillColor(_created),color_area:_created.area};
             scrNTTESolidWallPiece(_created.x,_created.y,_created.ntte_fill_width,_cut,_state);
             _state.area=area;
             scrNTTESolidWallPiece(_created.x,_created.y+_cut,_created.ntte_fill_width,_created.ntte_fill_height-_cut,_state);

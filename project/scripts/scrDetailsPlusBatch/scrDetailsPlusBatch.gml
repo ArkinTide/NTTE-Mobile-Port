@@ -1,4 +1,8 @@
 function scrDPBatchAtlasSprite(_sprite) {
+// BEGIN FRONTIER DYNAMIC ATLAS SPRITES
+    if(_sprite==scrFRNTTENativeSprite(sprUGDetailUndergrowth)) return true;
+// END FRONTIER DYNAMIC ATLAS SPRITES
+
     switch(_sprite) {
         case sprDetail0:
         case sprDetail1:

@@ -2,6 +2,9 @@ visible = 1
 
 crown = GameCont.crown
 
+if(scrFRCrownObject()) exit;
+
+
 // BEGIN NTTE SOURCE CROWN OBJECT ART
 if(crown>=14 && crown<=16) {
     spr_idle=scrNTTEFullCrownSprite(crown,"Idle")

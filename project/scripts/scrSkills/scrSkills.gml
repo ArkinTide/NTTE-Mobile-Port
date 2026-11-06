@@ -153,6 +153,62 @@ function scrSkills() {
 
     maxskill = 29
     scrNTTEFullSkillMetadataInit()
+// BEGIN FRONTIER SKILL METADATA
+scrFRSkillsInit();
+// END FRONTIER SKILL METADATA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 function scrSkillIsWeaponMutation(_skill) {
@@ -171,11 +227,113 @@ function scr_skill_is_valid(_skill) {
 }
 
 function scr_skill_get_name(_skill) {
+// BEGIN FRONTIER SKILL DYNAMIC NAME
+if(_skill>=38 && !is_undefined(scrFRSkillKey(_skill))) return scrFRWeaponProperty(scrFRSkillKey(_skill),"skill_name","MUT"+string(_skill));
+// END FRONTIER SKILL DYNAMIC NAME
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	gml_pragma("forceinline")
 	return scr_skill_is_valid(_skill) ? skill_name[_skill] : "MUT" + string(_skill)
 }
 
 function scr_skill_get_text(_skill) {
+// BEGIN FRONTIER SKILL DYNAMIC TEXT
+if(_skill>=38 && !is_undefined(scrFRSkillKey(_skill))) return scrFRWeaponProperty(scrFRSkillKey(_skill),"skill_text","???");
+// END FRONTIER SKILL DYNAMIC TEXT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if (_skill==NTTEFullSkill.Annihilation) return scrNTTEFullAnnihilationText()
     if (_skill==NTTEFullSkill.Reroll) {
         var _target=scrNTTEFullValue(GameCont,"ntte_reroll",undefined)
@@ -186,16 +344,175 @@ function scr_skill_get_text(_skill) {
 }
 
 function scr_skill_get_sound(_skill) {
+// BEGIN FRONTIER SKILL DYNAMIC SOUND
+if(_skill>=38 && !is_undefined(scrFRSkillKey(_skill))) return scrFRWeaponProperty(scrFRSkillKey(_skill),"skill_sound",-1);
+// END FRONTIER SKILL DYNAMIC SOUND
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	gml_pragma("forceinline")
 	return scr_skill_is_valid(_skill) ? skill_msnd[_skill] : -1
 }
 
 function scr_skill_get_tips(_skill) {
+// BEGIN FRONTIER SKILL DYNAMIC TIPS
+if(_skill>=38 && !is_undefined(scrFRSkillKey(_skill))) return scrFRWeaponProperty(scrFRSkillKey(_skill),"skill_tip","");
+// END FRONTIER SKILL DYNAMIC TIPS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	gml_pragma("forceinline")
 	return scr_skill_is_valid(_skill) ? skill_tips[_skill] : -1
 }
 
 function scr_skill_can_appear(_skill) {
+// BEGIN FRONTIER SKILL AVAIL
+if(_skill>=38 && !is_undefined(scrFRSkillKey(_skill))) return scrFRSkillAvailable(_skill);
+if(variable_global_exists("fr_skill_pool") && !(global.fr_skill_pool[$ string(_skill)]??true)) return false;
+// END FRONTIER SKILL AVAIL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	if !scr_skill_is_valid(_skill) return false
     if (_skill>=30) return !scr_skill_get(_skill) && scrNTTEFullFeatureReady("skill:"+scrNTTEFullSkillKey(_skill)) && scrNTTEFullSkillAvailable(_skill)
 	
@@ -212,6 +529,62 @@ function scr_skill_can_appear(_skill) {
 /// @param skill
 /// @param value
 function scr_skill_set(_skill, _value) {
+// BEGIN FRONTIER SKILL SET
+if(_skill>=38 && !is_undefined(scrFRSkillKey(_skill))) return scrFRSetSkill(_skill,_value);
+// END FRONTIER SKILL SET
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if (_skill>=30 && _skill<=37) return scrNTTEFullSkillSet(_skill,_value)
     if (!instance_exists(GameCont) || !scr_skill_is_valid(_skill)) return;
     scrNTTEFullSystemsInit()
@@ -335,6 +708,62 @@ function scr_skills_clear() {
 /// @description scr_skill_get(skill)
 /// @param skill
 function scr_skill_get(_skill) {
+// BEGIN FRONTIER SKILL GET
+if(_skill>=38 && !is_undefined(scrFRSkillKey(_skill))) return scrFRGetSkill(_skill);
+// END FRONTIER SKILL GET
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if (!instance_exists(GameCont) || !scr_skill_is_valid(_skill)) return 0
     if (_skill>=30) return scrNTTEFullSkillGet(_skill)
     if (ds_list_find_index(GameCont.skills,_skill)<0) return 0

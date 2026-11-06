@@ -32,6 +32,10 @@ function scrNTTEFullRaceCampDecorationDraw() {
     return _drawn
 }
 function scrNTTEFullRaceNewMarker(_icon,_hover=false) {
+    // BEGIN FRONTIER RACE SELECT NEW MARKER
+    if(scrFRRaceSelectMarkerOwned(_icon)) return scrFRRaceSelectMarker(_icon,_hover);
+    // END FRONTIER RACE SELECT NEW MARKER
+
     if(!instance_exists(_icon) || !_icon.visible || !_icon.can) return undefined
     var _key=scrNTTEFullRaceKey(_icon.race)
     if(_key=="" || scrNTTEFullValue(global.ntte_full_progress.stats,"race:"+_key+":runs",0)>0) return undefined

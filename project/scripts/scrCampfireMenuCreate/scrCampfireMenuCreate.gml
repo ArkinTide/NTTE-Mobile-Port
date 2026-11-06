@@ -547,7 +547,7 @@ function scrCampfireMenuSelectionChange(_player_index, _race) {
 			
 			if (scrCustomParam("wep", -1) == -1) {
 				if (scrGameIsDailyRun() || scrGameIsCustomMode()) {
-					_pinst.cwep = scrRaceGetStarterWeapon(_race)
+					_pinst.cwep = scrFRRaceIs(_race) ? scrFRRaceStarterWeapon(_pinst.skin):scrRaceGetStarterWeapon(_race) // FRONTIER SELECT STARTER
 			    }
 				else if (!scrGameIsWeeklyRun()) {
 					_pinst.cwep = scr_loadout_race_get_start_weapon(_race)
@@ -962,7 +962,7 @@ function scrMenuDrawLoadout(_pinst) {
 					_is_selection = _unlocked && (_skin_current == _skin_id || _is_pointed)
 				
 				var _skin_sprite=_skin_id>=200 ? scrNTTEFullSkinMenuSprite(_race,_skin_id,sprLoadoutSkin):(_unlocked ? sprLoadoutSkin:sprLoadoutSkinLocked)
-                if(_skin_id>=200 || scrNTTEFullRaceNumeric(_race)>=0) {
+                if(_skin_id>=200 || scrNTTEFullRaceNumeric(_race)>=0 || scrFRRaceIs(_race)) { // FRONTIER SKIN BUTTON
                     _skin_sprite=scrNTTEFullSkinMenuSprite(_race,_skin_id,_skin_sprite)
                     _subimage=!_unlocked
                 }
@@ -982,7 +982,7 @@ function scrMenuDrawLoadout(_pinst) {
 	#region Weapons
 		
 		if _weapon_count >= 1 && !_is_custom_weapon {
-			var _default_weapon = scrRaceGetStarterWeapon(_race),
+			var _default_weapon = scrFRRaceIs(_race) ? scrFRRaceStarterWeapon(_pinst.skin):scrRaceGetStarterWeapon(_race), // FRONTIER LOADOUT STARTER
 				_unlocked_cwep = scr_loadout_race_get_stored_weapon(_race),
 				_current_weapon = scrNTTEFullLoadoutWeaponCurrent(_race,scr_loadout_race_get_start_weapon(_race)),
 				_slot_weapons = scrNTTEFullLoadoutWeaponSlots(_race,_default_weapon,_unlocked_cwep),

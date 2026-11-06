@@ -1,0 +1,9 @@
+if lockstep_stop
+	exit
+
+if speed < (4) * timescale {
+	motion_add(point_direction(other.x + orandom(1), other.y + orandom(1), x, y), (1) * timescale)
+	
+	if speed > (4) * timescale
+		speed = (16) * timescale
+}

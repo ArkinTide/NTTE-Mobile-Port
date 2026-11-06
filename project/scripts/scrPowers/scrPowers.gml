@@ -225,6 +225,48 @@ function scrPowers() {
 				}
 				
 				with scrWeaponPickupCreate(x, y, wep) {
+// BEGIN FRONTIER WEAPON CHICKEN THROW
+scrFRWeaponPickupAdopt(id,other.ntte_state);
+// END FRONTIER WEAPON CHICKEN THROW
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 					motion_set(other.gunangle + orandom(2), (16) * timescale)
 					if scr_ultra_get(Race.Chicken, UltraSkill.Determination) {
 						alarm[1] = 60
@@ -519,6 +561,48 @@ function scrMeltingCorpseExplosion(_is_local, _tb) {
 }
 
 function scrCuzThrowAllAbility() {
+// BEGIN FRONTIER WEAPON CUZ THROW STATES
+var _fr_throw_states=ntte_extra_states;
+// END FRONTIER WEAPON CUZ THROW STATES
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	if (!scr_weapon_is_valid(bwep)) {
 		snd_play(sndMutant6No, 1.1)
 		exit
@@ -550,6 +634,51 @@ function scrCuzThrowAllAbility() {
 		var _wep = _weps[i]
 		
 		wep = _wep
+// BEGIN FRONTIER WEAPON CUZ THROW FIRE
+if(i<array_length(_fr_throw_states) && is_struct(_fr_throw_states[i])
+    && is_struct(_fr_throw_states[i][$ "fr_source_weapon"]??undefined)) {
+    ntte_state=_fr_throw_states[i];scrFRWeaponSlotsSync(id);
+}
+// END FRONTIER WEAPON CUZ THROW FIRE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		if (scrCheckCanShoot(_wep)) {
 			if (_weps_can_shoot[i]) {
 				var _n = random(2 + i),
@@ -574,6 +703,48 @@ function scrCuzThrowAllAbility() {
 		if (_weps_curse[i]) continue
 		
 		with (scrWeaponPickupCreate(x, y, _wep)) {
+// BEGIN FRONTIER WEAPON CUZ THROW DROP
+if(i<array_length(_fr_throw_states)) scrFRWeaponPickupAdopt(id,_fr_throw_states[i]);
+// END FRONTIER WEAPON CUZ THROW DROP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			team = other.team
 			creator = other.id
 			mask_index = mskPlasma
@@ -586,6 +757,48 @@ function scrCuzThrowAllAbility() {
 		}
 		
 		array_delete(_weps, i, 1)
+// BEGIN FRONTIER WEAPON CUZ THROW REMOVE
+if(i<array_length(_fr_throw_states)) array_delete(_fr_throw_states,i,1);
+// END FRONTIER WEAPON CUZ THROW REMOVE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		array_delete(_weps_curse, i, 1)
 		array_delete(_weps_reload, i, 1)
 		array_delete(_weps_wkick, i, 1)

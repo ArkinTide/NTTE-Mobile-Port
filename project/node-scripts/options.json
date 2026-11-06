@@ -1,0 +1,10 @@
+{
+  "prioritizedWAD": null,
+  "customGameDirectory": "D:\\Steam\\steamapps\\common\\Nuclear Throne",
+  "isDryRun": false,
+  "isForce": false,
+  "extractSounds": true,
+  "extractSprites": true,
+  "auditIgnores": false,
+  "saveResourceDumps": false
+}

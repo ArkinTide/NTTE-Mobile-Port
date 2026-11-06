@@ -1,0 +1,38 @@
+viewx = 0
+viewy = 0
+viewx2 = 0
+viewy2 = 0
+// 相机浮点位置（60/120 帧用；避免 round() 死区）
+viewxf = view_xview
+viewyf = view_yview
+// 抖动偏移（每逻辑帧重采样一次）
+shake_ox = 0
+shake_oy = 0
+
+shake = 0
+screen = -1
+shad = surface_create(view_width, view_height)
+if(scrNTTEFullIOSShadowSourceTarget(shad,"create")) {
+    draw_clear_alpha(c_black, 0)
+    surface_reset_target()
+}
+
+force_snap_camera_position = false
+
+playerx = 10016
+playery = 10016
+
+area = GameCont.area
+shadow_color = scrAreaGetShadowColor(area)
+
+alarm[0] = 1
+
+try {
+    var c = global.custom_shadow_colors[$ string(area)]
+
+    if c != undefined && is_array(c) && array_length(c) == 3 {
+        shadow_color = make_color_rgb(real(c[0]), real(c[1]), real(c[2]))
+    }
+} catch (e) {
+    print_error(e.longMessage)
+}

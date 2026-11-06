@@ -60,6 +60,34 @@ function scrNTTEFullSmokeStep() {
         if(scrNTTEFullParrotPauseWaitForNativeDraw()) return;
         global.ntte_full_test_count=0;
         scrNTTESmokeLog("FULL INTERNAL BEGIN @"+string(30/timescale))
+// BEGIN FRONTIER TEST ENTRY
+if(scrNTTEFullSmokeAsyncCase("FrontierCoreTests")) {scrFRIntegrationTestStart("core");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierWeaponTests")) {scrFRIntegrationTestStart("weapons");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierAreaTests")) {scrFRIntegrationTestStart("areas");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierSkillTests")) {scrFRIntegrationTestStart("skills");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierRaceTests")) {scrFRIntegrationTestStart("race");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierBubblesStartupATests")) {scrFRIntegrationTestStart("bubbles-startup-a");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierBubblesStartupBTests")) {scrFRIntegrationTestStart("bubbles-startup-b");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierOptionTests")) {scrFRIntegrationTestStart("options");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierUnlockTests")) {scrFRIntegrationTestStart("unlocks");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierVisualTests")) {scrFRIntegrationTestStart("visual");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierEventTests")) {scrFRIntegrationTestStart("events");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierPromptTests")) {scrFRIntegrationTestStart("prompts");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierWallFixTests")) {scrFRIntegrationTestStart("wall-fixes");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierPlayerWallTests")) {scrFRIntegrationTestStart("player-wall");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierGroundWeaponTests")) {scrFRIntegrationTestStart("ground-weapon");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierSceneryWeatherTests")) {scrFRIntegrationTestStart("scenery-weather");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierSceneryWeather60Tests")) {scrFRIntegrationTestStart("scenery-weather60");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierLifecycleTests")) {scrFRIntegrationTestStart("lifecycle");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierProgressionTests")) {scrFRIntegrationTestStart("progression");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierPerformanceTests")) {scrFRIntegrationTestStart("performance");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierRobocenterPerformanceTests")) {scrFRIntegrationTestStart("robocenter-perf");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierDeeplabsPerformanceTests")) {scrFRIntegrationTestStart("deeplabs-perf");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierLocalizationTests")) {scrFRIntegrationTestStart("localization");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierMillipedeTests")) {scrFRIntegrationTestStart("millipede");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierContinueWriteTests")) {scrFRIntegrationTestStart("continue-write");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierContinueReadTests")) {scrFRIntegrationTestStart("continue-read");return;}
+// END FRONTIER TEST ENTRY
         if(scrNTTEFullSmokeAsyncCase("Release127PerfTests")) {scrRelease127PerfStart();return;}
         if(scrNTTEFullSmokeAsyncCase("Release127LabNaturalTests")) {scrRelease127LabNaturalTests();return;}
         if(scrNTTEFullSmokeAsyncCase("Release124SpiderRouteTests")) {scrRelease124SpiderRouteTests();return;}

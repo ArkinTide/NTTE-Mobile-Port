@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"NetworkUtils",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"NetworkUtils",
+  "parent":{
+    "name":"Networking",
+    "path":"folders/Scripts/Networking.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

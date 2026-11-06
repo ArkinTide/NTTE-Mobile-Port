@@ -1,0 +1,1 @@
+scrNTTEFullWeaponMimicBossStep();

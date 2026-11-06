@@ -1,0 +1,31 @@
+event_inherited()
+if (walk > 0) {
+    speed = (1.5) * timescale
+    walk -= (1) * timescale
+    motion_add(walkdir, (4) * timescale)
+} else speed = (0.5) * timescale
+with(Wall) {
+    var _wall=instance_create(x, y, InvisiWall)
+    if(object_index==NTTESolidWall) {
+        _wall.image_xscale=image_xscale;_wall.image_yscale=image_yscale;
+    }
+    instance_destroy()
+}
+with(Top)
+instance_destroy()
+with(TopSmall)
+instance_destroy()
+if ((hp < (max_hp / 2)) && (sndhalfhp == 0)) {
+    snd_play(sndNothing2HalfHP)
+    sndhalfhp = 1
+}
+if ((!instance_exists(Player)) && (sndtaunt == 0)) {
+    tauntdelay += (1) * timescale
+    if (tauntdelay > 50) {
+        snd_play(sndNothing2Taunt)
+        sndtaunt = 1
+    }
+}
+if instance_exists(BackCont) {
+    if (BackCont.shake < 2) BackCont.shake = 2
+}

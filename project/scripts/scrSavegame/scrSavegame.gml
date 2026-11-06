@@ -13,6 +13,7 @@ try {
 // END NTTE SAVE BUFFER OWNERSHIP SAVE OPEN
 	
 	try {
+        GameCont.fr_continue_save=scrFRContinueExport()
         GameCont.ntte_full_pet_save=scrNTTEFullPetExport()
         GameCont.ntte_full_orchid_save=scrNTTEFullOrchidExport()
         GameCont.ntte_full_native_weapon_save=scrNTTEFullWeaponNativeExport()
@@ -84,16 +85,20 @@ finally {
 // END NTTE SAVE BUFFER OWNERSHIP PREVIEW CLOSE
 }
 	
+    global.fr_loading_save=true;
 	try {
 		scrSavegameSession(_buffer, true)
 		scrSavegameGlobals(_buffer, true)
 		scrSavegamePlayers(_buffer, true)
+        scrFRContinueImport(scrNTTEFullValue(GameCont,"fr_continue_save",undefined))
+
         scrNTTEFullOrchidImport(scrNTTEFullValue(GameCont,"ntte_full_orchid_save",undefined))
         scrNTTEFullPetImport(scrNTTEFullValue(GameCont,"ntte_full_pet_save",undefined))
 		
 		return true
 	}
 	finally {
+        global.fr_loading_save=false;
 		if (buffer_exists(_buffer)) buffer_delete(_buffer)
 	}
 	
@@ -280,6 +285,8 @@ function scrSavegameGlobals(_buffer, _is_load) {
 }
 
 function scrSavegamePlayers(_buffer, _is_load) {
+    if(!_is_load && scrFREnabled()) with(Player) fr_source_weapon_save=scrFRContinuePlayerWeaponsExport();
+
 	var _part_index = SavegamePart.PlayerData
 	
 	if (_is_load) {
@@ -300,6 +307,8 @@ function scrSavegamePlayers(_buffer, _is_load) {
 					// 序列化残余（null/字符串），直接写入会让实例丢失方法（Android+Rogue 崩溃）。
 					if (!variable_instance_exists(self, _vname) || !is_method(variable_instance_get(self, _vname))) {
 						if (_vname=="ntte_last_harpoon") _value=noone
+                        if(scrFREnabled()) _value=scrFRContinuePlayerNativeState(_vname,_value,true);
+
 						if (_vname=="ntte_state" || _vname=="bntte_state") _value=scrNTTEStateRestored(_value)
 						if (_vname=="ntte_extra_states" && is_array(_value)) {
 							for(var _j=0;_j<array_length(_value);++_j) _value[_j]=scrNTTEStateRestored(_value[_j])
@@ -309,6 +318,8 @@ function scrSavegamePlayers(_buffer, _is_load) {
 				})
                 scrNTTEFullPlayerRateAfterLoad(_player_info);
                 scrNTTEFullWeaponNativeAfterLoad();
+                scrFRContinuePlayerWeaponsImport();
+
 // BEGIN NTTE CUZ CONNECTED TEST PLAYER LOAD
 if(os_type==os_windows && scrNTTEFullSmokeEnabled() && instance_exists(NTTEFullCuzConnectedTest)) try { scrNTTEFullCuzConnectedProbe("Player.Load",id); }
 catch(_ntte_cuz_connected_error) { scrNTTEFullCuzConnectedAbort(_ntte_cuz_connected_error); }
@@ -323,6 +334,7 @@ catch(_ntte_quest_carry_error) { scrNTTEFullQuestCarryAbort(_ntte_quest_carry_er
 // END NTTE QUEST ARTIFACT CARRY LIFECYCLE TEST PLAYER LOAD
                 scrNTTEFullBonusAfterLoad();
                 scrNTTEFullRaceNativeAfterLoad();
+                scrFRRacePlayerAfterLoad(); // FRONTIER PLAYER RESTORE
 // BEGIN NTTE HQ STOLEN CONTINUE TEST PLAYER REBIND
 if(os_type==os_windows && scrNTTEFullSmokeEnabled() && instance_exists(NTTEFullHQStolenContinueTest)) try { scrNTTEFullHQStolenContinueProbe("Player.Load.after"); }
 catch(_ntte_hq_stolen_error) { scrNTTEFullHQStolenContinueAbort(_ntte_hq_stolen_error); }
@@ -350,11 +362,13 @@ catch(_ntte_palace_carry_error) { scrNTTEFullPalaceArtifactPortalCarryAbort(_ntt
 				for(var j = array_length(_keys) - 1; j >= 0; --j) {
 					var _key = _keys[j],
 						_value = self[$ _key]
+                    if(scrFREnabled()) _value=scrFRContinuePlayerNativeState(_key,_value,false);
+
 					
 					// 跳过方法成员（如 `pref`）：方法属于代码而非状态，
 					// JSON 无法还原（会变成不可调用值），读档写回时会覆盖新实例的方法并崩溃。
 					//
-					if (!is_method(_value) && scrNTTEFullBonusSaveField(_key)) _player_info[$ _key] = _value
+					if (_key!="fr_source_wep" && _key!="fr_source_bwep" && _key!="fr_charge_controller" && _key!="fr_charge_native_input" && _key!="fr_charge_primary" && _key!="fr_charge_secondary" && !is_method(_value) && scrNTTEFullBonusSaveField(_key)) _player_info[$ _key] = _value
 				}
 				
 				array_push(_player_data, _player_info)

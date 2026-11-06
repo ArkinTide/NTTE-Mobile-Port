@@ -157,3 +157,7 @@ scrNTTEFullBonusSpiritDraw()
 if(os_type==os_windows && scrNTTEFullSmokeEnabled() && instance_exists(NTTEFullCuzConnectedTest)) try { scrNTTEFullCuzConnectedProbe("Player.Draw",id); }
 catch(_ntte_cuz_connected_error) { scrNTTEFullCuzConnectedAbort(_ntte_cuz_connected_error); }
 // END NTTE CUZ CONNECTED TEST Player.Draw
+
+// BEGIN FRONTIER BUBBLES STARTUP REAL DRAW
+if(os_type==os_windows && scrNTTEFullSmokeEnabled() && instance_exists(FRIntegrationTest)) scrFRBubblesStartupTestsObserve("draw",id);
+// END FRONTIER BUBBLES STARTUP REAL DRAW

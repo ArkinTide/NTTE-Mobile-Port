@@ -1,0 +1,21 @@
+if (drawspr == sprLastWarpIn) {
+    snd_play_hit_big(sndLastTeleportShoot, 0)
+
+    scrTarget()
+
+    if (instance_exists(target)) {
+        with(instance_create(x, y, LastBall)) {
+            hitid = other.hitid
+            team = other.team
+            motion_add(point_direction(x, y, other.target.x, other.target.y), (6) * timescale)
+        }
+
+        if target.x > x right = 1
+        else right = -1
+    }
+}
+
+drawspr = sprLastIdle
+charge = 0
+
+alarm[1] = 10 + (hp / max_hp) * 15

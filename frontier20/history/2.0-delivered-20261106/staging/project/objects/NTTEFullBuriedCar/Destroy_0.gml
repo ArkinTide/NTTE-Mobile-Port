@@ -1,0 +1,2 @@
+scrNTTEFullBuriedCarDeath()
+event_inherited()

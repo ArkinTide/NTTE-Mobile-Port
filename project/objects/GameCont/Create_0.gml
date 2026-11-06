@@ -8,6 +8,9 @@ with(NTTEFullUnlockCont) if(id<other.id) instance_destroy(id,false);
 // END NTTE OWNED NEW GAME UNLOCK CLEANUP
 
 scrAmmoInit()
+// BEGIN FRONTIER LEGACY CONTROLLER STATE
+scrFRPlayerCompatGameInit();
+// END FRONTIER LEGACY CONTROLLER STATE
 
 area = 1
 subarea = 0
@@ -117,3 +120,12 @@ scrNTTEFullAreaNativeInit();
 
 scrNTTEFullSourceSeedState();
 scrNTTEFullSecretWeaponInit();
+
+// BEGIN FRONTIER RUN START
+if(scrFREnabled() && instance_exists(FRWorld)) {
+    FRWorld.fr_previous_game=id;
+    scrFRSkillsInit();
+    scrFRHook("game_start",[]);
+    scrFRWeaponsRefresh();
+}
+// END FRONTIER RUN START

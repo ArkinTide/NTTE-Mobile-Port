@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"resourcepack_priority_sort",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"resourcepack_priority_sort",
+  "parent":{
+    "name":"Resourcepacks",
+    "path":"folders/Scripts/Resourcepacks.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

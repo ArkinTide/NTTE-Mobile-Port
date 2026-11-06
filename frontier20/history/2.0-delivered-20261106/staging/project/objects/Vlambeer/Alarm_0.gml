@@ -1,0 +1,15 @@
+if mode >= 3 {
+	instance_create(x, y, SpiralCont)
+    instance_create(x, y, Logo)
+    instance_destroy()
+} 
+else {
+    mode ++
+	alarm[0] = 60
+    if mode == 0 alarm[0] = 120
+
+    if mode == 2
+        alarm[0] += 60
+
+    snd_play(sndRestart)
+}

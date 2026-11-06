@@ -1,6 +1,10 @@
+// NTUF OPTIONAL GENERATOR TRACE Alarm_0.gml
+if(variable_global_exists("fr_test_trace_requested") && global.fr_test_trace_requested) scrNTTESmokeLog("NTUF NATIVE GenCont.Alarm_0 begin");
 /// @description Spawn walls, bosses
 
+if(variable_global_exists("fr_test_trace_requested") && global.fr_test_trace_requested) scrNTTESmokeLog("NTUF NATIVE walls begin");
 with (Floor) mcr_floor_make_walls;
+if(variable_global_exists("fr_test_trace_requested") && global.fr_test_trace_requested) scrNTTESmokeLog("NTUF NATIVE walls end");
 
 var _area = GameCont.area,
 	_subarea = GameCont.subarea,
@@ -19,7 +23,9 @@ if instance_exists(Player) {
 var _max_subarea = scrAreaGetMaxSubarea(GameCont.area)
 
 if (!(GameCont.subarea == _max_subarea && (GameCont.area == area_palace || GameCont.area == area_hq))) {
-	if(!scrNTTEFullAreaGeneratorPopulate()) scrPopulate()
+	if(variable_global_exists("fr_test_trace_requested") && global.fr_test_trace_requested) scrNTTESmokeLog("NTUF NATIVE population begin");
+if(!scrNTTEFullAreaGeneratorPopulate()) scrPopulate()
+if(variable_global_exists("fr_test_trace_requested") && global.fr_test_trace_requested) scrNTTESmokeLog("NTUF NATIVE population end");
 	
 	if (instance_exists(TutCont)) {
 		with (enemy) {
@@ -53,7 +59,9 @@ if(!scrNTTEFullWorldEventsReady()) {
     scrNTTESewerPopulate()
 }
 
+if(variable_global_exists("fr_test_trace_requested") && global.fr_test_trace_requested) scrNTTESmokeLog("NTUF NATIVE tops begin");
 with (Floor) mcr_floor_create_tops;
+if(variable_global_exists("fr_test_trace_requested") && global.fr_test_trace_requested) scrNTTESmokeLog("NTUF NATIVE tops end");
 
 call_after(5, function() {
 	with (Floor) mcr_floor_create_tops;
@@ -64,3 +72,5 @@ alarm[1] = 2
 if(os_type==os_windows && scrNTTEFullSmokeEnabled() && instance_exists(NTTEFullBonusScheduledColdTest)) try { scrNTTEFullBonusColdProbe("Gen.populated"); }
 catch(_ntte_bonus_cold_error) { scrNTTEFullBonusColdAbort(_ntte_bonus_cold_error); }
 // END NTTE BONUS SCHEDULED COLD Gen.populated
+
+if(variable_global_exists("fr_test_trace_requested") && global.fr_test_trace_requested) scrNTTESmokeLog("NTUF NATIVE GenCont.Alarm_0 end");

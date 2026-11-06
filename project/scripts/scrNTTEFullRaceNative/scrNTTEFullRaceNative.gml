@@ -27,6 +27,10 @@ function scrNTTEFullRaceSkinText(_race,_skin,_unlock=false) {
     return ""
 }
 function scrNTTEFullRaceMenuSprite(_race,_skin,_sprite) {
+    // BEGIN FRONTIER RACE MENU ART
+    if(scrFRRaceIs(_race)) return scrFRRaceMenuSprite(_skin,_sprite);
+    // END FRONTIER RACE MENU ART
+
     if(scrNTTEFullRaceNumeric(_race)<0) return _sprite
     switch(_sprite) {
         case sprBigPortrait:return scrNTTEFullRaceSprite(_race,"Portrait",_skin)
@@ -37,9 +41,17 @@ function scrNTTEFullRaceMenuSprite(_race,_skin,_sprite) {
     return _sprite
 }
 function scrNTTEFullRaceSelectSprite(_race,_unlocked,_default) {
+    // BEGIN FRONTIER RACE SELECT ART
+    if(scrFRRaceIs(_race)) return scrFRRaceNativeSprite("Select");
+    // END FRONTIER RACE SELECT ART
+
     return scrNTTEFullRaceNumeric(_race)>=0 ? scrNTTEFullRaceSprite(_race,"Select",0):_default
 }
 function scrNTTEFullRaceSelectFrame(_race,_unlocked) {
+    // BEGIN FRONTIER RACE SELECT FRAME
+    if(scrFRRaceIs(_race)) return !_unlocked;
+    // END FRONTIER RACE SELECT FRAME
+
     return scrNTTEFullRaceNumeric(_race)>=0 ? !_unlocked:_race
 }
 function scrNTTEFullRaceUltraNativeSet(_race,_which,_value) {
@@ -55,6 +67,10 @@ function scrNTTEFullRaceUltraNativeSet(_race,_which,_value) {
     }
 }
 function scrNTTEFullRaceUltraDraw(_icon,_x,_y) {
+    // BEGIN FRONTIER RACE ULTRA HUD
+    if(scrFRRaceIs(_icon div 3)) {draw_sprite(scrFRRaceUltraSprite((_icon mod 3)+1,true),0,_x,_y);return;}
+    // END FRONTIER RACE ULTRA HUD
+
     var _race=_icon div 3,_which=(_icon mod 3)+1
     if(scrNTTEFullRaceNumeric(_race)>=0) draw_sprite(scrNTTEFullRaceSprite(_race,"UltraHUD"+chr(64+_which),0),0,_x,_y)
     else draw_sprite(sprEGIconHUD,_icon,_x,_y)
@@ -86,6 +102,10 @@ function scrNTTEFullRaceNativeAfterLoad() {
     ntte_race_ultra=instance_exists(GameCont) ? max(0,scr_ultra_get_from_race(race)):scrNTTEFullValue(id,"ntte_race_ultra",0)
 }
 function scrNTTEFullRaceTip(_race) {
+    // BEGIN FRONTIER RACE TIPS
+    if(scrFRRaceIs(_race)) return scrFRRaceCall("race_ttip");
+    // END FRONTIER RACE TIPS
+
     var _ultra=GameCont.level>=10 && random(5)<1
     if(_race==NTTEFullRace.Beetle) return _ultra ? choose(
         "REMEMBER THE GUNS LEFT BEHIND","BOUND BY BLOOD","THERE CAN ONLY BE GUN") : choose(
@@ -98,7 +118,7 @@ function scrNTTEFullRaceTip(_race) {
     return ""
 }
 function scrNTTEFullRaceNativeMetadataTests() {
-    assert(Race.NUM_ALL_RACE_TYPES==19,"Native race count excludes additional identities")
+    assert(Race.NUM_ALL_RACE_TYPES>=20,"Native race count excludes additional identities") // FRONTIER RACE COUNT
     for(var _race=17;_race<=18;++_race) {
         assert(scrRaceGetNumericID(scrRaceGetStringID(_race))==_race,"Additional native race ID roundtrip")
         assert(scrRaceGetName(_race)==scrNTTEFullRaceText(_race,"name"),"Additional native race name")

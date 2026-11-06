@@ -22,7 +22,8 @@ var _x = x, _y = y + appeary - sign(selected),
 if (race != Race.CoopUltra) {
 	var _index = (race - 1) * 3 + num - 1
 	var _ntte_race=scrNTTEFullRaceNumeric(race)
-    draw_sprite_ext(_ntte_race>=0 ? scrNTTEFullRaceSprite(race,"UltraIcon",0):sprite_index,_ntte_race>=0 ? num-1:_index,_x,_y,1,1,0,_blend,1)
+    if(scrFRRaceIs(race)) draw_sprite_ext(scrFRRaceUltraSprite(num),0,_x,_y,1,1,0,_blend,1); // FRONTIER ULTRA BUTTON
+    else draw_sprite_ext(_ntte_race>=0 ? scrNTTEFullRaceSprite(race,"UltraIcon",0):sprite_index,_ntte_race>=0 ? num-1:_index,_x,_y,1,1,0,_blend,1)
 }
 else {
 	draw_sprite_ext(sprCoopSkillIcon, num - 1, _x, _y, 1, 1, 0, _blend, 1)

@@ -1,26 +1,83 @@
-# Nuclear Throne :Territorial Expansion — Mobile Port
+# Nuclear Throne: NTTE + Uncharted Frontier — Mobile Port
 
 [简体中文](README.md) | [English](README.en.md)
 
-GameMaker source for the NTTE mobile port, with Android and iOS adaptations and Simplified Chinese localization.
-The current source baseline is **1.2.7 (2026-11-05)**.
-
-## Source-only distribution
-
-This repository contains program source, resource declarations, configuration, localization text, and documentation only. It excludes all images, textures, audio, fonts, icons, third-party binary libraries, and compiled game data, including assets specific to the original game, NTTE, Undergrowth, Details+, and this port.
-
-On 2026-10-26, public branch and tag histories were rewritten to remove these files. Asset ignore rules and a pre-push source audit prevent reintroduction. Commit hashes changed; re-clone existing checkouts. Obtain required assets separately from authorized sources; see [Building](docs/BUILDING.en.md) and the [source distribution policy](docs/SOURCE_ONLY.md).
+Android/iOS port source for NTTE and **Uncharted Frontier (NTUF) 1.0.3.3**,
+retaining Undergrowth, Details+, and Simplified Chinese support.
+Current source version: **2.0.0 (2026-11-06)**, internal build 96.
 
 ## Downloads
 
-Download installers from the [MEGA download folder](https://mega.nz/folder/PfIDSaSZ#ZcRokP34or9J0JofsIgrEA). GitHub Releases provide release notes and asset-free text source only; no APK, IPA, or game assets are attached.
+Get installers from the [MEGA download folder](https://mega.nz/folder/PfIDSaSZ#ZcRokP34or9J0JofsIgrEA).
+GitHub Releases contain notes and text source only, with no APK, IPA, or game
+assets attached. Android retains the existing application identity and signing
+certificate. The iOS IPA requires re-signing with your own signing identity.
+See the [2.0.0 release](https://github.com/ArkinTide/NTTE-NTUF-Mobile-Port/releases/tag/2.0.0).
 
-Install Android updates in place to retain saves. Sign or re-sign the iOS IPA with your own identity before installation. See the [latest release](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/latest) and [validation notes](docs/VALIDATION.en.md).
+Platform packages and the official tag use `2.0.0`; the game corner retains
+the shorthand `2.0`, while settings show installed version `2.0.0`. This
+normalization changes platform-version metadata only. The game VM, native
+libraries and assets retain the exact verified bytes; no new VM test run is
+claimed.
 
-Version 1.2.0 and older need one manual update from the folder above. From 1.2.1, the in-game download action opens that folder.
+## Version 2.0.0
 
+- Integrates Uncharted Frontier areas, weather events, interactions, enemies,
+  bosses, weapons, mutations, and Bubbles, with Simplified Chinese presentation.
+- Fixes weather, Millipede chain and Bubbles new-game errors; restores toolkit
+  drops, interaction prompts, weather banners, and the 0-1 police/boss sequence.
+- Fixes exterior-wall colors, local area-orb recoloring, hidden-room roof
+  visibility and wall enemy placement, plus packed-wall player contact and
+  excessive ejection of weapons dropped during an exchange.
+- Restores damage attribution for Wormhole's NTTE projectiles while preserving
+  native Disc and Explosion damage identities.
+- Reduces repeated entity queries, library reads, and full-screen Deep Labs
+  turret composites, preserving authored combat, artwork, and collision.
+- Chooses fonts from visible text, preserving icon/ASCII metrics and covering
+  all required NTUF Chinese characters.
 
-> Starting with 1.1.0, content from other MODs is being added. To play the original NTTE content, download 1.0.4 or a subsequent 1.0.x release.
+The reported disappearing replacement weapon has one confirmed repaired path:
+a live dropped pickup was pushed too far along a packed wall. Actual exchange
+and re-pickup tests now pass. Generic weapon deletion was not reproduced, so
+this does not establish that every possible disappearance cause is resolved.
+
+## Validation scope
+
+**88 regression cases** passed on the same final Windows VM/input, along with
+**94 Python checks**. Coverage includes four genuine Bubbles new games across
+A/B skins, English/Chinese and 30/60 FPS modes, actual weapon exchange/recovery,
+weather, areas, walls, projectiles, cold Continue, and image comparisons.
+Tests use isolated saves and muted background processes.
+
+These are isolated desktop regressions, not physical Android/iOS testing or a
+complete random campaign. No particular phone frame rate is promised. Saved
+Bubbles screenshots show the world only; GUI evidence comes from actual draw
+callbacks. See [validation details](docs/VALIDATION.en.md).
+
+## Source and building
+
+Images, audio, fonts, icons, commercial runtimes, precompiled extensions and
+installers are excluded. Project declarations still reference those resources;
+obtain them separately from their authors or other authorized sources. A clean
+checkout cannot directly build the complete game. See [building](docs/BUILDING.en.md)
+and [source distribution](docs/SOURCE_ONLY.md).
+
+- `project/`: accepted shared GameMaker source and resource declarations.
+- `platforms/android/`: Android text overlays and retained Runner patch notes.
+- `frontier20/`: NTUF compiler, native adapters, localization, offline libraries,
+  source inventory, and historical text snapshots.
+- [NTUF source reconstruction](frontier20/SOURCE_REPRODUCTION.md): restore
+  image-bearing source from your own inputs without putting artwork or the
+  obsolete online loader's credentials into Git.
+
+Existing licenses and third-party notices remain; see [LICENSE](LICENSE) and
+[credits](THIRD_PARTY_NOTICES.md). This is an unofficial port, unaffiliated with
+Vlambeer.
+
+Original projects: [NTTE](https://github.com/Yokinman/NTTE) ·
+[Uncharted Frontier](https://wigglercola.itch.io/uncharted-frontier) ·
+[Undergrowth](https://attfooy.itch.io/undergrowth) ·
+[Details+](https://wigglercola.itch.io/detailsplus)
 
 ## Changes in 1.2.7
 

@@ -1,0 +1,12 @@
+if lockstep_stop
+	exit
+
+if instance_exists(FlameBurst) timeout = 0
+else {
+    timeout += (1) * timescale
+    if timeout > 1 {
+        snd_stop(sndFlamerLoop)
+        snd_play(sndFlamerStop)
+        instance_destroy()
+    }
+}

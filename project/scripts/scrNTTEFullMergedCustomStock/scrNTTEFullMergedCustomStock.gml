@@ -324,7 +324,7 @@ function scrNTTEFullHarpoonPickupPull(_who=undefined) {
 function scrNTTEFullHarpoonPickupOpen(_opener) {
     var _type=ammo_type,_num=num
     with(instance_is(_opener,Player)?_opener:Player) {
-        var _amount=_num*(1+floor(typ_ammo[_type]/10))
+        var _amount=_num*(1+floor(scrFRAmmoRead(id,"typ_ammo",_type)/10))
         if(_type==Ammo.None) {if(reload>0) reload-=3}
         else scrPlayerGiveAmmo(id,_type,_amount)
     }

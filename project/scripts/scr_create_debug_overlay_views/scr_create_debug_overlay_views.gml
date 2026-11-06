@@ -117,6 +117,7 @@ function scr_create_debug_overlay_views() {
 					_subarea = subarea
 				
 				with (GameCont) {
+					scrFRAreaDebugClearDestination()
 					area = _area
 					subarea = _subarea
 					is_level_ended = false
@@ -152,6 +153,7 @@ function scr_create_debug_overlay_views() {
 			_area_list = array_create_number_range(area_campfire, area_palace)
 		
 		array_push(_area_list, area_hq)
+		_area_list=scrFRAreaDebugAreas(_area_list)
 		
 		var _area_count = array_length(_area_list)
 		
@@ -161,10 +163,10 @@ function scr_create_debug_overlay_views() {
 			
 			dbg_button(scrAreaGetName(_area), __area_transit_button(_area, 1), 120)
 			
-			var _subareas = scrAreaGetMaxSubarea(_area),
+			var _subareas = scrFRAreaDebugSubareas(_area),
 				_secret_subareas = scrAreaGetMaxSubarea(_secret_area),
 				_missing_subareas = max(0, _default_max_subareas - _subareas),
-				_has_secret = true
+				_has_secret = !scrFRAreaDebugCustom(_area)
 			
 			if (_secret_subareas > 1 || _area == _secret_area) _has_secret = false
 			

@@ -1,0 +1,27 @@
+if instance_exists(GenCont) {
+    instance_destroy(id);
+    exit
+}
+
+image_angle = random_angle
+motion_add(random_angle, (random(2)) * timescale)
+
+friction = (0.3) * timescale * timescale
+image_speed = 0
+image_index = random(5)
+
+image_xscale = 0.7
+image_yscale = 0.7
+rot = (1 + random(3)) * choose(1, -1)
+growspeed = 0.05 + random(0.05)
+
+if !UberCont.opt_prtcls {
+    instance_destroy(); exit
+}
+
+if instance_exists(GameCont) && GameCont.underwater {
+	instance_create(x, y, Bubble)
+	instance_destroy(id, false)
+}
+// NTTE Coast original Dust constructor
+scrNTTEFullCoastConstructDust();

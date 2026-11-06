@@ -152,3 +152,7 @@ if MultiplayerConfig && false {
 	draw_set_color(c_white)
 	draw_reset_font()
 }
+
+// BEGIN FRONTIER PAUSED SOURCE HUD
+if(paused && !want_pause) scrFRHook("draw_pause",[]);
+// END FRONTIER PAUSED SOURCE HUD

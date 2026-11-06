@@ -1,3 +1,4 @@
+// FRONTIER SMOKE RESOURCE DIRECTORIES
 #macro resourcepack_format_version_major 1
 #macro resourcepack_format_version_minor 0
 
@@ -44,7 +45,7 @@ function load_resourcepacks() {
 	// 备份目录：resourcepack_temp_cleanup() 每次启动都会删掉它，
 	// 却没人重建 → sprite_strip_save 写入全部静默失败 → 关闭资源包时无从还原。
 	// 与「相对路径 = 存档目录」语义及清理函数保持一致（game_save_id）。
-	directory_create(game_save_id + "replacedsprites")
+	directory_create((scrNTTESmokeEnabled() ? game_directory : game_save_id) + "replacedsprites")
 	
 	var _time = get_timer()
 	try {

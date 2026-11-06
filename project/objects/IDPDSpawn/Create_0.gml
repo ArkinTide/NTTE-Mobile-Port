@@ -28,6 +28,10 @@ image_speed = (0.4) * timescale
 alarm[0] = 40 + instance_number(IDPDSpawn) * 3
 
 elite = 0
+// BEGIN FRONTIER IDPD SPAWN FREAK
+freak=(GameCont.loops-(GameCont.area==0)>=3);
+// END FRONTIER IDPD SPAWN FREAK
+
 
 if (GameCont.loops > 1 && GameCont.area == 0) or (GameCont.loops && GameCont.area != 0) {
     elite = !rng_float(RNGStates.Enemies, 5)

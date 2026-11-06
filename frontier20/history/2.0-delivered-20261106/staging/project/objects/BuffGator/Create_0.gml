@@ -1,0 +1,23 @@
+raddrop = 12
+max_hp = 30
+meleedamage = 0
+size = 1
+
+spr_idle = sprBuffGatorIdle
+spr_walk = sprBuffGatorWalk
+spr_hurt = sprBuffGatorHurt
+spr_dead = sprBuffGatorDead
+
+event_inherited()
+
+
+snd_hurt = sndBuffGatorHit
+snd_dead = sndBuffGatorDie
+
+//behavior
+walk = 0
+gunangle = random_angle
+alarm[1] = 30 + random(90)
+wkick = 0
+// NTTE Coast constructor wading variables
+scrNTTEFullCoastConstructWading();

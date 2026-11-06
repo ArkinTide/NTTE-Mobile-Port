@@ -1,0 +1,1 @@
+scrNTTEFullPizzaStackDeath(); event_inherited();

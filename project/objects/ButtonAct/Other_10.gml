@@ -18,6 +18,8 @@ var my = device_mouse_y(index)
 KeyCont.press_pick[global.index] = /*(volume_control_command == 1) or */
 (index != -1 && device_mouse_check_button_pressed(index, mb_left))
 
+scrFRPromptCapturePick(global.index); // FRONTIER KEEP TOUCH PICK EDGE
+
 /*if volume_control_command {
 	volume_control_command = 2
 }

@@ -19,6 +19,7 @@ function scrNTTEFullUnlockPressed(_slot) {
         || keyboard_check_pressed(vk_enter);
 }
 function scrNTTEFullUnlockPendingPortrait() {
+    if(scrFRUnlockPendingPortrait()) return true; // FRONTIER UNLOCK DEATH GATE
     if(instance_exists(Player) || scrGameIsPaused() || instance_exists(PauseButton)
         || instance_exists(Menu)) return false;
     var _pending=false;
@@ -730,6 +731,7 @@ function scrNTTEFullNativeEnemyChineseName(_object_name) {
 }
 function scrNTTEFullEnemyDisplayName(_inst) {
     var _raw=scrNTTEFullEnemyName(_inst)
+    if(instance_exists(_inst) && _inst.object_index==FRCustomEnemy) return scrFRLocalize(_raw); // FRONTIER ACTOR DISPLAY NAME
     if(!scrNTTEFullIsSimplifiedChinese()) return _raw;
     if(!is_array(scrNTTEFullValue(_inst,"hitid",undefined))) {
         var _name=scrNTTEFullNativeEnemyChineseName(object_get_name(_inst.object_index))
@@ -739,6 +741,7 @@ function scrNTTEFullEnemyDisplayName(_inst) {
 }
 function scrNTTEFullAnnihilationEntryDisplay(_entry) {
     var _raw=string_upper(_entry.text)
+    if(string_pos("FRCustom",_entry.object_name)==1) return scrFRLocalize(_raw); // FRONTIER ANNIHILATION DISPLAY NAME
     if(!scrNTTEFullIsSimplifiedChinese()) return _raw;
     if(_entry.text==scrNTTEFullPlural(string_lower(_entry.object_name))) {
         var _name=scrNTTEFullNativeEnemyChineseName(_entry.object_name)

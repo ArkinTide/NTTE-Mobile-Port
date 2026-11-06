@@ -1,0 +1,7 @@
+
+/allowmod LibLoader.mod
+/allowmod Frontier_Loader.mod
+/allowmod Wibbly_Loader.mod
+
+
+

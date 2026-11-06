@@ -2,6 +2,19 @@
 
 [简体中文](BUILDING.md) | [English](BUILDING.en.md) | [返回首页](../README.md)
 
+## Uncharted Frontier 2.0.0 源码
+
+`project/` 是本轮验证的共用编译源码；`frontier20/` 保留 NTUF 原生适配、编译器、
+生成源码、汉化、离线依赖和原作者输入清单。自行取得 NTUF 1.0.3.3 与其他素材，
+按现有资源声明恢复到本地构建副本。原版提取器不能恢复这些 MOD 素材。
+含内嵌图片的少量原作者参考源码采用文本分段与素材摘要保存，恢复步骤见
+[SOURCE_REPRODUCTION](../frontier20/SOURCE_REPRODUCTION.md)。
+
+发布使用的本机打包路径、凭据、签名和商业 Runner 不包含在仓库中。公开工具与
+资源清单用于源码复查与本地重建准备，不构成无需素材的一键等价安装包构建。
+Windows 请使用较短的检出目录，并执行 `git config core.longpaths true`；保留的
+历史资源名较长，不要为规避路径限制重命名游戏资源。
+
 ## 环境与素材
 
 当前交付使用 GameMaker LTS runtime `2026.0.0.23`，VM 目标。

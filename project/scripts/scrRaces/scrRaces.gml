@@ -17,7 +17,7 @@ enum Race {
     Skeleton = 14,
     Frog = 15,
     Cuz = 16,
-    NUM_ALL_RACE_TYPES = 19,
+    NUM_ALL_RACE_TYPES = 20, // FRONTIER BUBBLES ID 19
 	
 	Reserved17 = 17,
 	Reserved18 = 18,
@@ -33,6 +33,10 @@ enum SkinLetter {
 /// @function scr_race_is_unlocked
 /// @param {Real|Enum.Race} race
 function scr_race_is_unlocked(_race) {
+    // BEGIN FRONTIER RACE AVAILABLE
+    if(scrFRRaceIs(_race)) return scrFRRaceAvailable();
+    // END FRONTIER RACE AVAILABLE
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return scrNTTEFullRaceAvailable(_race)
 	with (UberCont) {
 		if (scrGameIsCustomMode() && scrCustomParam("unlock_chars") && !scrRaceIsHidden(_race)) {
@@ -47,6 +51,10 @@ function scr_race_is_unlocked(_race) {
 /// @param {Real|Enum.Race} race
 /// @param is_unlocked=true
 function scr_race_set_unlocked(_race, _unlocked = true) {
+    // BEGIN FRONTIER RACE UNLOCK SET
+    if(scrFRRaceIs(_race)) {scrFRRaceUnlockSet(_unlocked);return;}
+    // END FRONTIER RACE UNLOCK SET
+
     if(scrNTTEFullRaceNumeric(_race)>=0) scrNTTEFullUnlockSet("race:"+scrNTTEFullRaceKey(_race),_unlocked)
 	with (UberCont) cgot[_race] = _unlocked
 }
@@ -55,6 +63,11 @@ function scr_race_set_unlocked(_race, _unlocked = true) {
 /// @param {Real|Enum.Race} race
 /// @param {Real|Enum.SkinLetter} skin=SkinLetter.B
 function scr_race_is_skin_unlocked(_race, _skin = 1) {
+    // BEGIN FRONTIER RACE SKIN AVAILABLE
+    if(scrFRRaceIs(_race)) return scrFRRaceSkinAvailable(_skin);
+    if(scrFRSkinMatches(_race,_skin)) return true;
+    // END FRONTIER RACE SKIN AVAILABLE
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return scrNTTEFullRaceSkinAvailable(_race,_skin)
     if (_skin>=200) return scrNTTEFullSkinMatches(_race,_skin) && scrNTTEFullSkinAvailable(scrNTTEFullSkinKey(_skin))
 	with UberCont {
@@ -67,6 +80,11 @@ function scr_race_is_skin_unlocked(_race, _skin = 1) {
 /// @param {Real|Enum.SkinLetter} skin=SkinLetter.B
 /// @param is_unlocked=true
 function scr_race_set_skin_unlocked(_race, _skin=SkinLetter.B, _unlock=true) {
+    // BEGIN FRONTIER RACE SKIN UNLOCK SET
+    if(scrFRRaceIs(_race)) return scrFRRaceUnlockSet(_unlock,_skin);
+    if(scrFRSkinMatches(_race,_skin)) return true;
+    // END FRONTIER RACE SKIN UNLOCK SET
+
     if(scrNTTEFullRaceNumeric(_race)>=0 && _skin==1) scrNTTEFullUnlockSet("skin:"+scrNTTEFullRaceKey(_race)+":"+string(_skin),_unlock)
     if (_skin>=200) return scrNTTEFullSkinMatches(_race,_skin) && scrNTTEFullUnlockSet("skin:"+scrNTTEFullSkinKey(_skin),_unlock)
 	with UberCont cskingot[_race, _skin] = _unlock
@@ -78,6 +96,11 @@ function scr_race_set_skin_unlocked(_race, _skin=SkinLetter.B, _unlock=true) {
 /// @param {Asset.GMSprite} default=-1
 /// @param {Real|Enum.SkinLetter} skin_id=SkinLetter.A
 function scr_race_get_sprite(_race, _sprite_name, _default = -1, _skin = SkinLetter.A) {
+    // BEGIN FRONTIER RACE BODY SPRITE
+    if(scrFRRaceIs(_race)) return scrFRRaceNativeSprite(_sprite_name,_skin,_default);
+    if(scrFRSkinMatches(_race,_skin)) return scrFRSkinRaceSprite(_race,_skin,_sprite_name,_default);
+    // END FRONTIER RACE BODY SPRITE
+
     var _ntte_race=scrNTTEFullRaceNumeric(_race)
     if(_ntte_race>=0) return scrNTTEFullRaceSprite(_ntte_race,_sprite_name,_skin,_default)
     if (scrNTTEFullSkinMatches(_race,_skin)) return scrNTTEFullSkinRaceSprite(_race,_skin,_sprite_name,_default)
@@ -104,6 +127,10 @@ function scr_race_get_sprite(_race, _sprite_name, _default = -1, _skin = SkinLet
 /// @param sound_name
 /// @param {Asset.GMSound} default=-1
 function scr_race_get_sound(_race, _sound_name, _default = -1) {
+    // BEGIN FRONTIER RACE VOICE
+    if(scrFRRaceIs(_race)) return scrFRRaceNativeSound(_sound_name,_default);
+    // END FRONTIER RACE VOICE
+
     var _ntte_race=scrNTTEFullRaceNumeric(_race)
     if(_ntte_race>=0) return scrNTTEFullRaceSound(_ntte_race,_sound_name,_default)
 	var _name = is_numeric(_race)
@@ -126,6 +153,11 @@ function scr_race_get_sound(_race, _sound_name, _default = -1) {
 /// @param {Real|Enum.Race} race
 /// @param {Real|Enum.SkinLetter} skin
 function scr_race_get_skin_subimage(_race, _skin) {
+    // BEGIN FRONTIER RACE MENU SUBIMAGE
+    if(scrFRRaceIs(_race)) return clamp(_skin,0,1);
+    if(scrFRSkinMatches(_race,_skin)) return 0;
+    // END FRONTIER RACE MENU SUBIMAGE
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return 0
     if (scrNTTEFullSkinMatches(_race,_skin)) return 0
 	gml_pragma("forceinline")
@@ -154,6 +186,10 @@ function scr_race_get_skin_letter(_skin_id, _return_a = false) {
 /// @param {Real|Enum.Race} race_numeric_id
 /// @param include_capitalization=false
 function scrRaceGetStringID(_race_number_id, _capitalization = false) {
+    // BEGIN FRONTIER RACE STRING ID
+    if(scrFRRaceIs(_race_number_id)) return _capitalization?"Bubbles":"bubbles";
+    // END FRONTIER RACE STRING ID
+
     if(scrNTTEFullRaceNumeric(_race_number_id)>=0) return _capitalization ? (_race_number_id==17 ? "Beetle":"Parrot"):scrNTTEFullRaceKey(_race_number_id)
 	var _result = undefined
 	
@@ -187,6 +223,10 @@ function scrRaceGetStringID(_race_number_id, _capitalization = false) {
 /// @function scrRaceGetNumericID
 /// @param {String} race_string_id
 function scrRaceGetNumericID(_race_string_id) {
+    // BEGIN FRONTIER RACE NUMERIC ID
+    if(scrFRRaceIs(_race_string_id)) return 19;
+    // END FRONTIER RACE NUMERIC ID
+
     var _ntte_race=scrNTTEFullRaceNumeric(_race_string_id)
     if(_ntte_race>=0) return _ntte_race
 	switch string_lower(_race_string_id) {
@@ -214,6 +254,10 @@ function scrRaceGetNumericID(_race_string_id) {
 /// @function scrRaceGetName
 /// @param {Real|Enum.Race} race_id
 function scrRaceGetName(_race) {
+    // BEGIN FRONTIER RACE TEXT NAME
+    if(scrFRRaceIs(_race)) return scrFRRaceText("name");
+    // END FRONTIER RACE TEXT NAME
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return scrNTTEFullRaceText(_race,"name")
     switch _race {
         case Race.Random: return "RANDOM"
@@ -241,6 +285,10 @@ function scrRaceGetName(_race) {
 /// @function scrRaceGetStarterWeapon
 /// @param {Real|Enum.Race} race_id
 function scrRaceGetStarterWeapon(_race) {
+    // BEGIN FRONTIER RACE STARTER
+    if(scrFRRaceIs(_race)) return scrFRRaceStarterWeapon();
+    // END FRONTIER RACE STARTER
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return _race==17 ? wep_ntte_beetle_blaster:wep_revolver
     switch _race {
         case Race.Fish: return wep_revolver
@@ -267,6 +315,10 @@ function scrRaceGetStarterWeapon(_race) {
 /// @function scrRaceGetPassiveSkillDescription
 /// @param {Real|Enum.Race} race_id
 function scrRaceGetPassiveSkillDescription(_race) {
+    // BEGIN FRONTIER RACE TEXT PASSIVE
+    if(scrFRRaceIs(_race)) return scrFRRaceText("passive");
+    // END FRONTIER RACE TEXT PASSIVE
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return scrNTTEFullRaceText(_race,"passive")
     switch _race {
         case Race.Random: return "???"
@@ -294,6 +346,10 @@ function scrRaceGetPassiveSkillDescription(_race) {
 /// @function scrRaceGetActiveSkillDescription
 /// @param {Real|Enum.Race} race_id
 function scrRaceGetActiveSkillDescription(_race) {
+    // BEGIN FRONTIER RACE TEXT ACTIVE
+    if(scrFRRaceIs(_race)) return scrFRRaceText("active");
+    // END FRONTIER RACE TEXT ACTIVE
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return scrNTTEFullRaceText(_race,"active")
     switch _race {
         case Race.Random: return "???"
@@ -321,6 +377,10 @@ function scrRaceGetActiveSkillDescription(_race) {
 /// @function scrRaceGetThroneButtDescription
 /// @param {Real|Enum.Race} race_id
 function scrRaceGetThroneButtDescription(_race) {
+    // BEGIN FRONTIER RACE TEXT THRONEBUTT
+    if(scrFRRaceIs(_race)) return scrFRRaceText("thronebutt");
+    // END FRONTIER RACE TEXT THRONEBUTT
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return scrNTTEFullRaceText(_race,"butt")
     switch _race {
         case Race.Fish: return "WATER BOOST"
@@ -347,6 +407,10 @@ function scrRaceGetThroneButtDescription(_race) {
 /// @function scrRaceGetUnlockDescription
 /// @param {Real|Enum.Race} race_id
 function scrRaceGetUnlockDescription(_race) {
+    // BEGIN FRONTIER RACE TEXT LOCK
+    if(scrFRRaceIs(_race)) return scrFRRaceText("lock");
+    // END FRONTIER RACE TEXT LOCK
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return scrNTTEFullRaceText(_race,"lock")
     switch _race {
         case Race.Fish: return "UNLOCKED FROM THE START"
@@ -374,6 +438,10 @@ function scrRaceGetUnlockDescription(_race) {
 /// @param {Real|Enum.Race} race_id
 /// @param {Real|Enum.SkinLetter} skin
 function scrRaceGetSkinUnlockDescription(_race, _skin_id) {
+    // BEGIN FRONTIER RACE TEXT SKIN_LOCK
+    if(scrFRRaceIs(_race)) return scrFRRaceText("skin_lock",_skin_id);
+    // END FRONTIER RACE TEXT SKIN_LOCK
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return scrNTTEFullRaceSkinText(_race,_skin_id)
     if (scrNTTEFullSkinMatches(_race,_skin_id)) return scrNTTEFullSkinLock(scrNTTEFullSkinKey(_skin_id))
 	switch (_skin_id) {
@@ -430,6 +498,10 @@ function scrRaceGetSkinUnlockDescription(_race, _skin_id) {
 /// @function scrRaceGetUnlockCauseText
 /// @param {Enum.Race} race_id
 function scrRaceGetUnlockCauseText(_race) {
+    // BEGIN FRONTIER RACE TEXT UNLOCK
+    if(scrFRRaceIs(_race)) return scrFRRaceText("unlock");
+    // END FRONTIER RACE TEXT UNLOCK
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return scrNTTEFullRaceText(_race,"unlock")
 	switch _race {
 		case Race.Eyes: return "FOR REACHING 2-1"
@@ -455,6 +527,10 @@ function scrRaceGetUnlockCauseText(_race) {
 /// @param {Enum.Race} race_id
 /// @param skin_id
 function scrRaceGetSkinUnlockCauseText(_race, _skin_id) {
+    // BEGIN FRONTIER RACE TEXT SKIN_UNLOCK
+    if(scrFRRaceIs(_race)) return scrFRRaceText("skin_unlock",_skin_id);
+    // END FRONTIER RACE TEXT SKIN_UNLOCK
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return scrNTTEFullRaceSkinText(_race,_skin_id,true)
     if (scrNTTEFullSkinMatches(_race,_skin_id)) return scrNTTEFullSkinUnlockText(scrNTTEFullSkinKey(_skin_id))
 	
@@ -508,6 +584,10 @@ function scrRaceGetSkinUnlockCauseText(_race, _skin_id) {
 /// @param {Real|Enum.Race} race_id
 /// @param include_hidden=false
 function scrRaceGetMaxSkinCount(_race, _show_secret=false) {
+    // BEGIN FRONTIER RACE SKIN COUNT
+    if(scrFRRaceIs(_race)) return 2;
+    // END FRONTIER RACE SKIN COUNT
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return scrNTTEFullRaceSkinCount(_race)
     if (_race == Race.BigDog || _race == Race.Frog) {
 		return 1
@@ -620,6 +700,10 @@ function scrRaceGetUltraSkillMax(_race) {
 /// @param {real|Enum.Race} race
 /// @param {Enum.UltraSkill} ultra
 function scrRaceGetUltraSkillName(_race, _ultra) {
+    // BEGIN FRONTIER RACE TEXT ULTRA_NAME
+    if(scrFRRaceIs(_race)) return scrFRRaceText("ultra_name",_ultra);
+    // END FRONTIER RACE TEXT ULTRA_NAME
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return scrNTTEFullRaceText(_race,"ultra_name",_ultra)
 	gml_pragma("forceinline")
 	return ultr_name[_race, _ultra]
@@ -629,6 +713,10 @@ function scrRaceGetUltraSkillName(_race, _ultra) {
 /// @param {real|Enum.Race} race
 /// @param {Enum.UltraSkill} ultra
 function scrRaceGetUltraSkillText(_race, _ultra) {
+    // BEGIN FRONTIER RACE TEXT ULTRA_TEXT
+    if(scrFRRaceIs(_race)) return scrFRRaceText("ultra_text",_ultra);
+    // END FRONTIER RACE TEXT ULTRA_TEXT
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return scrNTTEFullRaceText(_race,"ultra_text",_ultra)
 	gml_pragma("forceinline")
 	return ultr_text[_race, _ultra]
@@ -638,6 +726,10 @@ function scrRaceGetUltraSkillText(_race, _ultra) {
 /// @param {real|Enum.Race} race
 /// @param {Enum.UltraSkill} ultra
 function scrRaceGetUltraSkillSound(_race, _ultra) {
+    // BEGIN FRONTIER RACE ULTRA SOUND
+    if(scrFRRaceIs(_race)) return scrFRRaceVar(_ultra==1?"sndBubblesUltraA":"sndBubblesUltraB");
+    // END FRONTIER RACE ULTRA SOUND
+
     if(scrNTTEFullRaceNumeric(_race)>=0) return sndBasicUltra
 	gml_pragma("forceinline")
 	return ultr_msnd[_race, _ultra]

@@ -1,0 +1,30 @@
+raddrop = 25
+max_hp = 30
+meleedamage = 5
+size = 2
+spr_idle = sprPopoFreakIdle
+spr_walk = sprPopoFreakWalk
+spr_hurt = sprPopoFreakHurt
+spr_dead = sprPopoFreakDead
+event_inherited()
+snd_hurt = sndFreakPopoHurt
+snd_dead = sndFreakPopoDead
+snd_mele = sndFreakMelee
+
+alarm[1] = (20 + random(10))
+walkdir = random_angle
+walk = 0
+ammo = 0
+wkick = 0
+gunangle = random_angle
+snd_play_hit_big(sndFreakPopoEnter, 0.3)
+instance_create(x, y, PortalClear)
+
+spr_shadow = shd32
+spr_shadow_y = 4
+
+depth = -2
+
+hitid = HitId.PopoFreak
+// NTTE Coast constructor wading variables
+scrNTTEFullCoastConstructWading();

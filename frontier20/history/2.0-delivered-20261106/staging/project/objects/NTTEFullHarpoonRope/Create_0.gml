@@ -1,0 +1,1 @@
+ntte_rope=undefined;

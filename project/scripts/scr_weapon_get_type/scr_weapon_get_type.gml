@@ -22,6 +22,58 @@ function scr_weapon_get_type(_weapon) {
 }
 
 function scr_weapon_get_cost(_weapon) {
+// BEGIN FRONTIER WEAPON DYNAMIC COST
+var _fr_property=scrFRWeaponRuntimeProperty(_weapon,"cost");
+if(!is_undefined(_fr_property)) return _fr_property;
+// END FRONTIER WEAPON DYNAMIC COST
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if(is_struct(_weapon) || scrNTTEFullWeaponIsNative(_weapon)) return scrNTTEFullWeaponNativeProperty(_weapon,"cost")
 	gml_pragma("forceinline")
 	return scr_weapon_is_valid(_weapon) ? wep_cost[_weapon] : -1
@@ -34,6 +86,11 @@ function scr_weapon_get_rads(_weapon) {
 }
 
 function scr_weapon_get_area(_weapon) {
+// BEGIN FRONTIER WEAPON DYNAMIC AREA
+var _fr_property=scrFRWeaponRuntimeProperty(_weapon,"area");
+if(!is_undefined(_fr_property)) return _fr_property;
+// END FRONTIER WEAPON DYNAMIC AREA
+
     if(_weapon==wep_ug_mega_grenade_launcher) return scrNTTEFullValue(id,"curse",0)>0 ? 8:-1;
     if(is_struct(_weapon) || scrNTTEFullWeaponIsNative(_weapon)) return scrNTTEFullWeaponNativeProperty(_weapon,"area")
     if(scrNTTEIsScythe(_weapon)) return scrNTTEFullBoneWeaponMetadata(_weapon,"area",0)
@@ -44,6 +101,58 @@ function scr_weapon_get_area(_weapon) {
 }
 
 function scr_weapon_get_load(_weapon) {
+// BEGIN FRONTIER WEAPON DYNAMIC LOAD
+var _fr_property=scrFRWeaponRuntimeProperty(_weapon,"load");
+if(!is_undefined(_fr_property)) return _fr_property;
+// END FRONTIER WEAPON DYNAMIC LOAD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if(is_struct(_weapon) || scrNTTEFullWeaponIsNative(_weapon)) return scrNTTEFullWeaponNativeProperty(_weapon,"load")
     if(scrNTTEFullBoneWeaponMetadataHas(_weapon)) return scrNTTEFullBoneWeaponMetadata(_weapon,"load",0)
 	gml_pragma("forceinline")
@@ -51,9 +160,64 @@ function scr_weapon_get_load(_weapon) {
 }
 
 function scr_weapon_get_sprite(_weapon) {
+// BEGIN FRONTIER WEAPON DYNAMIC SPRT
+var _fr_property=scrFRWeaponRuntimeProperty(_weapon,"sprt");
+if(!is_undefined(_fr_property)) return _fr_property;
+// END FRONTIER WEAPON DYNAMIC SPRT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if(is_struct(_weapon) || scrNTTEFullWeaponIsNative(_weapon)) return scrNTTEFullWeaponNativeProperty(_weapon,"sprite")
     if(scrNTTEFullBoneWeaponMetadataHas(_weapon)) return scrNTTEFullBoneWeaponMetadata(_weapon,"sprite",0)
     if(!scrNTTEFullWeaponAvailable(_weapon)) return scrNTTEFullWeaponLockedSprite(_weapon);
+    var _fr_native_weapon_sprite=scrFRNTTEWeaponSprite(_weapon);
+    if(!is_undefined(_fr_native_weapon_sprite)) return _fr_native_weapon_sprite;
+
 	gml_pragma("forceinline")
 	return scr_weapon_is_valid(_weapon) ? wep_sprt[_weapon] : -1
 }
@@ -65,6 +229,58 @@ function scr_weapon_get_loadout_sprite(_weapon) {
 }
 
 function scr_weapon_is_auto(_weapon) {
+// BEGIN FRONTIER WEAPON DYNAMIC AUTO
+var _fr_property=scrFRWeaponRuntimeProperty(_weapon,"auto");
+if(!is_undefined(_fr_property)) return _fr_property;
+// END FRONTIER WEAPON DYNAMIC AUTO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if(is_struct(_weapon) || scrNTTEFullWeaponIsNative(_weapon)) return scrNTTEFullWeaponNativeProperty(_weapon,"auto")
 	gml_pragma("forceinline")
 	return scrNTTEFullWeaponStockAuto(_weapon)

@@ -7,6 +7,9 @@ var _ntte_cuz_death_sample=undefined;
 if(os_type==os_windows && scrNTTEFullSmokeEnabled() && instance_exists(NTTEFullCuzConnectedTest)) try { _ntte_cuz_death_sample=scrNTTEFullCuzConnectedDeathBefore(id); }
 catch(_ntte_cuz_connected_error) { scrNTTEFullCuzConnectedAbort(_ntte_cuz_connected_error); }
 // END NTTE CUZ CONNECTED TEST OWNER DESTROY BEFORE
+// BEGIN FRONTIER CYBERSPACE DEAD PLAYER STATE
+scrFRCyberspaceRememberPlayer(id);
+// END FRONTIER CYBERSPACE DEAD PLAYER STATE
 snd_stop(sndFishTB)
 
 if race == Race.Melting && KeyCont.activeforever[index] {
@@ -29,11 +32,95 @@ snd_play(snd_dead)
 if (wep > 0) with (scrWeaponPickupCreate(x, y, wep)) {
 	motion_add(other.direction, (other.hp * -0.2) * timescale)
 	curse = other.curse
+// BEGIN FRONTIER WEAPON PRIMARY DEATH DROP
+scrFRWeaponPickupAdopt(id,other.ntte_state);
+// END FRONTIER WEAPON PRIMARY DEATH DROP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 if (bwep > 0) with (scrWeaponPickupCreate(x, y, bwep)) {
 	motion_add(other.direction, (other.hp * -0.2) * timescale)
 	curse = other.bcurse
+// BEGIN FRONTIER WEAPON SECONDARY DEATH DROP
+scrFRWeaponPickupAdopt(id,other.bntte_state);
+// END FRONTIER WEAPON SECONDARY DEATH DROP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 if (instance_number(Player) > 1) exit

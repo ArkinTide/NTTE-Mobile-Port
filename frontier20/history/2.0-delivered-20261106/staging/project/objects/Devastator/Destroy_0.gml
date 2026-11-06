@@ -1,0 +1,10 @@
+// NTTE merged native terminal state capture.
+scrNTTEFullMergedNativeDeathCapture(id);
+event_inherited()
+
+snd_play_hit_big(sndDevastatorExplo, 0.3)
+instance_create(x, y, PortalClear)
+
+repeat (4) {
+	scr_damage_create(x + orandom(24), y + orandom(24), PlasmaImpact)
+}

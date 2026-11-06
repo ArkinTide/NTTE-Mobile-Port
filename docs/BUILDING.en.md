@@ -2,6 +2,24 @@
 
 [简体中文](BUILDING.md) | [English](BUILDING.en.md) | [Home](../README.en.md)
 
+## Uncharted Frontier 2.0.0 source
+
+`project/` is the common compilation source verified for this release.
+`frontier20/` retains NTUF native adaptation, compiler, generated source,
+localization, offline dependencies and author-input inventories. Obtain NTUF
+1.0.3.3 and the required assets separately, and restore them in your local
+build copy according to the resource declarations. The original-game extractor
+cannot supply these MOD assets. A few author reference files containing embedded
+images are represented by text fragments and asset hashes; see
+[SOURCE_REPRODUCTION](../frontier20/SOURCE_REPRODUCTION.md).
+
+Machine-local packaging paths, credentials, signing material and commercial
+Runners are not included. Public tools/inventories support source review and
+local rebuild preparation, rather than a one-click equivalent installer build
+without the separately obtained assets.
+On Windows, use a short checkout root and run `git config core.longpaths true`;
+retained historical resource names are long and should not be renamed.
+
 ## Environment and assets
 
 The current delivery uses GameMaker LTS runtime `2026.0.0.23`, targeting the VM.

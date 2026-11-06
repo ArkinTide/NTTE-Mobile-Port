@@ -51,6 +51,59 @@ function scrDarkness() {
 	with (CrownPickup) draw_circle(x - _xview, y - _yview, 72, 0)
 	
 	scrNTTEFullWorldDarkDraw(true,_xview,_yview);
+// BEGIN FRONTIER SOURCE DARK
+scrFRDarkDraw("draw_dark",_xview,_yview);
+// END FRONTIER SOURCE DARK
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	draw_set_color(c_black)
 	
 	with (Player) {
@@ -91,6 +144,58 @@ function scrDarkness() {
 	with (CrownPickup) draw_circle(x - _xview, y - _yview, 32, 0)
 	
 	scrNTTEFullWorldDarkDraw(false,_xview,_yview);
+// BEGIN FRONTIER SOURCE DARK END
+scrFRDarkDraw("draw_dark_end",_xview,_yview);
+// END FRONTIER SOURCE DARK END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     scrNTTEFullSystemBatEarsDark("end",_xview,_yview);
 	surface_reset_target()
 }

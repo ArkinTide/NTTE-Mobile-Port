@@ -1,4 +1,56 @@
 function scrPlayerFiring(_primary = true) {
+// BEGIN FRONTIER WEAPON INPUT
+if(scrFRWeaponInput(wep,_primary)) return;
+// END FRONTIER WEAPON INPUT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // BEGIN NTTE PALACE ARTIFACT PORTAL CARRY TEST FIRE BEFORE
 var _ntte_palace_carry_fire_sample=undefined;
 if(os_type==os_windows && scrNTTEFullSmokeEnabled() && instance_exists(NTTEFullPalaceArtifactPortalCarryTest)) try { _ntte_palace_carry_fire_sample=scrNTTEFullPalaceArtifactPortalCarryFireBefore(wep); }

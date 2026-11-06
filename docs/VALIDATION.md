@@ -2,6 +2,26 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [返回首页](../README.md)
 
+## 2.0.0 — NTTE + Uncharted Frontier
+
+同一最终 Windows VM／输入通过 88 项回归和 94 项 Python 检查，覆盖 30／60 帧、
+四次 Bubbles 真实新游戏、12 次实际换枪／拾回、天气和交互、墙体与隐藏房间、
+Wormhole 的 NTTE 弹丸伤害归属、存档续关与绘制。来源、VM、输入和最终移动安装包
+的摘要见 [验证摘要](validation/2.0.0-development-regression.json) 和
+[源码基线](SOURCE_BASELINE.json)。
+
+2.0.0 是平台版本元数据正规化，游戏内角落保留简写 2.0。上述 88 项选定回归
+与 94 项 Python 检查来自完全相同的已验证 VM；逐成员同源证明确认素材、VM 和
+原生库未改变。没有宣称新 VM 重跑或所有保留的历史测试均通过。
+
+修复了墙边武器被推远的已确认路径；未复现通用的武器删除。Bubbles 截图只包含
+世界画面，GUI 证据来自实际绘制回调。未进行 Android／iOS 真机、完整随机战役或
+所有设备 60 帧验收。性能记录是桌面诊断，不能据此承诺手机帧率。
+
+APK／IPA 的版本、标识、结构及编译输入经过核验。Android 保留签名与 16KB 对齐，
+versionCode 3000096；iOS build 96，需重签。iOS 使用新编译的游戏数据和保留的
+原生 Runner，没有进行新的 Mac 原生编译。GAME_BUILD 3004 保持。
+
 ## 1.2.7
 
 62 项最终 Windows VM 回归在 30／60 帧模式通过，156 个真实 Draw 画面对照和 31 项 Android 更新器 Java 本地检查通过。覆盖 Lab/HQ 延迟暗室规划、门与清场流程、实体墙交互、静态对象更新、海滩涉水区域合成与回退，以及此前融合武器、红水晶通道和藤蔓回归。一个涉水实体的诊断用例中复制像素减少约 92%，该数字不是总耗时或手机帧率提升。

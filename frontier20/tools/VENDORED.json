@@ -1,0 +1,10 @@
+{
+  "origin": "work/hardmode-port",
+  "note": "Vendored generic frontend/parser/emitter for Frontier; no Hardmode pipeline executed or modified. Frontier adapter owns semantics.",
+  "upstream": {
+    "gml_frontend.py": "a033e0c0d1eec3647bb013118f485424ec28c5c462ff5a4631131f735ceef848",
+    "gml_parser.py": "8fad1845a32ed52e1cbcbd3298ad8d49a0fbdddd3f576acbb3866a4852cc138a",
+    "runtime_schema.py": "8934421c8711c4e78052f78cdb53f0d79fc3d49e5a975c2426258f65ba37d70f",
+    "native_compiler.py": "b04c7a54411e57b8f732aff97b0613d6d101afbe34b0a7e2d3be4fbdc59a0c03"
+  }
+}

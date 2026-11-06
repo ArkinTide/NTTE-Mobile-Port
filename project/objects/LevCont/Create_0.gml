@@ -48,6 +48,7 @@ if GameCont.crownpoints > 0 {
 	
     for(var _ntte_crown=14;_ntte_crown<=16;++_ntte_crown)
         if(scrNTTEFullFeatureReady("crown:"+scrNTTEFullCrownKey(_ntte_crown)) && scrNTTEFullCrownAvailable(_ntte_crown)) array_push(_crowns,_ntte_crown)
+    if(scrFRCrownAvailable()) array_push(_crowns,17);
 	var _x = view_xview + view_width / 2,
 		_y = view_yview + view_height - 20
 	

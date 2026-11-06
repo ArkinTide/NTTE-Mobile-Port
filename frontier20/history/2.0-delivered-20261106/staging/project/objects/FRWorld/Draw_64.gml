@@ -1,0 +1,1 @@
+scrFRHook("draw_gui",[]);

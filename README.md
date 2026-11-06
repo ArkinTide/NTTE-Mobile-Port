@@ -1,26 +1,70 @@
-# Nuclear Throne :Territorial Expansion — Mobile Port
+# Nuclear Throne: NTTE + Uncharted Frontier — Mobile Port
 
 [简体中文](README.md) | [English](README.en.md)
 
-NTTE 移植版的 GameMaker 源码，包含 Android、iOS 适配和简体中文。
-当前源码基线为 **1.2.7（2026-11-05）**。
+NTTE 与 **Uncharted Frontier（NTUF）1.0.3.3** 的 Android／iOS 移植源码，
+保留 Undergrowth、Details+ 和现有简体中文适配。当前源码版本为
+**2.0.0（2026-11-06）**，内部构建 96。
 
-## 纯源码发布
+## 下载
 
-本仓库仅提供程序源码、工程资源声明、配置、汉化文本和文档，不包含任何游戏图片、贴图、音频、字体、图标、第三方二进制库或已编译游戏数据。原游戏、NTTE、Undergrowth、Details+ 及移植专用美术也全部排除。
+安装包请从 [MEGA 下载文件夹](https://mega.nz/folder/PfIDSaSZ#ZcRokP34or9J0JofsIgrEA)
+获取。GitHub Releases 提供版本说明和纯文本源码，不附带 APK、IPA 或游戏素材。
+Android 保留现有应用标识与签名；iOS IPA 需要使用自己的签名身份重新签名。
+当前发布见 [2.0.0 发布页](https://github.com/ArkinTide/NTTE-NTUF-Mobile-Port/releases/tag/2.0.0)。
 
-2026-10-26 已清理公开分支与所有标签的历史，并加入素材忽略规则和发布前审核。历史提交哈希已改变，已有克隆请重新克隆。素材仍由各自作者保有权利，构建时须自行从合法来源取得；详见[构建说明](docs/BUILDING.md)和[源码分发规则](docs/SOURCE_ONLY.md)。
+平台安装包与正式发布标签统一为 `2.0.0`；游戏角落保留简写 `2.0`，设置中的
+已安装版本为 `2.0.0`。此正规化只调整平台版本元数据，游戏 VM、原生库与素材
+保留已验证的完全相同字节；没有重新宣称一轮新 VM 测试。
 
-## 下载安装包
+## 2.0.0 内容与修复
 
-安装包统一从 [MEGA 下载文件夹](https://mega.nz/folder/PfIDSaSZ#ZcRokP34or9J0JofsIgrEA) 获取。GitHub Releases 仅发布版本说明和不含素材的文本源码，不再附带 APK、IPA 或游戏资产。
+- 整合 Uncharted Frontier 的区域、天气事件、交互物、敌人、首领、武器、
+  变异及 Bubbles 角色，并提供简体中文显示。
+- 修复天气事件、马陆链节和 Bubbles 新游戏的报错，恢复工具箱掉落、
+  交互提示、天气告示及 0-1 警察与首领的出现顺序。
+- 修复外围实体墙变色、区域球局部变色、隐藏房间墙顶与墙上敌人位置；
+  处理分块墙体的玩家碰撞及换枪掉落武器被推远的问题。
+- 修复 Wormhole 调用 NTTE 弹丸时丢失伤害来源的问题，保留圆盘与爆炸的
+  原生伤害标识。
+- 优化实体查询、库数据读取和 Deep Labs 炮塔合成，减少重复扫描及整屏复制；
+  保留原有战斗、贴图和碰撞行为。
+- 字体按实际显示文字选择，保留纯图标与英文原有排版，补齐 NTUF 中文字符。
 
-Android 请覆盖安装以保留存档；iOS IPA 需先使用自己的签名身份重新签名。当前版本和验证范围见 [发布页](https://github.com/ArkinTide/NTTE-Mobile-Port/releases/latest)及[验证记录](docs/VALIDATION.md)。
+“换下来的武器消失”已确认的一条路径是墙边掉落物被推远，已修复并通过
+实际换枪／拾回测试；没有复现通用的武器删除，不能据此排除所有潜在原因。
 
-1.2.0 及更早版本需手动从上述链接获取更新；1.2.1 起游戏内“下载更新”会打开该文件夹。
+## 验证范围
 
+本轮通过同一最终 Windows VM／输入的 **88 项回归**及 **94 项 Python 检查**，
+包括 Bubbles 两种皮肤在英文／中文与 30／60 帧模式下的四次真实新游戏、
+实际换枪拾回、天气、区域、墙体、弹丸、存档续关和画面比较。
+测试使用独立存档及静音后台进程。
 
-> 从 1.1.0 更新开始，将会加入一些别的 MOD 的内容。想要玩到原版 NTTE，请下载 1.0.4 以及后续 1.0.x 版本。
+这些结果属于隔离的桌面回归，未进行 Android／iOS 真机或完整随机战役验收，
+不能承诺所有手机的具体帧率。Bubbles 留存的截图仅显示世界画面，GUI 的证据
+来自实际绘制回调。完整范围见 [验证记录](docs/VALIDATION.md)。
+
+## 源码与构建
+
+本仓库不包含图片、音频、字体、图标、商业运行库、预编译扩展或安装包。
+工程声明仍引用这些资源，素材须从各自作者或其他授权来源另行取得；空白检出
+不能直接构建完整游戏。参见 [构建说明](docs/BUILDING.md)和
+[源码分发规则](docs/SOURCE_ONLY.md)。
+
+- `project/`：已验证的共用 GameMaker 源码和资源声明。
+- `platforms/android/`：Android 工程覆盖文件和已有 Runner 修改说明。
+- `frontier20/`：NTUF 编译器、原生适配、汉化、离线依赖、来源清单和历史文本快照。
+- [NTUF 源码恢复说明](frontier20/SOURCE_REPRODUCTION.md)：从自己的原始输入
+  恢复含内嵌图片的源文件，不把图片或旧在线加载器中的凭据放入 Git。
+
+保留既有许可证及第三方声明，参见 [LICENSE](LICENSE)和
+[鸣谢与版权](THIRD_PARTY_NOTICES.md)。这是非官方移植，与 Vlambeer 无隶属关系。
+
+原作与模组： [NTTE](https://github.com/Yokinman/NTTE) ·
+[Uncharted Frontier](https://wigglercola.itch.io/uncharted-frontier) ·
+[Undergrowth](https://attfooy.itch.io/undergrowth) ·
+[Details+](https://wigglercola.itch.io/detailsplus)
 
 ## 1.2.7 更新内容
 

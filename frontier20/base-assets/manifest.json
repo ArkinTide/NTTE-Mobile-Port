@@ -1,0 +1,246 @@
+{
+  "assets": [
+    {
+      "path": "sprCrystalPropBlue.png",
+      "resource": "sprFRBase_CrystalPropBlue",
+      "frames": 1,
+      "origin": [
+        12,
+        12
+      ],
+      "sha256": "fcab69d116d8cfb4461a983b88e019edf4eadd6c0610efbad58afd227d92296a",
+      "provenance": "Recovered original native sprite sprCrystalPropBlue",
+      "descriptor_sha256": "e9c492a73ce415a7b4c3327c4aa0ea6001784bfd238aaf6d2315f8450653ac98",
+      "frame_rgba_sha256": [
+        "da00daa196bbb5bd98d1e0b01663e0ddf339c53ac1f88e7ad7bb31db892e6b49"
+      ]
+    },
+    {
+      "path": "sprCrystalPropBlueHurt.png",
+      "resource": "sprFRBase_CrystalPropBlueHurt",
+      "frames": 3,
+      "origin": [
+        12,
+        12
+      ],
+      "sha256": "a8e090bbd11adec6fe7eefde4ed45d82a6147ae5a117cb60f5d5dd77b51a4dc0",
+      "provenance": "Recovered original native sprite sprCrystalPropBlueHurt",
+      "descriptor_sha256": "40e499df5928ab95b4d72b10947e87438cfdd5946058d0423737a70b5741f664",
+      "frame_rgba_sha256": [
+        "de3d3bae8ae2dd2e44106ff7926e8e11d1002450c0d547c7d621355fbaf768f8",
+        "da00daa196bbb5bd98d1e0b01663e0ddf339c53ac1f88e7ad7bb31db892e6b49",
+        "da00daa196bbb5bd98d1e0b01663e0ddf339c53ac1f88e7ad7bb31db892e6b49"
+      ]
+    },
+    {
+      "path": "sprCrystalPropGreen.png",
+      "resource": "sprFRBase_CrystalPropGreen",
+      "frames": 1,
+      "origin": [
+        12,
+        12
+      ],
+      "sha256": "d6bf9cc81b3ef33b6e65ee7c48aff8bff96bf7caba3e7965230db1db3f5280bd",
+      "provenance": "Recovered original native sprite sprCrystalPropGreen",
+      "descriptor_sha256": "c7ece6f750377eec6b0d3ccf4e13a35509e3e444db4ae10de71ba1f5a35b36e1",
+      "frame_rgba_sha256": [
+        "3ba66b194e69090edae5a8494f9e1fdda733e507d31b024cef1d55b2be92cf73"
+      ]
+    },
+    {
+      "path": "sprCrystalPropGreenHurt.png",
+      "resource": "sprFRBase_CrystalPropGreenHurt",
+      "frames": 3,
+      "origin": [
+        12,
+        12
+      ],
+      "sha256": "b324b3075c8fd936bc82455756acbc2a45baa765d03ae4e8a7dfd035cc50b8d5",
+      "provenance": "Recovered original native sprite sprCrystalPropGreenHurt",
+      "descriptor_sha256": "87533f76bc027d691201b09eb91dcfccd2e7a16da8e64e31f65d3b2fe483e584",
+      "frame_rgba_sha256": [
+        "de3d3bae8ae2dd2e44106ff7926e8e11d1002450c0d547c7d621355fbaf768f8",
+        "3ba66b194e69090edae5a8494f9e1fdda733e507d31b024cef1d55b2be92cf73",
+        "3ba66b194e69090edae5a8494f9e1fdda733e507d31b024cef1d55b2be92cf73"
+      ]
+    },
+    {
+      "path": "sprCrystalPropBlueDead.png",
+      "resource": "sprFRBase_CrystalPropBlueDead",
+      "frames": 4,
+      "origin": [
+        12,
+        12
+      ],
+      "sha256": "3b76161a90eabe95fdd5114ee2f78792b21a2f8d717ee21e7785a4c639c79470",
+      "provenance": "Original native corpse strip preserved as literal sprite_add_base64 in Hardmode caves.area.gml",
+      "declaration_sha256": "2bfc42a864c5cf70d632445e0149d887fb880b62e83e65c3a206ea320598d7e6"
+    },
+    {
+      "path": "sprCrystalPropGreenDead.png",
+      "resource": "sprFRBase_CrystalPropGreenDead",
+      "frames": 4,
+      "origin": [
+        12,
+        12
+      ],
+      "sha256": "723088e2d0bcae34c5eeca118922e43905bec69dc12b22c8b007538c66d679cf",
+      "provenance": "Original native corpse strip preserved as literal sprite_add_base64 in Hardmode caves.area.gml",
+      "declaration_sha256": "eb7c0d23fa68c0971a66f751a75d989ce6ead2e25519e8ebe2f7ca1848d674ec"
+    },
+    {
+      "path": "sprVanOpenIdle.png",
+      "resource": "sprFRBase_VanOpenIdle",
+      "frames": 4,
+      "origin": [
+        64,
+        64
+      ],
+      "sha256": "ebaddfacccded53fbaf45d38735e3ee7e2725d22d6117997c2f00b1a490e9a94",
+      "provenance": "Exact original NTT9940 native sprite extracted from embedded SPRT/TPAG/TXTR",
+      "source_executable_sha256": "22b4209d76efdac409e94314071286712637456da7de6b3d81a54e325f19c3f2",
+      "source_form_offset": 26565844,
+      "source_sprite": "sprVanOpenIdle"
+    },
+    {
+      "path": "sprUnlockContinue.png",
+      "resource": "sprFRBase_UnlockContinue",
+      "frames": 1,
+      "origin": [
+        67,
+        22
+      ],
+      "sha256": "e46a5175b5c92e7490a7419996a44b104c4891c3a1201f88c951df7c902134ef",
+      "provenance": "Exact original NTT9940 native sprite extracted from embedded SPRT/TPAG/TXTR",
+      "source_executable_sha256": "22b4209d76efdac409e94314071286712637456da7de6b3d81a54e325f19c3f2",
+      "source_form_offset": 26565844,
+      "source_sprite": "sprUnlockContinue"
+    },
+    {
+      "path": "sprExtraFeet.png",
+      "resource": "sprFRBase_ExtraFeet",
+      "frames": 5,
+      "origin": [
+        16,
+        26
+      ],
+      "sha256": "d38b1931a1880797b65b92b798eae27d62137fd63f9e656470e8bf9b803687b8",
+      "provenance": "Exact original NTT9940 native sprite extracted from embedded SPRT/TPAG/TXTR",
+      "source_executable_sha256": "22b4209d76efdac409e94314071286712637456da7de6b3d81a54e325f19c3f2",
+      "source_form_offset": 26565844,
+      "source_sprite": "sprExtraFeet"
+    },
+    {
+      "path": "sprSnowBanditGun.png",
+      "resource": "sprFRBase_SnowBanditGun",
+      "frames": 1,
+      "origin": [
+        8,
+        2
+      ],
+      "sha256": "53424a8ae4b83a1540f4b059080bfa7930a7a2c9ed243e9b5b099789e880521c",
+      "provenance": "Exact original NTT9940 native sprite extracted from embedded SPRT/TPAG/TXTR",
+      "source_executable_sha256": "22b4209d76efdac409e94314071286712637456da7de6b3d81a54e325f19c3f2",
+      "source_form_offset": 26565844,
+      "source_sprite": "sprSnowBanditGun"
+    },
+    {
+      "path": "sprWeaponFire.png",
+      "resource": "sprFRBase_WeaponFire",
+      "frames": 7,
+      "origin": [
+        8,
+        8
+      ],
+      "sha256": "5d2a191acafc70ca0662d79f5b2c347f90309cc6f28ed0b07c25aefc01ad97ea",
+      "provenance": "Exact original NTT9940 native sprite extracted from embedded SPRT/TPAG/TXTR",
+      "source_executable_sha256": "22b4209d76efdac409e94314071286712637456da7de6b3d81a54e325f19c3f2",
+      "source_form_offset": 26565844,
+      "source_sprite": "sprWeaponFire"
+    },
+    {
+      "path": "sprDragonFire.png",
+      "resource": "sprFRBase_DragonFire",
+      "frames": 7,
+      "origin": [
+        8,
+        8
+      ],
+      "sha256": "5d2a191acafc70ca0662d79f5b2c347f90309cc6f28ed0b07c25aefc01ad97ea",
+      "provenance": "Exact original NTT9940 native sprite extracted from embedded SPRT/TPAG/TXTR",
+      "source_executable_sha256": "22b4209d76efdac409e94314071286712637456da7de6b3d81a54e325f19c3f2",
+      "source_form_offset": 26565844,
+      "source_sprite": "sprDragonFire"
+    },
+    {
+      "path": "sprCannonFire.png",
+      "resource": "sprFRBase_CannonFire",
+      "frames": 7,
+      "origin": [
+        8,
+        8
+      ],
+      "sha256": "5d2a191acafc70ca0662d79f5b2c347f90309cc6f28ed0b07c25aefc01ad97ea",
+      "provenance": "Exact original NTT9940 native sprite extracted from embedded SPRT/TPAG/TXTR",
+      "source_executable_sha256": "22b4209d76efdac409e94314071286712637456da7de6b3d81a54e325f19c3f2",
+      "source_form_offset": 26565844,
+      "source_sprite": "sprCannonFire"
+    },
+    {
+      "path": "sprGrenadeBlink.png",
+      "resource": "sprFRBase_GrenadeBlink",
+      "frames": 2,
+      "origin": [
+        3,
+        3
+      ],
+      "sha256": "660ad73043d83fda028b7861395615da8089631fa8f4cf56c16749a7ecf2256f",
+      "provenance": "Exact original NTT9940 native sprite extracted from embedded SPRT/TPAG/TXTR",
+      "source_executable_sha256": "22b4209d76efdac409e94314071286712637456da7de6b3d81a54e325f19c3f2",
+      "source_form_offset": 26565844,
+      "source_sprite": "sprGrenadeBlink"
+    },
+    {
+      "path": "mskRhinoFreak.png",
+      "resource": "sprFRBase_mskRhinoFreak",
+      "frames": 1,
+      "origin": [
+        16,
+        16
+      ],
+      "sha256": "1b16b26533ddca123bc2651b581242adda7da2ba6ceae387b09dfe6b9be365c0",
+      "provenance": "Exact original NTT9940 native sprite extracted from embedded SPRT/TPAG/TXTR",
+      "source_executable_sha256": "22b4209d76efdac409e94314071286712637456da7de6b3d81a54e325f19c3f2",
+      "source_form_offset": 26565844,
+      "source_sprite": "mskRhinoFreak"
+    },
+    {
+      "path": "mskHeavyBullet.png",
+      "resource": "sprFRBase_mskHeavyBullet",
+      "frames": 1,
+      "origin": [
+        12,
+        12
+      ],
+      "sha256": "827862d15c5aa4b894620012376aa179fe1c86e9dd9fc1c249363f76072d8e1f",
+      "provenance": "Exact original NTT9940 native sprite extracted from embedded SPRT/TPAG/TXTR",
+      "source_executable_sha256": "22b4209d76efdac409e94314071286712637456da7de6b3d81a54e325f19c3f2",
+      "source_form_offset": 26565844,
+      "source_sprite": "mskHeavyBullet"
+    },
+    {
+      "path": "mskBouncerBullet.png",
+      "resource": "sprFRBase_mskBouncerBullet",
+      "frames": 1,
+      "origin": [
+        8,
+        8
+      ],
+      "sha256": "598e11259f88f2d624c9419be8bb4536cce6894fbb756c6662b2ac46cc310b9a",
+      "provenance": "Exact original NTT9940 native sprite extracted from embedded SPRT/TPAG/TXTR",
+      "source_executable_sha256": "22b4209d76efdac409e94314071286712637456da7de6b3d81a54e325f19c3f2",
+      "source_form_offset": 26565844,
+      "source_sprite": "mskBouncerBullet"
+    }
+  ]
+}

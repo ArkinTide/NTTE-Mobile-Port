@@ -22,3 +22,5 @@ No new blanket license is asserted for original-game or third-party art, audio, 
 - Details+ 1.1 add-on: wigglercola; original project: [https://wigglercola.itch.io/detailsplus](https://wigglercola.itch.io/detailsplus). Original authors retain their artwork and other third-party rights.
 
 All precompiled extension libraries are excluded from Git; retained extension source and license notices do not include those binaries. Resource declarations remain for integration with separately obtained assets.
+
+- Uncharted Frontier 1.0.3.3 (NTUF): wigglercola and its contributors; original project: [Uncharted Frontier](https://wigglercola.itch.io/uncharted-frontier). Original authors retain their artwork, audio and other third-party rights. Original text-source credits and dependency notices are retained under `frontier20/`; embedded images require separately obtained author inputs.

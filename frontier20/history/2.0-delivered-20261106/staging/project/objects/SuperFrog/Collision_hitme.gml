@@ -1,0 +1,1 @@
+if (other.team == team_player) hp = 0

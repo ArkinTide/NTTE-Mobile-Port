@@ -199,7 +199,7 @@ function scrUGWeaponsInit() {
     var _names=["FOSSIL PISTOL","FOSSIL GUN","FOSSIL CANNON","FOSSIL HAMMER","MEGA GRENADE LAUNCHER"],
         _text=["WISHBONE","PREHISTORIC","DINOSAUR HUNTER","PRIMITIVE","DANGEROUS"],
         _cost=[1,3,4,3,3],_load=[10,20,30,30,20],_tier=[8,9,11,9,-1],
-        _sprites=[sprUGFossilPistol,sprUGFossilGun,sprUGFossilCannon,sprUGFossilHammer,sprUGMegaGrenadeLauncher];
+        _sprites=[scrFRNTTENativeSprite(sprUGFossilPistol),scrFRNTTENativeSprite(sprUGFossilGun),scrFRNTTENativeSprite(sprUGFossilCannon),scrFRNTTENativeSprite(sprUGFossilHammer),scrFRNTTENativeSprite(sprUGMegaGrenadeLauncher)];
     for(var _i=0;_i<5;++_i) {
         var _w=174+_i;
         scrNTTERegisterBulletWeapon(_w,_names[_i],_text[_i],_cost[_i],_load[_i],false,_tier[_i],_sprites[_i],_i==3?sndSwapHammer:sndSwapExplosive);

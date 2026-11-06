@@ -14,5 +14,8 @@ function scr_check_enemies(_amount = 0) {
         if(object_index==WantVan && !canspawn) continue
         ++_count
     }
+// BEGIN FRONTIER PENDING POLICE CLEAR
+_count+=scrFRPendingPoliceCount();
+// END FRONTIER PENDING POLICE CLEAR
     return _count>_amount
 }

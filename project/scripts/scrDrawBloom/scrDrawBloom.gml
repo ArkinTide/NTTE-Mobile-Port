@@ -207,6 +207,62 @@ function scrDrawBloom() {
     scrDrawBloomSprite(sprite_index, -1, x, y, 2, 2, image_angle, c_white, 0.1)
 
     scrNTTEFullProjectileBloomDraw();
+// BEGIN FRONTIER SOURCE BLOOM
+scrFRHook("draw_bloom",[]);
+// END FRONTIER SOURCE BLOOM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// BEGIN FRONTIER IRIS BLOOM
+    scrFRIrisBloomDraw();
+// END FRONTIER IRIS BLOOM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     scrNTTEFullRedWorldBloomDraw();
 
     gpu_set_blendmode(bm_normal)

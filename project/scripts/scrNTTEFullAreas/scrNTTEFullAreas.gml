@@ -2,6 +2,9 @@
 // encounters, transitions and rendering are separate implementations; allocating
 // an ID here does not enable an unfinished area in normal runs.
 function scrNTTEFullAreaInfo(_key) {
+    var _fr_area=scrFRAreaInfo(_key);
+    if(!is_undefined(_fr_area)) return _fr_area;
+
     if(is_real(_key)) _key=scrNTTEFullAreaKey(_key);
     switch(_key) {
         case "undergrowth": return {key:"undergrowth",area_id:207,subareas:1,goal:120,next_area:area_jungle,next_subarea:1,background:make_color_rgb(102,78,24),shadow:make_color_rgb(28,0,14),ambient:amb4,music:musUGUndergrowth,music_b:musUGUndergrowth,boss_music:"",boss_intro:""};
@@ -32,6 +35,8 @@ function scrNTTEFullAreaId(_key) {
     return _info.area_id;
 }
 function scrNTTEFullAreaKey(_area) {
+    if(scrFRAreaActive(_area)) return scrFRAreaKey(_area);
+
     switch(_area) {
         case 201: return "coast";
         case 202: return "oasis";
@@ -46,6 +51,9 @@ function scrNTTEFullAreaKey(_area) {
 // Original areas/{coast,oasis,pizza,lair,trench,red}.area.gml area_name.
 // Shared by the live HUD, roadmap, statistics and Red Warp prompts.
 function scrNTTEFullAreaMapLabel(_area,_subarea) {
+    var _fr_label=scrFRAreaLabel(_area,_subarea);
+    if(!is_undefined(_fr_label)) return _fr_label;
+
     var _key=is_string(_area)?_area:scrNTTEFullAreaKey(_area)
     switch(_key) {
         case "coast":return "@1("+string(scrNTTERefSprite("RouteIcon"))+":0)1-"+string(_subarea<=0?"?":_subarea);
@@ -85,7 +93,9 @@ function scrNTTEFullAreaMetadataTests() {
 
 // area_sprite and area_setup_floor from the six original area modules.
 function scrNTTEFullAreaFloorSprite(_area,_style=false,_explo=false) {
-    if(_area==207) return _explo?sprUGFloorUndergrowthExplo:(_style?sprUGFloorUndergrowthB:sprUGFloorUndergrowth);
+    if(scrFRAreaActive(_area)) return scrFRAreaFloorSprite(_area,_style,_explo);
+
+    if(_area==207) return _explo?scrFRNTTENativeSprite(sprUGFloorUndergrowthExplo):(_style?scrFRNTTENativeSprite(sprUGFloorUndergrowthB):scrFRNTTENativeSprite(sprUGFloorUndergrowth));
     switch(scrNTTEFullAreaKey(_area)) {
         case "coast": return _explo?sprFloor1Explo:scrNTTERefSprite(_style?"FloorCoastB":"FloorCoast");
         case "oasis": return _explo?sprFloor101Explo:(_style?sprFloor101B:sprFloor101);
@@ -97,6 +107,8 @@ function scrNTTEFullAreaFloorSprite(_area,_style=false,_explo=false) {
     return -1;
 }
 function scrNTTEFullAreaFloorSetup(_area,_explo=false) {
+    if(scrFRAreaFloorSetup(_area,_explo)) return;
+
     area=_area;
     traction=1;
     var _sprite=scrNTTEFullAreaFloorSprite(_area,styleb,_explo);
@@ -114,7 +126,9 @@ function scrNTTEFullAreaFloorSetup(_area,_explo=false) {
     }
 }
 function scrNTTEFullAreaDetailSprite(_area) {
-    if(_area==207) return sprUGDetailUndergrowth;
+    if(scrFRAreaActive(_area)) return scrFRAreaSprite(_area,sprDetail1);
+
+    if(_area==207) return scrFRNTTENativeSprite(sprUGDetailUndergrowth);
     switch(scrNTTEFullAreaKey(_area)) {
         case "coast": return scrNTTERefSprite("DetailCoast");
         case "oasis": return sprDetail101;
@@ -126,7 +140,9 @@ function scrNTTEFullAreaDetailSprite(_area) {
     return -1;
 }
 function scrNTTEFullAreaWallSprite(_area,_part) {
-    if(_area==207) { switch(_part) {case "Top":return sprUGWallUndergrowthTop;case "Bot":return sprUGWallUndergrowthBot;case "Out":return sprUGWallUndergrowthOut;case "Trans":return sprUGWallUndergrowthTrans;case "Debris":return sprUGDebrisUndergrowth;} }
+    if(scrFRAreaActive(_area)) return scrFRAreaWallSprite(_area,_part);
+
+    if(_area==207) { switch(_part) {case "Top":return scrFRNTTENativeSprite(sprUGWallUndergrowthTop);case "Bot":return scrFRNTTENativeSprite(sprUGWallUndergrowthBot);case "Out":return scrFRNTTENativeSprite(sprUGWallUndergrowthOut);case "Trans":return scrFRNTTENativeSprite(sprUGWallUndergrowthTrans);case "Debris":return scrFRNTTENativeSprite(sprUGDebrisUndergrowth);} }
     var _key=scrNTTEFullAreaKey(_area),_base=_area,_name="";
     switch(_key) {
         case "coast": _base=1; break;

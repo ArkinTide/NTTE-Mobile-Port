@@ -1,0 +1,2 @@
+/// @description Create trail
+scrBoltTrail()

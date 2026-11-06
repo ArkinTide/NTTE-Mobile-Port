@@ -117,8 +117,12 @@ if(area==scrNTTEFullAreaId("lair")) {
 }
 // END NTTE LAIR SOURCE FINISH TRANSIT
 if(area==207) {scrUGFinishDestination();}
+// Frontier source finish queues its actual next destination.
+scrFRAreaFinish();
 var _ntte_destination=scrNTTEFullAreaTakeDestination();
 if(is_struct(_ntte_destination)) {
+    scrFRAreaConsumeEntry(_ntte_destination);
+
     // BEGIN NTTE OASIS CRACK CONSUME ENTRY FINISH
     // TakeDestination cleared the queue. Reproduce original Trench0.finish once,
     // then retain the mobile bridge's final Trench1 and departing-area history.
@@ -250,6 +254,9 @@ if (subarea >= _max_subarea) {
 }
 else subarea ++
 }
+
+// Frontier transit sees the resolved destination and old departure.
+scrFRAreaTransit();
 
 hard += scrGameIsHardmode() ? 2 : 1
 

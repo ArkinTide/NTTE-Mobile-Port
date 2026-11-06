@@ -1,0 +1,1 @@
+if (scr_can_hit(other.id, false)) instance_destroy()

@@ -10,6 +10,8 @@ function scrNTTESolidWallArea() {
 function scrNTTESolidWallCreate() {
     ntte_solid_fill=true;ntte_fill_width=16;ntte_fill_height=16;
     area=GameCont.area;solid=true;visible=false;mask_index=mskWall;
+    // Retain actual source weather/area colour per packed piece.
+    ntte_fill_color=scrFRWallBackgroundColor();ntte_fill_color_area=area;
     sprite_index=mskNone;image_speed=0;topspr=-1;outspr=-1;
     topindex=0;outindex=0;l=0;r=0;w=0;h=0;
 }
@@ -25,6 +27,7 @@ function scrNTTESolidWallPiece(_x,_y,_w,_h,_state) {
     if(_w<=0 || _h<=0) return noone;
     var _v=scrNTTESolidWallBlock(_x,_y,_w,_h);
     _v.area=_state.area;_v.image_blend=_state.blend;_v.image_alpha=_state.alpha;
+    scrFRWallCopyFillColor(_v,_state);
     return _v;
 }
 function scrNTTESolidWallSplit(_wall,_x1=undefined,_y1=undefined,_x2=undefined,_y2=undefined) {
@@ -32,7 +35,8 @@ function scrNTTESolidWallSplit(_wall,_x1=undefined,_y1=undefined,_x2=undefined,_
     var _w=_wall.ntte_fill_width,_h=_wall.ntte_fill_height;
     if(_w==16 && _h==16) return [_wall];
     var _x=_wall.x,_y=_wall.y,_out=[],
-        _state={area:_wall.area,blend:_wall.image_blend,alpha:_wall.image_alpha};
+        _state={area:_wall.area,blend:_wall.image_blend,alpha:_wall.image_alpha,
+            color:scrFRWallFillColor(_wall)};
     if(is_undefined(_x1)) {_x1=_x;_y1=_y;_x2=_x+_w-1;_y2=_y+_h-1;}
     var _a=clamp(floor((_x1-_x)/16)*16,0,_w),_b=clamp(floor((_y1-_y)/16)*16,0,_h),
         _c=clamp((floor((_x2-_x)/16)+1)*16,0,_w),_d=clamp((floor((_y2-_y)/16)+1)*16,0,_h);
@@ -274,13 +278,12 @@ function scrNTTESolidWallColor(_base,_blend) {
 function scrNTTESolidWallDraw() {
     if(!variable_instance_exists(UberCont,"ntte_fill_visible")) return;
     var _fill=UberCont.ntte_fill_visible,_color=draw_get_color(),_alpha=draw_get_alpha(),
-        _area=undefined,_base=0,_last_color=-1,_last_alpha=-1;
+        _last_color=-1,_last_alpha=-1;
     for(var _i=0;_i<array_length(_fill);++_i) {
         var _wall=_fill[_i];
         if(!instance_exists(_wall) || _wall.object_index!=NTTESolidWall) continue;
         with(_wall) {
-            if(_area!=area) {_area=area;_base=scrAreaGetBackroundColor(area,false);}
-            var _tint=scrNTTESolidWallColor(_base,image_blend);
+            var _tint=scrNTTESolidWallColor(scrFRWallFillColor(id),image_blend);
             if(_tint!=_last_color) {draw_set_color(_tint);_last_color=_tint;}
             if(image_alpha!=_last_alpha) {draw_set_alpha(image_alpha);_last_alpha=image_alpha;}
             draw_rectangle(x,y-8,x+ntte_fill_width,y+ntte_fill_height-8,false);

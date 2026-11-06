@@ -1,6 +1,8 @@
 // Source: tegeneral.Pet/PetRevive and telib.pet_create. Species are registered
 // separately; unknown species throw instead of becoming a generic ally.
 function scrNTTEFullPetCreateEvent() {
+    name="NTTEPet";
+
     spr_idle=scrNTTERefSprite("PetParrotIdle"); spr_walk=scrNTTERefSprite("PetParrotWalk")
     spr_hurt=scrNTTERefSprite("PetParrotHurt"); spr_dead=mskNone; spr_icon=scrNTTERefSprite("PetParrotIcon")
     sprite_index=spr_idle; mask_index=mskPlayer; image_speed=0.4*timescale
@@ -36,6 +38,8 @@ function scrNTTEFullPetCreate(_x,_y,_pet) {
 // Pure source sprite lookup for vat previews. Constructors are intentionally
 // never called: those allocate prompts and register pet statistics/history.
 function scrNTTEFullPetGetSprite(_pet,_mod_type,_mod_name,_skin,_part) {
+    if(is_array(_skin)) return scrFRNTTEPetSkinSprite(_skin,_part);
+
     if(_mod_type!="mod" || _mod_name!="petlib") throw "Unknown NTTE pet provider: "+string(_mod_type)+"/"+string(_mod_name)
     if(_part=="icon") return scrNTTEFullPetIconSprite(_pet,_skin)
     if(_part!="idle") throw "NTTE pure pet sprite query is not implemented for field: "+string(_part)
@@ -65,6 +69,8 @@ function scrNTTEFullPetSkinField(_name,_value) {
     variable_instance_set(id,_name,_value)
 }
 function scrNTTEFullPetSetSkin(_pet,_skin) {
+    if(is_array(_skin)) return scrFRNTTEPetSetSkin(_pet,_skin);
+
     if(!instance_exists(_pet)) return false
     with(_pet) {
         bskin=_skin

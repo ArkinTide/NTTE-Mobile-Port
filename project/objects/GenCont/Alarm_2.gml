@@ -1,3 +1,5 @@
+// NTUF OPTIONAL GENERATOR TRACE Alarm_2.gml
+if(variable_global_exists("fr_test_trace_requested") && global.fr_test_trace_requested) scrNTTESmokeLog("NTUF NATIVE GenCont.Alarm_2 begin");
 /// @description Spawn in vaults & crib chests
 
 var _area = GameCont.area,
@@ -107,3 +109,4 @@ if GameCont.area == area_crib {
 instance_destroy(Smoke)
 
 with (SpiralCont) alarm[0] = 1
+if(variable_global_exists("fr_test_trace_requested") && global.fr_test_trace_requested) scrNTTESmokeLog("NTUF NATIVE GenCont.Alarm_2 end");

@@ -9,6 +9,14 @@ input_tick()
 
 if (!block_input_frames) {
 	scrHandleInputsGeneral(global.index)
+// BEGIN FRONTIER GROUND WEAPON REAL INPUT
+if(os_type==os_windows && scrNTTEFullSmokeEnabled() && instance_exists(FRIntegrationTest)) scrFRGroundWeaponTestsAfterInputSample();
+// END FRONTIER GROUND WEAPON REAL INPUT
+
+// BEGIN FRONTIER BUBBLES STARTUP REAL INPUT
+if(os_type==os_windows && scrNTTEFullSmokeEnabled() && instance_exists(FRIntegrationTest)) scrFRBubblesStartupTestsAfterInputSample();
+// END FRONTIER BUBBLES STARTUP REAL INPUT
+
 	scrGamepadUIControl()
 }
 else {

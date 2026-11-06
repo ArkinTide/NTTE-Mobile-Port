@@ -10,11 +10,11 @@ function scrPlayerGiveAmmo(_player, _ammo_type, _amount, _create_popup = false) 
 	with _player {
 		var _is_full = false
 		
-		if (_amount > 0 && ammo[_ammo_type] < typ_amax[_ammo_type]) || (_amount < 0 && ammo[_ammo_type] > 0) {
+		if (_amount > 0 && ammo[_ammo_type] < scrFRAmmoRead(id,"typ_amax",_ammo_type)) || (_amount < 0 && ammo[_ammo_type] > 0) {
 			ammo[_ammo_type] += _amount
 			
-			if ammo[_ammo_type] >= typ_amax[_ammo_type] {
-				ammo[_ammo_type] = typ_amax[_ammo_type]
+			if ammo[_ammo_type] >= scrFRAmmoRead(id,"typ_amax",_ammo_type) {
+				ammo[_ammo_type] = scrFRAmmoRead(id,"typ_amax",_ammo_type)
 				_is_full = true
 			}
 		}

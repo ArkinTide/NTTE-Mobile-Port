@@ -3,6 +3,10 @@ if lockstep_stop
 	exit
 
 scrNTTEFullPlayerRateSync();
+// BEGIN FRONTIER BUBBLES STARTUP REAL STEP
+if(os_type==os_windows && scrNTTEFullSmokeEnabled() && instance_exists(FRIntegrationTest)) scrFRBubblesStartupTestsObserve("step",id);
+// END FRONTIER BUBBLES STARTUP REAL STEP
+
 
 // The native draw-only bob phase wraps every 6.2 radians; petlib needs a logical clock.
 ntte_twins_orbit_wave += timescale
@@ -496,7 +500,7 @@ if wep != 0 && scr_weapon_is_golden(wep) && irandom(10 + (current_frame % 30)) <
 
 #region Weapon reload
 if reload > 0 || (breload > 0 && race == Race.Steroids) {
-	var _reload_speed = 1
+	var _reload_speed = scrFREnabled() ? max(0.05,reloadspeed):1
 
 	if race == Race.Venuz {
 		_reload_speed += 0.2
@@ -532,6 +536,57 @@ if reload > 0 || (breload > 0 && race == Race.Steroids) {
 		reload -= _reload_speed * timescale
 		
 		if (reload <= 0) {
+// BEGIN FRONTIER WEAPON PRIMARY RELOAD
+scrFRWeaponReloaded(true);
+// END FRONTIER WEAPON PRIMARY RELOAD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			if(!scrNTTEFullMergedRuntimeStateReloaded(true) && !scrNTTEFullRedWeaponReloaded(true)) {
 				scrPlayerGunReloadFX(wep);
 				wepflip *= -1;
@@ -545,6 +600,57 @@ if reload > 0 || (breload > 0 && race == Race.Steroids) {
 		breload -= _reload_speed * timescale
 		
 		if (breload <= 0) {
+// BEGIN FRONTIER WEAPON SECONDARY RELOAD
+scrFRWeaponReloaded(false);
+// END FRONTIER WEAPON SECONDARY RELOAD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			if(!scrNTTEFullMergedRuntimeStateReloaded(false) && !scrNTTEFullRedWeaponReloaded(false)) {
 				scrPlayerGunReloadFX(bwep);
 				wepflip *= -1;
@@ -832,3 +938,7 @@ scrNTTEFullParrotPlayerStep();
 scrNTTEFullFootprintPlayerStep();
 scrFootSteps()
 scrNTTEFullPetSalamanderPlayerEnd();
+
+// BEGIN FRONTIER WEAPON CARRIER STEP
+scrFRWeaponStep();
+// END FRONTIER WEAPON CARRIER STEP

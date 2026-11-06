@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"snap_to_csv",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"snap_to_csv",
+  "parent":{
+    "name":"(System)",
+    "path":"folders/Extensions/Input/(System).yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

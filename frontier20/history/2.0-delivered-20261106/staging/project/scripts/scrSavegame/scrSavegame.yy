@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scrSavegame",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scrSavegame",
+  "parent":{
+    "name":"Serialization",
+    "path":"folders/Scripts/Serialization.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

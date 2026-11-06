@@ -1,3 +1,5 @@
+// NTUF OPTIONAL GENERATOR TRACE Destroy_0.gml
+if(variable_global_exists("fr_test_trace_requested") && global.fr_test_trace_requested) scrNTTESmokeLog("NTUF NATIVE GenCont.Destroy_0 begin");
 /// @description Generation end
 
 var _area = GameCont.area,
@@ -278,8 +280,12 @@ scrNTTEFullBabySludgeLevelStart();
 scrNTTEFullWorldFinalizeLevelStart();
 }
 // END NTTE CANONICAL LEVEL START
+// BEGIN FRONTIER GENERATION FINALIZE
+scrFRGenerationLevelStart();
+scrFRContinueGenerationEnd();
+// END FRONTIER GENERATION FINALIZE
 // Complete authored placement before creating static exterior collision.
-scrNTTESolidWallGenerate();
+if(!scrNTTEFullValue(id,"ntte_full_sync_compact_defer",false)) scrNTTESolidWallGenerate();
 with(NTTECatHole) ntte_cat_ground_checked=scrNTTECatHoleEnsure();
 // BEGIN NTTE TRENCH SECOND HOP TEST GenCont.Destroy.after
 if(os_type==os_windows && scrNTTEFullSmokeEnabled() && instance_exists(NTTEFullTrenchSecondHopConnectedTest)) try { scrNTTEFullTrenchSecondHopProbe("GenCont.Destroy.after"); }
@@ -332,3 +338,5 @@ catch(_ntte_palace_carry_error) { scrNTTEFullPalaceArtifactPortalCarryAbort(_ntt
 if(os_type==os_windows && scrNTTEFullSmokeEnabled() && instance_exists(NTTEFullQuestCarryTest)) try { scrNTTEFullQuestCarryProbe("GenDestroy"); }
 catch(_ntte_quest_carry_error) { scrNTTEFullQuestCarryAbort(_ntte_quest_carry_error); }
 // END NTTE QUEST ARTIFACT CARRY LIFECYCLE TEST GEN DESTROY
+
+if(variable_global_exists("fr_test_trace_requested") && global.fr_test_trace_requested) scrNTTESmokeLog("NTUF NATIVE GenCont.Destroy_0 end");

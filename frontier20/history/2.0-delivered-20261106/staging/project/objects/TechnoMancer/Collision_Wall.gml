@@ -1,0 +1,1 @@
+scrWallDestroy(other.id)

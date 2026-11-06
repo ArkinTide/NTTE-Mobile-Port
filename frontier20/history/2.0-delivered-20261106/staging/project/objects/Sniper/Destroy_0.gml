@@ -1,0 +1,14 @@
+// NTTE SOURCE LEAD RIBS BEFORE CHILD DEATH
+if(hp<=0) scrNTTEFullLeadRibsDeath(id);
+scrDrop(40, 0)
+
+instance_create(x, y, Explosion)
+event_inherited()
+
+snd_play(sndExplosion)
+
+repeat 2 + irandom(3) {
+    with instance_create(x, y, GroundFlame) {
+        move_contact_solid(random_angle, 4 + random(16))
+    }
+}

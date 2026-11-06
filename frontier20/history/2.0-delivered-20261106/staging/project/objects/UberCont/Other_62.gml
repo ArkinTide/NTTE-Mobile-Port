@@ -1,0 +1,1 @@
+scrNTTEUpdateHttpEvent(async_load)

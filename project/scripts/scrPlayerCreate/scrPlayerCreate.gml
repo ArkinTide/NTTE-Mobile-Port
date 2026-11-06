@@ -131,6 +131,7 @@ function scrPlayerRaceChange(_race, _skin = -1) {
 	}
 	
 	scrNTTEFullRaceNativeChange()
+    scrFRRacePlayerChange(); // FRONTIER PLAYER CREATE
 	if scrCrownCheck(Crown.Death) max_hp -= 1
 }
 

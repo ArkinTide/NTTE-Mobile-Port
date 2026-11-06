@@ -23,6 +23,9 @@ function scrDPStatic(_x,_y,_sprite,_index,_depth,_scale=1) {
     return _d;
 }
 function scrDPStatueSprites(_area) {
+    var _fr_statue=scrFRNTTEStatueSprites(_area);
+    if(!is_undefined(_fr_statue)) return _fr_statue;
+
     switch(_area) {
         case area_desert:return [sprDPDesertProtoStatueDecal,sprDPDesertProtoStatueDecalDead];
         case area_scrapyards:return [sprDPScrapyardProtoStatueDecal,sprDPScrapyardProtoStatueDecalDead];
@@ -67,6 +70,9 @@ function scrDPStatueDraw() {
     if(_fog) gpu_set_fog(false,0,0,0);
 }
 function scrDPScorchSprites(_floor) {
+    var _fr_scorch=scrFRNTTEScorchSprites(_floor);
+    if(!is_undefined(_fr_scorch)) return _fr_scorch;
+
     switch(_floor) {
         case sprFloor1:return [[sprDPDesertScorchTop],[sprDPDesertScorch]];
         case sprFloor1B:case sprDPFloorDesertBOut:

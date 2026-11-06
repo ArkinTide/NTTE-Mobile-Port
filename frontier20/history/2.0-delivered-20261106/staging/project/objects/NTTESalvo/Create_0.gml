@@ -1,0 +1,9 @@
+event_inherited()
+kind=0
+remaining=0
+interval=2
+wait=2
+state=undefined
+primary=true
+visible=false
+big=false

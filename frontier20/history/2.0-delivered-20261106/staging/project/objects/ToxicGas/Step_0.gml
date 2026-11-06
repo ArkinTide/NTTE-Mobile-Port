@@ -1,0 +1,12 @@
+if lockstep_stop
+	exit
+
+if image_xscale + growspeed < 1 {
+    image_xscale += growspeed
+    image_yscale += growspeed
+}
+
+if growspeed > -0.005 growspeed -= (0.0002) * timescale
+if image_xscale < 0.4 growspeed -= 0.01 image_angle += (rot) * timescale
+
+if image_xscale < 0 instance_destroy()

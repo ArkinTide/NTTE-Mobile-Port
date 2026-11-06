@@ -132,7 +132,7 @@ function handle_console_command(str) {
 
                 if i != -1 {
                     with Player {
-                        ammo[scr_weapon_get_type(i)] = typ_amax[scr_weapon_get_type(i)]
+                        ammo[scr_weapon_get_type(i)] = scrFRAmmoRead(id,"typ_amax",scr_weapon_get_type(i))
 
                         var _w = variable_instance_get(id, "_debuglastwep")
 
@@ -158,9 +158,11 @@ function handle_console_command(str) {
 
             case "goto":
             case "area":
+                if(scrFRAreaDebugConsole(cmd)) break;
                 with Player {
                     var m = string_split_array(cmd[1], "-")
 
+                    scrFRAreaDebugClearDestination();
                     GameCont.route = 0
 
                     if string_copy(cmd[1], 1, 2) == "hq" {
@@ -465,11 +467,11 @@ function scr_console_debugclear_restore() {
 
 		if (scr_weapon_is_valid(_r.wep)) {
 			wep = _r.wep
-			ammo[scr_weapon_get_type(wep)] = typ_amax[scr_weapon_get_type(wep)]
+			ammo[scr_weapon_get_type(wep)] = scrFRAmmoRead(id,"typ_amax",scr_weapon_get_type(wep))
 		}
 		if (scr_weapon_is_valid(_r.bwep)) {
 			bwep = _r.bwep
-			ammo[scr_weapon_get_type(bwep)] = typ_amax[scr_weapon_get_type(bwep)]
+			ammo[scr_weapon_get_type(bwep)] = scrFRAmmoRead(id,"typ_amax",scr_weapon_get_type(bwep))
 		}
 	}
 
@@ -583,9 +585,10 @@ function scr_console_completions(_input) {
 			case "goto":
 			case "area":
 				var _areas = [0, 1, 2, 3, 4, 5, 6, 7, 100, 101, 102, 103, 104, 105, 106, 107]
+				_areas=scrFRAreaDebugAreas(_areas)
 				for (var _ai = 0; _ai < array_length(_areas); _ai++) {
 					var _ar = _areas[_ai],
-						_nsub = scrAreaGetMaxSubarea(_ar)
+						_nsub = scrFRAreaDebugSubareas(_ar)
 					for (var _si = 1; _si <= _nsub; _si++) array_push(_pool, string(_ar) + "-" + string(_si))
 				}
 				for (var _si = 1; _si <= 3; _si++) array_push(_pool, "hq" + string(_si))

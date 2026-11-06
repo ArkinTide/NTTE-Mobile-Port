@@ -1,3 +1,5 @@
+// NTUF OPTIONAL GENERATOR TRACE Alarm_1.gml
+if(variable_global_exists("fr_test_trace_requested") && global.fr_test_trace_requested) scrNTTESmokeLog("NTUF NATIVE GenCont.Alarm_1 begin");
 /// @description Finalize level structure
 
 scrMoveTopPots()
@@ -106,3 +108,4 @@ scrUGAfterGeneration();
 scrDPApply(true);
 
 instance_destroy()
+if(variable_global_exists("fr_test_trace_requested") && global.fr_test_trace_requested) scrNTTESmokeLog("NTUF NATIVE GenCont.Alarm_1 end");

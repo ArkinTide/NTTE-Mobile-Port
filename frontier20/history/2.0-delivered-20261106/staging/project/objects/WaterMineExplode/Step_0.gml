@@ -1,0 +1,31 @@
+if lockstep_stop
+	exit
+
+if image_index >= 3 && image_speed > 0 {
+	depth = -7
+}
+
+if image_index >= 9 && !explode {
+	instance_create(x + orandom(3), y + orandom(3) - 8, Explosion)
+	
+	repeat (12) instance_create(x, y, Bubble)
+	
+	var ang = random_angle
+	
+	repeat 16 {
+		// we don't talk about it
+	    with instance_create(x, y - 12, EnemyBullet3) {
+	        motion_add(ang, (5 + random(7)) * timescale)
+	        image_angle = direction
+	        team = -1
+	    }
+		
+	    ang += 360 / 16
+	}
+	
+	snd_play(sndOasisExplosion)
+	
+	instance_destroy()
+	
+	depth = 0
+}

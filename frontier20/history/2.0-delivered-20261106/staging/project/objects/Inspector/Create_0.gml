@@ -1,0 +1,49 @@
+raddrop = 0
+max_hp = 10
+meleedamage = 0
+size = 1
+
+spr_idle = sprInspectorIdle
+spr_walk = sprInspectorWalk
+spr_hurt = sprInspectorHurt
+spr_dead = sprInspectorDead
+
+event_inherited()
+
+snd_hurt = sndInspectorHurtM
+snd_dead = sndInspectorDeadM
+
+male = 1
+
+if irandom(1) {
+    snd_hurt = sndInspectorHurtF
+    snd_dead = sndInspectorDeadF
+    snd_play_hit_big(sndInspectorEnterF, 0.2)
+    male = 0
+} else {
+    snd_play_hit_big(sndInspectorEnterM, 0.2)
+}
+
+if GameCont.underwater {
+    snd_hurt = sndOasisHurt
+    snd_dead = sndOasisDeath
+}
+
+team = 3
+
+//behavior
+walk = 0
+grenades = 4
+gunangle = random_angle
+alarm[1] = 30 + random(15)
+wkick = 0
+control = 0
+angle = 0
+
+freeze = 0
+lastx = x
+lasty = y
+
+hitid = HitId.Inspector
+// NTTE Coast constructor wading variables
+scrNTTEFullCoastConstructWading();

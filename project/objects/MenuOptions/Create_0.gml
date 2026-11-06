@@ -41,7 +41,65 @@ enum OptionCategory {
 	
 	NTTE, NTTE_Options, NTTE_Stats, NTTE_Credits, NTTE_Mutants, NTTE_Pets, NTTE_Unlocks, NTTE_PetDetails,
 	NTTE_Updates,
+	Frontier, Frontier_Page,
 	NUM_MENU_OPTIONS
+// BEGIN FRONTIER OPTION ENUM
+
+// END FRONTIER OPTION ENUM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 if (!instance_exists(BackButton)) {

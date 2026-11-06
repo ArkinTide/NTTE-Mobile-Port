@@ -1,0 +1,1 @@
+scrNTTEFullBuriedVaultPedestalStep();

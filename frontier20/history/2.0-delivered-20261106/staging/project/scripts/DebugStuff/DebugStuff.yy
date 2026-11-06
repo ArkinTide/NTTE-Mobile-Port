@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"DebugStuff",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"DebugStuff",
+  "parent":{
+    "name":"WickedStuff",
+    "path":"folders/Objects/WickedStuff.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

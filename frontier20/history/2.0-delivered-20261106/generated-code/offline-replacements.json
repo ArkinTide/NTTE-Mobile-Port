@@ -1,0 +1,439 @@
+{
+  "status": "REPLACED_BY_DESIGN",
+  "definitions": [
+    {
+      "source": "Characters/campfire_loader.mod.gml",
+      "name": "#macro repo",
+      "line": 8,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "Characters/campfire_loader.mod.gml",
+      "name": "__load",
+      "line": 1,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:campfire_loader\")"
+    },
+    {
+      "source": "Characters/campfire_loader.mod.gml",
+      "name": "init",
+      "line": 1,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:campfire_loader\")"
+    },
+    {
+      "source": "Characters/campfire_loader.mod.gml",
+      "name": "load_campfire",
+      "line": 10,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:campfire_loader\")"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "#macro MODVERSION",
+      "line": 6,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "#macro paused",
+      "line": 7,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "#macro loading",
+      "line": 8,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "#macro category",
+      "line": 9,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "#macro maxProgress",
+      "line": 10,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "#macro progress",
+      "line": 11,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "#macro fade",
+      "line": 12,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "#macro done",
+      "line": 13,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "#macro scr",
+      "line": 26,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "#macro call",
+      "line": 27,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "__load",
+      "line": 1,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:Frontier_Loader\")"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "init",
+      "line": 1,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:Frontier_Loader\")"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "game_start",
+      "line": 241,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:Frontier_Loader\")"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "load_all",
+      "line": 246,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:Frontier_Loader\")"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "array_delete",
+      "line": 268,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:Frontier_Loader\")"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "add_post_load_statement",
+      "line": 275,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:Frontier_Loader\")"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "set_load_category",
+      "line": 283,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:Frontier_Loader\")"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "LoaderBarController_create",
+      "line": 288,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:Frontier_Loader\")"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "LoaderBarController_step",
+      "line": 298,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:Frontier_Loader\")"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "draw_gui_end",
+      "line": 315,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:Frontier_Loader\")"
+    },
+    {
+      "source": "Frontier_Loader.mod.gml",
+      "name": "create_updatesigns",
+      "line": 349,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:Frontier_Loader\")"
+    },
+    {
+      "source": "LibLoader.mod.gml",
+      "name": "#macro URL",
+      "line": 115,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "LibLoader.mod.gml",
+      "name": "#macro scr",
+      "line": 117,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "LibLoader.mod.gml",
+      "name": "#macro call",
+      "line": 118,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "LibLoader.mod.gml",
+      "name": "__load",
+      "line": 1,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:LibLoader\")"
+    },
+    {
+      "source": "LibLoader.mod.gml",
+      "name": "init",
+      "line": 10,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:LibLoader\")"
+    },
+    {
+      "source": "LibLoader.mod.gml",
+      "name": "import",
+      "line": 16,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:LibLoader\")"
+    },
+    {
+      "source": "LibLoader.mod.gml",
+      "name": "loadLib",
+      "line": 34,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:LibLoader\")"
+    },
+    {
+      "source": "Objects/Frontier_Projectiles.mod.gml",
+      "name": "charge_weapon_fire_init",
+      "line": 4454,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFRWeaponChargeInit((argument_count>0 ? argument[0] : undefined))"
+    },
+    {
+      "source": "Objects/Frontier_Projectiles.mod.gml",
+      "name": "weapon_get",
+      "line": 4672,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFRSourceWeaponGet((argument_count>0 ? argument[0] : undefined),(argument_count>1 ? argument[1] : undefined))"
+    },
+    {
+      "source": "Wibbly_Loader.mod.gml",
+      "name": "#macro repo",
+      "line": 11,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "Wibbly_Loader.mod.gml",
+      "name": "__load",
+      "line": 1,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:Wibbly_Loader\")"
+    },
+    {
+      "source": "Wibbly_Loader.mod.gml",
+      "name": "init",
+      "line": 1,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:Wibbly_Loader\")"
+    },
+    {
+      "source": "Wibbly_Loader.mod.gml",
+      "name": "load_wibbly",
+      "line": 13,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:Wibbly_Loader\")"
+    },
+    {
+      "source": "custom_options.mod.gml",
+      "name": "init",
+      "line": 2,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFRCustomOptionsInit()"
+    },
+    {
+      "source": "custom_options.mod.gml",
+      "name": "chat_command",
+      "line": 279,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:custom_options\")"
+    },
+    {
+      "source": "custom_options_v100_patch.mod.ntgml",
+      "name": "__load",
+      "line": 1,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:custom_options_v100_patch\")"
+    },
+    {
+      "source": "custom_options_v100_patch.mod.ntgml",
+      "name": "init",
+      "line": 1,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:custom_options_v100_patch\")"
+    },
+    {
+      "source": "custom_options_v100_patch.mod.ntgml",
+      "name": "draw_pause",
+      "line": 6,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:custom_options_v100_patch\")"
+    },
+    {
+      "source": "dependencies/LibLoader.mod.gml",
+      "name": "#macro URL",
+      "line": 108,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "dependencies/LibLoader.mod.gml",
+      "name": "#macro scr",
+      "line": 110,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "dependencies/LibLoader.mod.gml",
+      "name": "#macro call",
+      "line": 111,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "dependencies/LibLoader.mod.gml",
+      "name": "__load",
+      "line": 1,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:LibLoader\")"
+    },
+    {
+      "source": "dependencies/LibLoader.mod.gml",
+      "name": "init",
+      "line": 10,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:LibLoader\")"
+    },
+    {
+      "source": "dependencies/LibLoader.mod.gml",
+      "name": "import",
+      "line": 16,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:LibLoader\")"
+    },
+    {
+      "source": "dependencies/LibLoader.mod.gml",
+      "name": "loadLib",
+      "line": 34,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:LibLoader\")"
+    },
+    {
+      "source": "dependencies/lib.mod.gml",
+      "name": "#macro URL",
+      "line": 227,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "dependencies/lib.mod.gml",
+      "name": "init",
+      "line": 7,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFRLibBootstrap()"
+    },
+    {
+      "source": "dependencies/lib.mod.gml",
+      "name": "import",
+      "line": 64,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFRLibImport((argument_count>0 ? argument[0] : undefined))"
+    },
+    {
+      "source": "dependencies/lib.mod.gml",
+      "name": "ping",
+      "line": 188,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFRLibPing()"
+    },
+    {
+      "source": "dependencies/libAreas.mod.gml",
+      "name": "area_generate",
+      "line": 188,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFRAreaGenerate((argument_count>0 ? argument[0] : undefined),(argument_count>1 ? argument[1] : undefined),(argument_count>2 ? argument[2] : undefined),(argument_count>3 ? argument[3] : undefined),(argument_count>4 ? argument[4] : undefined),(argument_count>5 ? argument[5] : undefined),(argument_count>6 ? argument[6] : undefined),(argument_count>7 ? argument[7] : undefined))"
+    },
+    {
+      "source": "dependencies/libAreas.mod.gml",
+      "name": "area_set",
+      "line": 534,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFRAreaSet((argument_count>0 ? argument[0] : undefined),(argument_count>1 ? argument[1] : undefined),(argument_count>2 ? argument[2] : undefined))"
+    },
+    {
+      "source": "dependencies/libAutoUpdate.mod.gml",
+      "name": "#macro scr",
+      "line": 244,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "dependencies/libAutoUpdate.mod.gml",
+      "name": "#macro call",
+      "line": 245,
+      "reason": "Offline static bootstrap replaces original downloader"
+    },
+    {
+      "source": "dependencies/libAutoUpdate.mod.gml",
+      "name": "__load",
+      "line": 1,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:libAutoUpdate\")"
+    },
+    {
+      "source": "dependencies/libAutoUpdate.mod.gml",
+      "name": "addScript",
+      "line": 12,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:libAutoUpdate\")"
+    },
+    {
+      "source": "dependencies/libAutoUpdate.mod.gml",
+      "name": "init",
+      "line": 15,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:libAutoUpdate\")"
+    },
+    {
+      "source": "dependencies/libAutoUpdate.mod.gml",
+      "name": "autoupdate",
+      "line": 36,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:libAutoUpdate\")"
+    },
+    {
+      "source": "dependencies/libAutoUpdate.mod.gml",
+      "name": "updateFiles",
+      "line": 134,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:libAutoUpdate\")"
+    },
+    {
+      "source": "dependencies/libAutoUpdate.mod.gml",
+      "name": "chat_command",
+      "line": 209,
+      "reason": "Offline static bootstrap replaces original downloader/menu entry",
+      "replacement": "scrFROfflineLoader(\"mod:libAutoUpdate\")"
+    },
+    {
+      "source": "dependencies/libSaves.mod.gml",
+      "name": "save_load",
+      "line": 39,
+      "reason": "Synchronous native configuration I/O preserves source default merge and save_reset",
+      "replacement": "scrFRSaveLoad((argument_count>0 ? argument[0] : undefined),(argument_count>1 ? argument[1] : undefined),argument_count==2)"
+    }
+  ]
+}
