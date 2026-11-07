@@ -103,6 +103,68 @@ function scrFRWorldEnsure() {
     return instance_create(0,0,FRWorld);
 }
 
+function scrFRSessionPreserve(_instance) {
+    // These are the initialized module owner and its one live registry store,
+    // not arbitrary persistent gameplay objects or source-created UI actors.
+    if(!instance_exists(_instance)) return false;
+    if(_instance.object_index==FRWorld) return variable_global_exists("fr_world_owner")
+        && _instance==global.fr_world_owner;
+    return variable_global_exists("fr_lib_global") && _instance==global.fr_lib_global
+        && _instance.object_index==FRCustomObject && (_instance[$ "name"]??"")=="libGlobal";
+}
+
+function scrFRSessionPrepare() {
+    if(!scrFREnabled()) return;
+    scrFRLibGlobal();
+    // Authored cleanup can read the old GameCont. Retire source actors while
+    // that native session still exists, before its ordinary with-all sweep.
+    var _types=[FRCustomObject,FRCustomHitme,FRCustomEnemy,FRCustomProp,
+        FRCustomProjectile,FRCustomSlash,FRBinding];
+    for(var _i=0;_i<array_length(_types);++_i) with(_types[_i])
+        if(!scrFRSessionPreserve(id)) instance_destroy(id,false);
+}
+
+function scrFRSessionCancelLoading() {
+    // The authored loaders arm these booleans while Menu/GenCont exists.
+    // Returning from character selection destroys its GameCont too: that is
+    // cancellation, not a completed gameplay level. Preserve all ordinary
+    // source menu/options hooks while retiring only the stale notification.
+    var _pending=[["mod:lib","level_loading"],["mod:campfire","level_loading"],
+        ["mod:wibbly","level_start"]];
+    for(var _i=0;_i<array_length(_pending);++_i) {
+        var _key=_pending[_i][0],_field=_pending[_i][1];
+        if(variable_struct_exists(global.fr_module_vars,_key)) {
+            var _vars=global.fr_module_vars[$ _key];
+            if(variable_struct_exists(_vars,_field)) _vars[$ _field]=false;
+        }
+    }
+    // lib's source GlobalGet reads its live storage rather than module vars.
+    var _lib=scrFRLibGlobal();
+    if(instance_exists(_lib)) _lib.level_loading=false;
+}
+
+function scrFRSessionRetired(_retain_game=false) {
+    if(!scrFREnabled()) return;
+    // A final callback snapshot or world-scoped wait belongs to the retired
+    // run too. None may later spawn old actors or alter the new room's music.
+    global.fr_tasks=[];global.fr_final_callback_scope=undefined;
+    // Credits retain the already completed GameCont. They must not cause a
+    // second game_start, level_start or synthetic mutation acquisition.
+    FRWorld.fr_previous_game=_retain_game && instance_exists(GameCont)?GameCont.id:noone;
+    FRWorld.logic_tick=false;
+    FRWorld.logic_accumulator=0;
+    var _lib=scrFRLibGlobal();
+    if(instance_exists(_lib)) {
+        _lib.lastUpdatedFrame=scrFRSourceFrame();
+        _lib.bind_late_step=noone;_lib.bind_end_step=noone;
+        if(!_retain_game) {_lib.level_loading=false;_lib.previousmutations=[];}
+        var _vars=global.fr_module_vars[$ "mod:lib"];
+        _vars.bind_late_step=noone;_vars.bind_end_step=noone;
+        if(!_retain_game) {_vars.level_loading=false;_vars.previousmutations=[];}
+    }
+    if(!_retain_game) scrFRSessionCancelLoading();
+}
+
 function scrFRPausePrepare() {
     // lib::step may have legitimately replaced its persistent storage since
     // the last native lookup. Resolve that live owner before deactivation;
@@ -222,7 +284,10 @@ function scrFRWorldStep() {
             fr_previous_game=GameCont.id;
             scrFRHook("game_start",[]); scrFRWeaponsRefresh();
         }
-    } else fr_previous_game=noone;
+    } else {
+        fr_previous_game=noone;
+        scrFRSessionCancelLoading();
+    }
     scrFRHook("step",[]);
     scrFRCrownStep();
 }

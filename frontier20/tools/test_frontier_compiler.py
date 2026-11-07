@@ -21,6 +21,19 @@ def emit(body, name="main", module="tests/compiler.gml"):
 
 
 class NativeLoweringTests(unittest.TestCase):
+    def test_bubbles_nullify_rejects_friendly_projectiles_before_source_effects(self):
+        module="Characters/bubbles.race.gml"
+        source=Path(__file__).resolve().parents[1]/"original/Frontier"/module
+        for name in ("BubbleOrbital_nullify","BubbleProjectile_nullify","BubbleProjectileSub_nullify"):
+            with self.subTest(callback=name):
+                code=emit(source.read_text(encoding="utf-8-sig"),name,module)
+                guard='if(team!=team_none && (scrFROther(other)).team==team) return;'
+                self.assertEqual(code.count(guard),1)
+                self.assertLess(code.index(guard),code.index('scrFRInstanceCreate'))
+                self.assertIn('scrFRInstanceDestroy();',code)
+        other=emit('#define BubbleOrbital_nullify\nvalue=1;',"BubbleOrbital_nullify","tests/compiler.gml")
+        self.assertNotIn('FRIENDLY PROJECTILE FILTER',other)
+
     def test_meteor_compat_scorpcity_has_explicit_false_before_optional_match(self):
         module="Frontier_Events.mod.gml"
         source=Path(__file__).resolve().parents[1]/"original/Frontier"/module

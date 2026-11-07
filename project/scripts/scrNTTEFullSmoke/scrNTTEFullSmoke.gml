@@ -76,6 +76,11 @@ if(scrNTTEFullSmokeAsyncCase("FrontierPromptTests")) {scrFRIntegrationTestStart(
 if(scrNTTEFullSmokeAsyncCase("FrontierWallFixTests")) {scrFRIntegrationTestStart("wall-fixes");return;}
 if(scrNTTEFullSmokeAsyncCase("FrontierPlayerWallTests")) {scrFRIntegrationTestStart("player-wall");return;}
 if(scrNTTEFullSmokeAsyncCase("FrontierGroundWeaponTests")) {scrFRIntegrationTestStart("ground-weapon");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierProtoChestTests")) {scrFRIntegrationTestStart("proto-chest");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierRestartTests")) {scrFRIntegrationTestStart("restart");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierCaptainChairTests")) {scrFRIntegrationTestStart("captain_chair");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierMenuAudioTests")) {scrFRIntegrationTestStart("menu_audio");return;}
+if(scrNTTEFullSmokeAsyncCase("FrontierScaryFaceTests")) {scrFRIntegrationTestStart("scary-face");return;}
 if(scrNTTEFullSmokeAsyncCase("FrontierSceneryWeatherTests")) {scrFRIntegrationTestStart("scenery-weather");return;}
 if(scrNTTEFullSmokeAsyncCase("FrontierSceneryWeather60Tests")) {scrFRIntegrationTestStart("scenery-weather60");return;}
 if(scrNTTEFullSmokeAsyncCase("FrontierLifecycleTests")) {scrFRIntegrationTestStart("lifecycle");return;}

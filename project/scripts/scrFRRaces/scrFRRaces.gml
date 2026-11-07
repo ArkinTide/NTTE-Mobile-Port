@@ -168,6 +168,16 @@ function scrFRRaceNativeSprite(_kind,_skin=0,_default=-1) {
     return _field=="" ? _default : scrFRRaceVar(_field,_skin);
 }
 
+function scrFRRaceSelectSprite(_default) {
+    var _sprite=scrFRRaceNativeSprite("Select",0,_default);
+    if(sprite_exists(_sprite) && _sprite!=_default) return _sprite;
+    // Select art is a packaged asset, not a per-run allocation. Keep Bubbles'
+    // own two-frame unlocked/locked icon even during a missing-owner query.
+    var _packaged=asset_get_index("sprFR_sprBubblesSelect_9a983e1c7c7a");
+    if(sprite_exists(_packaged)) return _packaged;
+    return sprite_exists(_default) ? _default:sprCharSelectLocked;
+}
+
 function scrFRRaceNativeSound(_kind,_default=-1) {
     if(!scrFREnabled()) return _default;
     var _field="sndBubbles"+_kind;

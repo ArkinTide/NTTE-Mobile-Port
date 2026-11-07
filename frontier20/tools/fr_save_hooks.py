@@ -118,6 +118,9 @@ def apply(project):
     _insert(project, "scripts/scrNTTEFullMergedNative/scrNTTEFullMergedNative.gml",
             '    scrUGWeaponImportRebase(_data,_objects);',
             '    scrFRContinueMergedWeaponsRestore(_objects);\n', report, before=True)
+    _insert(project, "scripts/scrNTTEFullWeaponLoadoutNative/scrNTTEFullWeaponLoadoutNative.gml",
+            '    return scrNTTEFullWeaponNativeDecode(_data.root,_objects)',
+            '    scrFRContinueMergedWeaponsRestore(_objects);\n', report, before=True)
     _insert(project, "objects/GenCont/Create_0.gml", "with(GameCont) scrNTTEPortalDeathReset();",
             "scrFRContinueGenerationBegin();\n", report, before=True)
     # fr_area_hooks owns the single ordered finalization boundary: source

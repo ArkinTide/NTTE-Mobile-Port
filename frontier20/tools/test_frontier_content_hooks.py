@@ -65,6 +65,39 @@ class PatchIdempotencyTests(unittest.TestCase):
             self.assertEqual(path.read_text('utf8').count('dark();'),1)
             self.assertEqual(path.read_text('utf8').count('dark_end();'),1)
 
+    def test_before_indented_input_anchor_reapplies_without_changing_bytes(self):
+        for newline in ('\n','\r\n'):
+            for indent in ('\t','    '):
+                with self.subTest(newline=repr(newline),indent=repr(indent)), TemporaryDirectory() as folder:
+                    original='if (!block_input_frames) {\n'+indent+'sample_input()\n}\n'
+                    project,path=self.make_file(folder,original,newline,b'\xef\xbb\xbf')
+                    specs=(('BUBBLES STARTUP BEFORE REAL INPUT','before_sample();',True),
+                           ('BUBBLES STARTUP REAL INPUT','after_sample();',False),
+                           ('GROUND WEAPON REAL INPUT','ground_sample();',False))
+                    for repeat in range(4):
+                        for label,body,before in specs:
+                            patch(project,'fixture.gml',label,body,anchor='sample_input()',before=before)
+                        current=path.read_bytes()
+                        if repeat==0:
+                            once=current
+                        self.assertEqual(current,once)
+                    text=once.decode('utf-8-sig')
+                    self.assertIn(indent+'// BEGIN FRONTIER BUBBLES STARTUP BEFORE REAL INPUT',text)
+                    self.assertEqual(text.count('before_sample();'),1)
+                    self.assertLess(text.index('before_sample();'),text.index('sample_input()'))
+
+    def test_existing_indented_delimiters_keep_prefix_labels_independent(self):
+        with TemporaryDirectory() as folder:
+            original=('anchor\n\t// BEGIN FRONTIER FIXTURE\nold();\n  // END FRONTIER FIXTURE\n'
+                      '\t// BEGIN FRONTIER FIXTURE LONGER\nuntouched();\n'
+                      '\t// END FRONTIER FIXTURE LONGER\n')
+            project,path=self.make_file(folder,original,'\r\n')
+            patch(project,'fixture.gml','FIXTURE','new();',anchor='anchor')
+            expected=original.replace('old();','new();').replace('\n','\r\n').encode('utf8')
+            self.assertEqual(path.read_bytes(),expected)
+            patch(project,'fixture.gml','FIXTURE','new();',anchor='anchor')
+            self.assertEqual(path.read_bytes(),expected)
+
     def test_duplicate_incomplete_or_reversed_markers_fail_without_writing(self):
         valid='// BEGIN FRONTIER FIXTURE\nold();\n// END FRONTIER FIXTURE\n'
         forms=(valid+valid,

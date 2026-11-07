@@ -5,3 +5,4 @@ scrNTTEFullAnglerAfterCreate()
 // NTTE Coast constructor wading variables
 scrNTTEFullCoastConstructWading();
 scrNTTEFullAnglerTrailEnsure();
+if(object_index==NTTEFullAnglerGold) scrNTTEFullEnemyCreationHPFinish(); // NTTE FINAL ENEMY HP

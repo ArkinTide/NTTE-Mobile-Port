@@ -47,11 +47,14 @@ if instance_exists(DailyList) {
 }
 else if instance_exists(Menu) && scr_is_authority() {
 	if !Menu.loadout_open {
+	    scrFRSessionPrepare(); // FRONTIER MENU SESSION RETIRE
 	    with all {
+            if(scrFRSessionPreserve(id)) continue; // FRONTIER MENU STORAGE
 	        if object_index != MusCont && object_index != UberCont && object_index != Console
 				instance_destroy(id, 0)
 	    }
 		
+		scrFRSessionRetired(); // FRONTIER MENU RETIRED CONTINUATIONS
 		scr_camera_set_position(0, 0)
 		
 	    with (instance_create(0, 0, Logo)) {

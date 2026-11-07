@@ -4,3 +4,4 @@ scrNTTESewerAfterCreate()
 
 // NTTE Coast constructor wading variables
 scrNTTEFullCoastConstructWading();
+if(object_index==NTTEBoneGator) scrNTTEFullEnemyCreationHPFinish(); // NTTE FINAL ENEMY HP

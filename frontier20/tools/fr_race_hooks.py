@@ -65,7 +65,7 @@ def hook_specs():
     start(native, "function scrNTTEFullRaceMenuSprite(_race,_skin,_sprite) {",
           "if(scrFRRaceIs(_race)) return scrFRRaceMenuSprite(_skin,_sprite);", "RACE MENU ART")
     start(native, "function scrNTTEFullRaceSelectSprite(_race,_unlocked,_default) {",
-          'if(scrFRRaceIs(_race)) return scrFRRaceNativeSprite("Select");', "RACE SELECT ART")
+          'if(scrFRRaceIs(_race)) return scrFRRaceSelectSprite(_default);', "RACE SELECT ART")
     start(native, "function scrNTTEFullRaceSelectFrame(_race,_unlocked) {",
           "if(scrFRRaceIs(_race)) return !_unlocked;", "RACE SELECT FRAME")
     start("scripts/scrNTTEFullRaceMenuDecorationNative/scrNTTEFullRaceMenuDecorationNative.gml",
@@ -137,6 +137,13 @@ def apply(project):
     for hook in hook_specs():
         path = project / hook["path"]
         source = changed.get(path, path.read_text("utf-8-sig"))
+        if hook["marker"] == "// BEGIN FRONTIER RACE SELECT ART":
+            # Upgrade an already staged project without keeping the old
+            # no-fallback query that returned -1 after a session restart.
+            source = source.replace('if(scrFRRaceIs(_race)) return scrFRRaceNativeSprite("Select");',
+                                    'if(scrFRRaceIs(_race)) return scrFRRaceSelectSprite(_default);')
+            if source != changed.get(path, path.read_text("utf-8-sig")):
+                changed[path] = source
         if hook["replacement"] in source:
             report["hooks"].append({"marker": hook["marker"], "status": "already-applied"})
             continue

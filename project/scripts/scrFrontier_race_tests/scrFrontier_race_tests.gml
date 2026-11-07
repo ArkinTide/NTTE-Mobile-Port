@@ -522,9 +522,36 @@ function scrFRRaceTestsBehavior() {
         var _orbitals=scrFRMatching(scrFRMatching(FRCustomSlash,"name","bubbles_ultraOrbital"),"ownerid",_p);
         scrFRRaceTestsCheck("Bubbles Ultra A creates exactly three owned orbitals",array_length(_orbitals)==3);
         scrFRRaceTestsCheck("Bubbles Ultra A native state and HUD",scr_ultra_get(19,1)==1 && array_contains(GameCont.ultra_hud,57));
+        if(array_length(_orbitals)>0) {
+            var _orbital=_orbitals[0],_size=_p.bubbles_ultraOrbitalSize;
+            // Exercise the real native collision event and callback self/other.
+            // Own and allied shots must neither disappear nor shrink shields.
+            for(var _friendly_pass=0;_friendly_pass<2;++_friendly_pass) {
+                var _friendly=instance_create(_orbital.x,_orbital.y,Bullet1);
+                _friendly.team=_p.team;_friendly.creator=_friendly_pass==0?_p:_q;
+                _friendly.typ=1;_friendly.speed=0;
+                with(_friendly) with(_orbital) event_perform(ev_collision,projectile);
+                scrFRRaceTestsCheck("Bubbles Ultra A preserves own/allied native projectile "+string(_friendly_pass),
+                    instance_exists(_friendly) && _p.bubbles_ultraOrbitalSize==_size);
+                if(instance_exists(_friendly)) instance_destroy(_friendly,false);
+            }
+            var _hostile=instance_create(_orbital.x,_orbital.y,EnemyBullet1);
+            _hostile.team=team_enemy;_hostile.typ=1;_hostile.speed=0;
+            with(_hostile) with(_orbital) event_perform(ev_collision,projectile);
+            scrFRRaceTestsCheck("Bubbles Ultra A still absorbs hostile native projectile and shrinks",
+                !instance_exists(_hostile) && abs(_p.bubbles_ultraOrbitalSize-(_size-.1))<.0001);
+            if(instance_exists(_hostile)) instance_destroy(_hostile,false);
+        }
         scrFRUltraSet(19,2,1);
         if(array_length(_bubbles)>0) {
-            var _bubble=_bubbles[0],_shot=instance_create(_bubble.x,_bubble.y,EnemyBullet1);
+            var _bubble=_bubbles[0],_allied=instance_create(_bubble.x,_bubble.y,Bullet1),
+                _charges=_bubble.ultra_b_charges;
+            _allied.team=_p.team;_allied.creator=_p;_allied.typ=1;_allied.speed=0;
+            with(_allied) with(_bubble) event_perform(ev_collision,projectile);
+            scrFRRaceTestsCheck("Bubbles Ultra B preserves friendly native projectile without absorption charges",
+                instance_exists(_allied) && _bubble.ultra_b_charges==_charges);
+            if(instance_exists(_allied)) instance_destroy(_allied,false);
+            var _shot=instance_create(_bubble.x,_bubble.y,EnemyBullet1);
             _shot.team=team_enemy;_shot.typ=1;_shot.speed=0;
             // Native collision scope gives on_projectile the actual other.
             with(_shot) with(_bubble) {

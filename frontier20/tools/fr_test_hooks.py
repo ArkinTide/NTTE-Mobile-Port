@@ -58,12 +58,92 @@ def instrument_bubbles_hud(project):
           'scrFRBubblesStartupTestsObserve("hud",_frl__player);',anchor=anchor)
 
 
+def instrument_bubbles_mobile_input(project):
+    """Exercise real touch producers; substitute only desktop test devices."""
+    path=Path(project)/"objects/JoystickAttack/Other_10.gml"
+    text=path.read_text(encoding="utf8")
+    marker="// FRONTIER BUBBLES EXPLICIT TOUCH DEVICE FIXTURE\n"
+    if marker not in text:
+        replacements={
+            "get_nearest_touch(":"scrFRBubblesStartupTestsTouchNearest(",
+            "device_mouse_x_to_gui(":"scrFRBubblesStartupTestsTouchX(",
+            "device_mouse_y_to_gui(":"scrFRBubblesStartupTestsTouchY(",
+            "device_mouse_check_button(":'scrFRBubblesStartupTestsTouchButton("held",',
+            "device_mouse_check_button_pressed(":'scrFRBubblesStartupTestsTouchButton("pressed",',
+            "device_mouse_check_button_released(":'scrFRBubblesStartupTestsTouchButton("released",',
+        }
+        for before,after in replacements.items():
+            assert before in text and after not in text,(path,before)
+            text=text.replace(before,after)
+        path.write_text(marker+text,encoding="utf8")
+    guard=('if(os_type==os_windows && scrNTTEFullSmokeEnabled() '
+           '&& instance_exists(FRIntegrationTest)) ')
+    patch(Path(project),"objects/Slash/Collision_hitme.gml","BUBBLES STARTUP NATURAL HIT BEFORE",
+          'var _fr_bubbles_natural_hit=undefined;\n'+guard+
+          '_fr_bubbles_natural_hit=scrFRBubblesStartupTestsHitBegin(id,other.id);',
+          anchor='var _ntte_merge_collision=scrNTTEFullMergedNativeCollisionBegin(id,other.id);',before=True)
+    patch(Path(project),"objects/Slash/Collision_hitme.gml","BUBBLES STARTUP NATURAL HIT AFTER",
+          guard+'scrFRBubblesStartupTestsHitEnd(_fr_bubbles_natural_hit);')
+
+
+def instrument_menu_audio(project):
+    """Record actual returned native voices only in the explicit smoke build."""
+    replacements = {
+        "scripts/snd_play/snd_play.gml": [(
+            "return audio_play_sound_on(UberCont.mainsound, _sound_index,\n"
+            "\t\t\tfalse, 2, UberCont.opt_sndvol * _gain, 0, _pitch)",
+            "return scrFRMenuAudioTestsRecord(audio_play_sound_on(UberCont.mainsound, _sound_index,\n"
+            "\t\t\tfalse, 2, UberCont.opt_sndvol * _gain, 0, _pitch), _sound_index, \"native-on\")", 1)],
+        "scripts/snd_play_loop/snd_play_loop.gml": [(
+            "return audio_play_sound(_sound_index, 1000, true)",
+            "return scrFRMenuAudioTestsRecord(audio_play_sound(_sound_index, 1000, true), _sound_index, \"native-loop\")", 1)],
+        "scripts/snd_play_pitch/snd_play_pitch.gml": [(
+            "return audio_play_sound_on(UberCont.mainsound,\n"
+            "        _sound_index, false, 2, _gain, 0, _pitch)",
+            "return scrFRMenuAudioTestsRecord(audio_play_sound_on(UberCont.mainsound,\n"
+            "        _sound_index, false, 2, _gain, 0, _pitch), _sound_index, \"native-pitch\")", 1)],
+        "scripts/snd_play_music/snd_play_music.gml": [(
+            "var _s = audio_play_sound(_sound_index, 128, _looped)",
+            "var _s = scrFRMenuAudioTestsRecord(audio_play_sound(_sound_index, 128, _looped), _sound_index, \"native-music-ambient\")", 2)],
+        "scripts/scrFrontier_legacy_api/scrFrontier_legacy_api.gml": [(
+            "return audio_play_sound_on(UberCont.mainsound,_sound,true,1,UberCont.opt_sndvol,0,1);",
+            "return scrFRMenuAudioTestsRecord(audio_play_sound_on(UberCont.mainsound,_sound,true,1,UberCont.opt_sndvol,0,1),_sound,\"frontier-loop\");", 1)],
+    }
+    planned = []
+    for relative, rows in replacements.items():
+        path = project / relative
+        raw = path.read_bytes()
+        bom = b"\xef\xbb\xbf" if raw.startswith(b"\xef\xbb\xbf") else b""
+        text = raw.decode("utf-8-sig")
+        newline = "\r\n" if "\r\n" in text else "\n"
+        normal = text.replace("\r\n", "\n")
+        for before, after, count in rows:
+            if normal.count(after) == count and before not in normal:
+                continue
+            assert normal.count(before) == count and after not in normal, (relative, before)
+            normal = normal.replace(before, after)
+        planned.append((path, bom + normal.replace("\n", newline).encode("utf8")))
+    for path, payload in planned:
+        if path.read_bytes() != payload:
+            path.write_bytes(payload)
+
+
 def apply(project):
     project = Path(project).resolve()
     assert project == (ROOT / "staging/project").resolve()
     instrument_portal_storm(project)
     instrument_path_grid(project)
     instrument_bubbles_hud(project)
+    instrument_bubbles_mobile_input(project)
+    instrument_menu_audio(project)
+    patch(project,"objects/UberCont/Step_0.gml","RESTART OBSERVERS",
+          'if(os_type==os_windows && scrNTTEFullSmokeEnabled()) {\n'
+          '    scrFRRestartTestsObserve();\n'
+          '    scrFRProtoChestTestsObserve();\n'
+          '    scrFRCaptainChairTestsObserve();\n'
+          '    scrFRMenuAudioTestsObserve();\n'
+          '    scrFRBubblesStartupTestsObserveLifecycle();\n'
+          '}',anchor='scrNTTEUpdateStep()')
     # The host's resource-pack startup predates the smoke save override. Keep
     # even empty backup/cache directory operations inside this isolated run;
     # ordinary games still use the host's original save-directory semantics.
@@ -101,6 +181,9 @@ def apply(project):
     # physical producer, independently of Player/UberCont event ordering.
     bubbles_guard = ('if(os_type==os_windows && scrNTTEFullSmokeEnabled() '
                      '&& instance_exists(FRIntegrationTest)) ')
+    patch(project,"objects/UberCont/Step_0.gml","BUBBLES STARTUP BEFORE REAL INPUT",
+          bubbles_guard+'scrFRBubblesStartupTestsBeforeInputSample();',
+          anchor='scrHandleInputsGeneral(global.index)',before=True)
     patch(project,"objects/UberCont/Step_0.gml","BUBBLES STARTUP REAL INPUT",
           bubbles_guard+'scrFRBubblesStartupTestsAfterInputSample();',
           anchor='scrHandleInputsGeneral(global.index)')
@@ -160,6 +243,11 @@ def apply(project):
           'if(scrNTTEFullSmokeAsyncCase("FrontierWallFixTests")) {scrFRIntegrationTestStart("wall-fixes");return;}\n'
           'if(scrNTTEFullSmokeAsyncCase("FrontierPlayerWallTests")) {scrFRIntegrationTestStart("player-wall");return;}\n'
           'if(scrNTTEFullSmokeAsyncCase("FrontierGroundWeaponTests")) {scrFRIntegrationTestStart("ground-weapon");return;}\n'
+          'if(scrNTTEFullSmokeAsyncCase("FrontierProtoChestTests")) {scrFRIntegrationTestStart("proto-chest");return;}\n'
+          'if(scrNTTEFullSmokeAsyncCase("FrontierRestartTests")) {scrFRIntegrationTestStart("restart");return;}\n'
+          'if(scrNTTEFullSmokeAsyncCase("FrontierCaptainChairTests")) {scrFRIntegrationTestStart("captain_chair");return;}\n'
+          'if(scrNTTEFullSmokeAsyncCase("FrontierMenuAudioTests")) {scrFRIntegrationTestStart("menu_audio");return;}\n'
+          'if(scrNTTEFullSmokeAsyncCase("FrontierScaryFaceTests")) {scrFRIntegrationTestStart("scary-face");return;}\n'
           'if(scrNTTEFullSmokeAsyncCase("FrontierSceneryWeatherTests")) {scrFRIntegrationTestStart("scenery-weather");return;}\n'
           'if(scrNTTEFullSmokeAsyncCase("FrontierSceneryWeather60Tests")) {scrFRIntegrationTestStart("scenery-weather60");return;}\n'
           'if(scrNTTEFullSmokeAsyncCase("FrontierLifecycleTests")) {scrFRIntegrationTestStart("lifecycle");return;}\n'

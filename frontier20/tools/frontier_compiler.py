@@ -190,6 +190,15 @@ class FrontierEmitter(Emitter):
         text = super().emit()
         text = text.replace("if(instance_exists(__fr_with", "if(scrFRScopeExists(__fr_with")
         text = text.replace("if (!instance_exists(_fr.scope))", "if (!scrFRScopeExists(_fr.scope))")
+        if (self.module == "Characters/bubbles.race.gml" and self.definition.name in {
+                "BubbleOrbital_nullify", "BubbleProjectile_nullify", "BubbleProjectileSub_nullify"}):
+            # Native CustomSlash dispatches a source projectile callback before
+            # the inherited Slash collision can reject friendly shots. Apply
+            # that same team rule before absorption, charges or orbital shrink.
+            assert not self.async_mode, "Bubbles nullify callback unexpectedly became resumable"
+            opening = text.index("{") + 1
+            guard = '\n// FRONTIER BUBBLES FRIENDLY PROJECTILE FILTER\nif(team!=team_none && (scrFROther(other)).team==team) return;\n'
+            text = text[:opening] + guard + text[opening:]
         defaults = CALLBACK_LOCAL_DEFAULTS.get((self.module, self.definition.name), {})
         if defaults:
             assert not self.async_mode, "Reviewed callback default unexpectedly became resumable"

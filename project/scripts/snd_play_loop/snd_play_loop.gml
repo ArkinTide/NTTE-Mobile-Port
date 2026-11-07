@@ -7,7 +7,7 @@ function snd_play_loop(_sound_index) {
 	
 	if audio_exists(_sound_index) {
 	    audio_stop_sound(_sound_index)
-	    return audio_play_sound(_sound_index, 1000, true)
+	    return scrFRMenuAudioTestsRecord(audio_play_sound(_sound_index, 1000, true), _sound_index, "native-loop")
 	}
 	
 	return -1

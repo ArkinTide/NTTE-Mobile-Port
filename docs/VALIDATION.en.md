@@ -2,6 +2,32 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [Home](../README.en.md)
 
+## 2.0.1 — Lifecycle, Bubbles and saved weapon repairs
+
+The newly compiled final 2.0.1 VM/input passed 14 explicitly selected native
+cases. A hash-verified Python log records 112 passing checks. The earlier 20
+native cases remain evidence for their earlier VM, not this final VM. The Python
+receipt binds its log/count, without a historical source-snapshot binding.
+
+Bubbles A/B each completed real new games and actual death-to-Retry at 30/60 FPS:
+8 trials and 24 real Slash hits through desktop attack, touch tap and hold-release.
+The 60 FPS trials cover both logic-tick phases. Retry creates a new player while
+preserving the content registry. Other cases cover real proto-chest save/retrieve/
+fire, corrupt references, console, retry/menu lifecycle, weather, Captain's chair,
+friendly projectiles, continue and Scary Face. Earlier complete Event-weather
+evidence belongs to the historical VM.
+
+APK/IPA version, identifier, source binding and structure were checked. Android
+versionCode is 3000097, retaining the signing identity and checked 16KB alignment.
+iOS build is 97 and requires re-signing; freshly compiled game data uses a retained
+native Runner, without a fresh Mac native build. GAME_BUILD remains 3004.
+
+Persistent low-frequency/popping audio is unresolved. Silent desktop ownership
+checks do not establish correct phone mixing. No physical Android/iOS, complete
+random campaign or universal FPS acceptance was performed; desktop timing does
+not establish phone frame rates. See the [validation summary](validation/2.0.1-development-regression.json)
+and [source baseline](SOURCE_BASELINE.json).
+
 ## 2.0.0 — NTTE + Uncharted Frontier
 
 88 cases passed on the same final Windows VM/input, with 94 Python checks,

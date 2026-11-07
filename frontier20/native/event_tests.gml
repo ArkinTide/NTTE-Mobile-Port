@@ -171,6 +171,10 @@ function scrFREventTestsGenerate(_driver) {
         "NTUF event room disposal retained old terrain or generation controllers");
     if(!instance_exists(BackCont)) instance_create(0,0,BackCont);
     if(!instance_exists(MusCont)) instance_create(0,0,MusCont);
+    // Vlambeer normally creates this receiver before GenCont. Its real
+    // Destroy event clears the loading letterbox when GenCont retires it.
+    // Omitting it leaves a permanent black bar over the source weather card.
+    _driver.fr_event_generation_spiral=instance_create(0,0,SpiralCont);
     var _gen=instance_create(0,0,GenCont);
     assert(instance_number(GenCont)==1 && instance_exists(_gen) && !_gen.ntte_full_sync_generation,
         "NTUF event fixture replaced ordinary async generation with sync callbacks");
@@ -285,6 +289,8 @@ function scrFREventTestsPortalSelector() {
 }
 function scrFREventTestsInspect(_driver) {
     var _case=_driver.fr_event_cases[_driver.fr_event_index],_record=_driver.fr_event_record,_live=_driver.fr_event_live;
+    assert(!instance_exists(_driver.fr_event_generation_spiral) && !UberCont.letterbox,
+        "NTUF ordinary generation did not retire its native loading spiral/letterbox");
     assert(GameCont.area==_case.area && GameCont.subarea==_case.subarea,"NTUF event generation changed its target");
     assert(instance_number(Floor)>=20,"NTUF event generation omitted native traversable terrain");
     _record.terrain={floors:instance_number(Floor),walls:instance_number(Wall),invisible:instance_number(InvisiWall),
@@ -424,7 +430,9 @@ function scrFREventTestsEventsStep(_driver) {
         && scrFRModGet("mod","Frontier_Events","settingEventDropdowns")
         && !scrFRModGet("mod","Frontier_Events","settingNightLoops")) {
         assert((_record[$ "dropdown_visible_ticks"]??0)>0
-            && (_record[$ "dropdown_ready_visible_ticks"]??0)>0,
+            && (_record[$ "dropdown_ready_visible_ticks"]??0)>0
+            && (_record[$ "dropdown_full_visible_ticks"]??0)>0
+            && (_record[$ "dropdown_screen_proof"]??false),
             "NTUF natural MeteorShower sign never became visible after real room generation completed");
     }
     _record.observed_source_ticks=_live.ticks;return true;
@@ -444,9 +452,57 @@ function scrFREventTestsDropdownObserve(_driver) {
                 _record.dropdown_visible_ticks=(_record[$ "dropdown_visible_ticks"]??0)+1;
                 if(!instance_exists(GenCont) && !scrGameIsGenerationScreen())
                     _record.dropdown_ready_visible_ticks=(_record[$ "dropdown_ready_visible_ticks"]??0)+1;
+                if(height>=20 && !instance_exists(GenCont) && !scrGameIsGenerationScreen()
+                    && !UberCont.letterbox && UberCont.letterbox_frame==0)
+                    _record.dropdown_full_visible_ticks=(_record[$ "dropdown_full_visible_ticks"]??0)+1;
+                if(!(_record[$ "dropdown_screen_proof"]??false)
+                    && !instance_exists(GenCont) && !scrGameIsGenerationScreen()) {
+                    _record.dropdown_screen_proof=scrFRWeatherScreenProof(id,
+                        "ntuf-natural-weather-final-screen-"+string(game_get_speed(gamespeed_fps))+".png");
+                }
             }
         }
     }
+}
+
+// Check the engine's already composited previous frame, not a private replay
+// of the banner's callback. A matching sprite on an isolated target alone
+// cannot prove that generation overlays, camera or HUD actually let it show.
+function scrFRWeatherScreenProof(_binding,_filename) {
+    assert(instance_exists(_binding) && surface_exists(application_surface),
+        "NTUF weather final-screen proof lost its live receiver or application surface");
+    var _args=_binding.fr_binding_args,_width=ceil(view_width),_height=ceil(view_height),
+        _actual_width=surface_get_width(application_surface),_actual_height=surface_get_height(application_surface),
+        _reference=scrFRVisualCapture("weather-artwork",_width,_height,view_xview,view_yview,
+            [_args[1],_args[2],_binding.height,_binding.bounceHeight]),
+        _actual=buffer_create(_actual_width*_actual_height*4,buffer_fixed,1),_samples=0,_matches=0;
+    try {
+        buffer_get_surface(_actual,application_surface,0);
+        for(var _y=0;_y<min(_height,100);++_y) for(var _x=0;_x<_width;++_x) {
+            var _offset=4*(_y*_width+_x);
+            if(buffer_peek(_reference.pixels,_offset+3,buffer_u8)<250) continue;
+            var _r=buffer_peek(_reference.pixels,_offset,buffer_u8),
+                _g=buffer_peek(_reference.pixels,_offset+1,buffer_u8),
+                _b=buffer_peek(_reference.pixels,_offset+2,buffer_u8);
+            // Non-black source art avoids credit for an empty black frame.
+            if(_r+_g+_b<100) continue;
+            var _ax=clamp(floor((_x+.5)*_actual_width/_width),0,_actual_width-1),
+                _ay=clamp(floor((_y+.5)*_actual_height/_height),0,_actual_height-1),
+                _at=4*(_ay*_actual_width+_ax);
+            _samples++;
+            if(abs(buffer_peek(_actual,_at,buffer_u8)-_r)<=16
+                && abs(buffer_peek(_actual,_at+1,buffer_u8)-_g)<=16
+                && abs(buffer_peek(_actual,_at+2,buffer_u8)-_b)<=16) _matches++;
+        }
+        surface_save(application_surface,working_directory+_filename);
+        scrNTTESmokeLog("NTUF WEATHER FINAL SCREEN "+json_stringify({samples:_samples,matches:_matches,
+            ratio:_matches/max(1,_samples),native_width:_width,native_height:_height,
+            surface_width:_actual_width,surface_height:_actual_height,
+            height:_binding.height,bounce:_binding.bounceHeight,viewx:view_xview,viewy:view_yview}));
+        assert(_samples>100 && _matches/_samples>.8,
+            "NTUF weather artwork did not reach the actual final application surface");
+        return true;
+    } finally {scrFRVisualFree(_reference);if(buffer_exists(_actual)) buffer_delete(_actual);}
 }
 function scrFREventTestsPrompt(_creator,_player) {
     var _prompt=noone;
@@ -764,6 +820,8 @@ function scrFRObstacleWeatherTestsStep(_driver) {
         }
         _state.max_height=max(_state.max_height,_binding.height);
         if(!_state.captured && _binding.height>=12 && _binding.height<=30) {
+            scrFRWeatherScreenProof(_binding,"ntuf-weather-final-screen-"
+                +string(game_get_speed(gamespeed_fps))+".png");
             // Draw the same receiver/event once into a real offscreen target.
             // Normal host Draw must already have advanced height into view.
             var _capture=scrFRVisualCapture("actor-event",ceil(view_width),ceil(view_height),

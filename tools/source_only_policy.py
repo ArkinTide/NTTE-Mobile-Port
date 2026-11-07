@@ -2,7 +2,7 @@
 from pathlib import PurePosixPath
 import subprocess,tempfile,hashlib
 ASSET_EXTS=set('png jpg jpeg gif bmp ico icns webp avif svg psd ase aseprite kra tga dds ktx pvr ogg wav mp3 flac aac m4a opus mid midi mp4 mov webm ttf otf woff woff2 fnt dll exe so dylib a lib bin win ios droid apk ipa aab zip 7z rar pdf glb gltf fbx obj blend'.split())
-SOURCE_EXTS=set('gml yy yyp resource_order vsh fsh ini json md js loc txt java gitignore gitattributes mit csv py xml cpp bat nsi ext sh yml yaml h hpp c css html lock toml ps1 patch license'.split())
+SOURCE_EXTS=set('gml yy yyp resource_order vsh fsh ini json md js loc txt java gitignore gitattributes mit csv tsv py xml cpp bat nsi ext sh yml yaml h hpp c css html lock toml ps1 patch license'.split())
 SOURCE_NAMES={'LICENSE','COPYING','NOTICE','Makefile','CMakeLists.txt','.gitkeep','.gitignore','.gitattributes','pre-push'}
 def allowed_path(path):
     p=PurePosixPath(path);ext=p.suffix.lower().lstrip('.')

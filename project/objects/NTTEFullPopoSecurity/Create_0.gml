@@ -2,3 +2,4 @@ scrNTTEFullPopoSecurityCreate(); event_inherited(); scrNTTEFullPopoSecurityAfter
 
 // NTTE Coast constructor wading variables
 scrNTTEFullCoastConstructWading();
+if(object_index==NTTEFullPopoSecurity) scrNTTEFullEnemyCreationHPFinish(); // NTTE FINAL ENEMY HP

@@ -24,3 +24,7 @@ else {
 		CoopController.protocurse = curse
 	}
 }
+
+// Snapshot only permanent normal-run storage; custom/co-op retain their original isolated behavior.
+if (!instance_exists(CoopController) && !(scrGameIsEventRun() || scrGameIsCustomMode()))
+    scrNTTEFullProtoWeaponSave(UberCont.protowep,true)

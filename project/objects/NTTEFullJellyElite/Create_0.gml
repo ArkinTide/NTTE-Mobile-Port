@@ -4,3 +4,4 @@ scrNTTEFullJellyAfterCreate()
 
 // NTTE Coast constructor wading variables
 scrNTTEFullCoastConstructWading();
+if(object_index==NTTEFullJellyElite) scrNTTEFullEnemyCreationHPFinish(); // NTTE FINAL ENEMY HP

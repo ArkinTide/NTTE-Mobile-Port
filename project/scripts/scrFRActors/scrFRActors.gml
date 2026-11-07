@@ -395,19 +395,33 @@ function scrFRMaxHealthWrite(_target,_value,_op="=") {
         // A plain assignment must not read a field that has never existed.
         if(_op=="=") max_hp=_value;
         else max_hp=scrFRNumericWrite(max_hp,_value,_op);
-        if(self[$ "fr_maxhealth_init"]??false) {
+        var _custom_initial=false,_source_seen=false;
+        if(variable_instance_exists(id,"fr_maxhealth_init")) _custom_initial=fr_maxhealth_init;
+        if(variable_instance_exists(id,"fr_source_maxhealth_seen")) _source_seen=fr_source_maxhealth_seen;
+        var _native_replacement=!_custom_initial && _op=="="
+            && !_source_seen && instance_is(id,enemy);
+        if((_custom_initial || _native_replacement) && abs(max_hp)<1/0) {
             fr_maxhealth_init=false;
+            fr_source_maxhealth_seen=true;
             // NTT applies loop health at the first custom maxhealth write,
             // after the authored value is known, rather than to its dummy1.
-            max_hp*=1+GameCont.loops/20;
-            if(scrGameIsCustomMode()) {
+            if(_custom_initial) max_hp*=1+GameCont.loops/20;
+            if(_custom_initial && scrGameIsCustomMode()) {
                 var _parameter=scrEnemyIsBoss(id)?"boss_health":"enemy_health";
                 max_hp=max(1,floor(max_hp*scrCustomParam(_parameter)/100));
             }
             var _scarier=scr_skill_get(mut_scarier_face);
             if(_scarier) max_hp=floor(max_hp*power(.8,_scarier));
-            max_hp=max(1,round(max_hp));hp=max_hp;
-            if(scrCrownCheck(crwn_luck) && !scrEnemyIsBoss(id) && random(1)<=.1) hp=1;
+            // MicroSnowbot replaces native SnowBot health with a raw 2 after
+            // its ordinary Create event. Its first authored replacement
+            // needs the same HP mutation, without repeating native loop,
+            // custom-mode, Crown or drop effects. Later heals/phase edits
+            // operate on the already adjusted maximum.
+            if(_custom_initial) max_hp=max(1,round(max_hp));
+            hp=max_hp;
+            if(_custom_initial) {
+                if(scrCrownCheck(crwn_luck) && !scrEnemyIsBoss(id) && random(1)<=.1) hp=1;
+            }
         }
         _result=max_hp;
     }

@@ -1174,6 +1174,9 @@ exit;
 
 // Original Characters/bubbles.race.gml:651
 function fr_Characters_bubbles_race_gml_BubbleProjectile_nullify() {
+// FRONTIER BUBBLES FRIENDLY PROJECTILE FILTER
+if(team!=team_none && (scrFROther(other)).team==team) return;
+
 if (scrFRInstanceExists(scrFRSelf(self))) {
 {
 var _frl_me = scrFRSelf(self);
@@ -1214,6 +1217,9 @@ ultra_b_charges += 1;
 
 // Original Characters/bubbles.race.gml:667
 function fr_Characters_bubbles_race_gml_BubbleProjectileSub_nullify() {
+// FRONTIER BUBBLES FRIENDLY PROJECTILE FILTER
+if(team!=team_none && (scrFROther(other)).team==team) return;
+
 if (scrFRInstanceExists(scrFRSelf(self))) {
 {
 var _frl_me = scrFRSelf(self);
@@ -1615,6 +1621,9 @@ if(__fr_break3) break;
 
 // Original Characters/bubbles.race.gml:876
 function fr_Characters_bubbles_race_gml_BubbleOrbital_nullify() {
+// FRONTIER BUBBLES FRIENDLY PROJECTILE FILTER
+if(team!=team_none && (scrFROther(other)).team==team) return;
+
 if (((scrFRInstanceExists(scrFRSelf(self)) && ((scrFROther(other)).typ > 0)) && (creator.bubbles_ultraOrbitalSize > 0.2))) {
 {
 var _frl_me = scrFRSelf(self);

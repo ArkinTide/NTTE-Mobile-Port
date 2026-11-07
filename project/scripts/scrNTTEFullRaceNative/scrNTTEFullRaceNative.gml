@@ -42,7 +42,7 @@ function scrNTTEFullRaceMenuSprite(_race,_skin,_sprite) {
 }
 function scrNTTEFullRaceSelectSprite(_race,_unlocked,_default) {
     // BEGIN FRONTIER RACE SELECT ART
-    if(scrFRRaceIs(_race)) return scrFRRaceNativeSprite("Select");
+    if(scrFRRaceIs(_race)) return scrFRRaceSelectSprite(_default);
     // END FRONTIER RACE SELECT ART
 
     return scrNTTEFullRaceNumeric(_race)>=0 ? scrNTTEFullRaceSprite(_race,"Select",0):_default

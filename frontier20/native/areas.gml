@@ -93,7 +93,11 @@ function scrFRAreaMetadata(_area,_callback,_fallback) {
 function scrFRAreaInfo(_area) {
     var _key=scrFRAreaKey(_area);
     if(!scrFRAreaActive(_area)) return undefined;
-    var _id=scrFRAreaResolve(_key),_next=scrFRAreaMetadata(_id,"area_next",[area_desert,1]),
+    // Menu/console callers ask for static metadata before a run exists.
+    // Cyberspace's authored exit reads GameCont.lastarea and only has a
+    // meaningful destination during a live run; resolve that callback then.
+    var _id=scrFRAreaResolve(_key),_next=instance_exists(GameCont)
+            ? scrFRAreaMetadata(_id,"area_next",[area_desert,1]):[area_desert,1],
         _music=scrFRAreaMusicInfo(_id);
     return {key:_key,area_id:_id,subareas:scrFRAreaMetadata(_id,"area_subarea",1),
         goal:scrFRAreaMetadata(_id,"area_goal",110),next_area:scrFRAreaResolve(_next[0]),next_subarea:_next[1],
@@ -499,6 +503,7 @@ function scrFRAreaTests() {
     assert(scrFRAreaDebugSubareas(304)==1 && _last_dev.area==304 && _last_dev.subarea==99
         && _named_cove.area==301 && is_undefined(scrFRAreaDebugParse("1-3")),
         "Goto Devzone bounds or native-command fallback changed");
+    scrFRAreaMenuConsoleTests();
     if(instance_exists(GameCont)) {
         var _pending=scrNTTEFullValue(GameCont,"ntte_full_pending_destination",undefined),
             _seed=scrNTTEFullValue(GameCont,"ntte_full_source_pending_generation",undefined),
@@ -519,4 +524,41 @@ function scrFRAreaTests() {
         }
     }
     return true;
+}
+
+function scrFRAreaMenuConsoleTests() {
+    // Reproduce the menu state without destroying the live isolated fixture.
+    // No gameplay ticks run while the controller is inactive.
+    var _game=instance_find(GameCont,0),_previous_debug=global.console_active,
+        _previous_orig=UberCont.opt_orig_console,_previous_console=UberCont.opt_console;
+    if(instance_exists(_game)) instance_deactivate_object(_game);
+    try {
+        assert(!instance_exists(GameCont),"Console menu regression still has a live GameCont");
+        var _areas=scrFRAreaDebugAreas([0,1,2,3,4,5,6,7,area_hq]);
+        for(var _i=0;_i<array_length(_areas);++_i) {
+            var _area=_areas[_i],_subareas=scrFRAreaDebugSubareas(_area);
+            assert(_subareas>=1,"Menu console omitted an area's subarea metadata");
+            for(var _sub=1;_sub<=_subareas;++_sub)
+                assert(is_string(scrAreaGetMapName(_area,_sub,0,false,false)),
+                    "Menu console map label is unavailable without GameCont");
+        }
+        assert(scrFRAreaInfo(302).subareas==1
+            && scrFRAreaDebugParse("cyberspace-1").area==302,
+            "Menu console cannot enumerate/parse Cyberspace without a run");
+        // This builds the same complete Goto/skills views as the console key.
+        scr_create_debug_overlay_views();
+        scrNTTESmokeLog("PASS FRONTIER actual menu console views without GameCont");
+    } finally {
+        if(_game!=noone) instance_activate_object(_game);
+        global.console_active=_previous_debug;
+        UberCont.opt_orig_console=_previous_orig;UberCont.opt_console=_previous_console;
+    }
+    if(instance_exists(_game)) {
+        var _lastarea=_game.lastarea;
+        try {
+            _game.lastarea=area_labs;
+            assert(scrFRAreaInfo(302).next_area==area_labs,
+                "Menu safety changed the real Cyberspace return destination");
+        } finally {_game.lastarea=_lastarea;}
+    }
 }

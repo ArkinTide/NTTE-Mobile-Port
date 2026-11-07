@@ -1,6 +1,6 @@
 // 对外显示的完整版本号（可含 "-" 等非数字字符）
 
-#macro GAME_VERSION "2.0"
+#macro GAME_VERSION "2.0.1"
 
 // 内部构建号：必须是纯数字 —— 参与存档版本校验 / 联机握手 / 每日数据上报
 
@@ -331,5 +331,6 @@ global.seed = random_get_seed()
 test_framerate_uncapped = false
 
 // BEGIN FRONTIER BOOT
+if(scrFRRestartTestsColdRequested()) scrFRRestartTestsColdSelectProbe(); // FRONTIER COLD SELECT ACCEPTANCE
 scrFRWorldEnsure(); // FRONTIER OWNED PERSISTENT BOOT
 // END FRONTIER BOOT

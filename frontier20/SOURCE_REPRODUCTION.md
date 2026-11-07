@@ -44,3 +44,16 @@ caches are not part of the public source payload.
 The historical source snapshot describes an earlier local 2.0 build. It is not
 current acceptance and does not include its binaries or installer files.
 Current validation is the root `docs/VALIDATION.md` and source-baseline record.
+
+For 2.0.1, the game display/updater/tag use `2.0.1` and internal build 97;
+GAME_BUILD/save protocol remains 3004. The common accepted project retains the
+canonical `2.0` platform option declarations. Delivery compiler copies normalize
+the iOS/Android platform version to `2.0.1`; the public Android overlay includes
+its version option and bootstrap adjustment. The iOS package has build 97 and
+requires the user's own re-signing. Private host packaging/signing machinery is
+not published and should not be inferred from the common option declarations.
+
+The current Chinese source inputs are `localization/phrases.zh-CN.tsv`,
+`localization/settings.zh-CN.tsv` and `localization/surgery.zh-CN.tsv`, together
+with localization coverage/inventory JSON. TSV files are plain UTF-8 source and
+must not be omitted when regenerating localization or auditing the checkout.

@@ -24,8 +24,102 @@ function scrNTTEFullLoadoutWeaponUnpack(_data) {
             else variable_struct_set(_object,_entry[0],scrNTTEFullWeaponNativeDecode(_entry[1],_objects))
         }
     }
+    scrFRContinueMergedWeaponsRestore(_objects);
     return scrNTTEFullWeaponNativeDecode(_data.root,_objects)
 }
+// Validate only the weapon links which native getters traverse. Shared
+// metadata/state references are harmless and must retain their physical aliases.
+// Keep both walks iterative so damaged graphs cannot recurse or loop forever.
+function scrNTTEFullProtoWeaponTopologyValid(_weapon) {
+    var _part=scrNTTEFullWeaponModel(_weapon),_parts=[];
+    while(true) {
+        if(is_struct(_part)) {
+            for(var _i=0;_i<array_length(_parts);++_i)
+                if(_parts[_i]==_part) return false;
+            array_push(_parts,_part);
+        }
+        var _raw=_part,_wrappers=[];
+        while(is_struct(_raw)) {
+            for(var _i=0;_i<array_length(_wrappers);++_i)
+                if(_wrappers[_i]==_raw) return false;
+            array_push(_wrappers,_raw);
+            if(!variable_struct_exists(_raw,"wep")) return false;
+            _raw=_raw.wep;
+        }
+        if(!is_numeric(_raw)) return false;
+        if(_raw!=floor(_raw) || _raw<0 || _raw>maxwep) return false;
+        if(!is_struct(_part)) return true;
+        if(!variable_struct_exists(_part,"temerge")) return true;
+        var _merge=_part.temerge;
+        if(!is_struct(_merge)) return true;
+        if(!variable_struct_exists(_merge,"is_active")) return false;
+        if(!variable_struct_exists(_merge,"wep")) return false;
+        var _fronts=_merge.wep;
+        if(!is_array(_fronts)) return false;
+        if(array_length(_fronts)<1) return false;
+        _part=scrNTTEFullWeaponModel(_fronts[0]);
+    }
+}
+// The Proto Chest survives runs/processes; an inventory handle does not.
+// Keep its original numeric slot as a backward-compatible stock fallback,
+// and put the complete physical weapon graph in a separate JSON string.
+function scrNTTEFullProtoWeaponSave(_weapon,_replace=false) {
+    // A scalar equal to the permanent slot came from that durable slot,
+    // not from a proven live transfer. Preserve it until the chest restores it,
+    // even if a new physical model now occupies the same old temporary number.
+    // Only explicit Room End storage may replace this unopened snapshot.
+    var _stored=save_get_value("etc","protowep",wep_rusty_revolver),
+        _snapshot=save_get_value("etc","protowep_model","");
+    if(!_replace && _weapon==_stored && !is_struct(_weapon)) return;
+    var _model=scrNTTEFullWeaponModel(_weapon);
+    if(!scrNTTEFullProtoWeaponTopologyValid(_model)) _model=wep_rusty_revolver;
+    var _raw=scrNTTEFullWeaponRaw(_model);
+    if(!scr_weapon_is_valid(_model)) {_model=wep_rusty_revolver;_raw=_model;}
+    _snapshot=is_struct(_model)?json_stringify(scrNTTEFullLoadoutWeaponPack(_model)):"";
+    save_set_value("etc","protowep",_raw);
+    save_set_value("etc","protowep_model",_snapshot);
+}
+function scrNTTEFullProtoWeaponRestore(_weapon) {
+    var _saved=save_get_value("etc","protowep",wep_rusty_revolver),
+        _snapshot=save_get_value("etc","protowep_model","");
+    // A live chest transfer keeps its existing physical handle. Only the
+    // matching durable numeric slot may adopt the saved reset snapshot.
+    if(_weapon==_saved && is_string(_snapshot) && string_length(_snapshot)>0) {
+        try {
+            var _model=scrNTTEFullLoadoutWeaponUnpack(json_parse(_snapshot));
+            if(!scrNTTEFullProtoWeaponTopologyValid(_model))
+                throw "Invalid Proto Chest weapon topology";
+            if(is_struct(_model) && scr_weapon_is_valid(_model)) {
+                var _part=_model;
+                while(true) {
+                    if(is_struct(_part) && is_struct(scrNTTEFullValue(_part,"ntte_native_state",undefined))) {
+                        _part.ntte_native_state.weapon=scrNTTEFullWeaponNative(_part);
+                        _part.ntte_native_state=scrNTTEStateRestored(_part.ntte_native_state);
+                    }
+                    if(scrNTTEFullWeaponHasMerge(_part)==false) break;
+                    _part=scrNTTEFullWeaponMergedPart(_part);
+                }
+                return scrNTTEFullWeaponNative(_model);
+            }
+        } catch(_error) {
+            // A damaged companion cannot invalidate an ordinary legacy slot.
+        }
+    }
+    if(_weapon==_saved && !is_struct(_weapon)) {
+        // Permanent scalar slots are static IDs only. A currently registered
+        // physical handle may merely reuse an old process's numeric value;
+        // its unrelated model cannot reconstruct the lost stored composition.
+        // Historical scalars within today's static ID range are ambiguous:
+        // preserve ordinary weapon compatibility rather than guess a fusion.
+        return is_numeric(_weapon) && _weapon==floor(_weapon)
+            && _weapon>0 && _weapon<=maxwep ? _weapon:wep_rusty_revolver;
+    }
+    // A different valid handle is a current-run live transfer. Keep its
+    // physical object, aliases and state rather than substituting a snapshot.
+    if(!scrNTTEFullProtoWeaponTopologyValid(_weapon)) return wep_rusty_revolver;
+    return scr_weapon_is_valid(_weapon)?scrNTTEFullWeaponNative(_weapon):wep_rusty_revolver;
+}
+
 function scrNTTEFullLoadoutWeaponStored(_race) {
     var _key=scrNTTEFullLoadoutWeaponKey(_race),_data=scrNTTEFullUnlockGet(_key+":main",undefined)
     if(!is_struct(_data)) return wep_none

@@ -21,6 +21,41 @@ function scrFRIntegrationTestStart(_case) {
 }
 
 function scrFRIntegrationTestStep() {
+    if(fr_test_case=="scary-face" && variable_instance_exists(id,"fr_scary_face")) {
+        if(scrFRScaryFaceTestsStep(id)) {
+            scrNTTESmokeLog("PASS full internal selected implemented branches; not complete MOD coverage");
+            game_end();
+        }
+        return;
+    }
+    if(fr_test_case=="menu_audio" && variable_instance_exists(id,"fr_menu_audio")) {
+        if(scrFRMenuAudioTestsStep(id)) {
+            scrNTTESmokeLog("PASS full internal selected implemented branches; not complete MOD coverage");
+            game_end();
+        }
+        return;
+    }
+    if(fr_test_case=="captain_chair" && variable_instance_exists(id,"fr_captain_chair")) {
+        if(scrFRCaptainChairTestsStep(id)) {
+            scrNTTESmokeLog("PASS full internal selected implemented branches; not complete MOD coverage");
+            game_end();
+        }
+        return;
+    }
+    if(fr_test_case=="proto-chest" && variable_instance_exists(id,"fr_proto_chest")) {
+        if(scrFRProtoChestTestsStep(id)) {
+            scrNTTESmokeLog("PASS full internal selected implemented branches; not complete MOD coverage");
+            game_end();
+        }
+        return;
+    }
+    if(fr_test_case=="restart" && variable_instance_exists(id,"fr_restart")) {
+        if(scrFRRestartTestsStep(id)) {
+            scrNTTESmokeLog("PASS full internal selected implemented branches; not complete MOD coverage");
+            game_end();
+        }
+        return;
+    }
     if((fr_test_case=="bubbles-startup-a" || fr_test_case=="bubbles-startup-b")
         && variable_instance_exists(id,"fr_bubbles_startup")) {
         if(scrFRBubblesStartupTestsStep(id)) {
@@ -88,6 +123,11 @@ function scrFRIntegrationTestStep() {
             case "wall-fixes":scrFRWallFixTests();break;
             case "player-wall":scrFRPlayerWallTestsStart(id);break;
             case "ground-weapon":scrFRGroundWeaponTestsStart(id);break;
+            case "proto-chest":scrFRProtoChestTestsStart(id);break;
+            case "restart":scrFRRestartTestsStart(id);break;
+            case "captain_chair":scrFRCaptainChairTestsStart(id);break;
+            case "menu_audio":scrFRMenuAudioTestsStart(id);break;
+            case "scary-face":scrFRScaryFaceTestsStart(id);break;
             case "scenery-weather":scrFRObstacleWeatherTestsStart(id);break;
             case "scenery-weather60":scrFRObstacleWeatherTestsStart(id,60);break;
             case "lifecycle":scrFRLifecycleTestsStart(id);break;

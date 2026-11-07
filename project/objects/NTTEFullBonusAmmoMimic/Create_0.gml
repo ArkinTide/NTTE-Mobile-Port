@@ -2,3 +2,4 @@ scrNTTEFullBonusMimicConfigure(false); event_inherited(); scrNTTEFullBonusMimicA
 
 // NTTE Coast constructor wading variables
 scrNTTEFullCoastConstructWading();
+if(object_index==NTTEFullBonusAmmoMimic) scrNTTEFullEnemyCreationHPFinish(); // NTTE FINAL ENEMY HP

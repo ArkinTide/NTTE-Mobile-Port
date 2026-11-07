@@ -59,7 +59,7 @@ function scrFRSoundLoop(_sound) {
     // voice. Event cleanup owns that voice even if a later room uses the same
     // music sample; returning the sample incorrectly aliases those lifetimes.
     audio_stop_sound(_sound);
-    return audio_play_sound_on(UberCont.mainsound,_sound,true,1,UberCont.opt_sndvol,0,1);
+    return scrFRMenuAudioTestsRecord(audio_play_sound_on(UberCont.mainsound,_sound,true,1,UberCont.opt_sndvol,0,1),_sound,"frontier-loop");
 }
 function scrFRSoundControlTarget(_sound) {
     // Source controllers retain a voice before its first play (noone), after

@@ -15,3 +15,4 @@ snd_mele=sndGoldScorpionMelee
 
 // NTTE Coast constructor wading variables
 scrNTTEFullCoastConstructWading();
+if(object_index==NTTEBabyScorpionGold) scrNTTEFullEnemyCreationHPFinish(); // NTTE FINAL ENEMY HP

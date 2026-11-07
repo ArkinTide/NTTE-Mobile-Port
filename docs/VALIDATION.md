@@ -2,6 +2,27 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [返回首页](../README.md)
 
+## 2.0.1 — 生命周期、Bubbles 与武器存档修复
+
+新编译的 2.0.1 最终 VM／输入通过 14 项明确列出的原生专项，另有 112 项
+Python 检查日志经哈希核验。此前 VM 的 20 项测试保留为历史证据，不计入本次
+最终 VM 的通过数。Python 收据保留日志和数量，没有历史源码快照绑定。
+
+Bubbles A／B 在 30／60 帧下分别完成真实新游戏及实际死亡后的 Retry，共 8 轮，
+每轮桌面攻击、触摸轻点、按住松开均经真实 Slash 造成伤害，共 24 次；60 帧覆盖
+两个逻辑帧相位。Retry 创建新的玩家并保留同一个内容注册表。还检查原初箱子实际
+存盘／新局取出／开火、损坏引用链、控制台、重试和菜单清理、天气、局长椅子、
+同队弹幕、续关及凶恶面容。完整 Event 天气流程的更早结果属于历史 VM。
+
+Android／iOS 包的版本、应用标识、输入和结构经过核验。Android versionCode
+3000097，保留签名并核验 16KB 对齐；iOS build 97，需要重新签名。iOS 使用新编译
+游戏数据及保留的原生 Runner，没有新的 Mac 原生编译。GAME_BUILD 3004 保持。
+
+持续低频／爆音问题仍未归因；静音桌面声音所有权检查没有证明手机实际混音正常。
+未进行 Android／iOS 真机、完整随机战役或所有设备帧率验收。桌面性能诊断不能
+证明手机帧率。见[本次验证摘要](validation/2.0.1-development-regression.json)和
+[源码基线](SOURCE_BASELINE.json)。
+
 ## 2.0.0 — NTTE + Uncharted Frontier
 
 同一最终 Windows VM／输入通过 88 项回归和 94 项 Python 检查，覆盖 30／60 帧、

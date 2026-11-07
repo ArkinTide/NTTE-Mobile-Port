@@ -9,3 +9,4 @@ hitid=[spr_idle,"CAMPER BANDIT"]
 
 // NTTE Coast constructor wading variables
 scrNTTEFullCoastConstructWading();
+if(object_index==NTTECamperBandit) scrNTTEFullEnemyCreationHPFinish(); // NTTE FINAL ENEMY HP

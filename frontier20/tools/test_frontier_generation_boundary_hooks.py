@@ -24,6 +24,7 @@ class GenerationBoundaryHookTests(unittest.TestCase):
         files = [RELATIVE,
                  "scripts/scrSavegame/scrSavegame.gml",
                  "scripts/scrNTTEFullMergedNative/scrNTTEFullMergedNative.gml",
+                 "scripts/scrNTTEFullWeaponLoadoutNative/scrNTTEFullWeaponLoadoutNative.gml",
                  "objects/GenCont/Create_0.gml",
                  "scripts/scrNTTESolidWalls/scrNTTESolidWalls.gml",
                  "scripts/scrNTTEFullLairBorder/scrNTTEFullLairBorder.gml",

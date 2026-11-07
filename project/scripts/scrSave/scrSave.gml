@@ -92,7 +92,7 @@ function scrSave() {
 	        save_set_value("data", "tot_banditkills", tot_banditkills)
 			
 			if (!(scrGameIsEventRun() || scrGameIsCustomMode())) {
-				save_set_value("etc", "protowep", protowep)
+				scrNTTEFullProtoWeaponSave(protowep)
 			}
 			
 	        for (var _race_id = Race.Fish; _race_id < Race.NUM_ALL_RACE_TYPES; ++_race_id) {

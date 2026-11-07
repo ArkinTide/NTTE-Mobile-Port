@@ -1,3 +1,4 @@
+// FRONTIER BUBBLES EXPLICIT TOUCH DEVICE FIXTURE
 event_inherited()
 
 if (instance_exists(MenuOptions) || UberCont.opt_keyboard) exit
@@ -16,7 +17,7 @@ if (_is_autoaim) {
 
 if (UberCont.opt_gamepad) exit
 
-var i = get_nearest_touch(rad)
+var i = scrFRBubblesStartupTestsTouchNearest(rad)
 
 // reset attack
 KeyCont.hold_fire[global.index] = 0
@@ -40,8 +41,8 @@ if (!_is_autoaim) {
 		vdis = _dis
 	}
 	else if (index != -1) {
-        var mx = device_mouse_x_to_gui(index),
-			my = device_mouse_y_to_gui(index),
+        var mx = scrFRBubblesStartupTestsTouchX(index),
+			my = scrFRBubblesStartupTestsTouchY(index),
 			mdis = min(rad, point_distance(x, y, mx, my))
 
         dir = point_direction(x, y, mx, my)
@@ -60,16 +61,16 @@ if (!_is_autoaim) {
 		if ((dis / rad) > ATTACK_BUTTON_DEADZONE && !UberCont.opt_splitfire) {
 			KeyCont.hold_fire[global.index] = true
 			
-	        if (device_mouse_check_button_pressed(index, mb_left)) {
+	        if (scrFRBubblesStartupTestsTouchButton("pressed",index, mb_left)) {
 				KeyCont.release_fire[global.index] = true
 			}
 			
-	        if (device_mouse_check_button_released(index, mb_left)) {
+	        if (scrFRBubblesStartupTestsTouchButton("released",index, mb_left)) {
 				KeyCont.press_fire[global.index] = true
 			}
 		}
 		
-        if (!device_mouse_check_button(index, mb_left) || (distance_to_point(mx, my) > rad * 3)) {
+        if (!scrFRBubblesStartupTestsTouchButton("held",index, mb_left) || (distance_to_point(mx, my) > rad * 3)) {
             index = -1
         }
 		
@@ -91,14 +92,14 @@ else {
 	dis = 0
 	
 	if !UberCont.opt_splitfire && i != -1 {
-		var mx = device_mouse_x_to_gui(i),
-			my = device_mouse_y_to_gui(i)
+		var mx = scrFRBubblesStartupTestsTouchX(i),
+			my = scrFRBubblesStartupTestsTouchY(i)
 		
 		dis = min(rad, point_distance(x, y, mx, my))
 		
-		KeyCont.hold_fire[global.index] = device_mouse_check_button(i, mb_left)
-		KeyCont.press_fire[global.index] = device_mouse_check_button_pressed(i, mb_left)
-		KeyCont.release_fire[global.index] = device_mouse_check_button_released(i, mb_left)
+		KeyCont.hold_fire[global.index] = scrFRBubblesStartupTestsTouchButton("held",i, mb_left)
+		KeyCont.press_fire[global.index] = scrFRBubblesStartupTestsTouchButton("pressed",i, mb_left)
+		KeyCont.release_fire[global.index] = scrFRBubblesStartupTestsTouchButton("released",i, mb_left)
 		
 		index = i
 	}

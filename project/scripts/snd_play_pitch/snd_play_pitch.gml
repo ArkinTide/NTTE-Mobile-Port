@@ -11,6 +11,6 @@ function snd_play_pitch(_sound_index, _random_pitch = 0.2) {
     var _pitch = ((1 + random(_random_pitch)) - (_random_pitch / 2)),
         _gain = UberCont.opt_sndvol
     
-    return audio_play_sound_on(UberCont.mainsound,
-        _sound_index, false, 2, _gain, 0, _pitch)
+    return scrFRMenuAudioTestsRecord(audio_play_sound_on(UberCont.mainsound,
+        _sound_index, false, 2, _gain, 0, _pitch), _sound_index, "native-pitch")
 }

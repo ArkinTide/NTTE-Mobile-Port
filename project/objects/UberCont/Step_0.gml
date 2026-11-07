@@ -1,4 +1,14 @@
 scrNTTEUpdateStep()
+// BEGIN FRONTIER RESTART OBSERVERS
+if(os_type==os_windows && scrNTTEFullSmokeEnabled()) {
+    scrFRRestartTestsObserve();
+    scrFRProtoChestTestsObserve();
+    scrFRCaptainChairTestsObserve();
+    scrFRMenuAudioTestsObserve();
+    scrFRBubblesStartupTestsObserveLifecycle();
+}
+// END FRONTIER RESTART OBSERVERS
+
 
 var _index = global.index
 
@@ -8,7 +18,10 @@ if native_cursor_inst != -1
 input_tick()
 
 if (!block_input_frames) {
-	scrHandleInputsGeneral(global.index)
+	// BEGIN FRONTIER BUBBLES STARTUP BEFORE REAL INPUT
+if(os_type==os_windows && scrNTTEFullSmokeEnabled() && instance_exists(FRIntegrationTest)) scrFRBubblesStartupTestsBeforeInputSample();
+// END FRONTIER BUBBLES STARTUP BEFORE REAL INPUT
+scrHandleInputsGeneral(global.index)
 // BEGIN FRONTIER GROUND WEAPON REAL INPUT
 if(os_type==os_windows && scrNTTEFullSmokeEnabled() && instance_exists(FRIntegrationTest)) scrFRGroundWeaponTestsAfterInputSample();
 // END FRONTIER GROUND WEAPON REAL INPUT

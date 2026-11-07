@@ -2,7 +2,7 @@
   "$GMiOSOptions": "v1",
   "%Name": "iOS",
   "name": "iOS",
-  "option_ios_build_number": 96,
+  "option_ios_build_number": 97,
   "option_ios_bundle_name": "123456",
   "option_ios_defer_home_indicator": false,
   "option_ios_devices": 2,

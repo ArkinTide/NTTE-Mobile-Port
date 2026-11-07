@@ -60712,6 +60712,36 @@
         "name": "scrFrontier_ground_weapon_tests",
         "path": "scripts/scrFrontier_ground_weapon_tests/scrFrontier_ground_weapon_tests.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrFrontier_proto_chest_tests",
+        "path": "scripts/scrFrontier_proto_chest_tests/scrFrontier_proto_chest_tests.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrFrontier_restart_tests",
+        "path": "scripts/scrFrontier_restart_tests/scrFrontier_restart_tests.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrFrontier_captain_chair_tests",
+        "path": "scripts/scrFrontier_captain_chair_tests/scrFrontier_captain_chair_tests.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrFrontier_menu_audio_tests",
+        "path": "scripts/scrFrontier_menu_audio_tests/scrFrontier_menu_audio_tests.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrFrontier_scary_face_tests",
+        "path": "scripts/scrFrontier_scary_face_tests/scrFrontier_scary_face_tests.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

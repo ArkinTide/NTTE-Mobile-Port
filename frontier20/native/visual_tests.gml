@@ -47,6 +47,14 @@ function scrFRVisualCapture(_kind,_width,_height,_viewx,_viewy,_args) {
             case "actor-event":
                 with(_args[0]) event_perform(ev_draw,0);
                 break;
+            case "weather-artwork":
+                // Independent art reference: do not invoke or advance the
+                // live source callback a second time during screenshot proof.
+                var _weather=global.fr_module_vars[$ "mod:Frontier_Events"];
+                draw_sprite(_weather.sprEventDropdownsBack,_args[1],_viewx+_width/2,_viewy+_args[2]);
+                draw_sprite_ext(_weather.sprEventDropdowns,_args[0],_viewx+_width/2,
+                    _viewy+_args[2]+_args[3],1,1,0,c_white,1);
+                break;
             case "source-unlock":
                 scrFRInvokeDraw(_args[0],["mod","libSaves","UnlockCont_draw"],[]);
                 break;

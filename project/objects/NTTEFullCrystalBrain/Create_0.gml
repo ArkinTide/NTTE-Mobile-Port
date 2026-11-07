@@ -2,3 +2,4 @@ scrNTTEFullCrystalBrainCreate();event_inherited();scrNTTEFullCrystalBrainAfterCr
 
 // NTTE Coast constructor wading variables
 scrNTTEFullCoastConstructWading();
+if(object_index==NTTEFullCrystalBrain) scrNTTEFullEnemyCreationHPFinish(); // NTTE FINAL ENEMY HP

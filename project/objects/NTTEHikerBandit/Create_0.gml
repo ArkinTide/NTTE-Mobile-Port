@@ -11,3 +11,4 @@ hp*=4
 
 // NTTE Coast constructor wading variables
 scrNTTEFullCoastConstructWading();
+if(object_index==NTTEHikerBandit) scrNTTEFullEnemyCreationHPFinish(); // NTTE FINAL ENEMY HP

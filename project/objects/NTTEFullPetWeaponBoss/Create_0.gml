@@ -2,3 +2,4 @@ scrNTTEFullWeaponMimicBossCreate();event_inherited();scrNTTEFullWeaponMimicBossA
 
 // NTTE Coast constructor wading variables
 scrNTTEFullCoastConstructWading();
+if(object_index==NTTEFullPetWeaponBoss) scrNTTEFullEnemyCreationHPFinish(); // NTTE FINAL ENEMY HP

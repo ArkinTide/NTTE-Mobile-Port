@@ -5,10 +5,14 @@ function scrFRBubblesStartupTestsStart(_driver,_skin) {
         "Bubbles new-run acceptance requires the isolated desktop harness");
     assert(_skin==0 || _skin==1,"Unknown Bubbles startup skin");
     _driver.persistent=true;
-    _driver.fr_bubbles_startup={skin:_skin,phase:0,round:0,ticks:0,wait:0,
+    _driver.fr_bubbles_startup={skin:_skin,phase:0,round:0,trial:0,ticks:0,wait:0,
+        driver:_driver,test_case:_driver.fr_test_case,keys:global.fr_weapon_keys,
+        scripts:global.fr_module_scripts,
         marker:noone,player:noone,icon:noone,game:noone,steps:0,ends:0,draws:0,huds:0,
-        play_steps:0,play_ticks:0,weapon_swing:false,owner:FRWorld.id,
+        play_steps:0,play_ticks:0,weapon_swing:false,attack_hits:[],attack_target:noone,
+        touch_sampling:false,touch:{held:false,pressed:false,released:false},owner:FRWorld.id,
         boot_generation:global.fr_boot_generation};
+    global.fr_bubbles_startup_state=_driver.fr_bubbles_startup;
     save_set_value("game","tutorial",false);
     save_set_value("options","autopause",false);
     save_set_value("visual","freezeframes",0);
@@ -45,27 +49,168 @@ function scrFRBubblesStartupTestsObserve(_kind,_player) {
         with(Slash) if((self[$ "creator"]??noone)==_player && team==_player.team) {_found=true;break;}
         if(_found) _state.weapon_swing=true;
         if(_state.phase==5 && (_state.play_steps==15 || _state.play_steps==18
-            || _state.play_steps==40 || _state.play_steps==44))
+            || _state.play_steps==40 || _state.play_steps==44 || _state.play_steps==61
+            || _state.play_steps==90 || _state.play_steps==145 || _state.play_steps==150))
             scrFRBubblesStartupTestsDiagnostic(_state,"end-input");
     } else if(_kind=="draw") {_state.draws+=1;}
     else if(_kind=="hud" && _state.phase==5 && _state.player==_player) {_state.huds+=1;}
 }
 
-function scrFRBubblesStartupTestsAfterInputSample() {
-    // UberCont's genuine physical sampler may run after Player.Step. Inject
-    // only after that producer, so native weapon Step and source EndStep see
-    // the same sampled buttons. Never replace a Player/ability field.
+function scrFRBubblesStartupTestsBeforeInputSample() {
     if(os_type!=os_windows || !scrNTTEFullSmokeEnabled()) return;
     var _driver=noone;
     with(FRIntegrationTest) if(variable_instance_exists(id,"fr_bubbles_startup")) {_driver=id;break;}
     if(!instance_exists(_driver)) return;
     var _state=_driver.fr_bubbles_startup;
     if(_state.phase!=5 || !instance_exists(_state.player)) return;
-    var _index=_state.player.index;
-    KeyCont.press_fire[_index]=_state.play_steps==15;
-    KeyCont.hold_fire[_index]=_state.play_steps>=15 && _state.play_steps<=18;
-    KeyCont.press_spec[_index]=_state.play_steps==40;
-    KeyCont.hold_spec[_index]=_state.play_steps>=40 && _state.play_steps<=44;
+    var _step=_state.play_steps;
+    _state.attack_mode=_step<55?"desktop-hold":(_step<85?"mobile-tap":"mobile-hold");
+    if(instance_exists(_state.attack_target)) with(_state.attack_target) {
+        x=_state.player.x+18;y=_state.player.y;speed=0;
+    }
+    _state.touch_sampling=false;
+    if(_step>=55) {
+        // Cover the one genuine scrHandleInputsGeneral -> MobileUI.User0
+        // producer for the entire sampled gesture. Running a second event
+        // after neutral hardware would clear the previous pointer capture
+        // before its release edge and create a false mobile failure.
+        _state.touch={held:_step==60 || (_step>=90 && _step<150),
+            pressed:_step==60 || _step==90,released:_step==61 || _step==150};
+        _state.touch_sampling=true;
+    }
+}
+
+function scrFRBubblesStartupTestsAfterInputSample() {
+    if(os_type!=os_windows || !scrNTTEFullSmokeEnabled()) return;
+    var _driver=noone;
+    with(FRIntegrationTest) if(variable_instance_exists(id,"fr_bubbles_startup")) {_driver=id;break;}
+    if(!instance_exists(_driver)) return;
+    var _state=_driver.fr_bubbles_startup;
+    if(_state.phase!=5 || !instance_exists(_state.player)) return;
+    var _index=_state.player.index,_step=_state.play_steps;
+    _state.touch_sampling=false;
+    if(_step<55) {
+        KeyCont.dir_fire[_index]=0;
+        KeyCont.press_fire[_index]=_step==15;
+        KeyCont.hold_fire[_index]=_step>=15 && _step<=44;
+        KeyCont.release_fire[_index]=_step==45;
+    }
+    if(_step==61 || _step==150) {
+        assert(KeyCont.press_fire[_index] && KeyCont.hold_fire[_index],
+            "Real manual-aim JoystickAttack did not emit its held release-as-press edge");
+        scrNTTESmokeLog("NTUF BUBBLES STARTUP real touch release edge "+json_stringify({
+            skin:_state.skin,round:_state.round,trial:_state.trial,step:_step,
+            press:KeyCont.press_fire[_index],hold:KeyCont.hold_fire[_index]}));
+    }
+    if(_step==145) {
+        scrFRBubblesStartupTestsDiagnostic(_state,"held-mobile-before-release");
+        assert(array_length(_state.attack_hits)==2,
+            "Bubbles desktop/touch tap failed or held gesture repeated unexpectedly: "+json_stringify(_state.attack_hits));
+    }
+    KeyCont.press_spec[_index]=_step==165;
+    KeyCont.hold_spec[_index]=_step>=165 && _step<=169;
+}
+
+function scrFRBubblesStartupTestsTouchState() {
+    if(os_type!=os_windows || !scrNTTEFullSmokeEnabled()) return undefined;
+    var _state=undefined;
+    with(FRIntegrationTest) if(variable_instance_exists(id,"fr_bubbles_startup")) {
+        _state=fr_bubbles_startup;break;
+    }
+    return is_struct(_state) && _state.phase==5 && _state.touch_sampling?_state:undefined;
+}
+function scrFRBubblesStartupTestsTouchNearest(_radius) {
+    var _state=scrFRBubblesStartupTestsTouchState();
+    return is_struct(_state)?(_state.touch.held?0:-1):get_nearest_touch(_radius);
+}
+function scrFRBubblesStartupTestsTouchX(_index) {
+    var _state=scrFRBubblesStartupTestsTouchState();
+    return is_struct(_state)?x+rad:device_mouse_x_to_gui(_index);
+}
+function scrFRBubblesStartupTestsTouchY(_index) {
+    var _state=scrFRBubblesStartupTestsTouchState();
+    return is_struct(_state)?y:device_mouse_y_to_gui(_index);
+}
+function scrFRBubblesStartupTestsTouchButton(_kind,_index,_button) {
+    var _state=scrFRBubblesStartupTestsTouchState();
+    if(is_struct(_state)) return _state.touch[$ _kind];
+    switch(_kind) {
+        case "held":return device_mouse_check_button(_index,_button);
+        case "pressed":return device_mouse_check_button_pressed(_index,_button);
+        case "released":return device_mouse_check_button_released(_index,_button);
+    }
+    return false;
+}
+function scrFRBubblesStartupTestsHitBegin(_slash,_target) {
+    if(os_type!=os_windows || !scrNTTEFullSmokeEnabled()) return undefined;
+    var _state=undefined;
+    with(FRIntegrationTest) if(variable_instance_exists(id,"fr_bubbles_startup")) {
+        _state=fr_bubbles_startup;break;
+    }
+    if(!is_struct(_state) || _state.phase!=5 || _state.attack_target!=_target
+        || (_slash[$ "creator"]??noone)!=_state.player) return undefined;
+    assert(_slash.team==_state.player.team && _slash.hitid==_state.player.hitid,
+        "Bubbles starting Slash lost its new shooter's team or damage identity");
+    return {state:_state,target:_target,hp:_target.hp,damage:_slash.damage,
+        mode:_state.attack_mode,step:_state.play_steps};
+}
+function scrFRBubblesStartupTestsHitEnd(_sample) {
+    if(!is_struct(_sample) || !instance_exists(_sample.target)) return;
+    var _loss=_sample.hp-_sample.target.hp;
+    if(_loss<=0) return;
+    var _row={mode:_sample.mode,step:_sample.step,damage:_sample.damage,hp_loss:_loss};
+    array_push(_sample.state.attack_hits,_row);
+    scrNTTESmokeLog("NTUF BUBBLES STARTUP natural Slash collision "+json_stringify(_row));
+}
+
+function scrFRBubblesStartupTestsAttackFixture(_state) {
+    _state.attack_hits=[];_state.attack_mode="desktop-hold";_state.weapon_swing=false;
+    _state.attack_target=instance_create(_state.player.x+18,_state.player.y,FRCustomHitme);
+    with(_state.attack_target) {
+        hp=10000;max_hp=10000;team=team_enemy;speed=0;
+        sprite_index=sprBanditIdle;mask_index=mskPlayer;
+        spr_idle=sprBanditIdle;spr_hurt=sprBanditIdle;visible=true;
+    }
+    // These are ordinary mobile input options. The fixture never sets a
+    // Player reload/can_shoot/clicked field or calls a weapon fire callback.
+    UberCont.opt_keyboard=false;UberCont.opt_gamepad=false;UberCont.opt_aimbot=false;
+    UberCont.opt_splitfire=false;UberCont.opt_stickregions=false;
+    _state.attack_stick=noone;
+    with(JoystickAttack) if(object_index==JoystickAttack) {_state.attack_stick=id;break;}
+    if(!instance_exists(_state.attack_stick)) _state.attack_stick=instance_create(0,0,JoystickAttack);
+    assert(instance_exists(_state.attack_stick),"Bubbles touch test has no real JoystickAttack");
+    _state.attack_stick.index=-1;
+}
+
+function scrFRBubblesStartupTestsObserveLifecycle() {
+    if(os_type!=os_windows || !scrNTTEFullSmokeEnabled()
+        || !variable_global_exists("fr_bubbles_startup_state")) return;
+    var _state=global.fr_bubbles_startup_state;
+    if(!is_struct(_state) || _state.phase==6) return;
+    // Genuine Retry destroys the test driver along with ordinary gameplay.
+    // The observer belongs to surviving UberCont, just like RestartTests;
+    // no production cleanup exception is granted to the test actor.
+    instance_activate_object(_state.driver);
+    if(instance_exists(_state.driver)) return;
+    var _driver=instance_create(0,0,FRIntegrationTest);
+    _driver.fr_test_case=_state.test_case;_driver.fr_bubbles_startup=_state;
+    _state.driver=_driver;
+    scrNTTESmokeLog("NTUF BUBBLES STARTUP Retry observer recreated after genuine session cleanup");
+}
+
+function scrFRBubblesStartupTestsRequestDeath(_state) {
+    _state.old_game=_state.game;_state.old_player=_state.player;
+    _state.runs=UberCont.ctot_runs[19];
+    _state.source_runs=scrFRModCallArray("mod","libSaves","save_get",["Frontier","bubbles_runs"]);
+    _state.marker=instance_create(0,0,FRMarker);
+    _state.trial=1;_state.phase=7;_state.wait=0;
+    // A real native hostile projectile triggers ordinary damage, Player
+    // death, stats, GameOver and its actual Retry button. Never construct a
+    // replacement Player or bypass the death-screen restart consumer.
+    _state.death_bullet=instance_create(_state.player.x,_state.player.y,EnemyBullet1);
+    with(_state.death_bullet) {team=team_enemy;damage=1000;speed=0;}
+    scrNTTESmokeLog("NTUF BUBBLES STARTUP native lethal projectile requested "+json_stringify({
+        skin:_state.skin,round:_state.round,player:real(_state.old_player),game:real(_state.old_game)}));
 }
 
 function scrFRBubblesStartupTestsDiagnostic(_state,_stage) {
@@ -74,6 +219,7 @@ function scrFRBubblesStartupTestsDiagnostic(_state,_stage) {
     var _index=_p.index;
     scrNTTESmokeLog("NTUF BUBBLES STARTUP diagnostic "+json_stringify({stage:_stage,
         skin:_state.skin,round:_state.round,phase:_state.phase,
+        trial:_state.trial,
         last_time:scrFRRaceVar("lastTime"),time_begin:_state.time_begin,
         last_bubbles:scrFRRaceVar("lastBubbles"),bubbles_begin:_state.bubbles_begin,
         steps:_state.steps,ends:_state.ends,draws:_state.draws,huds:_state.huds,
@@ -84,7 +230,10 @@ function scrFRBubblesStartupTestsDiagnostic(_state,_stage) {
         charge:_p.bubbles_bubbleCharge,cooldown:_p.bubbles_bubbleCooldown,
         ready:scrFRReadyTick(),paused:UberCont.paused,lock_state:scrGameIsLockState(),
         lockstep_stop:lockstep_stop,rate:game_get_speed(gamespeed_fps),scale:timescale,
-        weapon_swing:_state.weapon_swing}));
+        weapon_swing:_state.weapon_swing,attack_hits:_state.attack_hits,
+        weapon:_p.wep,ammo:json_stringify(_p.ammo),
+        weapon_valid:scr_weapon_is_valid(_p.wep),
+        weapon_type:scr_weapon_get_type(_p.wep),weapon_cost:scr_weapon_get_cost(_p.wep)}));
 }
 
 function scrFRBubblesStartupTestsClear(_driver) {
@@ -169,6 +318,7 @@ function scrFRBubblesStartupTestsMenu(_driver) {
     scr_loadout_race_set_start_weapon(19,_state.skin==1?FR_BUBBLES_SHOVEL:FR_BUBBLES_CUTLASS);
     assert(scr_loadout_race_get_skin(19)==_state.skin,
         "Native Bubbles loadout rejected the selected A/B skin");
+    _state.trial=0;
     _state.runs=UberCont.ctot_runs[19];
     _state.source_runs=scrFRModCallArray("mod","libSaves","save_get",["Frontier","bubbles_runs"]);
     _state.steps=0;_state.ends=0;_state.draws=0;_state.play_steps=0;_state.play_ticks=0;
@@ -191,6 +341,12 @@ function scrFRBubblesStartupTestsStep(_driver) {
     assert(scrFREnabled() && instance_number(FRWorld)==1 && FRWorld.id==_state.owner
         && global.fr_boot_generation==_state.boot_generation,
         "Bubbles menu/new-run transition lost or reinitialized the Frontier registry");
+    assert(global.fr_weapon_keys==_state.keys && global.fr_module_scripts==_state.scripts
+        && global.fr_weapon_keys[$ string(FR_BUBBLES_CUTLASS)]=="weapon:FR_BubblesCutlass"
+        && global.fr_weapon_keys[$ string(FR_BUBBLES_SHOVEL)]=="weapon:FR_BubblesShovel"
+        && !is_undefined(global.fr_module_scripts[$ "weapon:FR_BubblesCutlass"][$ "weapon_fire"])
+        && !is_undefined(global.fr_module_scripts[$ "weapon:FR_BubblesShovel"][$ "weapon_fire"]),
+        "Bubbles new run/Retry lost or replaced its registered source weapon callback tables");
     if(_state.phase>=1 && _state.phase<=5) {
         var _rate=_state.round==0?30:60;
         assert(game_get_speed(gamespeed_fps)==_rate && UberCont.opt_framerate==_rate
@@ -267,6 +423,8 @@ function scrFRBubblesStartupTestsStep(_driver) {
             "Bubbles source create/level_start did not complete before play");
         _state.time_begin=scrFRRaceVar("lastTime");
         _state.bubbles_begin=scrFRRaceVar("lastBubbles");
+        scrFRBubblesStartupTestsAttackFixture(_state);
+        _state.steps=0;_state.ends=0;_state.draws=0;
         _state.phase=5;_state.play_ticks=0;_state.play_steps=0;_state.huds=0;
         return false;
     }
@@ -275,11 +433,12 @@ function scrFRBubblesStartupTestsStep(_driver) {
             "Bubbles disappeared or died during the first natural gameplay frames");
         if(!scrFRReadyTick()) return false;
         _state.play_ticks+=1;
-        if(_state.play_ticks<90) return false;
+        if(_state.play_ticks<180) return false;
         scrFRBubblesStartupTestsDiagnostic(_state,"before-assert");
         assert(surface_exists(application_surface),"Bubbles natural gameplay draw surface is unavailable");
         surface_save(application_surface,working_directory+"frontier-bubbles-startup-"
-            +string(_state.skin)+"-"+string(_state.round==0?30:60)+".png");
+            +string(_state.skin)+"-"+string(_state.round==0?30:60)
+            +(_state.trial==1?"-retry":"")+".png");
         assert(_state.steps>=60 && _state.ends>=60 && _state.draws>=30,
             "Bubbles startup did not observe the real Player Step/EndStep/Draw events");
         assert(_state.huds>=30,
@@ -289,22 +448,65 @@ function scrFRBubblesStartupTestsStep(_driver) {
         assert(scrFRRaceVar("lastBubbles")>_state.bubbles_begin,
             "Bubbles physical special input did not run after new-game generation");
         assert(_state.weapon_swing,"Bubbles authored starting melee weapon never fired through native Player input");
+        assert(array_length(_state.attack_hits)==3,
+            "Bubbles desktop hold/mobile tap/mobile held-release did not each damage the natural collision target exactly once: "+json_stringify(_state.attack_hits));
+        var _modes=["desktop-hold","mobile-tap","mobile-hold"],_damage=_state.skin==0?6:9;
+        for(var _i=0;_i<3;++_i) assert(_state.attack_hits[_i].mode==_modes[_i]
+            && _state.attack_hits[_i].damage==_damage && _state.attack_hits[_i].hp_loss==_damage,
+            "Bubbles starting weapon lost its authored damage through real input/Slash collision: "+json_stringify(_state.attack_hits));
         assert(UberCont.ctot_runs[19]==_state.runs+1
             && scrFRModCallArray("mod","libSaves","save_get",["Frontier","bubbles_runs"])==_state.source_runs+1,
             "Bubbles first gameplay frames replayed new-run statistics");
         scrNTTESmokeLog("NTUF BUBBLES STARTUP real new-run acceptance PASS "+json_stringify({skin:_state.skin,
+            trial:_state.trial==0?"new":"retry",
             requested_rate:_state.round==0?30:60,rate:game_get_speed(gamespeed_fps),
             option_rate:UberCont.opt_framerate,scale:timescale,
             steps:_state.steps,ends:_state.ends,draws:_state.draws,huds:_state.huds,
             language:global.language_current[$ "Init:Id"],weapon:_state.player.wep,
             native_runs:UberCont.ctot_runs[19]-_state.runs,
             source_runs:scrFRModCallArray("mod","libSaves","save_get",["Frontier","bubbles_runs"])-_state.source_runs,
-            source_ticks:_state.play_ticks,weapon_swing:_state.weapon_swing,bubbles:scrFRRaceVar("lastBubbles")-_state.bubbles_begin}));
+            source_ticks:_state.play_ticks,weapon_swing:_state.weapon_swing,
+            attack_hits:_state.attack_hits,bubbles:scrFRRaceVar("lastBubbles")-_state.bubbles_begin}));
         KeyCont.press_fire[0]=false;KeyCont.hold_fire[0]=false;
+        KeyCont.release_fire[0]=false;
         KeyCont.press_spec[0]=false;KeyCont.hold_spec[0]=false;
+        if(_state.trial==0) {scrFRBubblesStartupTestsRequestDeath(_state);return false;}
         _state.round+=1;
         if(_state.round<2) {_state.phase=0;return false;}
         _state.phase=6;return true;
+    }
+    if(_state.phase==7) {
+        assert(++_state.wait<600,"Bubbles real lethal projectile did not reach a native GameOver/Retry screen");
+        if(instance_exists(_state.old_player) || !instance_exists(GameOver)) return false;
+        var _retry=noone;
+        with(PauseButton) if(image_index==1 && sprite_index!=sprGameOverResult) {_retry=id;break;}
+        if(!instance_exists(_retry)) return false;
+        assert(instance_exists(_state.old_game) && !instance_exists(Player),
+            "Bubbles death-menu Retry fixture bypassed genuine death disposal");
+        _state.phase=8;_state.wait=0;_state.old_driver=_driver;
+        with(_retry) event_perform(ev_other,ev_user0);
+        assert(UberCont.want_restart>0,"Actual Bubbles death-menu Retry did not request native restart");
+        scrNTTESmokeLog("NTUF BUBBLES STARTUP actual GameOver PauseButton Retry requested");
+        return false;
+    }
+    if(_state.phase==8) {
+        assert(++_state.wait<600,"Bubbles death-menu Retry failed to construct its new native run");
+        if(instance_exists(_state.old_game) || instance_exists(_state.old_driver)
+            || !instance_exists(GameCont) || !instance_exists(Player)) return false;
+        _state.player=instance_find(Player,0);_state.game=GameCont.id;
+        var _p=_state.player;
+        assert(_p!=_state.old_player && _p.race==19 && _p.bskin==_state.skin
+            && _p.wep==(_state.skin==1?FR_BUBBLES_SHOVEL:FR_BUBBLES_CUTLASS)
+            && _p.bubbles_bubbleCharge==100 && _p.hp==8 && _p.max_hp==8,
+            "Genuine Bubbles death-menu Retry lost its new Player, starter or source initializer");
+        assert(UberCont.ctot_runs[19]==_state.runs+1
+            && scrFRModCallArray("mod","libSaves","save_get",["Frontier","bubbles_runs"])==_state.source_runs+1,
+            "Bubbles genuine death-menu Retry skipped or duplicated source/native game_start");
+        _state.phase=3;
+        scrNTTESmokeLog("NTUF BUBBLES STARTUP genuine death-menu Retry returned "+json_stringify({
+            skin:_state.skin,rate:game_get_speed(gamespeed_fps),old_player:real(_state.old_player),
+            new_player:real(_p),world:real(FRWorld.id),weapon:_p.wep}));
+        return false;
     }
     return _state.phase==6;
 }

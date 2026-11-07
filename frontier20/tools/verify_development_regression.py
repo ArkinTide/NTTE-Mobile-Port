@@ -131,9 +131,10 @@ def verify_performance(smoke):
 def verify_bubbles_startup(smoke, artifacts, case_directory, skin):
     rows = [json.loads(line[len(BUBBLES_PREFIX):]) for line in smoke.splitlines()
             if line.startswith(BUBBLES_PREFIX)]
-    require(len(rows) == 2, f"Bubbles skin {skin} must complete two real new runs")
-    require([(row["language"], row["rate"]) for row in rows]
-            == [("English", 30), ("Simplified Chinese", 60)],
+    require(len(rows) == 4, f"Bubbles skin {skin} must complete new-run and death-menu Retry at both rates")
+    require([(row["language"], row["rate"],row["trial"]) for row in rows]
+            == [("English", 30,"new"),("English",30,"retry"),
+                ("Simplified Chinese", 60,"new"),("Simplified Chinese",60,"retry")],
             f"Bubbles skin {skin} lacks the actual English30/Chinese60 language/rate paths")
     screenshots = []
     for row in rows:
@@ -142,13 +143,19 @@ def verify_bubbles_startup(smoke, artifacts, case_directory, skin):
                 f"Bubbles skin {skin} actual native engine rate/logic scale differs from its requested setting")
         require(row["skin"] == skin and row["weapon"] == 187 + skin,
                 f"Bubbles skin {skin} did not use its authored native starter")
-        require(row["native_runs"] == row["source_runs"] == 1 and row["source_ticks"] == 90,
+        require(row["native_runs"] == row["source_runs"] == 1 and row["source_ticks"] == 180,
                 f"Bubbles skin {skin} skipped/replayed new-run initialization or natural play")
         require(row["weapon_swing"] is True, f"Bubbles skin {skin} did not fire its real starting weapon")
+        hits=row.get("attack_hits",[])
+        require([hit.get("mode") for hit in hits] == ["desktop-hold","mobile-tap","mobile-hold"],
+                f"Bubbles skin {skin} lacks exact desktop and genuine touch-producer collision hits")
+        require(all(hit["damage"] == hit["hp_loss"] == (6 if skin == 0 else 9) for hit in hits),
+                f"Bubbles skin {skin} starter damage did not survive real Slash collision")
         for field, minimum in (("steps", 60), ("ends", 60), ("draws", 30), ("huds", 30), ("bubbles", 1)):
             finite_positive(row[field], f"Bubbles skin {skin}: {field}")
             require(row[field] >= minimum, f"Bubbles skin {skin} did not exercise the actual {field} path")
-        name = f"frontier-bubbles-startup-{skin}-{int(row['rate'])}.png"
+        suffix="-retry" if row["trial"] == "retry" else ""
+        name = f"frontier-bubbles-startup-{skin}-{int(row['rate'])}{suffix}.png"
         require(name in artifacts, f"Missing hash-bound Bubbles natural gameplay screenshot: {name}")
         path = case_directory / name
         with path.open("rb") as handle:
@@ -160,14 +167,22 @@ def verify_bubbles_startup(smoke, artifacts, case_directory, skin):
         screenshots.append(name)
     for stage in ("real menu created", "first real CharSelect.Mouse4 selected Bubbles",
                   "genuine scrRunStart/scrCreatePlayers returned",
-                  "real room disposal then ordinary async GenCont"):
+                  "genuine death-menu Retry returned",
+                  "actual GameOver PauseButton Retry requested",
+                  "Retry observer recreated after genuine session cleanup"):
         require(sum(line.startswith("NTUF BUBBLES STARTUP " + stage) for line in smoke.splitlines()) == 2,
                 f"Bubbles skin {skin} lacks both genuine {stage} consumers")
+    require(sum(line.startswith("NTUF BUBBLES STARTUP real room disposal then ordinary async GenCont")
+                for line in smoke.splitlines()) == 4,
+            f"Bubbles skin {skin} did not generate all four real new/Retry rooms")
+    require(sum(line.startswith("NTUF BUBBLES STARTUP real touch release edge ")
+                for line in smoke.splitlines()) == 8,
+            f"Bubbles skin {skin} did not exercise both adjacent release parities in all four trials")
     require(sum(line.startswith("NTUF BUBBLES STARTUP saved unlock reloaded;")
                 for line in smoke.splitlines()) == 1,
             f"Bubbles skin {skin} did not reload its actual saved unlock")
     return {"skin": skin, "new_runs": rows, "screenshots": screenshots,
-            "scope": "Native desktop menu/new-run and real local HUD; not physical Android/iOS validation"}
+            "scope": "Native desktop menu/new-run/death-menu Retry, real touch producer and Slash HP loss; not physical Android/iOS validation"}
 
 
 def verify_ground_weapons(smoke):

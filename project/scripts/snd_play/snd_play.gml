@@ -11,8 +11,8 @@ function snd_play(_sound_index, _pitch = 1, _gain = 1) {
 		
 	    audio_stop_sound(_sound_index)
 		
-		return audio_play_sound_on(UberCont.mainsound, _sound_index,
-			false, 2, UberCont.opt_sndvol * _gain, 0, _pitch)
+		return scrFRMenuAudioTestsRecord(audio_play_sound_on(UberCont.mainsound, _sound_index,
+			false, 2, UberCont.opt_sndvol * _gain, 0, _pitch), _sound_index, "native-on")
 	}
 	
 	return -1

@@ -21,22 +21,28 @@ def patch(project,relative,label,body,anchor=None,before=False):
     # Marker labels can share a prefix (e.g. SOURCE DARK / SOURCE DARK END).
     # Replace an installed block in place: removing and reinserting it after
     # its anchor leaves the insertion newline behind on every staging pass.
-    starts=list(re.finditer(r"^"+re.escape(begin)+r"(?=\r?$)",text,re.M))
-    ends=list(re.finditer(r"^"+re.escape(end)+r"(?=\r?$)",text,re.M))
+    # A before-anchor insertion inherits the anchor line's existing indent.
+    # Both delimiters must still be exact whole lines; a longer label must
+    # never be mistaken for this block. Preserve each delimiter's indent.
+    starts=list(re.finditer(r"^[ \t]*"+re.escape(begin)+r"(?=\r?$)",text,re.M))
+    ends=list(re.finditer(r"^[ \t]*"+re.escape(end)+r"(?=\r?$)",text,re.M))
     assert len(starts)==len(ends) and len(starts)<=1,(relative,label,"Frontier hook markers")
     block=None
     if starts:
-        block=re.search(r"^"+re.escape(begin)+r"(?P<newline>\r?\n).*?^"+
-                        re.escape(end)+r"(?P<ending>\r?\n|$)",text,re.M|re.S)
+        block=re.search(r"^(?P<begin_indent>[ \t]*)"+re.escape(begin)+r"(?P<newline>\r?\n).*?^"+
+                        r"(?P<end_indent>[ \t]*)"+re.escape(end)+r"(?P<ending>\r?\n|$)",text,re.M|re.S)
         assert block is not None,(relative,label,"Frontier hook marker order")
         newline=block.group("newline")
         ending=block.group("ending")
+        begin_indent=block.group("begin_indent")
+        end_indent=block.group("end_indent")
     else:
         line_end=re.search(r"\r?\n",text)
         newline=line_end.group() if line_end else "\n"
         ending=newline
+        begin_indent=end_indent=""
     body=body.rstrip().replace("\r\n","\n").replace("\n",newline)
-    chunk=begin+newline+body+newline+end+ending
+    chunk=begin_indent+begin+newline+body+newline+end_indent+end+ending
     if anchor:
         anchor=anchor.replace("\r\n","\n").replace("\n",newline)
         host=text[:block.start()]+text[block.end():] if block else text
