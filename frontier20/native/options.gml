@@ -211,6 +211,7 @@ function scrFRMenuOptionsPage(_key) {
     var _entry=global.fr_option_pages[$ _key],_page=_entry.page;
     scrOptionsMenuCategoryBegin(OptionCategory.Frontier_Page);
     scrOptionsMenuCreateElement({name:scrFROptionText(_entry[$ "display_name"]??string_upper(_entry.name)),available:false,skip:true});
+    if(scrFRMenuNativeInformation(_entry)) {scrOptionsMenuCategoryEnd();return;}
     if(is_struct(_page)) {
         var _options=_page[$ "options"]??[];
         for(var _i=0;_i<array_length(_options);++_i) {

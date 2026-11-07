@@ -18,6 +18,15 @@ def _insert(project, relative, anchor, insertion, report, before=False):
 
 def apply(project):
     report = []
+    # Migrate the old always-unlocked row before the generic idempotent hook
+    # checks its function anchor, avoiding a second early-return insertion.
+    loadout=Path(project)/"scripts/scrNTTEFullCrownLoadoutNative/scrNTTEFullCrownLoadoutNative.gml"
+    old='if(scrFRCrownKey(_crown)!="") return [scrFRCrownSprite("Loadout"),0];'
+    new='if(scrFRCrownKey(_crown)!="") return [sprFRStormsLoadout,_unlocked?0:1];'
+    text=loadout.read_text("utf-8-sig")
+    if old in text:
+        assert text.count(old)==1
+        loadout.write_text(text.replace(old,new,1),"utf8",newline="\n")
 
     def hook(folder, anchor, insertion, before=False):
         return _insert(project, f"scripts/{folder}/{folder}.gml", anchor, insertion, report, before)
@@ -41,7 +50,7 @@ def apply(project):
     hook("scrNTTEFullCrownLoadoutNative", '    return _count',
          '    if(scrFRCrownLoadoutAvailable(_race)) _count+=1;\n', before=True)
     hook("scrNTTEFullCrownLoadoutNative", 'function scrNTTEFullCrownLoadoutSprite(_crown,_unlocked=true) {',
-         '\n    if(scrFRCrownKey(_crown)!="") return [scrFRCrownSprite("Loadout"),0];\n')
+         '\n    if(scrFRCrownKey(_crown)!="") return [sprFRStormsLoadout,_unlocked?0:1];\n')
     hook("scrLoadoutMenuInit", 'function scr_loadout_race_get_start_crown(_race_id) {',
          '\n    var _fr_saved=save_get_value("ccrown",_race_id,crwn_none);\n'
          '    if(_fr_saved==17) return scrFRCrownLoadoutAvailable(_race_id)?17:crwn_none;\n')

@@ -21,6 +21,21 @@ function scrFRIntegrationTestStart(_case) {
 }
 
 function scrFRIntegrationTestStep() {
+// BEGIN FRONTIER PALACE BLOCK TEST DRIVER
+if(fr_test_case=="palace-block") {
+    if(!variable_instance_exists(id,"fr_palace_blocks")) {
+        if(!scrFRReadyTick()) return;
+        if(++fr_test_ticks<45) return;
+        scrFRPalaceBlockTestsStart(id);
+    }
+    if(scrFRPalaceBlockTestsStep(id)) {
+        scrNTTESmokeLog("PASS full internal selected implemented branches; not complete MOD coverage");
+        game_end();
+    }
+    return;
+}
+// END FRONTIER PALACE BLOCK TEST DRIVER
+
     if(fr_test_case=="scary-face" && variable_instance_exists(id,"fr_scary_face")) {
         if(scrFRScaryFaceTestsStep(id)) {
             scrNTTESmokeLog("PASS full internal selected implemented branches; not complete MOD coverage");
@@ -56,7 +71,7 @@ function scrFRIntegrationTestStep() {
         }
         return;
     }
-    if((fr_test_case=="bubbles-startup-a" || fr_test_case=="bubbles-startup-b")
+    if((fr_test_case=="bubbles-startup-a" || fr_test_case=="bubbles-startup-b" || fr_test_case=="bubbles-random")
         && variable_instance_exists(id,"fr_bubbles_startup")) {
         if(scrFRBubblesStartupTestsStep(id)) {
             scrNTTESmokeLog("PASS FRONTIER Bubbles real native menu/new-run, starter, A/B, English/CJK and30/60Hz");
@@ -135,18 +150,22 @@ function scrFRIntegrationTestStep() {
             case "performance":scrFRPerformanceTestsStart(id);break;
             case "robocenter-perf":scrFRRobocenterPerformanceTests();break;
             case "deeplabs-perf":scrFRDeeplabsPerformanceTests();break;
+            case "weather-perf":scrFRWeatherPerformanceTests();break;
+            case "menu-repairs":scrFRMenuRepairTests();break;
+            case "fly-wall":scrFRFlyWallTestsStart(id);break;
             case "localization":scrFRLocalizationTests();break;
             case "millipede":scrFRMillipedeTestsStart(id);break;
             case "race":scrFRRaceTestsStart();break;
             case "bubbles-startup-a":scrFRBubblesStartupTestsStart(id,0);break;
             case "bubbles-startup-b":scrFRBubblesStartupTestsStart(id,1);break;
+            case "bubbles-random":scrFRBubblesStartupTestsStart(id,0,true);break;
             case "areas":scrFRAreaTestsStart(id);break;
             case "weapons":scrFRWeaponTestsStart(id);break;
             case "continue-write":scrFRContinueTestsStart(id,"write");break;
             case "continue-read":scrFRContinueTestsStart(id,"read");break;
         }
         if(fr_test_case=="wall-fixes" || fr_test_case=="robocenter-perf"
-            || fr_test_case=="deeplabs-perf" || fr_test_case=="localization") {
+            || fr_test_case=="deeplabs-perf" || fr_test_case=="localization" || fr_test_case=="weather-perf" || fr_test_case=="menu-repairs") {
             scrNTTESmokeLog("PASS FRONTIER focused native regression "+fr_test_case);
             scrNTTESmokeLog("PASS full internal selected implemented branches; not complete MOD coverage");
             game_end();return;
@@ -166,6 +185,10 @@ function scrFRIntegrationTestStep() {
         scrNTTESmokeLog("PASS FRONTIER "+fr_test_case+" bootstrap and native runtime core");
         scrNTTESmokeLog("PASS full internal selected implemented branches; not complete MOD coverage");
         game_end();
+    }
+    if(fr_test_ticks>45 && fr_test_case=="fly-wall" && scrFRFlyWallTestsStep(id)) {
+        scrNTTESmokeLog("PASS full internal selected implemented branches; not complete MOD coverage");
+        game_end();return;
     }
     if(fr_test_ticks>45 && fr_test_case=="skills" && scrFRSkillTestsStep(id)) {
         scrNTTESmokeLog("PASS FRONTIER 26 acquired mutation callbacks and ownership round trips");

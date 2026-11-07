@@ -1,0 +1,1568 @@
+{
+  "status": "SELECTED_DEVELOPMENT_CHECKS_VERIFIED",
+  "version": "2.0.2",
+  "internal": 98,
+  "source_manifest_sha256": "9d2d9db8c8f921ee2d7295127b0dfe13dca72bac03eb132a2b89f624dad0483e",
+  "native_acceptance_sha256": "27373f914b4c80df805e79086fd6e4c8b7faace23c2b6c12e5e80222d740cef4",
+  "development_regression": {
+    "run": "tests/20261107T082239063524Z",
+    "report": "review/post201-development-review-20261107T082239063524Z.json",
+    "report_sha256": "1676cd0707ea450bd8348ca030c9b8ade3523e08496b1cc8a3751b48871a4634",
+    "config": "review/release202-config.json",
+    "config_sha256": "7e25700e5f4d7395b8d618dd38056f95b7c28ebde422bdd09a9a3d98548b2df2",
+    "review_verifier_sha256": "ca55c80eab1793ce9984b9f69ff5bf444e82f3034d7098c5070de7961fb2e3f5",
+    "case_selection": "review/release202-cases.json",
+    "case_selection_sha256": "780f3d0d369db10ea840159ccfd2804ad5c170232ae5a3883c581d585ec3d1a6",
+    "total": 32,
+    "cases": [
+      "FrontierWeatherPerformanceTests",
+      "FrontierPalaceBlockTests",
+      "FrontierMenuRepairTests",
+      "FrontierFlyWallTests",
+      "FrontierBubblesRandomTests",
+      "FrontierBubblesStartupATests",
+      "FrontierBubblesStartupBTests",
+      "FrontierCoreTests",
+      "FrontierOptionTests",
+      "FrontierRaceTests",
+      "FrontierSkillTests",
+      "FrontierWeaponTests",
+      "FrontierAreaTests",
+      "FrontierEventTests",
+      "FrontierPromptTests",
+      "FrontierWallFixTests",
+      "FrontierPlayerWallTests",
+      "FrontierGroundWeaponTests",
+      "FrontierProtoChestTests",
+      "FrontierRestartTests",
+      "FrontierCaptainChairTests",
+      "FrontierMenuAudioTests",
+      "FrontierScaryFaceTests",
+      "FrontierSceneryWeatherTests",
+      "FrontierSceneryWeather60Tests",
+      "FrontierLifecycleTests",
+      "FrontierContinueWriteTests",
+      "FrontierContinueReadTests",
+      "FrontierLocalizationTests",
+      "FrontierProgressionTests",
+      "FrontierVisualTests",
+      "FrontierUnlockTests"
+    ],
+    "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+    "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+    "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+    "python_tests": 118,
+    "python_evidence_sha256": "90bf105c6bfc059905bb89bf27c08c61eb380609e4ee51d3a4873a1a74d19435",
+    "evidence_scope": "32 selected current-VM native cases; historical VM results do not contribute. Python evidence binds its passing log/count, without historical source binding.",
+    "physical_device_tested": false
+  },
+  "current_native_run": {
+    "run": "tests/20261107T082239063524Z",
+    "compiled_build": {
+      "status": "COMPILED_NOT_PLAYABLE_VERIFIED",
+      "utc": "2026-11-07T08:22:38.024909+00:00",
+      "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+      "log_sha256": "6b0db22a92f4fcae61adfb58f285932508de019bddadfb348d318eb98244a11f",
+      "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+      "input_manifest": "analysis/build-inputs/c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b.json"
+    },
+    "expected_cases": [
+      "FrontierWeatherPerformanceTests",
+      "FrontierPalaceBlockTests",
+      "FrontierMenuRepairTests",
+      "FrontierFlyWallTests",
+      "FrontierBubblesRandomTests",
+      "FrontierBubblesStartupATests",
+      "FrontierBubblesStartupBTests",
+      "FrontierCoreTests",
+      "FrontierOptionTests",
+      "FrontierRaceTests",
+      "FrontierSkillTests",
+      "FrontierWeaponTests",
+      "FrontierAreaTests",
+      "FrontierEventTests",
+      "FrontierPromptTests",
+      "FrontierWallFixTests",
+      "FrontierPlayerWallTests",
+      "FrontierGroundWeaponTests",
+      "FrontierProtoChestTests",
+      "FrontierRestartTests",
+      "FrontierCaptainChairTests",
+      "FrontierMenuAudioTests",
+      "FrontierScaryFaceTests",
+      "FrontierSceneryWeatherTests",
+      "FrontierSceneryWeather60Tests",
+      "FrontierLifecycleTests",
+      "FrontierContinueWriteTests",
+      "FrontierContinueReadTests",
+      "FrontierLocalizationTests",
+      "FrontierProgressionTests",
+      "FrontierVisualTests",
+      "FrontierUnlockTests"
+    ],
+    "count": 32,
+    "results": [
+      {
+        "case": "FrontierWeatherPerformanceTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 9.36,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "frontier-weather-performance.json": "aa8ce4cb5353c367e5c2816de04ecd4870851a2a771893661da18f2f745038b3"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:22:48.433139+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierWeatherPerformanceTests/receipt.json",
+        "receipt_sha256": "e321e5cd6d06c0da49d976b9fe3619a8f36e4d4ddbc1aec5bc3cb53739caa775",
+        "smoke_sha256": "99a6f09865585da5e4b450dbcdf2558872858cc332670739baafc223dcd5a616",
+        "runner_log_sha256": "87c9d8c7f6a98c02a508c6011e33b94f61605cb0b42ccd5f8b186b34a11e4533"
+      },
+      {
+        "case": "FrontierPalaceBlockTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 17.37,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {},
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:23:05.807802+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierPalaceBlockTests/receipt.json",
+        "receipt_sha256": "55fdb5eba54a79f992470473a857c6c490a4fa0490396c1b521484de3ec9a20a",
+        "smoke_sha256": "d4490c7925c63f9f4fe196f9874bb99bb46da22b002a19e8771d7d041ed5cc86",
+        "runner_log_sha256": "e3ea9885a0efcc70898b386baa02d62e0b8fada70d2b84199b90a83402fe0ff9"
+      },
+      {
+        "case": "FrontierMenuRepairTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 7.07,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "frontier-menu-credits.png": "f8f2fe148ed6f01372278dc0e16537278acdb3da095a917d6bba560d102f1711",
+          "frontier-menu-statistics.png": "1176fb07d4632ef6bf631535b19a94e4e78f5b68683b687bafc20a8e29d4d7f0"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:23:12.884256+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierMenuRepairTests/receipt.json",
+        "receipt_sha256": "46ff5005fcc5f139c9bec143002e256bf61569d198078bda550e6317ba971587",
+        "smoke_sha256": "380712a977bd0b39e1549bd80ce280563c499bf4efe510fd1741098d41c66a10",
+        "runner_log_sha256": "fe06316ac38eebbaf6239a5f7386bab5550454f107229626ca5c95b703f44041"
+      },
+      {
+        "case": "FrontierFlyWallTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 9.59,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "frontier-fly-wall-landing.json": "a2197c984d32ff06c258e20e5032a3ac462606f2a787d95a78250b4a9ba810a5"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:23:22.471776+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierFlyWallTests/receipt.json",
+        "receipt_sha256": "8e76951ce6e891221e3424fafb0abc8b48f1ab204bf8634061eb961eaa4a61f2",
+        "smoke_sha256": "2b9b280422642573d98d6c622c01f295d20a52f7416e9d4f60f07b7cf25a4161",
+        "runner_log_sha256": "0e93818db001bef89bbc422ca462aa55eb9e9bac3b2d4c10cece1adbccf2f021"
+      },
+      {
+        "case": "FrontierBubblesRandomTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 37.95,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "frontier-bubbles-startup-0-30-retry.png": "e292a33cf1a207f936fbe767df2100567ae345e2448032c8527367b9e73d4451",
+          "frontier-bubbles-startup-0-30.png": "b38fa8d958c34a841efab659bad8b7e65ea5f2638e6af22ef1a01ec3ccaa3792",
+          "frontier-bubbles-startup-0-60-retry.png": "8c1e837738674e6a062c6dad4e9d6bba58f8b07cf693073bc5c5361ae5df1eff",
+          "frontier-bubbles-startup-0-60.png": "d6982fb92c6d4d97e7e228809a76f4c52bbf4f7e63de7f4118b7133112b7c167"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:24:00.422058+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierBubblesRandomTests/receipt.json",
+        "receipt_sha256": "d209fef2413fee6630437b6b0325b9ba14eda3f0923c669a1f76d3ced28bfd2b",
+        "smoke_sha256": "632fafb0f6b19a25684a147fbc04e6308959f4c9b5da85a502ffc3fc3c21e790",
+        "runner_log_sha256": "9710e2c795b292252714745730857ffcfb26f169cc1271961e2b477e6b80e419"
+      },
+      {
+        "case": "FrontierBubblesStartupATests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 37.7,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "frontier-bubbles-startup-0-30-retry.png": "618344422594a9aa92602b3e8493d4a51320a25385b360b0c6a8bf807a2c1d95",
+          "frontier-bubbles-startup-0-30.png": "8722caccc15c5c57ad5aede427f699f003accacea8571e831551ba15db47e758",
+          "frontier-bubbles-startup-0-60-retry.png": "200b1e205c5db02d4e622f99910bfec54391c0672c60a250e5dbff95ab34e0cf",
+          "frontier-bubbles-startup-0-60.png": "922e704860f682706e9493dfc835d01752446e75e08f4f92861f60771099a720"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:24:38.121823+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierBubblesStartupATests/receipt.json",
+        "receipt_sha256": "c73d2eb0d2c28e31b25fc17cfc9c7f178092e02dc45887d4729ddd8e6431923a",
+        "smoke_sha256": "67f2d09e8bc6e96ce1ae486a2d17acbc8e0f5da4c1f727180b0cc8abfcec7a21",
+        "runner_log_sha256": "5f2556ee8a3b0c67dcc7661d235909fdb114764b10ad3bb9f4b914ae97162a7e"
+      },
+      {
+        "case": "FrontierBubblesStartupBTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 37.7,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "frontier-bubbles-startup-1-30-retry.png": "eca477881d7d0744b92f291aa47e932b33050177178f2236dc1de8574fcb5190",
+          "frontier-bubbles-startup-1-30.png": "30694a82dd2d5bef3193b84eb9ef518eb4b159dc4b34fb78e51849dda234d997",
+          "frontier-bubbles-startup-1-60-retry.png": "75c6250b9d709b145db510b95b938419aec3f01f1545d1841358a4ec88270ce8",
+          "frontier-bubbles-startup-1-60.png": "8fc9e46b3c31016e32fa7505ddf0fe0a83c34e8896d08a6c036fc705aabb2955"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:25:15.818923+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierBubblesStartupBTests/receipt.json",
+        "receipt_sha256": "79a34bfdef0b9867c8fc790ff3ee72fa5dc12fdb063c1903f1f46153a53d8edf",
+        "smoke_sha256": "982ae2eb5a9af5317767d806a72aab6c03d9c3018317b35c7662d2f6925d7da3",
+        "runner_log_sha256": "da5f4f5d7bd0ed817bcfe5f284fa20fe91cd9d1afb4eaf2395e90f2765b695d2"
+      },
+      {
+        "case": "FrontierCoreTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 8.35,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "frontier-iris-object-bloom.png": "ee26735d8523aedf151a743c9e2bc626d41123e118d5ae1fe6627b9e2c9c2243",
+          "frontier-iris-projectile-bloom.png": "cbe36e808746c5af12125b4e5edec94c8981214c0dd312ee020b751b25a35731",
+          "frontier-iris-slash-bloom.png": "cbe36e808746c5af12125b4e5edec94c8981214c0dd312ee020b751b25a35731"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:25:24.169252+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierCoreTests/receipt.json",
+        "receipt_sha256": "e2e3fe3d683e71dccce5db9c619e10d2e021e25aea66801a461fd22c80555f4b",
+        "smoke_sha256": "98d3ccbce3c0ca80bbe1929372cbffdf5898737952ee0a74f63634deb8db03b3",
+        "runner_log_sha256": "386bd49c3abeb83468e61d4d118cd4d43e4824fbdaf3f9ce7e4a0b4adbf7be7c"
+      },
+      {
+        "case": "FrontierOptionTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 7.31,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {},
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:25:31.484975+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierOptionTests/receipt.json",
+        "receipt_sha256": "74c663b59fac6aa1fac9fca8eab7fbcc66920dbe2a79b4a8f9db5baaf336a89f",
+        "smoke_sha256": "9fbcebebf94b3d1d2633b59745a2cc5865cb90c9f9a55f0470178bb987869509",
+        "runner_log_sha256": "eb2b80ef416d13eaca7f879375a9b79a040d0d9492e1b5a0885b80fd09c6efef"
+      },
+      {
+        "case": "FrontierRaceTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 7.57,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {},
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:25:39.057373+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierRaceTests/receipt.json",
+        "receipt_sha256": "6e67dea03035a5f18c7d562d6faf42745f6576869853604a771a441350043b79",
+        "smoke_sha256": "6b26fe78ee0018530b217aecdd132ebc5c20c7d5c8c593232c5cf64ddf536f22",
+        "runner_log_sha256": "ae8aca06cd67d5f4d455cdf3f97e4135b25fe9f0e848d2e238cdf6c74d72e2b3"
+      },
+      {
+        "case": "FrontierSkillTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 20.36,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {},
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:25:59.419027+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierSkillTests/receipt.json",
+        "receipt_sha256": "bb1ed8c08d4ed81f6e5c859076809f030623f6308cde264f906a3b2b041c87b0",
+        "smoke_sha256": "315fdb69d3ebb2d1b86bf144f44a235b4e3b3588f783a2853767e40e8e0f0d3d",
+        "runner_log_sha256": "bdedf385bb21c5e02a4c0c18752dc8aaf2170995f28a5711ff9e0ecbfeb70b93"
+      },
+      {
+        "case": "FrontierWeaponTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 217.82,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {},
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:29:37.238244+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierWeaponTests/receipt.json",
+        "receipt_sha256": "2a2822b8575c2e5fb9d23a623738b4d1ed6d3970290f19f59c98f166afb7ff3b",
+        "smoke_sha256": "ae12d933771c31ed3d3baddcabae2f5b2c00d6e4c2d2ccb6302ec71a5801ee8f",
+        "runner_log_sha256": "bbca3b1a9024897821be7aa644c208c650abe8cbdfca4b8e8d99146a08332245"
+      },
+      {
+        "case": "FrontierAreaTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 240.8,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {},
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:33:38.042568+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierAreaTests/receipt.json",
+        "receipt_sha256": "638fde7c7cffcf64106a18be63977dbe7c0a95499150a60e7531dd6f07bc6022",
+        "smoke_sha256": "583923f2f13d69c8c80a0866dfedc18886a52a3a59ca8527cf53d5860e13893c",
+        "runner_log_sha256": "ae5da826ee3e9cc512c5ddb959f4774f7533c5293355e9ecd64740f544599083"
+      },
+      {
+        "case": "FrontierEventTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 381.87,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "ntuf-natural-weather-final-screen-60.png": "1d70739ca054bdda1f73d896420d7f41bd0781fde446a57a4fa634bff176a83f"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:39:59.917952+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierEventTests/receipt.json",
+        "receipt_sha256": "e099cc62078a56f2195ee185db1f5939cb38f5720cd69749bba8aa3cb58bc755",
+        "smoke_sha256": "d24d08649c7ef26058eca2ec797fd09b9a91f8fdb6e7f1620946609bb4230bd5",
+        "runner_log_sha256": "dcfcd620b1d21b09cc2092e43156f267c9efb52e2978fd4adb2f2de814bf388f"
+      },
+      {
+        "case": "FrontierPromptTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 8.88,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "frontier-touch-source-prompt.png": "68559b0261761b4af35db6e4cf464d41a2247e8762448dad7deb4215a633e664"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:40:08.795644+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierPromptTests/receipt.json",
+        "receipt_sha256": "5922b9b381b34a34b6309ac55be07fa1087628f897d127e4fd65a6073e030b25",
+        "smoke_sha256": "5b47915eaad4f10db1bc8d6119d0ede4aaf670c2f5079cc724bc43194d52d2a7",
+        "runner_log_sha256": "87b29246753c25a5bc3bcca926f7803f1998a561cfe6cd531075127f623d155a"
+      },
+      {
+        "case": "FrontierWallFixTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 13.15,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "ntuf-red-hidden-roof-after.png": "815db136c001f52e1c69bcf82f31519f4978a30f8e0d81cb931ce141ddb01732",
+          "ntuf-red-hidden-roof-before.png": "24d08361c09650c13ecc3276355eae213b6efa5696d78abe049ace937ad573a1",
+          "ntuf-wall-night-fill.png": "448172eb5a079231873a891c3b6901032fa91a19cc36aba140ff6a383c7022d5"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:40:21.952205+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierWallFixTests/receipt.json",
+        "receipt_sha256": "c3a4bcf7ca8b39f4da2d247adcf35ea2766909fc70d38d43f772149829ec2611",
+        "smoke_sha256": "d9fd5f424e42b617379e835569dcbecca59c493b3c808354230c772721f82cbb",
+        "runner_log_sha256": "9f2d43232f16f00d8fc829c885a06f4353580b74608a9b619d243484ab82e5a0"
+      },
+      {
+        "case": "FrontierPlayerWallTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 28.46,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {},
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:40:50.418733+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierPlayerWallTests/receipt.json",
+        "receipt_sha256": "859ed37fb36d73a152419d3a097c1368c8f35b24a0beb3c6d6a156eedb8c4ce1",
+        "smoke_sha256": "af5b5088cccec2fbbb02db155705430967bca18b2c09703397d74119a7e497d3",
+        "runner_log_sha256": "4ae3e428b5c42a6f8520fff8cb36e32747a3a77b7da8a7fbb8a3bfe44f5b2815"
+      },
+      {
+        "case": "FrontierGroundWeaponTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 19.16,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {},
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:41:09.581497+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierGroundWeaponTests/receipt.json",
+        "receipt_sha256": "53c979e2b170f8f9d6f58f5e67432d76d6962fb22aab09213cd0a5bd77f87ca9",
+        "smoke_sha256": "c899ef5bbf528abda0a946833f2b715a33a137d63d6bb8cc7ea1899e6c520001",
+        "runner_log_sha256": "90f637bfa2d36d8ea80961366ce75481904036e6451c93065df0104c87a47bcc"
+      },
+      {
+        "case": "FrontierProtoChestTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 13.89,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {},
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:41:23.472786+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierProtoChestTests/receipt.json",
+        "receipt_sha256": "f15eac3f26b960c611f69d829f22146df92f77091e47d18922e2dc60b16c8437",
+        "smoke_sha256": "b7cd72ed065f76dd2eca51a852d4eab645722a4b103c3097beb5b6231c56a5c5",
+        "runner_log_sha256": "64c49d01874a868bd5f0deaabe41b326e0c8daf1f37308ae2767a0442a82e4ae"
+      },
+      {
+        "case": "FrontierRestartTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 28.21,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "ntuf-natural-weather-final-screen-30.png": "fda0ec13fa9d5cb30383ab419d24d7005dbf4b825e568fdb1e392113c8d6c6b3",
+          "ntuf-natural-weather-final-screen-60.png": "f5fccc3cace882f28f8e5d36b8d74c0ef916aae1ebf5aa72efad5943530ff590"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:41:51.685350+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierRestartTests/receipt.json",
+        "receipt_sha256": "0dd2ac2c17f8aeefb0df93f5671d7bbe5d5cc0568df76f2f06e0b778dd81d7a1",
+        "smoke_sha256": "638644b4d7eb6c4c9056e3b96f55d2dfc7a4ce9df368cfeb16983cc731134570",
+        "runner_log_sha256": "017aafe9d763f976f750fd4023d6eb7bd2621f6d481e76218bd71d68aa372eed"
+      },
+      {
+        "case": "FrontierCaptainChairTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 50.06,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {},
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:42:41.751142+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierCaptainChairTests/receipt.json",
+        "receipt_sha256": "49c5f4054389dc96794af9481a6611e2d3c4f1bc71086301515fbfc0f549182b",
+        "smoke_sha256": "04a5d77dd1bb284c531562b33e29720d1fdeb45d334caa11464cda420e21a1eb",
+        "runner_log_sha256": "96385109150b68874f37ebe12d0e3dc5789a013762457129444df10dedd12af0"
+      },
+      {
+        "case": "FrontierMenuAudioTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 27.72,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "ntuf-menu-audio-voices.json": "c51573c1372fca6d0598fdfa5d97f59fcea2b7e45ec3dc3222451a0f4f0e3b7f"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:43:09.477584+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierMenuAudioTests/receipt.json",
+        "receipt_sha256": "1f474089f9b5bb23a52cf347776a59b25165c072b9832a777b727280ad83c2a3",
+        "smoke_sha256": "5ba42f00bf2c744a3a9c2c3167b68e28975656bde067029aa33e1ed6001c7842",
+        "runner_log_sha256": "0ad316bd29afb510dadf90f0d506eb5b83dd6aa851b057386ebffe8ea9d89077"
+      },
+      {
+        "case": "FrontierScaryFaceTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 9.62,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {},
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:43:19.096690+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierScaryFaceTests/receipt.json",
+        "receipt_sha256": "4fd820cd19b976ea1b103b190a408fbe059e31e2f02f009d60468aa3e389088d",
+        "smoke_sha256": "746e3f0654f78ede527c94d231f5c56bef52e27f648928253305ec2d2b624f1b",
+        "runner_log_sha256": "6fb7565c51915c517647efcc25fe18eac60ac0f5e118a7ac360fb8ef12fa7c93"
+      },
+      {
+        "case": "FrontierSceneryWeatherTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 14.65,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "ntuf-weather-dropdown-native-30.png": "026b19d76214586518b349f4ef59eeb9069f4abe74aef2a30ceb233d3e189e4f",
+          "ntuf-weather-final-screen-30.png": "4349223442747d135ef998feef316d790e83ac9f31a78a9d831a01ca23037e3c"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:43:33.748332+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierSceneryWeatherTests/receipt.json",
+        "receipt_sha256": "a2c48d9115d8183018d5e1bf5eaba6df04875e52b377857883e20904c1d751cb",
+        "smoke_sha256": "c2e7aec595b5c7a026a064e59ae28fdd9c3e29238fa7473ddd7d9c7149a8dfe5",
+        "runner_log_sha256": "01c1e28ed7313a2e42752710021d286d980ad5df59a08bda482a893e6d238188"
+      },
+      {
+        "case": "FrontierSceneryWeather60Tests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 14.64,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "ntuf-weather-dropdown-native-60.png": "e465a93a9416f6f217b90fc8202b18603ef3bebb91e830891fb91efd85dff108",
+          "ntuf-weather-final-screen-60.png": "3f8e83da615201ea389220eedd5c412f41c48d68c1f5473a450f7a730029a6be"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:43:48.397046+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierSceneryWeather60Tests/receipt.json",
+        "receipt_sha256": "e4de4722648301cd4a94953af5c133abf83c246055af40541a513f9129d3b909",
+        "smoke_sha256": "c847e43e9867f4311646512f20ed670c3379298d8ba4636db60b8ea184d978f8",
+        "runner_log_sha256": "10338bc41668b16d645741fb12857ef35156ffcea363e2d13258a702b2d887c5"
+      },
+      {
+        "case": "FrontierLifecycleTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 13.88,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {},
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:44:02.276150+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierLifecycleTests/receipt.json",
+        "receipt_sha256": "f536015cdd2037ef46a1ac19bc7b27459fabd7692bdefff876dc98abc692a7e3",
+        "smoke_sha256": "01cb805f15a02b7dbac36074c5898bf1cca307e5302e55bbd9362fe9aa9a2dd6",
+        "runner_log_sha256": "2f3a36144ab5a6641e5f87942901c733fd765600e3ec0b56c348d86a3c507598"
+      },
+      {
+        "case": "FrontierContinueWriteTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 13.88,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "frontier-cold-expected.json": "d4daf49f44b1d8314f0d9a2bc755c7a3dc0202dc801efda3af17e589b821a1b1"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:44:16.162261+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierContinueWriteTests/receipt.json",
+        "receipt_sha256": "5f9de1200430ee6fbbed8d2f25343a2e7018f73c74af0bfb37bcebfc69886552",
+        "smoke_sha256": "6aabb346f7c2bb37532d87d9a04ce96531919a383de0e7a3efb918bcf2a8d2ab",
+        "runner_log_sha256": "39d62782fbd7dc31e0a20cfebb36b3b54dd4db55145dc7a78e9d4fd17f038f88"
+      },
+      {
+        "case": "FrontierContinueReadTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 10.12,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {},
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:44:26.282295+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierContinueReadTests/receipt.json",
+        "receipt_sha256": "cf75e8a186b1ceb5a8be9609a9709d97e71c6a4fd837b208a70e0ba0c1923f14",
+        "smoke_sha256": "bb224a5e090adf885a83835ad224bcea275f342f253e8d7f30c806cef5ba5495",
+        "runner_log_sha256": "7d8f0225bcfb8d998555e625d2277419366c01aa5c85e1aca7f886fea34afe91"
+      },
+      {
+        "case": "FrontierLocalizationTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 8.86,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {},
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:44:35.145341+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierLocalizationTests/receipt.json",
+        "receipt_sha256": "adf267e8e226a47965f30c96e8e0eb024191663e2f29e0d762479883de84f759",
+        "smoke_sha256": "f1ce382f35924175be1a09cf48152de3039507f24f3e40a4644b454fbbb463ee",
+        "runner_log_sha256": "08aaa5b4a523ab4b0a5d8bed325a520848eaa5cd98fbab3d5fa3d0ebd4c8ed6b"
+      },
+      {
+        "case": "FrontierProgressionTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 10.37,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {},
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:44:45.513745+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierProgressionTests/receipt.json",
+        "receipt_sha256": "f794c2f4cd5ea37805d5f03b58aea4b1d55baa030dff5f3348a2a6646d96326e",
+        "smoke_sha256": "011cfb25227ff071a6c33caf9173aadd32a331a47de6fa224edd037201ed4096",
+        "runner_log_sha256": "9998013d0fccd6a1a76b4b54339d5dd0960177787525bf7763eb9fe6d9788216"
+      },
+      {
+        "case": "FrontierVisualTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 8.62,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "frontier-visual-custom-actor.png": "2816edf83c4b8c5df6b79c494c868b7577b3b85d467a0dd25164c2623e394369",
+          "frontier-visual-panned-ui.png": "d67c15622cb52adfe9912cf1f9e1ed1994f308b891a6a66ccec4544005bbceb7",
+          "frontier-visual-positive-control.png": "8eb8d3025fcf3dc11fe030d6087ab27b11b4dae9d86c678f4fa936fa3c0faa77",
+          "frontier-visual-source-inline-sprite.png": "4b018605f6b397607c69aeb6cc1bbfd2114b0ecd859dfb3074e616dee7362a21",
+          "frontier-visual-source-ui.png": "d67c15622cb52adfe9912cf1f9e1ed1994f308b891a6a66ccec4544005bbceb7",
+          "frontier-visual-source-weapon.png": "ec0444e6f824fcb991af16a6eea9572e00090b62ab2cd5a80a80e4ac2c3d72b7"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:44:54.140464+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierVisualTests/receipt.json",
+        "receipt_sha256": "14c95b74467c5dc28ddd0f2897ef89ce06e75ca11b0f331ab7241c76f812c687",
+        "smoke_sha256": "4956f6d470531fb4cde2eb72ae7fe0d377ee841b424dc3c78fb01441569d4922",
+        "runner_log_sha256": "ab0802630e7a21962c86f763385fbdeaf82bc4be4a0c207acbe70a53b6b8402d"
+      },
+      {
+        "case": "FrontierUnlockTests",
+        "status": "PASS",
+        "exit": 0,
+        "elapsed_seconds": 9.62,
+        "termination_reason": null,
+        "vm_sha256": "67032322b3a37113d81b4fa7d22a1e70e2aed7d503d729b33039fdd4662c9d28",
+        "silent_vm_sha256": "4270d22b5623d1d463f27c2c4da7e901ab8d2f53ce03982202ed54d33718d68a",
+        "input_sha256": "c910dae3c6c321bdee2e9b3a72defaed56dfffc45c580fa8f234a57894514c0b",
+        "artifacts_sha256": {
+          "frontier-unlock-popup.png": "af5a52667d04751b45b7a48d1298c893b0af89694f71c1cc0f7dab829538b3dd",
+          "frontier-unlock-portrait.png": "718d9dacd69745b7116dee65eaac525b087eea616fc5a7219b7c7eaa1d2b6d84"
+        },
+        "muted_resources": 1462,
+        "desktop": "private, never activated",
+        "physical_device_tested": false,
+        "utc": "2026-11-07T08:45:03.759074+00:00",
+        "receipt": "tests/20261107T082239063524Z/FrontierUnlockTests/receipt.json",
+        "receipt_sha256": "593414e46353ddf1809703ff2484732b6b485ed881188d9e44655443546e4f10",
+        "smoke_sha256": "20d93eea9ca5cdb022ac8987b7fbd2082703b258600da25d56f3c55f523f0a40",
+        "runner_log_sha256": "8b1782fdd1c3972e29534e6479d1488a265c4f876e6b4bb73425973838f5571d"
+      }
+    ],
+    "bubbles_startup": {
+      "FrontierBubblesRandomTests": {
+        "skin": 0,
+        "new_runs": [
+          {
+            "scale": 1.0,
+            "source_runs": 1.0,
+            "huds": 180.0,
+            "source_ticks": 180.0,
+            "weapon_swing": true,
+            "attack_hits": [
+              {
+                "step": 16.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "desktop-hold"
+              },
+              {
+                "step": 62.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "mobile-tap"
+              },
+              {
+                "step": 151.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "mobile-hold"
+              }
+            ],
+            "rate": 30.0,
+            "random": true,
+            "bubbles": 5.0,
+            "language": "English",
+            "steps": 180.0,
+            "requested_rate": 30.0,
+            "option_rate": 30.0,
+            "draws": 180.0,
+            "native_runs": 1.0,
+            "trial": "new",
+            "skin": 0.0,
+            "weapon": 187.0,
+            "ends": 180.0
+          },
+          {
+            "scale": 1.0,
+            "source_runs": 1.0,
+            "huds": 180.0,
+            "source_ticks": 180.0,
+            "weapon_swing": true,
+            "attack_hits": [
+              {
+                "step": 16.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "desktop-hold"
+              },
+              {
+                "step": 62.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "mobile-tap"
+              },
+              {
+                "step": 151.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "mobile-hold"
+              }
+            ],
+            "rate": 30.0,
+            "random": true,
+            "bubbles": 5.0,
+            "language": "English",
+            "steps": 180.0,
+            "requested_rate": 30.0,
+            "option_rate": 30.0,
+            "draws": 180.0,
+            "native_runs": 1.0,
+            "trial": "retry",
+            "skin": 0.0,
+            "weapon": 187.0,
+            "ends": 180.0
+          },
+          {
+            "scale": 0.5,
+            "source_runs": 1.0,
+            "huds": 359.0,
+            "source_ticks": 180.0,
+            "weapon_swing": true,
+            "attack_hits": [
+              {
+                "step": 16.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "desktop-hold"
+              },
+              {
+                "step": 62.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "mobile-tap"
+              },
+              {
+                "step": 151.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "mobile-hold"
+              }
+            ],
+            "rate": 60.0,
+            "random": true,
+            "bubbles": 3.0,
+            "language": "Simplified Chinese",
+            "steps": 359.0,
+            "requested_rate": 60.0,
+            "option_rate": 60.0,
+            "draws": 359.0,
+            "native_runs": 1.0,
+            "trial": "new",
+            "skin": 0.0,
+            "weapon": 187.0,
+            "ends": 359.0
+          },
+          {
+            "scale": 0.5,
+            "source_runs": 1.0,
+            "huds": 360.0,
+            "source_ticks": 180.0,
+            "weapon_swing": true,
+            "attack_hits": [
+              {
+                "step": 25.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "desktop-hold"
+              },
+              {
+                "step": 62.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "mobile-tap"
+              },
+              {
+                "step": 151.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "mobile-hold"
+              }
+            ],
+            "rate": 60.0,
+            "random": true,
+            "bubbles": 2.0,
+            "language": "Simplified Chinese",
+            "steps": 360.0,
+            "requested_rate": 60.0,
+            "option_rate": 60.0,
+            "draws": 360.0,
+            "native_runs": 1.0,
+            "trial": "retry",
+            "skin": 0.0,
+            "weapon": 187.0,
+            "ends": 360.0
+          }
+        ],
+        "screenshots": [
+          "frontier-bubbles-startup-0-30.png",
+          "frontier-bubbles-startup-0-30-retry.png",
+          "frontier-bubbles-startup-0-60.png",
+          "frontier-bubbles-startup-0-60-retry.png"
+        ],
+        "scope": "Native random CharSelect selection, real new-run/death-menu Retry, touch producer and Slash HP loss; not physical Android/iOS validation",
+        "random_selection": true
+      },
+      "FrontierBubblesStartupATests": {
+        "skin": 0,
+        "new_runs": [
+          {
+            "scale": 1.0,
+            "source_runs": 1.0,
+            "huds": 180.0,
+            "source_ticks": 180.0,
+            "weapon_swing": true,
+            "attack_hits": [
+              {
+                "step": 16.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "desktop-hold"
+              },
+              {
+                "step": 62.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "mobile-tap"
+              },
+              {
+                "step": 151.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "mobile-hold"
+              }
+            ],
+            "rate": 30.0,
+            "random": false,
+            "bubbles": 5.0,
+            "language": "English",
+            "steps": 180.0,
+            "requested_rate": 30.0,
+            "option_rate": 30.0,
+            "draws": 180.0,
+            "native_runs": 1.0,
+            "trial": "new",
+            "skin": 0.0,
+            "weapon": 187.0,
+            "ends": 180.0
+          },
+          {
+            "scale": 1.0,
+            "source_runs": 1.0,
+            "huds": 180.0,
+            "source_ticks": 180.0,
+            "weapon_swing": true,
+            "attack_hits": [
+              {
+                "step": 16.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "desktop-hold"
+              },
+              {
+                "step": 62.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "mobile-tap"
+              },
+              {
+                "step": 151.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "mobile-hold"
+              }
+            ],
+            "rate": 30.0,
+            "random": false,
+            "bubbles": 5.0,
+            "language": "English",
+            "steps": 180.0,
+            "requested_rate": 30.0,
+            "option_rate": 30.0,
+            "draws": 180.0,
+            "native_runs": 1.0,
+            "trial": "retry",
+            "skin": 0.0,
+            "weapon": 187.0,
+            "ends": 180.0
+          },
+          {
+            "scale": 0.5,
+            "source_runs": 1.0,
+            "huds": 360.0,
+            "source_ticks": 180.0,
+            "weapon_swing": true,
+            "attack_hits": [
+              {
+                "step": 16.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "desktop-hold"
+              },
+              {
+                "step": 62.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "mobile-tap"
+              },
+              {
+                "step": 151.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "mobile-hold"
+              }
+            ],
+            "rate": 60.0,
+            "random": false,
+            "bubbles": 2.0,
+            "language": "Simplified Chinese",
+            "steps": 360.0,
+            "requested_rate": 60.0,
+            "option_rate": 60.0,
+            "draws": 360.0,
+            "native_runs": 1.0,
+            "trial": "new",
+            "skin": 0.0,
+            "weapon": 187.0,
+            "ends": 360.0
+          },
+          {
+            "scale": 0.5,
+            "source_runs": 1.0,
+            "huds": 359.0,
+            "source_ticks": 180.0,
+            "weapon_swing": true,
+            "attack_hits": [
+              {
+                "step": 16.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "desktop-hold"
+              },
+              {
+                "step": 62.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "mobile-tap"
+              },
+              {
+                "step": 151.0,
+                "damage": 6.0,
+                "hp_loss": 6.0,
+                "mode": "mobile-hold"
+              }
+            ],
+            "rate": 60.0,
+            "random": false,
+            "bubbles": 3.0,
+            "language": "Simplified Chinese",
+            "steps": 359.0,
+            "requested_rate": 60.0,
+            "option_rate": 60.0,
+            "draws": 359.0,
+            "native_runs": 1.0,
+            "trial": "retry",
+            "skin": 0.0,
+            "weapon": 187.0,
+            "ends": 359.0
+          }
+        ],
+        "screenshots": [
+          "frontier-bubbles-startup-0-30.png",
+          "frontier-bubbles-startup-0-30-retry.png",
+          "frontier-bubbles-startup-0-60.png",
+          "frontier-bubbles-startup-0-60-retry.png"
+        ],
+        "scope": "Native desktop menu/new-run/death-menu Retry, real touch producer and Slash HP loss; not physical Android/iOS validation"
+      },
+      "FrontierBubblesStartupBTests": {
+        "skin": 1,
+        "new_runs": [
+          {
+            "scale": 1.0,
+            "source_runs": 1.0,
+            "huds": 180.0,
+            "source_ticks": 180.0,
+            "weapon_swing": true,
+            "attack_hits": [
+              {
+                "step": 16.0,
+                "damage": 9.0,
+                "hp_loss": 9.0,
+                "mode": "desktop-hold"
+              },
+              {
+                "step": 62.0,
+                "damage": 9.0,
+                "hp_loss": 9.0,
+                "mode": "mobile-tap"
+              },
+              {
+                "step": 151.0,
+                "damage": 9.0,
+                "hp_loss": 9.0,
+                "mode": "mobile-hold"
+              }
+            ],
+            "rate": 30.0,
+            "random": false,
+            "bubbles": 5.0,
+            "language": "English",
+            "steps": 180.0,
+            "requested_rate": 30.0,
+            "option_rate": 30.0,
+            "draws": 180.0,
+            "native_runs": 1.0,
+            "trial": "new",
+            "skin": 1.0,
+            "weapon": 188.0,
+            "ends": 180.0
+          },
+          {
+            "scale": 1.0,
+            "source_runs": 1.0,
+            "huds": 180.0,
+            "source_ticks": 180.0,
+            "weapon_swing": true,
+            "attack_hits": [
+              {
+                "step": 16.0,
+                "damage": 9.0,
+                "hp_loss": 9.0,
+                "mode": "desktop-hold"
+              },
+              {
+                "step": 62.0,
+                "damage": 9.0,
+                "hp_loss": 9.0,
+                "mode": "mobile-tap"
+              },
+              {
+                "step": 151.0,
+                "damage": 9.0,
+                "hp_loss": 9.0,
+                "mode": "mobile-hold"
+              }
+            ],
+            "rate": 30.0,
+            "random": false,
+            "bubbles": 5.0,
+            "language": "English",
+            "steps": 180.0,
+            "requested_rate": 30.0,
+            "option_rate": 30.0,
+            "draws": 180.0,
+            "native_runs": 1.0,
+            "trial": "retry",
+            "skin": 1.0,
+            "weapon": 188.0,
+            "ends": 180.0
+          },
+          {
+            "scale": 0.5,
+            "source_runs": 1.0,
+            "huds": 360.0,
+            "source_ticks": 180.0,
+            "weapon_swing": true,
+            "attack_hits": [
+              {
+                "step": 16.0,
+                "damage": 9.0,
+                "hp_loss": 9.0,
+                "mode": "desktop-hold"
+              },
+              {
+                "step": 62.0,
+                "damage": 9.0,
+                "hp_loss": 9.0,
+                "mode": "mobile-tap"
+              },
+              {
+                "step": 151.0,
+                "damage": 9.0,
+                "hp_loss": 9.0,
+                "mode": "mobile-hold"
+              }
+            ],
+            "rate": 60.0,
+            "random": false,
+            "bubbles": 2.0,
+            "language": "Simplified Chinese",
+            "steps": 360.0,
+            "requested_rate": 60.0,
+            "option_rate": 60.0,
+            "draws": 360.0,
+            "native_runs": 1.0,
+            "trial": "new",
+            "skin": 1.0,
+            "weapon": 188.0,
+            "ends": 360.0
+          },
+          {
+            "scale": 0.5,
+            "source_runs": 1.0,
+            "huds": 359.0,
+            "source_ticks": 180.0,
+            "weapon_swing": true,
+            "attack_hits": [
+              {
+                "step": 16.0,
+                "damage": 9.0,
+                "hp_loss": 9.0,
+                "mode": "desktop-hold"
+              },
+              {
+                "step": 62.0,
+                "damage": 9.0,
+                "hp_loss": 9.0,
+                "mode": "mobile-tap"
+              },
+              {
+                "step": 151.0,
+                "damage": 9.0,
+                "hp_loss": 9.0,
+                "mode": "mobile-hold"
+              }
+            ],
+            "rate": 60.0,
+            "random": false,
+            "bubbles": 3.0,
+            "language": "Simplified Chinese",
+            "steps": 359.0,
+            "requested_rate": 60.0,
+            "option_rate": 60.0,
+            "draws": 359.0,
+            "native_runs": 1.0,
+            "trial": "retry",
+            "skin": 1.0,
+            "weapon": 188.0,
+            "ends": 359.0
+          }
+        ],
+        "screenshots": [
+          "frontier-bubbles-startup-1-30.png",
+          "frontier-bubbles-startup-1-30-retry.png",
+          "frontier-bubbles-startup-1-60.png",
+          "frontier-bubbles-startup-1-60-retry.png"
+        ],
+        "scope": "Native desktop menu/new-run/death-menu Retry, real touch producer and Slash HP loss; not physical Android/iOS validation"
+      }
+    },
+    "repair_semantics": {
+      "FrontierWeatherPerformanceTests": {
+        "parity_comparisons": 162.0,
+        "actual_source_callback_calls": 120.0,
+        "actual_source_callback_us": 109746.0,
+        "source_callback_mean_us": 914.55,
+        "kind": "native Windows weather query/callback comparison",
+        "rows": [
+          {
+            "same_result_total": 0.0,
+            "terrain": 1601.0,
+            "ratio": 0.17497601492988474,
+            "queries": 60.0,
+            "original_snapshot_us": 304356.0,
+            "round": 0.0,
+            "fresh_native_us": 53255.0
+          },
+          {
+            "same_result_total": 0.0,
+            "terrain": 1601.0,
+            "ratio": 0.17306627043865308,
+            "queries": 60.0,
+            "original_snapshot_us": 306894.0,
+            "round": 1.0,
+            "fresh_native_us": 53113.0
+          },
+          {
+            "same_result_total": 0.0,
+            "terrain": 1601.0,
+            "ratio": 0.17799296999493125,
+            "queries": 60.0,
+            "original_snapshot_us": 301849.0,
+            "round": 2.0,
+            "fresh_native_us": 53727.0
+          }
+        ],
+        "physical_device_tested": false,
+        "artifact": "frontier-weather-performance.json",
+        "scope": "Paired native Windows query/callback samples with old-oracle parity; not mobile FPS or universal speed guarantees"
+      },
+      "FrontierPalaceBlockTests": {
+        "rows": [
+          {
+            "physical_frames": 31.0,
+            "launched": true,
+            "alive": 1.0,
+            "proxy_alive": true,
+            "proxy_synced": true,
+            "maximum_x": 825178.0,
+            "enemy_hp": 1000.0,
+            "prop_destroyed": true,
+            "smush_created": 0.0,
+            "smush_target_overlap": false,
+            "smush_hits": 0.0,
+            "smush_damage": 0.0,
+            "smush_team": 0.0,
+            "enemy_team": 0.0,
+            "enemy_x": 0.0,
+            "enemy_y": 0.0,
+            "rate": 30.0,
+            "scene": "open",
+            "displacement": 180.0,
+            "start_x": 824998.0,
+            "start_y": 824992.0
+          },
+          {
+            "physical_frames": 61.0,
+            "launched": true,
+            "alive": 1.0,
+            "proxy_alive": true,
+            "proxy_synced": true,
+            "maximum_x": 825120.0,
+            "enemy_hp": 1000.0,
+            "prop_destroyed": true,
+            "smush_created": 1.0,
+            "smush_target_overlap": false,
+            "smush_hits": 0.0,
+            "smush_damage": 0.0,
+            "smush_team": 0.0,
+            "enemy_team": 0.0,
+            "enemy_x": 0.0,
+            "enemy_y": 0.0,
+            "rate": 30.0,
+            "scene": "wall-prop",
+            "displacement": 122.0,
+            "start_x": 824998.0,
+            "start_y": 824992.0
+          },
+          {
+            "physical_frames": 61.0,
+            "launched": true,
+            "alive": 1.0,
+            "proxy_alive": true,
+            "proxy_synced": true,
+            "maximum_x": 825124.0,
+            "enemy_hp": 970.0,
+            "prop_destroyed": true,
+            "smush_created": 1.0,
+            "smush_target_overlap": true,
+            "smush_hits": 1.0,
+            "smush_damage": 30.0,
+            "smush_team": 0.0,
+            "enemy_team": 1.0,
+            "enemy_x": 825127.0,
+            "enemy_y": 824992.0,
+            "rate": 30.0,
+            "scene": "corner-enemy",
+            "displacement": -106.0,
+            "start_x": 824998.0,
+            "start_y": 824992.0
+          },
+          {
+            "physical_frames": 62.0,
+            "launched": true,
+            "alive": 1.0,
+            "proxy_alive": true,
+            "proxy_synced": true,
+            "maximum_x": 825175.0,
+            "enemy_hp": 1000.0,
+            "prop_destroyed": true,
+            "smush_created": 0.0,
+            "smush_target_overlap": false,
+            "smush_hits": 0.0,
+            "smush_damage": 0.0,
+            "smush_team": 0.0,
+            "enemy_team": 0.0,
+            "enemy_x": 0.0,
+            "enemy_y": 0.0,
+            "rate": 60.0,
+            "scene": "open",
+            "displacement": 180.0,
+            "start_x": 824995.0,
+            "start_y": 824992.0
+          },
+          {
+            "physical_frames": 122.0,
+            "launched": true,
+            "alive": 1.0,
+            "proxy_alive": true,
+            "proxy_synced": true,
+            "maximum_x": 825124.0,
+            "enemy_hp": 1000.0,
+            "prop_destroyed": true,
+            "smush_created": 1.0,
+            "smush_target_overlap": false,
+            "smush_hits": 0.0,
+            "smush_damage": 0.0,
+            "smush_team": 0.0,
+            "enemy_team": 0.0,
+            "enemy_x": 0.0,
+            "enemy_y": 0.0,
+            "rate": 60.0,
+            "scene": "wall-prop",
+            "displacement": 125.0,
+            "start_x": 824995.0,
+            "start_y": 824992.0
+          },
+          {
+            "physical_frames": 122.0,
+            "launched": true,
+            "alive": 1.0,
+            "proxy_alive": true,
+            "proxy_synced": true,
+            "maximum_x": 825124.0,
+            "enemy_hp": 970.0,
+            "prop_destroyed": true,
+            "smush_created": 1.0,
+            "smush_target_overlap": true,
+            "smush_hits": 1.0,
+            "smush_damage": 30.0,
+            "smush_team": 0.0,
+            "enemy_team": 1.0,
+            "enemy_x": 825126.5,
+            "enemy_y": 824992.0,
+            "rate": 60.0,
+            "scene": "corner-enemy",
+            "displacement": -103.0,
+            "start_x": 824995.0,
+            "start_y": 824992.0
+          }
+        ],
+        "scope": "Actual authored player detection, source-speed movement, wall/prop/enemy contact and every-host-frame moving-wall synchronization at30/60Hz"
+      },
+      "FrontierMenuRepairTests": {
+        "native_assertion_summary": "PASS FRONTIER menu repairs: locked Storms, statistics22/credits16 rows,77 NTUF weapon menu metadata without GameCont,13 Unicode Goto labels and debug glyphs",
+        "bubbles_saved_loadout_summary": "PASS FRONTIER Bubbles saved loadout: missing A/B, legacy false/0/negative/out-of-range, saved skin, valid alternate/fusion identity and actual Custom NONE menu selection",
+        "screenshots": [
+          "frontier-menu-statistics.png",
+          "frontier-menu-credits.png"
+        ],
+        "scope": "Actual native locked crown/menu rows/custom weapon selector/CJK console assertions and rendered stats/credits artifacts"
+      },
+      "FrontierFlyWallTests": {
+        "rows": [
+          {
+            "anchors": [
+              [
+                186176.0,
+                186016.0
+              ],
+              [
+                186176.0,
+                186016.0
+              ],
+              [
+                186176.0,
+                186016.0
+              ],
+              [
+                186176.0,
+                186016.0
+              ]
+            ],
+            "ordinary_fly_alive": 1.0,
+            "rate": 30.0,
+            "landed": 4.0,
+            "real_source_ticks": 40.0
+          },
+          {
+            "anchors": [
+              [
+                190176.0,
+                186016.0
+              ],
+              [
+                190176.0,
+                186016.0
+              ],
+              [
+                190176.0,
+                186016.0
+              ],
+              [
+                190176.0,
+                186016.0
+              ]
+            ],
+            "ordinary_fly_alive": 1.0,
+            "rate": 60.0,
+            "landed": 4.0,
+            "real_source_ticks": 40.0
+          }
+        ],
+        "physical_device_tested": false,
+        "artifact": "frontier-fly-wall-landing.json",
+        "scope": "Actual native wall-top descent, restored collision and ordinary fly control at30/60Hz"
+      }
+    }
+  },
+  "prior_vm_runs": [],
+  "python": {
+    "exit": 0,
+    "tests": 118,
+    "log": "review/post201-python-regression-final2.txt",
+    "log_sha256": "bf0b53f3a480f1f6c5b3e707c8dd83bd3d1666fb025bafdae4757f3357345045",
+    "utc": "2026-11-07T08:08:57.692720+00:00",
+    "evidence_scope": "Verified the successful test log and count against its evidence receipt; no historical binding to test source bytes is recorded."
+  },
+  "physical_device_tested": false,
+  "current_repairs_packaged": true,
+  "mobile_delivery_sha256": "280205ca93382544831e99d959fde450bf9c7fd33ba706bac4a5e14b657fdc33",
+  "persistent_mobile_audio_noise": "unresolved; native voice ownership checks do not verify phone mixing",
+  "limits": "32 selected final-VM cases; no historical VM pass is inherited. No physical Android/iOS, full random campaign, new Mac native build or universal FPS acceptance.",
+  "packages": {
+    "android": {
+      "name": "NuclearThrone.NTTE-NTUF-Android-2.0.2.apk",
+      "bytes": 304481236,
+      "sha256": "9ed3cebdf6d69115639c97bc114e5a2dc04f5c12471b6ce6edf05c1a701a4548"
+    },
+    "ios": {
+      "name": "NuclearThrone.NTTE-NTUF-iOS-2.0.2.ipa",
+      "bytes": 212701303,
+      "sha256": "b41277d2d3a501222595ab498b20836b3c43940a4620b1fb2ed1b3d27fc9f894"
+    }
+  },
+  "publication_verified_separately": true,
+  "independent_package_audit_sha256": "d42e7463b23635d927fa70a7822e355e647069cc41afb37898c0db6d25cdb8cd",
+  "independent_package_audit_public_summary_sha256": "a8740f387ca2ec138b6dace0d0e0d6e56bbc6533ca89290c37a23706842f6f40"
+}

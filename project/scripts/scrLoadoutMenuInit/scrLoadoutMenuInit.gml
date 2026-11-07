@@ -70,6 +70,10 @@ function scr_loadout_race_set_stored_weapon(_race_id, _weapon_id) {
 /// @function scr_loadout_race_get_start_weapon
 /// @praam {Real|Enum.Race} race_id
 function scr_loadout_race_get_start_weapon(_race_id) {
+    // BEGIN FRONTIER RACE SAVED STARTER
+    if(scrFRRaceIs(_race_id)) return scrFRRaceLoadoutWeapon(_race_id);
+    // END FRONTIER RACE SAVED STARTER
+
 	with UberCont {
 		return save_get_value("cswep", _race_id, scrRaceGetStarterWeapon(_race_id))
 	}

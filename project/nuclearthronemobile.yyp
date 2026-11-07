@@ -60742,6 +60742,60 @@
         "name": "scrFrontier_scary_face_tests",
         "path": "scripts/scrFrontier_scary_face_tests/scrFrontier_scary_face_tests.yy"
       }
+    },
+    {
+      "id": {
+        "name": "scrFrontier_fly_wall_fix",
+        "path": "scripts/scrFrontier_fly_wall_fix/scrFrontier_fly_wall_fix.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrFrontier_fly_wall_tests",
+        "path": "scripts/scrFrontier_fly_wall_tests/scrFrontier_fly_wall_tests.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrFrontier_menu_repair_tests",
+        "path": "scripts/scrFrontier_menu_repair_tests/scrFrontier_menu_repair_tests.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrFrontier_menu_repairs",
+        "path": "scripts/scrFrontier_menu_repairs/scrFrontier_menu_repairs.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrFrontier_palace_block_tests",
+        "path": "scripts/scrFrontier_palace_block_tests/scrFrontier_palace_block_tests.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrFrontier_palace_blocks",
+        "path": "scripts/scrFrontier_palace_blocks/scrFrontier_palace_blocks.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrFrontier_weather_filter_oracle",
+        "path": "scripts/scrFrontier_weather_filter_oracle/scrFrontier_weather_filter_oracle.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "scrFrontier_weather_performance_tests",
+        "path": "scripts/scrFrontier_weather_performance_tests/scrFrontier_weather_performance_tests.yy"
+      }
+    },
+    {
+      "id": {
+        "name": "sprFRStormsLoadout",
+        "path": "sprites/sprFRStormsLoadout/sprFRStormsLoadout.yy"
+      }
     }
   ],
   "resourceType": "GMProject",

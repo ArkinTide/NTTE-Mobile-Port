@@ -53,6 +53,9 @@ def hook_specs():
               f'if(scrFRRaceIs(_race)) return scrFRRaceText("{kind}",_skin_id);', "RACE TEXT " + kind.upper())
     start(races, "function scrRaceGetStarterWeapon(_race) {",
           "if(scrFRRaceIs(_race)) return scrFRRaceStarterWeapon();", "RACE STARTER")
+    start("scripts/scrLoadoutMenuInit/scrLoadoutMenuInit.gml",
+          "function scr_loadout_race_get_start_weapon(_race_id) {",
+          "if(scrFRRaceIs(_race_id)) return scrFRRaceLoadoutWeapon(_race_id);", "RACE SAVED STARTER")
     start(races, "function scrRaceGetMaxSkinCount(_race, _show_secret=false) {",
           "if(scrFRRaceIs(_race)) return 2;", "RACE SKIN COUNT")
     for function, kind in [("scrRaceGetUltraSkillName", "ultra_name"), ("scrRaceGetUltraSkillText", "ultra_text")]:

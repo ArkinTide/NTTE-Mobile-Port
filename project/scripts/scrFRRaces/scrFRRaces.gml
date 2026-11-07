@@ -225,7 +225,7 @@ function scrFRRaceSprite(_race,_sprite) {
 }
 
 function scrFRRaceStarterWeapon(_skin=undefined) {
-    if(!scrFREnabled()) return FR_BUBBLES_CUTLASS;
+    if(!scrFREnabled()) return _skin==1?FR_BUBBLES_SHOVEL:FR_BUBBLES_CUTLASS;
     if(is_undefined(_skin)) {
         _skin=0;
         if(variable_global_exists("index")) {
@@ -234,6 +234,23 @@ function scrFRRaceStarterWeapon(_skin=undefined) {
         }
     }
     return scrFRWeaponResolve(_skin==1?"FR_BubblesShovel":"FR_BubblesCutlass");
+}
+
+function scrFRRaceLoadoutWeapon(_race) {
+    // Old saves may contain the pre-native boolean/empty cswep value. This
+    // getter is only used for the ordinary saved loadout; explicit Custom
+    // slots (including NONE), challenges and co-op retain their own paths.
+    // Use this race's saved skin rather than global.index: Random can ask
+    // before the local PlayerInstance has changed to Bubbles.
+    var _starter=scrFRRaceStarterWeapon(scr_loadout_race_get_skin(_race)),
+        _saved=save_get_value("cswep",_race,undefined);
+    if(is_undefined(_saved)) return _starter;
+    if(is_numeric(_saved) && (_saved==FR_BUBBLES_CUTLASS || _saved==FR_BUBBLES_SHOVEL)) return _starter;
+    if(scrNTTEFullProtoWeaponTopologyValid(_saved) && scr_weapon_is_valid(_saved)) return _saved;
+    // Repair only the invalid scalar/graph. A valid alternate or physical
+    // fusion keeps its selected identity and mutable state.
+    save_set_value("cswep",_race,_starter);
+    return _starter;
 }
 
 function scrFRUltraCount(_race) { return scrRaceGetUltraSkillMax(scrFRRaceResolve(_race)); }

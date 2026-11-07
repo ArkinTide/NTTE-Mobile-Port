@@ -2,6 +2,25 @@
 
 [简体中文](VALIDATION.md) | [English](VALIDATION.en.md) | [Home](../README.en.md)
 
+## 2.0.2 — Weather, moving traps and NTUF interface repairs
+
+The newly compiled final Windows VM/input passed 32 explicitly selected native
+cases. A hash-verified Python log records 118 passing checks. Earlier VM passes
+are not inherited. See the [current validation summary](validation/2.0.2-development-regression.json)
+for exact cases and evidence.
+
+This round repairs Aurora background-colour access, weather compatibility cost,
+the locked Storm Crown icon, Palace moving traps, invalid saved Bubbles starters, wall-spawned JungleFly landing,
+statistics/credits layout, a separate NTUF custom-weapon section and goto area labels.
+
+Android versionCode is 3000098, retaining application/signing identities and checked
+16KB layout. iOS build 98 requires re-signing; new game data uses a retained native
+Runner without a fresh Mac native build. GAME_BUILD/save protocol remains 3004.
+
+Persistent audio noise remains unresolved. Silent background desktop tests do not
+establish phone mixing or frame rates. No physical Android/iOS, complete random
+campaign or universal FPS acceptance is claimed.
+
 ## 2.0.1 — Lifecycle, Bubbles and saved weapon repairs
 
 The newly compiled final 2.0.1 VM/input passed 14 explicitly selected native

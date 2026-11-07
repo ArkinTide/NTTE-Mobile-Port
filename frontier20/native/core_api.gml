@@ -130,6 +130,51 @@ function scrFRSourceBBoxRead(_target,_field) {
 }
 
 
+// Fresh direct queries avoid building a full numeric-ID snapshot followed by
+// another scan. Weather's recurring per-tile marker checks are particularly
+// frequent in NTTE areas. No membership or mutable field values are cached.
+function scrFRFilterNativeTargets(_target,_types) {
+    if(is_array(_target)) {
+        for(var _i=0;_i<array_length(_target);++_i) {
+            _types=scrFRFilterNativeTargets(_target[_i],_types);
+            if(is_undefined(_types)) return undefined;
+        }
+        return _types;
+    }
+    if(is_struct(_target) || is_undefined(_target) || is_string(_target)
+        || scrFRObjectSelector(_target) || !object_exists(_target)) return undefined;
+    array_push(_types,_target);return _types;
+}
+function scrFRFilterNative(_types,_field,_values,_operation) {
+    var _found=[],_seen={},_union=array_length(_types)>1;
+    for(var _i=0;_i<array_length(_types);++_i) {
+        var _type=_types[_i];
+        with(_type) {
+            // Source Wall excludes packed exterior collision rectangles.
+            if(_type==Wall && object_index==NTTESolidWall) continue;
+            var _value=variable_instance_exists(id,_field)?variable_instance_get(id,_field):undefined,
+                _match=false;
+            // Preserve the generic API's original GML equality, including
+            // instance/script/method/array operands. This traversal changes
+            // snapshot allocation only, never the comparison operation.
+            for(var _j=0;_j<array_length(_values);++_j) {
+                _match=(_value==_values[_j]);
+                if(_match) break;
+            }
+            if(_operation==1) _match=!_match;
+            if(!_match) continue;
+            var _number=real(id);
+            if(_union) {
+                var _key=string(_number);
+                if(variable_struct_exists(_seen,_key)) continue;
+                _seen[$ _key]=true;
+            }
+            array_push(_found,_number);
+        }
+    }
+    return _found;
+}
+
 function scrFRFilter(_target, _field, _values, _operation) {
     _field=scrFRFieldName(_field,_target);
     var _resolved=[];
@@ -159,6 +204,17 @@ function scrFRFilter(_target, _field, _values, _operation) {
         array_push(_resolved,_expected);
     }
     _values=_resolved;
+    // Special object_index/bounds/alarm providers and the one pet-family
+    // equivalence still use their original adapter. Direct EQ/NE on ordinary
+    // native fields has exactly the same missing-field/null and source order.
+    if((_operation==0 || _operation==1) && _field!="object_index" && _field!="bbox_right" && _field!="bbox_bottom"
+        && !(string_length(_field)>=6 && string_copy(_field,1,5)=="alarm")
+        && !(_operation==0 && _field=="name" && !is_array(_target) && !is_struct(_target)
+            && !is_undefined(_target) && !is_string(_target) && _target==FRCustomHitme
+            && array_contains(_values,"NTTEPet"))) {
+        var _types=scrFRFilterNativeTargets(_target,[]);
+        if(is_array(_types)) return scrFRFilterNative(_types,_field,_values,_operation);
+    }
     var _found=[],_items=scrFRInstances(_target);
     _items=scrFRNTTEPetFilterItems(_target,_field,_values,_operation,_items);
     for(var _i=0;_i<array_length(_items);++_i) {

@@ -95,6 +95,13 @@ def object_specs():
     ]
     for spec in specs:
         if spec["name"] == "FRCustomProjectile":
+            # The Palace moving wall follows native physical movement on
+            # every host frame, including the source-clock render halves.
+            for event in spec["events"]:
+                if event["filename"] == "Step_0.gml":
+                    event["code"] = 'if(!scrFRPalaceSmushStep()) scrFRActorStep("on_step");\n'
+                if event["filename"] == "Step_2.gml":
+                    event["code"] = 'if(!scrFRPalaceBlockEndStep()) scrFRActorStep("on_end_step");\n'
             spec["events"].extend([
                 _event(4, 0, "scrFRProjectileWall();", "Wall"),
                 _event(4, 0, "scrFRProjectileCollision();", "hitme"),

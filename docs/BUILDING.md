@@ -2,6 +2,13 @@
 
 [简体中文](BUILDING.md) | [English](BUILDING.en.md) | [返回首页](../README.md)
 
+## 2.0.2 源码输入
+
+当前 `project/` 与本轮接受输入一致；Android 另有两个文本覆盖。
+`frontier20/localization/` 保留三份中文 TSV 和覆盖清单。素材恢复见
+[SOURCE_REPRODUCTION](../frontier20/SOURCE_REPRODUCTION.md)。
+公开工具不包含本机打包、签名、SDK 缓存和商业 Runner。
+
 ## 2.0.1 源码输入
 
 当前 `project/` 与本轮接受输入一致；Android 另有两个文本覆盖。

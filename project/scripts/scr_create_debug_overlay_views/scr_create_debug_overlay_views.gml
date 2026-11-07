@@ -59,6 +59,7 @@ function scr_debug_cheats_enabled() {
 
 function scr_create_debug_overlay_views() {
 	
+	scrFRDebugFonts()
 	scr_debug_overlay_load()
 	
 	#region Common
@@ -161,7 +162,7 @@ function scr_create_debug_overlay_views() {
 			var _area = _area_list[i],
 				_secret_area = (_area % 100) + 100
 			
-			dbg_button(scrAreaGetName(_area), __area_transit_button(_area, 1), 120)
+			dbg_button(scrFRDebugAreaLabel(_area), __area_transit_button(_area, 1), 120)
 			
 			var _subareas = scrFRAreaDebugSubareas(_area),
 				_secret_subareas = scrAreaGetMaxSubarea(_secret_area),
@@ -173,7 +174,7 @@ function scr_create_debug_overlay_views() {
 			for(var _subarea = 1; _subarea <= _subareas; ++_subarea) {
 				dbg_same_line()
 				dbg_button(
-					scrAreaGetMapName(_area, _subarea, 0, false, false),
+					scrFRDebugAreaLabel(_area,_subarea),
 					__area_transit_button(_area, _subarea),
 					(65 + _missing_subareas * 20.33) * max(1, _missing_subareas))
 			}

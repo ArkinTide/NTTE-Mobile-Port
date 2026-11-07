@@ -33,7 +33,7 @@ var _current_weapon_key = get_weapon_key(),
 
 for(var i = 0; i < _group_count; ++i) {
 	// Keep DEFAULT/NONE first, then show all NTTE weapons together.
-	var _group_index = (i == 0) ? 0 : ((i == 1) ? _group_count - 1 : i - 1),
+	var _group_index = scrFRCustomWeaponGroupOrder(i,_group_count),
 		_weapons = groups[_group_index],
 		_weapon_count = array_length(_weapons)
 	

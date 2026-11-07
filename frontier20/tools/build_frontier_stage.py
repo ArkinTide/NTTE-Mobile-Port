@@ -152,7 +152,7 @@ def stage(profile=False):
     # Proto Chest repairs explicitly before Frontier adds its source-leaf hook.
     # This installer takes a project list, unlike the single-project hooks below.
     apply_proto_chest_persistence([PROJECT])
-    for filename in ("fr_actor_objects.py", "fr_ntte_hooks.py", "fr_area_hooks.py", "fr_crown_hooks.py", "fr_content_hooks.py", "fr_legacy_hooks.py", "fr_race_hooks.py", "fr_player_hooks.py", "fr_save_hooks.py", "fr_unlock_hooks.py", "fr_prompt_hooks.py", "fr_ammo_hooks.py", "fr_iris_hooks.py", "fr_input_hooks.py", "fr_wall_hooks.py", "fr_lifecycle_hooks.py", "fr_enemy_hp_hooks.py", "fr_localization_hooks.py", "fr_robocenter_hooks.py", "fr_deeplabs_hooks.py", "fr_swarmbot_hooks.py", "fr_lib_performance_hooks.py", "fr_performance_hooks.py", "fr_progression_hooks.py", "fr_test_hooks.py"):
+    for filename in ("fr_actor_objects.py", "fr_ntte_hooks.py", "fr_area_hooks.py", "fr_crown_hooks.py", "fr_content_hooks.py", "fr_legacy_hooks.py", "fr_race_hooks.py", "fr_player_hooks.py", "fr_save_hooks.py", "fr_unlock_hooks.py", "fr_prompt_hooks.py", "fr_ammo_hooks.py", "fr_iris_hooks.py", "fr_input_hooks.py", "fr_wall_hooks.py", "fr_fly_wall_hooks.py", "fr_lifecycle_hooks.py", "fr_enemy_hp_hooks.py", "fr_localization_hooks.py", "fr_robocenter_hooks.py", "fr_deeplabs_hooks.py", "fr_swarmbot_hooks.py", "fr_lib_performance_hooks.py", "fr_performance_hooks.py", "fr_progression_hooks.py", "fr_palace_hooks.py", "fr_menu_hooks.py", "fr_test_hooks.py"):
         path=TOOLS/filename
         if not path.is_file(): continue
         spec=importlib.util.spec_from_file_location(path.stem,path); tool=importlib.util.module_from_spec(spec);spec.loader.exec_module(tool)
@@ -171,13 +171,13 @@ def stage(profile=False):
     # established native save protocol rather than a release counter.
     uber=PROJECT/"objects/UberCont/Create_0.gml"
     version_source=uber.read_text(encoding="utf8")
-    version_source,count=re.subn(r'#macro GAME_VERSION "[^"]+"','#macro GAME_VERSION "2.0.1"',version_source)
+    version_source,count=re.subn(r'#macro GAME_VERSION "[^"]+"','#macro GAME_VERSION "2.0.2"',version_source)
     assert count==1
     uber.write_text(version_source,encoding="utf8")
     updater=PROJECT/"scripts/scrNTTEUpdate/scrNTTEUpdate.gml"
     update_source=updater.read_text(encoding="utf8")
-    for macro,value in (("NTTE_RELEASE_NUMBER","97"),("NTTE_RELEASE_TAG",'"2.0.1"'),
-                        ("NTTE_RELEASE_VERSION",'"2.0.1"')):
+    for macro,value in (("NTTE_RELEASE_NUMBER","98"),("NTTE_RELEASE_TAG",'"2.0.2"'),
+                        ("NTTE_RELEASE_VERSION",'"2.0.2"')):
         update_source,count=re.subn(r'(#macro '+macro+r') [^\r\n]+',r'\g<1> '+value,update_source)
         assert count==1,macro
     # Updater comparison keeps a three-component canonical version while
@@ -186,8 +186,8 @@ def stage(profile=False):
     for platform in ("android","ios","windows"):
         option_path=PROJECT/f"options/{platform}/options_{platform}.yy"
         option=read(option_path)
-        option[f"option_{platform}_version"]="2.0.1.0" if platform=="windows" else "2.0"
-        if platform=="ios": option["option_ios_build_number"]=97
+        option[f"option_{platform}_version"]="2.0.2.0" if platform=="windows" else "2.0"
+        if platform=="ios": option["option_ios_build_number"]=98
         save(option_path,option)
     save(ROOT/"staging/build-receipt.json",{"status":"DEVELOPMENT_NOT_PLAYABLE_VERIFIED", "profile_instrumented":bool(profile), "active_modules":len(active), "assets":len(assets), "identities":ledger, "script_hashes":receipts})
     print(json.dumps({"active_modules":len(active),"new_assets":len(assets),"scripts":len(receipts),"resources":len(latest["resources"])}))

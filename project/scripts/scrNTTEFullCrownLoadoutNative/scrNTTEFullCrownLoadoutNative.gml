@@ -25,7 +25,7 @@ function scrNTTEFullCrownLoadoutCount(_race) {
     return _count
 }
 function scrNTTEFullCrownLoadoutSprite(_crown,_unlocked=true) {
-    if(scrFRCrownKey(_crown)!="") return [scrFRCrownSprite("Loadout"),0];
+    if(scrFRCrownKey(_crown)!="") return [sprFRStormsLoadout,_unlocked?0:1];
 
     if(_crown>=14 && _crown<=16) return [scrNTTEFullCrownSprite(_crown,"Loadout"),_unlocked?0:1]
     return [_unlocked?sprLoadoutCrown:sprLockedLoadoutCrown,_crown]

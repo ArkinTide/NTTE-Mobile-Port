@@ -1,1 +1,1 @@
-scrFRActorStep("on_step");
+if(!scrFRPalaceSmushStep()) scrFRActorStep("on_step");

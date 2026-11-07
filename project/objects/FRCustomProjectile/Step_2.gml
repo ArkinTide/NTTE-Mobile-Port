@@ -1,1 +1,1 @@
-scrFRActorStep("on_end_step");
+if(!scrFRPalaceBlockEndStep()) scrFRActorStep("on_end_step");

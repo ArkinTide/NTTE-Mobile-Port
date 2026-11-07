@@ -1,11 +1,11 @@
 // Explicit desktop development cases. Rebuild a genuine menu/new run instead
 // of attaching a hidden Bubbles body to the smoke boot's existing Fish game.
-function scrFRBubblesStartupTestsStart(_driver,_skin) {
+function scrFRBubblesStartupTestsStart(_driver,_skin,_random=false) {
     assert(os_type==os_windows && scrNTTEFullSmokeEnabled() && global.ntte_smoke_active,
         "Bubbles new-run acceptance requires the isolated desktop harness");
     assert(_skin==0 || _skin==1,"Unknown Bubbles startup skin");
     _driver.persistent=true;
-    _driver.fr_bubbles_startup={skin:_skin,phase:0,round:0,trial:0,ticks:0,wait:0,
+    _driver.fr_bubbles_startup={skin:_skin,random:_random,phase:0,round:0,trial:0,ticks:0,wait:0,
         driver:_driver,test_case:_driver.fr_test_case,keys:global.fr_weapon_keys,
         scripts:global.fr_module_scripts,
         marker:noone,player:noone,icon:noone,game:noone,steps:0,ends:0,draws:0,huds:0,
@@ -315,7 +315,15 @@ function scrFRBubblesStartupTestsMenu(_driver) {
     assert(player_count==1 && is_struct(my_player) && my_player.is_local(),
         "Bubbles startup fixture did not retain the real local native player slot");
     scr_loadout_race_set_skin(19,_state.skin);
-    scr_loadout_race_set_start_weapon(19,_state.skin==1?FR_BUBBLES_SHOVEL:FR_BUBBLES_CUTLASS);
+    if(_state.random) {
+        save_delete_value("cswep",19);
+        var _seed=random_get_seed();
+        for(var _candidate=1;_candidate<10000;++_candidate) {
+            random_set_seed(_candidate);
+            if(irandom_range(Race.Fish,Race.NUM_ALL_RACE_TYPES-1)==19) {_state.random_seed=_candidate;break;}
+        }
+        random_set_seed(_seed);
+    } else scr_loadout_race_set_start_weapon(19,_state.skin==1?FR_BUBBLES_SHOVEL:FR_BUBBLES_CUTLASS);
     assert(scr_loadout_race_get_skin(19)==_state.skin,
         "Native Bubbles loadout rejected the selected A/B skin");
     _state.trial=0;
@@ -327,8 +335,12 @@ function scrFRBubblesStartupTestsMenu(_driver) {
     _state.menu=instance_create(0,0,Menu);
     assert(instance_exists(_state.menu) && instance_number(CharSelect)>0 && !instance_exists(GameCont),
         "Bubbles startup did not construct the ordinary native character menu");
+    // Reset retains the local slot's previous/default race. Start from Fish
+    // through the real menu consumer so Random's first click selects it and
+    // the second click genuinely confirms, just like the reported recording.
+    if(_state.random) scrCampfireMenuSelectionChange(my_player.index,Race.Fish);
     _state.icon=noone;
-    with(CharSelect) if(race==19) {_state.icon=id;break;}
+    with(CharSelect) if(race==(_state.random?Race.Random:19)) {_state.icon=id;break;}
     assert(instance_exists(_state.icon),"Unlocked Bubbles was missing from the native menu");
     _state.phase=1;_state.wait=0;
     scrNTTESmokeLog("NTUF BUBBLES STARTUP real menu created "+json_stringify({skin:_state.skin,rate:_rate}));
@@ -362,8 +374,8 @@ function scrFRBubblesStartupTestsStep(_driver) {
         assert(instance_exists(_state.icon) && _state.icon.can,
             "Bubbles native menu Draw failed to enable its unlocked character");
         with(_state.icon) event_perform(ev_mouse,ev_left_press);
-        assert(my_player.race==19 && my_player.skin==_state.skin
-            && my_player.cwep==(_state.skin==1?FR_BUBBLES_SHOVEL:FR_BUBBLES_CUTLASS),
+        assert((_state.random && my_player.race==Race.Random) || (my_player.race==19 && my_player.skin==_state.skin
+            && my_player.cwep==(_state.skin==1?FR_BUBBLES_SHOVEL:FR_BUBBLES_CUTLASS)),
             "Native Bubbles selection lost its race, skin or authored starting weapon");
         _state.phase=2;_state.wait=0;
         scrNTTESmokeLog("NTUF BUBBLES STARTUP first real CharSelect.Mouse4 selected Bubbles");
@@ -376,6 +388,10 @@ function scrFRBubblesStartupTestsStep(_driver) {
             "Bubbles fixture constructed gameplay before the genuine confirmation consumer");
         _state.marker=instance_create(0,0,FRMarker);
         _state.phase=3;
+        // GameCont's real creation initializes the run seed. Use its native
+        // custom-seed option, otherwise it replaces global.seed before the
+        // Random selection consumer and the fixture cannot choose Bubbles.
+        if(_state.random) {global.seed=_state.random_seed;global.custom_seed=_state.random_seed;}
         // Same selected CharSelect click calls the production scrRunStart,
         // which creates GameCont, scrCreatePlayers and queues room_restart.
         with(_state.icon) event_perform(ev_mouse,ev_left_press);
@@ -385,7 +401,7 @@ function scrFRBubblesStartupTestsStep(_driver) {
         var _p=_state.player;
         assert(_p.race==19 && _p.bskin==_state.skin && _p.is_me && _p.index==global.index
             && _p.wep==(_state.skin==1?FR_BUBBLES_SHOVEL:FR_BUBBLES_CUTLASS),
-            "scrRunStart/scrCreatePlayers did not construct the selected local Bubbles loadout");
+            "scrRunStart/scrCreatePlayers did not construct the selected local Bubbles loadout: "+json_stringify({race:_p.race,skin:_p.bskin,weapon:_p.wep,seed:global.seed}));
         assert(_p.bubbles_bubbleCharge==100 && _p.max_hp==8 && _p.hp==8
             && _p.spr_idle==scrFRRaceVar("sprIdle",_state.skin),
             "New Bubbles Player did not finish its authored initializer");
@@ -457,7 +473,7 @@ function scrFRBubblesStartupTestsStep(_driver) {
         assert(UberCont.ctot_runs[19]==_state.runs+1
             && scrFRModCallArray("mod","libSaves","save_get",["Frontier","bubbles_runs"])==_state.source_runs+1,
             "Bubbles first gameplay frames replayed new-run statistics");
-        scrNTTESmokeLog("NTUF BUBBLES STARTUP real new-run acceptance PASS "+json_stringify({skin:_state.skin,
+        scrNTTESmokeLog("NTUF BUBBLES STARTUP real new-run acceptance PASS "+json_stringify({skin:_state.skin,random:_state.random,
             trial:_state.trial==0?"new":"retry",
             requested_rate:_state.round==0?30:60,rate:game_get_speed(gamespeed_fps),
             option_rate:UberCont.opt_framerate,scale:timescale,
@@ -484,6 +500,7 @@ function scrFRBubblesStartupTestsStep(_driver) {
         assert(instance_exists(_state.old_game) && !instance_exists(Player),
             "Bubbles death-menu Retry fixture bypassed genuine death disposal");
         _state.phase=8;_state.wait=0;_state.old_driver=_driver;
+        if(_state.random) {global.seed=_state.random_seed;global.custom_seed=_state.random_seed;}
         with(_retry) event_perform(ev_other,ev_user0);
         assert(UberCont.want_restart>0,"Actual Bubbles death-menu Retry did not request native restart");
         scrNTTESmokeLog("NTUF BUBBLES STARTUP actual GameOver PauseButton Retry requested");

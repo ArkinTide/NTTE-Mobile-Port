@@ -271,7 +271,13 @@ function scrFRTraceTime(_label=undefined) {
     if(!is_undefined(_label)) show_debug_message("Frontier "+string(_label)+": "+string((_now-_begin)/1000)+"ms");
     _begin=_now;return _now;
 }
-function scrFRBackgroundColour() { return background_color; }
+function scrFRBackgroundColour() {
+    // NTT background_color is room state, never a field of callback self.
+    // Its writes already use background_set_colour; read the same native
+    // room background so nested with/actor callbacks see weather updates.
+    var _background=__background_get_colour_element();
+    return layer_background_get_blend(_background[0]);
+}
 function scrFRLocSet(_key,_value) { global.language_current[$ string(_key)]=_value;return _value; }
 
 function scrFRDrawText(_x,_y,_text,_xs=1,_ys=_xs,_angle=0,_blend=draw_get_color(),_alpha=draw_get_alpha()) {

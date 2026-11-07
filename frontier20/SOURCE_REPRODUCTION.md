@@ -45,11 +45,17 @@ The historical source snapshot describes an earlier local 2.0 build. It is not
 current acceptance and does not include its binaries or installer files.
 Current validation is the root `docs/VALIDATION.md` and source-baseline record.
 
-For 2.0.1, the game display/updater/tag use `2.0.1` and internal build 97;
+The Storm Crown menu art is derived from the separately obtained upstream
+`Sprites/Crowns/sprCrownStormsIcon.png`. After restoring upstream media, run
+`frontier20/tools/generate_frontier_menu_art.py` with Pillow available. It
+regenerates the unlocked icon and matching locked silhouette from the tracked
+resource template; `--check` verifies the resulting PNG hashes without writing.
+
+For 2.0.2, the game display/updater/tag use `2.0.2` and internal build 98;
 GAME_BUILD/save protocol remains 3004. The common accepted project retains the
 canonical `2.0` platform option declarations. Delivery compiler copies normalize
-the iOS/Android platform version to `2.0.1`; the public Android overlay includes
-its version option and bootstrap adjustment. The iOS package has build 97 and
+the iOS/Android platform version to `2.0.2`; the public Android overlay includes
+its version option and bootstrap adjustment. The iOS package has build 98 and
 requires the user's own re-signing. Private host packaging/signing machinery is
 not published and should not be inferred from the common option declarations.
 
